@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T12:22:39.721665+00:00",
+  "updated_at": "2026-10-15T12:36:46.099284+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Validation rollouts: rollout8_evaluations/best, none projection",
+  "phase": "Training rollout16_full: 16-step rollout, up to 12000 updates \u00b7 update 2,500",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -178,6 +178,33 @@
             "5.56",
             "8.99",
             "95.01"
+          ],
+          [
+            "Eight-step training (one-step selection) + static correction",
+            "validation",
+            "3/6",
+            "1.95",
+            "5.33",
+            "8.86",
+            "95.46"
+          ],
+          [
+            "Eight-step training (final checkpoint)",
+            "validation",
+            "3/6",
+            "1.96",
+            "5.56",
+            "8.99",
+            "95.01"
+          ],
+          [
+            "Eight-step training (final checkpoint) + static correction",
+            "validation",
+            "3/6",
+            "1.95",
+            "5.33",
+            "8.86",
+            "95.46"
           ],
           [
             "Stationary particle baseline",
@@ -557,6 +584,66 @@
             "transitions": 60
           },
           "peak_at_reference_time_rmse_N": 95.0119486295658
+        },
+        {
+          "name": "Eight-step training (one-step selection) + static correction",
+          "path": "rollout8_evaluations/best/static",
+          "split": "validation",
+          "completed": 3,
+          "episodes": 6,
+          "particle_cm": 1.9512221838037174,
+          "body_cm": 5.332843953772556,
+          "force_N": 8.85873166999936,
+          "checkpoint_step": 20000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.011217938736081123,
+            "position_vector_rmse_m": 5.6089692426703266e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.052549347281455994,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 95.46303203488169
+        },
+        {
+          "name": "Eight-step training (final checkpoint)",
+          "path": "rollout8_evaluations/final/none",
+          "split": "validation",
+          "completed": 3,
+          "episodes": 6,
+          "particle_cm": 1.9583942989508312,
+          "body_cm": 5.557905040265595,
+          "force_N": 8.989339686403648,
+          "checkpoint_step": 20000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.011217938736081123,
+            "position_vector_rmse_m": 5.6089692426703266e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.052549347281455994,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 95.01195742947317
+        },
+        {
+          "name": "Eight-step training (final checkpoint) + static correction",
+          "path": "rollout8_evaluations/final/static",
+          "split": "validation",
+          "completed": 3,
+          "episodes": 6,
+          "particle_cm": 1.9510784496863682,
+          "body_cm": 5.332822977148246,
+          "force_N": 8.858678848152238,
+          "checkpoint_step": 20000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.011217938736081123,
+            "position_vector_rmse_m": 5.6089692426703266e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.052549347281455994,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 95.46308868797797
         },
         {
           "name": "Stationary particle baseline",
@@ -1076,7 +1163,9 @@
   ],
   "run_state": {
     "status": "Experiments running",
-    "phase": "Validation rollouts: rollout8_evaluations/best, none projection",
-    "updated_at": "2026-10-15T12:21:18.735201+00:00"
+    "phase": "Training rollout16_full: 16-step rollout, up to 12000 updates \u00b7 update 2,500",
+    "updated_at": "2026-10-15T12:36:45.531603+00:00",
+    "training_update": 2500,
+    "elapsed_seconds": 601
   }
 }
