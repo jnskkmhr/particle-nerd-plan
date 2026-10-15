@@ -2070,6 +2070,12 @@
         "scope": "reserved test; distinct predicted and reference particle trajectories"
       },
       "preserve": true
+    },
+    {
+      "name": "Interactive play and wall-clock solver timing",
+      "summary": "Right-drag a dynamic object in Newton GL or RTX. At 4,000 particles, MPM takes 10.1\u201310.3 ms/step; the current NeRD pipeline takes 21.8\u201325.8 ms/step. Force estimation is the largest profiled component. See Interactive play & timing for commands and methodology.",
+      "figure": "assets/solver-timing.png",
+      "preserve": true
     }
   ],
   "limitations": [

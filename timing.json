@@ -1,0 +1,538 @@
+{
+  "date": "2026-10-15",
+  "reports": [
+    {
+      "method": "mpm",
+      "episode": "validation_0_box/demo_0",
+      "shape": "box",
+      "dt": 0.004999999888241291,
+      "particle_count": 4000,
+      "material": {
+        "density": 1200.0,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "yield_pressure": 1000000000000000.0,
+        "tensile_yield_ratio": 0.0,
+        "yield_stress": 0.0,
+        "hardening": 0.0,
+        "dilatancy": 0.0,
+        "viscosity": 0.0
+      },
+      "body_mass_kg": 1.5,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "steps": 300,
+      "repeats": 3,
+      "grid_spacing_m": 0.02,
+      "mpm_iterations": 25,
+      "cuda_graph": false,
+      "packages": {
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "torch": "2.11.0+cu130",
+        "numpy": "2.4.6"
+      },
+      "scope": "One environment; full coupled physics step; no rendering, recorder, or manager observation work.",
+      "warmup": "One complete trajectory; each timed repeat starts from the same recorded initial state.",
+      "total": {
+        "mean_ms": 10.312469814372081,
+        "median_ms": 10.189803499088157,
+        "p95_ms": 11.106487802317133,
+        "std_ms": 0.43958753388254757,
+        "samples": 900
+      },
+      "repeat_means_ms": [
+        10.305315046619702,
+        10.345542559904667,
+        10.286551836591874
+      ],
+      "separately_profiled_components": {
+        "mpm": {
+          "mean_ms": 7.662800643690086,
+          "median_ms": 7.601904999319231,
+          "p95_ms": 8.38056619904819,
+          "std_ms": 0.35456790084468165,
+          "samples": 300
+        },
+        "rigid_dynamics": {
+          "mean_ms": 1.6824704301689053,
+          "median_ms": 1.6500404963153414,
+          "p95_ms": 1.979221751025762,
+          "std_ms": 0.13954199407462445,
+          "samples": 300
+        }
+      }
+    },
+    {
+      "method": "mpm",
+      "episode": "validation_0_box/demo_0",
+      "shape": "box",
+      "dt": 0.004999999888241291,
+      "particle_count": 4000,
+      "material": {
+        "density": 1200.0,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "yield_pressure": 1000000000000000.0,
+        "tensile_yield_ratio": 0.0,
+        "yield_stress": 0.0,
+        "hardening": 0.0,
+        "dilatancy": 0.0,
+        "viscosity": 0.0
+      },
+      "body_mass_kg": 1.5,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "steps": 300,
+      "repeats": 3,
+      "grid_spacing_m": 0.02,
+      "mpm_iterations": 50,
+      "cuda_graph": false,
+      "packages": {
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "torch": "2.11.0+cu130",
+        "numpy": "2.4.6"
+      },
+      "scope": "One environment; full coupled physics step; no rendering, recorder, or manager observation work.",
+      "warmup": "One complete trajectory; each timed repeat starts from the same recorded initial state.",
+      "total": {
+        "mean_ms": 11.460076856633854,
+        "median_ms": 11.57765799871413,
+        "p95_ms": 12.024223348271335,
+        "std_ms": 0.5193843552360196,
+        "samples": 900
+      },
+      "repeat_means_ms": [
+        11.52034454321741,
+        11.440503936488918,
+        11.419382090195237
+      ],
+      "separately_profiled_components": {
+        "mpm": {
+          "mean_ms": 8.93315019988222,
+          "median_ms": 9.022775499033742,
+          "p95_ms": 9.442605254298542,
+          "std_ms": 0.4751915047609937,
+          "samples": 300
+        },
+        "rigid_dynamics": {
+          "mean_ms": 1.6452580700085189,
+          "median_ms": 1.6380665001634043,
+          "p95_ms": 1.782523098154343,
+          "std_ms": 0.10393302119337668,
+          "samples": 300
+        }
+      }
+    },
+    {
+      "method": "nerd",
+      "episode": "validation_0_box/demo_0",
+      "shape": "box",
+      "dt": 0.004999999888241291,
+      "particle_count": 4000,
+      "material": {
+        "density": 1200.0,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "yield_pressure": 1000000000000000.0,
+        "tensile_yield_ratio": 0.0,
+        "yield_stress": 0.0,
+        "hardening": 0.0,
+        "dilatancy": 0.0,
+        "viscosity": 0.0
+      },
+      "body_mass_kg": 1.5,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "steps": 300,
+      "repeats": 3,
+      "grid_spacing_m": 0.02,
+      "mpm_iterations": null,
+      "cuda_graph": false,
+      "packages": {
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "torch": "2.11.0+cu130",
+        "numpy": "2.4.6"
+      },
+      "scope": "One environment; full coupled physics step; no rendering, recorder, or manager observation work.",
+      "warmup": "One complete trajectory; each timed repeat starts from the same recorded initial state.",
+      "projection": "static",
+      "model_config": {
+        "hidden": 64,
+        "passes": 3,
+        "radius": 0.035,
+        "velocity_scale": 0.1,
+        "history_length": 3,
+        "input_velocity_scale": 1.0,
+        "activation_checkpointing": false
+      },
+      "edge_chunk_size": 0,
+      "total": {
+        "mean_ms": 24.535356866609717,
+        "median_ms": 23.1164325014106,
+        "p95_ms": 37.87781025093864,
+        "std_ms": 8.034983485092726,
+        "samples": 900
+      },
+      "repeat_means_ms": [
+        24.397678779884394,
+        24.550514099901193,
+        24.65787772004357
+      ],
+      "separately_profiled_components": {
+        "graph_input": {
+          "mean_ms": 5.198583863457316,
+          "median_ms": 5.144121998455375,
+          "p95_ms": 5.745965548339882,
+          "std_ms": 0.25409947313579234,
+          "samples": 300
+        },
+        "gnn": {
+          "mean_ms": 3.1529431166078816,
+          "median_ms": 3.189707000274211,
+          "p95_ms": 3.5937580974859884,
+          "std_ms": 0.3292845745551827,
+          "samples": 300
+        },
+        "static_projection": {
+          "mean_ms": 1.0410541732562706,
+          "median_ms": 1.0354770020057913,
+          "p95_ms": 1.0834164495463483,
+          "std_ms": 0.02235212307354627,
+          "samples": 300
+        },
+        "analytical_force": {
+          "mean_ms": 13.08284691668329,
+          "median_ms": 11.775919498177245,
+          "p95_ms": 26.08916215140198,
+          "std_ms": 6.818612168227041,
+          "samples": 300
+        },
+        "rigid_dynamics": {
+          "mean_ms": 2.521098693299185,
+          "median_ms": 2.133100999344606,
+          "p95_ms": 2.5616901482862886,
+          "std_ms": 5.77327006997632,
+          "samples": 300
+        }
+      },
+      "force_solver_failures_last_rollout": 0
+    },
+    {
+      "method": "mpm",
+      "episode": "validation_0_cylinder/demo_0",
+      "shape": "cylinder",
+      "dt": 0.004999999888241291,
+      "particle_count": 4000,
+      "material": {
+        "density": 1200.0,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "yield_pressure": 1000000000000000.0,
+        "tensile_yield_ratio": 0.0,
+        "yield_stress": 0.0,
+        "hardening": 0.0,
+        "dilatancy": 0.0,
+        "viscosity": 0.0
+      },
+      "body_mass_kg": 1.5,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "steps": 300,
+      "repeats": 3,
+      "grid_spacing_m": 0.02,
+      "mpm_iterations": 25,
+      "cuda_graph": false,
+      "packages": {
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "torch": "2.11.0+cu130",
+        "numpy": "2.4.6"
+      },
+      "scope": "One environment; full coupled physics step; no rendering, recorder, or manager observation work.",
+      "warmup": "One complete trajectory; each timed repeat starts from the same recorded initial state.",
+      "total": {
+        "mean_ms": 10.331573126709877,
+        "median_ms": 10.220054500678089,
+        "p95_ms": 11.207007796838298,
+        "std_ms": 0.4599446275022067,
+        "samples": 900
+      },
+      "repeat_means_ms": [
+        10.449707866622097,
+        10.257989080006762,
+        10.287022433500775
+      ],
+      "separately_profiled_components": {
+        "mpm": {
+          "mean_ms": 7.72355361332302,
+          "median_ms": 7.700722497247625,
+          "p95_ms": 8.154823845688952,
+          "std_ms": 0.3092056350131789,
+          "samples": 300
+        },
+        "rigid_dynamics": {
+          "mean_ms": 1.7240730235062074,
+          "median_ms": 1.6966565053735394,
+          "p95_ms": 1.918411295991973,
+          "std_ms": 0.15074422779300978,
+          "samples": 300
+        }
+      }
+    },
+    {
+      "method": "nerd",
+      "episode": "validation_0_cylinder/demo_0",
+      "shape": "cylinder",
+      "dt": 0.004999999888241291,
+      "particle_count": 4000,
+      "material": {
+        "density": 1200.0,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "yield_pressure": 1000000000000000.0,
+        "tensile_yield_ratio": 0.0,
+        "yield_stress": 0.0,
+        "hardening": 0.0,
+        "dilatancy": 0.0,
+        "viscosity": 0.0
+      },
+      "body_mass_kg": 1.5,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "steps": 300,
+      "repeats": 3,
+      "grid_spacing_m": 0.02,
+      "mpm_iterations": null,
+      "cuda_graph": false,
+      "packages": {
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "torch": "2.11.0+cu130",
+        "numpy": "2.4.6"
+      },
+      "scope": "One environment; full coupled physics step; no rendering, recorder, or manager observation work.",
+      "warmup": "One complete trajectory; each timed repeat starts from the same recorded initial state.",
+      "projection": "static",
+      "model_config": {
+        "hidden": 64,
+        "passes": 3,
+        "radius": 0.035,
+        "velocity_scale": 0.1,
+        "history_length": 3,
+        "input_velocity_scale": 1.0,
+        "activation_checkpointing": false
+      },
+      "edge_chunk_size": 0,
+      "total": {
+        "mean_ms": 25.761788993210455,
+        "median_ms": 26.366544498159783,
+        "p95_ms": 33.551712202825,
+        "std_ms": 6.95954928746649,
+        "samples": 900
+      },
+      "repeat_means_ms": [
+        25.52819054646534,
+        25.949894573374575,
+        25.807281859791452
+      ],
+      "separately_profiled_components": {
+        "graph_input": {
+          "mean_ms": 5.255772636616409,
+          "median_ms": 5.248580499028321,
+          "p95_ms": 5.676388295250945,
+          "std_ms": 0.205430295352839,
+          "samples": 300
+        },
+        "gnn": {
+          "mean_ms": 3.203736456877474,
+          "median_ms": 3.2804539987409953,
+          "p95_ms": 3.5602385989477625,
+          "std_ms": 0.3228431941532703,
+          "samples": 300
+        },
+        "static_projection": {
+          "mean_ms": 1.02610012346607,
+          "median_ms": 1.0217989947705064,
+          "p95_ms": 1.060970749676926,
+          "std_ms": 0.018920666199293033,
+          "samples": 300
+        },
+        "analytical_force": {
+          "mean_ms": 13.019089613250495,
+          "median_ms": 13.603552997665247,
+          "p95_ms": 20.517476144596003,
+          "std_ms": 5.472714042651827,
+          "samples": 300
+        },
+        "rigid_dynamics": {
+          "mean_ms": 2.5105326965664667,
+          "median_ms": 2.1498044989129994,
+          "p95_ms": 2.4530554466764443,
+          "std_ms": 5.768706780428115,
+          "samples": 300
+        }
+      },
+      "force_solver_failures_last_rollout": 0
+    },
+    {
+      "method": "mpm",
+      "episode": "validation_0_sphere/demo_0",
+      "shape": "sphere",
+      "dt": 0.004999999888241291,
+      "particle_count": 4000,
+      "material": {
+        "density": 1200.0,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "yield_pressure": 1000000000000000.0,
+        "tensile_yield_ratio": 0.0,
+        "yield_stress": 0.0,
+        "hardening": 0.0,
+        "dilatancy": 0.0,
+        "viscosity": 0.0
+      },
+      "body_mass_kg": 1.5,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "steps": 300,
+      "repeats": 3,
+      "grid_spacing_m": 0.02,
+      "mpm_iterations": 25,
+      "cuda_graph": false,
+      "packages": {
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "torch": "2.11.0+cu130",
+        "numpy": "2.4.6"
+      },
+      "scope": "One environment; full coupled physics step; no rendering, recorder, or manager observation work.",
+      "warmup": "One complete trajectory; each timed repeat starts from the same recorded initial state.",
+      "total": {
+        "mean_ms": 10.105719272153996,
+        "median_ms": 10.021330999734346,
+        "p95_ms": 10.763423901880742,
+        "std_ms": 0.3598850220274272,
+        "samples": 900
+      },
+      "repeat_means_ms": [
+        10.126347993233747,
+        10.016410460108698,
+        10.174399363119544
+      ],
+      "separately_profiled_components": {
+        "mpm": {
+          "mean_ms": 7.534716870068223,
+          "median_ms": 7.521966999775032,
+          "p95_ms": 7.996856399040553,
+          "std_ms": 0.2578637075272982,
+          "samples": 300
+        },
+        "rigid_dynamics": {
+          "mean_ms": 1.640359000254345,
+          "median_ms": 1.6283594995911699,
+          "p95_ms": 1.8224586030555658,
+          "std_ms": 0.0944113466606234,
+          "samples": 300
+        }
+      }
+    },
+    {
+      "method": "nerd",
+      "episode": "validation_0_sphere/demo_0",
+      "shape": "sphere",
+      "dt": 0.004999999888241291,
+      "particle_count": 4000,
+      "material": {
+        "density": 1200.0,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "yield_pressure": 1000000000000000.0,
+        "tensile_yield_ratio": 0.0,
+        "yield_stress": 0.0,
+        "hardening": 0.0,
+        "dilatancy": 0.0,
+        "viscosity": 0.0
+      },
+      "body_mass_kg": 1.5,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "steps": 300,
+      "repeats": 3,
+      "grid_spacing_m": 0.02,
+      "mpm_iterations": null,
+      "cuda_graph": false,
+      "packages": {
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "torch": "2.11.0+cu130",
+        "numpy": "2.4.6"
+      },
+      "scope": "One environment; full coupled physics step; no rendering, recorder, or manager observation work.",
+      "warmup": "One complete trajectory; each timed repeat starts from the same recorded initial state.",
+      "projection": "static",
+      "model_config": {
+        "hidden": 64,
+        "passes": 3,
+        "radius": 0.035,
+        "velocity_scale": 0.1,
+        "history_length": 3,
+        "input_velocity_scale": 1.0,
+        "activation_checkpointing": false
+      },
+      "edge_chunk_size": 0,
+      "total": {
+        "mean_ms": 21.773505186704117,
+        "median_ms": 21.429283002362354,
+        "p95_ms": 27.78037369462254,
+        "std_ms": 5.657133572897032,
+        "samples": 900
+      },
+      "repeat_means_ms": [
+        21.62637878025028,
+        21.73074588989645,
+        21.963390889965616
+      ],
+      "separately_profiled_components": {
+        "graph_input": {
+          "mean_ms": 5.208001039985295,
+          "median_ms": 5.125276500621112,
+          "p95_ms": 5.9428775050037075,
+          "std_ms": 0.3874256428183725,
+          "samples": 300
+        },
+        "gnn": {
+          "mean_ms": 3.12764830654487,
+          "median_ms": 3.1865874989307486,
+          "p95_ms": 3.458541452346253,
+          "std_ms": 0.29547809294402755,
+          "samples": 300
+        },
+        "static_projection": {
+          "mean_ms": 1.0383222667587688,
+          "median_ms": 1.0281214999849908,
+          "p95_ms": 1.098488404386444,
+          "std_ms": 0.031153560892372353,
+          "samples": 300
+        },
+        "analytical_force": {
+          "mean_ms": 10.06527475323916,
+          "median_ms": 9.997251003369456,
+          "p95_ms": 15.820819501095684,
+          "std_ms": 3.7365903815926655,
+          "samples": 300
+        },
+        "rigid_dynamics": {
+          "mean_ms": 2.6092893099121284,
+          "median_ms": 2.200046001235023,
+          "p95_ms": 2.6940097031911137,
+          "std_ms": 5.731706314205797,
+          "samples": 300
+        }
+      },
+      "force_solver_failures_last_rollout": 0
+    }
+  ]
+}

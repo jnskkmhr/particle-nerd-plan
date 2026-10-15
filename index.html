@@ -649,6 +649,16 @@ This is one new scene demonstration, not a generalization benchmark or a fully c
   <aside class="notes">Reference-motion reconstruction has now been evaluated. It fits particle force balance closely but produces inaccurate per-body reactions at high CPU cost. The original baseline reached its iteration limit. A converged quadratic-program solve still gives inaccurate box reactions. Dynamic-body contact reconstruction now improves force error and approximate box replay, while full particle consistency remains open. Initial learned-motion rollouts are now evaluated on slides 37–39 and the learned dynamics page. The baseline was implemented before resolving the inverse problem’s ambiguity. The subsequent slides explicitly show the missing closure equations; the latest experiments test additional contact constraints. MPM is used for data generation and offline validation only; no MPM solve is permitted at inference. External links require internet access; the presentation itself works offline. Local Newton source links depend on the sibling repository layout. The original cable slide deck remains in ../deformables.</aside>
 </section>
 
+<section class="slide" aria-labelledby="interactive-timing">
+<div class="eyebrow">43 / INTERACTIVE PLAY &amp; COMPUTATION TIME <span class="pill measured">MEASURED</span></div>
+<h2 id="interactive-timing">The current force estimator limits simulation speed</h2>
+<p>4,000 particles · 5 ms timestep · RTX 5090 · no rendering or recording.</p>
+<img src="assets/solver-timing.png" alt="MPM takes approximately 10 milliseconds per step; NeRD plus force estimation takes 22 to 26 milliseconds." style="width:100%;height:350px;object-fit:contain;flex-shrink:0">
+<p class="small">Matched initial states; one warmup trajectory and three 300-step measured trajectories. MPM: 25-iteration limit. Component profiling is measured separately.</p>
+<footer>Interactive play: right-drag the rigid object, Space to pause, Reset to restore the scene.<br><a href="play-and-timing.html">Commands, force plots, timing procedure, and limitations →</a></footer>
+<aside class="notes">MPM mean times: box 10.31 ms, sphere 10.11 ms, cylinder 10.33 ms. NeRD plus analytical force estimation and rigid dynamics: box 24.54 ms, sphere 21.77 ms, cylinder 25.76 ms. A box MPM run with a 50-iteration limit takes 11.46 ms. The frozen model uses 64 channels, three message-passing layers, and a three-frame history. Static particle projection remains enabled. Total step times include graph construction, CPU/GPU transfers, the analytical contact solve, and rigid dynamics. Each timing boundary synchronizes the GPU. Component profiling runs separately and introduces additional synchronization. These are single-environment latency results for the current implementation, not large-bed throughput or equal-accuracy comparisons. Mouse dragging applies an external force and torque, which the estimator includes in free motion. All particles run from the GNN without MPM inference or future reference states. Arbitrary dragging remains outside training coverage.</aside>
+</section>
+
 </main>
 <nav class="toolbar" aria-label="Presentation controls">
   <a class="brand" href="#1" aria-label="First slide">PARTICLE NeRD <span>/ PLAN &amp; RESULTS</span></a>
