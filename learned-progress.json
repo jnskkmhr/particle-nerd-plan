@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T11:24:42.756379+00:00",
+  "updated_at": "2026-10-15T11:24:44.680865+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Validation rollouts: deep_evaluations/best, none projection",
+  "phase": "Validation rollouts: deep_evaluations/best, static projection",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -722,7 +722,7 @@
   ],
   "run_state": {
     "status": "Experiments running",
-    "phase": "Validation rollouts: deep_evaluations/best, none projection",
-    "updated_at": "2026-10-15T11:23:40.425048+00:00"
+    "phase": "Validation rollouts: deep_evaluations/best, static projection",
+    "updated_at": "2026-10-15T11:24:44.211491+00:00"
   }
 }
