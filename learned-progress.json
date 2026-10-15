@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T10:54:27.231734+00:00",
+  "updated_at": "2026-10-15T10:59:29.173298+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
@@ -359,6 +359,51 @@
         "learned_peak_vertical_N": 72.64718430813899,
         "scope": "Validation, not reserved test; distinct predicted and reference particle trajectories"
       }
+    },
+    {
+      "name": "All-particle memory feasibility",
+      "preserve": true,
+      "summary": "The 296,875-particle G1-sized bed fits in GPU memory: 9.1\u20139.8 million directed graph edges, 2.9\u20133.1 GB allocated GPU tensor memory. Every particle and edge is evaluated using bounded computation chunks. Three one-step queries only; no large-bed rollout or isolated speed comparison is established.",
+      "metrics": {
+        "scope": "Three one-step reference-state queries on the 296,875-particle G1-sized bed. Every particle and every local graph edge is evaluated. No region selector, force reconstruction, or coupled rollout. Concurrent training prevents a speed comparison.",
+        "checkpoint": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/unroll4/best.pt",
+        "grid_spacing_m": 0.02,
+        "results": [
+          {
+            "step": 0,
+            "particle_count": 296875,
+            "directed_edges": 9054970,
+            "preparation_s": 0.565395138997701,
+            "forward_s": 0.27121301100123674,
+            "process_peak_allocated_GB": 2.879950848,
+            "position_vector_rmse_m": 0.00020525215950328857,
+            "all_particles_finite": true,
+            "maximum_predicted_speed_m_s": 0.025614013895392418
+          },
+          {
+            "step": 35,
+            "particle_count": 296875,
+            "directed_edges": 9804676,
+            "preparation_s": 0.3422810680058319,
+            "forward_s": 0.20466904299973976,
+            "process_peak_allocated_GB": 3.084143616,
+            "position_vector_rmse_m": 4.409245593706146e-05,
+            "all_particles_finite": true,
+            "maximum_predicted_speed_m_s": 1.039032220840454
+          },
+          {
+            "step": 80,
+            "particle_count": 296875,
+            "directed_edges": 9813902,
+            "preparation_s": 0.33165682899561943,
+            "forward_s": 0.1994898609991651,
+            "process_peak_allocated_GB": 3.086240768,
+            "position_vector_rmse_m": 3.49494548572693e-05,
+            "all_particles_finite": true,
+            "maximum_predicted_speed_m_s": 0.019640328362584114
+          }
+        ]
+      }
     }
   ],
   "limitations": [
@@ -372,8 +417,8 @@
   "run_state": {
     "status": "Experiments running",
     "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
-    "updated_at": "2026-10-15T10:54:26.757650+00:00",
-    "training_update": 47300,
-    "elapsed_seconds": 1508
+    "updated_at": "2026-10-15T10:59:28.696466+00:00",
+    "training_update": 56400,
+    "elapsed_seconds": 1810
   }
 }
