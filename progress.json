@@ -1,0 +1,28 @@
+{
+  "updated_at": "2026-10-14T20:45:00-07:00",
+  "target_end": "2026-10-15T07:00:00-07:00",
+  "status": "in progress",
+  "current_task": "Validate randomized dynamic MJWarp\u2013MPM reference collection before evaluating force reconstruction.",
+  "validated_results": "Existing DEM results use a prescribed box trajectory. They do not validate a freely moving rigid body.",
+  "inference_constraint": "No MPM solver at inference.",
+  "experiments": [
+    {
+      "name": "Original inverse-force baseline",
+      "dataset": "prescribed box",
+      "force_mse_N2": 5290.032700219498,
+      "box_vector_rmse_N": 214.849746844261
+    },
+    {
+      "name": "DEM history prior",
+      "dataset": "prescribed box",
+      "force_mse_N2": 6523.558949284902,
+      "box_vector_rmse_N": 224.011494087872,
+      "conclusion": "Did not improve force accuracy; missed the vertical reaction peak."
+    },
+    {
+      "name": "Dynamic MJWarp\u2013MPM collector",
+      "status": "implementation and validation in progress",
+      "configuration": "2 kg free box; randomized initial pose and velocity; 25 MPM iterations; dt 5 ms; one lagged coupling pass"
+    }
+  ]
+}

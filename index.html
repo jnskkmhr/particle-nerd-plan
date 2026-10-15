@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Background and implementation plan for learned particle motion with analytical rigid-body coupling in Newton.">
+  <title>Particle NeRD — Plan & Initial Results</title>
+  <link rel="stylesheet" href="deck.css">
+  <script src="deck.js" defer></script>
+</head>
+<body>
+<main id="deck" aria-label="Particle NeRD presentation">
+
+<section class="slide cover" aria-labelledby="s1">
+  <div class="eyebrow">RESEARCH PLAN <span>NEWTON · OCTOBER 2026</span></div>
+  <h1 id="s1">Particle NeRD</h1>
+  <p class="subtitle">Learn particle motion.<br>Reconstruct body reactions analytically.</p>
+  <div class="cover-rule"></div>
+  <p class="lead">Replacing the expensive MPM update while retaining<br>interaction with rigid ground and moving bodies.</p><p><a href="progress.html">Latest experiment progress →</a></p>
+  <div class="cover-bottom"><span>BACKGROUND → FORMULATION → IMPLEMENTATION → VALIDATION</span><span class="pill proposed">INITIAL RESULTS · MILESTONES 1–2</span></div>
+  <aside class="notes">This deck combines the implementation proposal with initial data-collection and force-reconstruction experiments. No particle NeRD has been trained. Results begin on slide 15. The cable deck establishes a precedent for reconstructing forces without a force network. The open question is how to construct a sufficiently accurate and inexpensive reconstruction for granular material.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s2">
+  <div class="eyebrow">01 / TARGET SYSTEM <span class="pill verified">LOCAL CODE</span></div>
+  <h2 id="s2">A sand bed, rigid ground, and one dynamic body</h2>
+  <div class="split">
+    <div>
+      <p class="lead">MuJoCo advances the rigid body.<br>MPM advances the sand and supplies contact impulses.</p>
+      <div class="stack">
+        <div><b>Keep</b><p>Rigid-body dynamics, rigid-body contacts, and Newton’s coupling interface.</p></div>
+        <div><b>Replace</b><p>The expensive material update with learned motion and analytical reaction reconstruction.</p></div>
+      </div>
+      <p class="small">Dynamic collection is being implemented with MJWarp–MPM coupling. Earlier results use a prescribed box; see the progress page.</p>
+    </div>
+    <figure>
+      <svg viewBox="0 0 530 370" role="img" aria-label="A dynamic box presses into sand above a fixed rigid ground plane">
+        <defs><pattern id="sand" width="28" height="25" patternUnits="userSpaceOnUse"><circle cx="7" cy="8" r="4" fill="#c39b5d"/><circle cx="21" cy="21" r="4" fill="#c39b5d"/></pattern><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#247967"/></marker></defs>
+        <rect x="30" y="180" width="470" height="130" rx="3" fill="#f4ead8"/><rect x="30" y="180" width="470" height="130" fill="url(#sand)"/>
+        <rect x="193" y="82" width="145" height="130" rx="5" fill="#cddde9" stroke="#386481" stroke-width="3"/>
+        <text x="265" y="135" text-anchor="middle">Dynamic box</text><text x="265" y="162" text-anchor="middle" class="svg-small">MuJoCo</text>
+        <path d="M265 65V28" stroke="#247967" stroke-width="4" marker-end="url(#arrow)"/><text x="285" y="38" class="svg-small">Sand reaction</text>
+        <rect x="20" y="312" width="490" height="16" fill="#273a41"/>
+        <text x="265" y="355" text-anchor="middle" class="svg-small">Fixed rigid ground beneath the sand</text>
+        <text x="50" y="246" class="svg-small">Material</text><text x="50" y="270" class="svg-small">particles</text>
+      </svg>
+      <figcaption>Particle motion and body reaction must remain consistent.</figcaption>
+    </figure>
+  </div>
+  <footer>Source: <a href="local-sources.html#source-1">Newton coupled MPM–MuJoCo example</a>. Illustration is schematic.</footer>
+  <aside class="notes">The local example creates a ground plane, a granular bed, and a freely moving box. Its default frame rate is 100 Hz. MPM contact is handled inside the MPM solver, not by the proxy collision pipeline. The initial prototype should reduce the bed size rather than reproduce the full particle count immediately.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s3">
+  <div class="eyebrow">02 / COLLIDER REPRESENTATION <span class="pill verified">LOCAL CODE</span></div>
+  <h2 id="s3">Common geometry; different motion constraints</h2>
+  <p class="lead">Newton converts supported shapes into collider meshes and rasterizes contact information onto the MPM grid.</p>
+  <table class="collider-table"><thead><tr><th>Collider</th><th>Geometry and contact properties</th><th>Motion</th><th>Reaction destination</th></tr></thead><tbody>
+    <tr><td>Rigid ground</td><td>Mesh, distance, normal, friction</td><td>Fixed</td><td>Fixed environment</td></tr>
+    <tr><td>Prescribed tool</td><td>Same representation</td><td>Externally supplied</td><td>Measured reaction; pose remains prescribed</td></tr>
+    <tr><td>Dynamic body</td><td>Same representation</td><td>Rigid-body solver</td><td>Rigid-body solver</td></tr>
+  </tbody></table>
+  <div class="callout"><b>Implication for NeRD</b><p>Use shared collider features. Preserve each collider’s identity, motion, and material properties; separate “ground” and “shovel” networks are not required.</p></div>
+  <footer>Sources: <a href="local-sources.html#source-2">shape conversion</a> · <a href="local-sources.html#source-3">collider queries</a> · <a href="local-sources.html#source-4">rasterization and coupling</a></footer>
+  <aside class="notes">A common representation does not mean identical physical behavior. Static versus dynamic support affects the reaction path. Motion at the contact point includes body rotation. For a particle near both the body and ground, keep information for both rather than discarding one with a single nearest-collider feature.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s4">
+  <div class="eyebrow">03 / CABLE PRECEDENT <span class="pill verified">SLIDE DECK</span></div>
+  <h2 id="s4">The cable model learns motion corrections</h2>
+  <div class="three">
+    <article><div class="step">01</div><h3>Collect</h3><p>Record cable trajectories from VBD under randomized manipulation and contact.</p><p class="small">Segment position, orientation, and motion history.</p></article>
+    <article><div class="step">02</div><h3>Train</h3><p>Start from a recorded state. Predict corrections to motion under inertia and gravity.</p><p class="small">Supervise one-step corrections using the next VBD frame.</p></article>
+    <article><div class="step">03</div><h3>Infer</h3><p>Apply predicted corrections, enforce constraints, and advance from the model’s own state.</p><p class="small">VBD is absent from the cable inference loop.</p></article>
+  </div>
+  <div class="equation">baseline motion + learned correction → constraint enforcement → next state</div>
+  <footer>Source: <a href="local-sources.html#source-5">cable representation</a> and <a href="local-sources.html#source-6">training</a>. The deck does not specify the exact baseline integration formula.</footer>
+  <aside class="notes">The network outputs translation and rotation corrections, not full unconstrained dynamics from scratch. Independent noise is applied to input positions and velocities. The described training recipe uses recorded transitions; repeated model rollouts are used for checkpoint selection. This is background for the proposed particle model, not evidence that the same recipe already works for sand.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s5">
+  <div class="eyebrow">04 / ANALYTICAL COUPLING <span class="pill verified">CABLE SLIDES 23–24</span></div>
+  <h2 id="s5">The cable reconstructs forces after predicting motion</h2>
+  <div class="flow four"><div><b>Motion history</b><span>Three segment poses<br>→ accelerations</span></div><div><b>Known physics</b><span>Mass, inertia, gravity<br>and rod bending law</span></div><div><b>Chain solve</b><span>Joint and contact<br>force / torque balance</span></div><div><b>Body reaction</b><span>Sum opposite contact<br>forces and torques</span></div></div>
+  <div class="split compact">
+    <div class="panel"><h3>What makes it tractable</h3><p>Fixed chain connectivity creates a block-tridiagonal system. Geometry restricts where external contact forces may act.</p></div>
+    <div class="panel"><h3>What the network supplies</h3><p>Motion only. The reconstruction uses physical equations and softly enforced rod moments; no force network is required.</p></div>
+  </div>
+  <div class="callout"><b>Transferable principle</b><p>Learn the expensive motion update; reconstruct reactions with known mechanics.</p></div>
+  <footer>Source: <a href="local-sources.html#source-7">force reconstruction</a> · <a href="local-sources.html#source-8">chain implementation</a>. The cable implementation applies delayed, capped body reactions.</footer>
+  <aside class="notes">Slide 23 uses per-segment linear and angular momentum equations, not only total system momentum. Segment contact forces and joint forces are reconstructed from motion, masses, geometry, and a rod law. The rod moments are imposed softly to avoid excessive forces from small shape errors. Slide 24 exploits the chain sparsity; its speed does not establish the cost of a three-dimensional material reconstruction.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s6">
+  <div class="eyebrow">05 / RELATION TO PBD <span class="pill distinction">METHOD DISTINCTION</span></div>
+  <h2 id="s6">Constraint solving and force reconstruction are related</h2>
+  <div class="split compact">
+    <article><div class="label">XPBD</div><h3>Solve for constrained motion</h3><p>Correct predicted positions using physical constraints. Constraint multipliers provide force estimates.</p><div class="mini-flow">Prediction → constraint solve → motion + forces</div></article>
+    <article><div class="label">CABLE NeRD</div><h3>Reconstruct forces from motion</h3><p>Use predicted motion, contact geometry, and material laws to solve for consistent reactions.</p><div class="mini-flow">Learned motion → balance equations → forces</div></article>
+  </div>
+  <div class="callout amber"><b>A collision push-out is insufficient</b><p>If NeRD already predicts a supported, nonpenetrating state, the final push-out can be zero while the physical support force is nonzero.</p></div>
+  <footer>Sources: <a href="https://mmacklin.com/xpbd.pdf">XPBD, Macklin et al. (2016)</a> · <a href="local-sources.html#source-9">cable slide 23</a></footer>
+  <aside class="notes">XPBD has a defined relationship between its constraint multipliers and forces; ordinary geometric projection does not automatically provide the same result. Do not interpret all neural displacement correction as a contact impulse: it also includes internal material response. Similarly, adding a new contact solve after a network that already models contact can double-count the response unless the split is formulated consistently.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s7">
+  <div class="eyebrow">06 / GRAPH-BASED TERRAIN MODEL <span class="pill verified">PAPER + RELEASED CODE</span></div>
+  <h2 id="s7">L-GBND separates material, tool, and static nodes</h2>
+  <table><thead><tr><th>Node type in released code</th><th>Position update</th><th>Role</th></tr></thead><tbody>
+    <tr><td><span class="dot sand"></span>Terrain / type 0</td><td>Current position + learned displacement</td><td>Deforming material</td></tr>
+    <tr><td><span class="dot blue"></span>Tool / type 1</td><td>Current position + prescribed action</td><td>Moving contact geometry</td></tr>
+    <tr><td><span class="dot dark"></span>Wall / type 2</td><td>Unchanged</td><td>Static environment</td></tr>
+  </tbody></table>
+  <div class="split compact"><p><b>Useful precedent.</b> A graph can represent material–tool interaction with distinct node roles.</p><p><b>Missing for our task.</b> The released position predictor does not return a reaction wrench to a freely moving body.</p></div>
+  <p class="small">The paper’s region-boundary normals represent omitted stationary terrain. They do not specify an explicit rigid-ground collision solve.</p>
+  <footer>Sources: <a href="https://arxiv.org/pdf/2503.23270">L-GBND, Sections III-A–D</a> · <a href="https://github.com/Chaoqi-LIU/lgbnd/blob/main/src/lgbnd/local_dynamics.py#L144-L154">released node updates</a></footer>
+  <aside class="notes">The paper’s graph formulation emphasizes terrain and tool nodes. The released architecture also contains an explicit static-wall class. This does not establish that wall nodes were used in all reported experiments; the paper discusses limitations of sampled wall nodes and proposes normal features for the selected terrain region. The public repository is an architecture extraction without pretrained weights or a complete benchmark. Tool motion is prescribed in the model.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s8">
+  <div class="eyebrow">07 / PROPOSED REPRESENTATION <span class="pill proposed">DESIGN</span></div>
+  <h2 id="s8">One material model, explicit collider information</h2>
+  <div class="three">
+    <article><div class="label">PARTICLE STATE</div><h3>Motion and neighborhood</h3><p>Positions, velocities, masses, and relative positions and velocities of nearby material samples.</p><p class="small">Record APIC velocity gradients; test whether they are needed as model state.</p></article>
+    <article><div class="label">CONTACT INPUTS</div><h3>Geometry and motion</h3><p>Distance, surface normal, relative surface velocity, friction, and collider identity.</p><p class="small">Include both ground and body features where both are relevant.</p></article>
+    <article><div class="label">MODEL OUTPUT</div><h3>Particle motion</h3><p>A learned displacement correction to an explicit gravity-and-velocity baseline.</p><p class="small">No learned body-reaction output. No MPM solve at inference.</p></article>
+  </div>
+  <div class="callout"><b>Update every material particle</b><p>Use a small complete sand bed with local graph connections. No region selector; keep material, timestep, and resolution fixed initially.</p></div>
+  <footer>Proposal informed by <a href="local-sources.html#source-10">cable NeRD</a> and Newton’s <a href="local-sources.html#source-11">APIC state and collider inputs</a>.</footer>
+  <aside class="notes">Choose and document the baseline integrator for this new implementation; the earlier cable slides do not determine that choice. If APIC gradients or other hidden states are used as network inputs, their inference-time update must also be supplied. Do not use teacher-only state at inference. History-based and explicit-state versions should be compared. Internal stress, strain, and plastic state become especially important when extending beyond the initial granular material.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s9">
+  <div class="eyebrow">08 / CENTRAL RESEARCH QUESTION <span class="pill open">OPEN</span></div>
+  <h2 id="s9">What replaces the cable’s chain equations?</h2>
+  <div class="equation multiline">mass × particle acceleration<br>= gravity force + internal material force + collider contact forces</div>
+  <div class="split compact">
+    <div><h3>Known from motion and geometry</h3><p>Acceleration, mass, gravity, potential contacts, contact normals, and collider motion.</p><h3>Unknown</h3><p>Internal stress transmission and the separate contact reactions on ground and each body.</p></div>
+    <div class="panel"><h3>Candidate reconstruction</h3><p>Solve local balance on a coarse grid or particle neighborhood graph, constrained by material response and admissible contact forces.</p><p class="small">Compression, friction, and material assumptions must be defined. Neighborhood edges are not cable joints.</p></div>
+  </div>
+  <footer>An initial particle-graph reconstruction has now been tested; see slides 16–18. A suitable granular material model remains an open question.</footer>
+  <aside class="notes">The contact force should satisfy unilateral normal contact and a friction constraint where appropriate; geometry alone does not determine the contact force magnitude. Force balance may be underdetermined, so constitutive information and regularization are needed. A particle graph or coarse grid is a choice of discretization, not a complete reconstruction model. Reintroducing a large nonlinear material solve could erase the speed benefit. Test reconstruction cost and accuracy before claiming feasibility.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s10">
+  <div class="eyebrow">09 / FIRST EXPERIMENT <span class="pill proposed">BEFORE NETWORK TRAINING</span></div>
+  <h2 id="s10">Test reconstruction using MPM’s own motion</h2>
+  <div class="flow"><div><b>MPM trajectories</b><span>Motion history + geometry<br>+ known material parameters</span></div><div><b>Analytical reconstruction</b><span>Estimate body reaction<br>without MPM force labels</span></div><div><b>Reference comparison</b><span>Compare with MPM impulses<br>and body torques</span></div></div>
+  <table><thead><tr><th>Experiment</th><th>What it establishes</th></tr></thead><tbody>
+    <tr><td>Sand at rest on rigid ground</td><td>Recovered ground support balances sand weight.</td></tr>
+    <tr><td>Box supported by sand, clear of rigid ground</td><td>Recovered sand force supports the box’s weight.</td></tr>
+    <tr><td>Box pressing into and sliding through sand</td><td>Reconstruction captures changing normal load, friction, and torque.</td></tr>
+  </tbody></table>
+  <footer>Use an MPM iteration cap of 25–50. Check static force balance and stable motion; increasing the iteration cap is not a prerequisite.</footer>
+  <aside class="notes">Use the existing MPM settings as the reference, with an iteration cap of 25–50. The G1 MPM configuration uses max_iterations=25 and tolerance=1.0e-4; the standalone coupled-box example uses max_iterations=50. These are maximum counts, not necessarily iterations executed. Begin with 25 and the G1 tolerance, and retain the chosen scene timestep. Investigate solver settings only if motion, penetration, or force-balance checks reveal a specific problem; do not require a broad iteration sweep or assume additional iterations improve the reference. Force labels are withheld from reconstruction inputs and used for validation only. In the box-support test, rule out direct box contact with rigid ground. Compare integrated impulse as well as instantaneous force.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s11">
+  <div class="eyebrow">10 / DATA COLLECTION <span class="pill proposed">PLANNED DATASET</span></div>
+  <h2 id="s11">Record motion, contacts, and validation references</h2>
+  <div class="split">
+    <div><h3>Generate varied MPM episodes</h3><ul><li>Settling and static support.</li><li>Vertical pressing and release.</li><li>Lateral pushing and sliding.</li><li>Different starting depths and body orientations.</li></ul><p class="small">Use prescribed trajectories for motion-model experiments and dynamic-body episodes for coupling evaluation.</p></div>
+    <div class="panel"><h3>Save each timestep</h3><ul><li>Particle position, velocity, mass, and APIC gradient.</li><li>Body pose, velocity, and contact material parameters.</li><li>Material configuration, timestep, and resolution.</li><li>MPM body impulses and torques for validation.</li></ul></div>
+  </div>
+  <div class="callout"><b>Split by episode</b><p>Reserve complete motions and initial conditions for validation and testing. Adjacent frames from one episode must not cross dataset splits.</p></div>
+  <footer>MPM baseline: 25 iterations maximum, tolerance 1e-4, following the <a href="local-sources.html#source-12">G1 configuration</a>. Reaction labels are for validation only.</footer>
+  <aside class="notes">Current prototype limitation: APIC gradients, varied body orientations, and full solver checkpoints are not recorded yet. The measured prototype uses particle positions and velocities, prescribed body poses, and MPM validation impulses. The following remains a broader data-collection plan. Keep complete simulator checkpoints for debugging teacher transitions, including any required solver state. A compact training dataset may later omit state that ablations establish is unnecessary. Capture the actual collider state consumed by the material solver, especially with lagged proxy coupling. Record force conventions, coordinate frames, and the point about which torque is defined.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s12">
+  <div class="eyebrow">11 / MOTION TRAINING <span class="pill proposed">IMPLEMENTATION</span></div>
+  <h2 id="s12">Train on MPM transitions; select by rollout accuracy</h2>
+  <div class="flow four"><div><b>Recorded state at t</b><span>Particle state<br>+ collider inputs</span></div><div><b>Baseline motion</b><span>Current velocity<br>+ gravity</span></div><div><b>NeRD correction</b><span>Particle interactions<br>+ contact response</span></div><div><b>MPM state at t + 1</b><span>Supervised<br>motion target</span></div></div>
+  <div class="equation">target displacement correction = MPM next position − baseline next position</div>
+  <div class="split compact"><p><b>Initial training recipe.</b> One-step supervision with independent position and velocity perturbations; test noise scale and loss choice.</p><p><b>Checkpoint selection.</b> Repeated model rollouts with identical collider trajectories. Measure drift, penetration, and material redistribution.</p></div>
+  <footer>Proposed modules: <code>particle_model.py</code> · <code>train_motion.py</code>. The cable recipe motivates these choices; particle stability remains to be tested.</footer>
+  <aside class="notes">This slide proposes a recipe rather than claiming the cable noise strategy transfers automatically. The training path must match the inference definitions of baseline motion, velocity, and explicit projection. Start with an absolute-error displacement loss as a candidate and compare it with alternatives. Validate reconstructed reactions on neural rollouts after establishing reconstruction accuracy on reference motion. If using gradients or stress as input state, evaluate the corresponding state update too.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s13">
+  <div class="eyebrow">12 / INFERENCE IN NEWTON <span class="pill proposed">IMPLEMENTATION</span></div>
+  <h2 id="s13">Close the loop with an analytical reaction step</h2>
+  <div class="loop">
+    <div class="loop-row"><div class="loop-box rigid"><b>MuJoCo rigid-body update</b><span>Pose and velocity under applied body wrenches</span></div><div class="loop-arrow">→</div><div class="loop-box"><b>Particle NeRD update</b><span>Baseline + learned correction + geometric constraints</span></div></div>
+    <div class="loop-row"><div class="loop-box"><b>Newton coupling interface</b><span>Per-body force and torque for the next coupled step</span></div><div class="loop-arrow">←</div><div class="loop-box analytical"><b>Analytical reconstruction</b><span>Particle motion + material model + contact geometry</span></div></div>
+    <div class="loop-caption"><span>↑ Apply reconstructed reaction</span><span>↓ Reconstruct after the particle update</span></div>
+  </div>
+  <div class="callout"><b>Retain collider identity throughout</b><p>Sum each contact reaction onto the correct body. Compute torque about that body’s center of mass; keep fixed-ground reactions separate.</p></div>
+  <footer>Proposed adapter: <code>solver_particle_nerd.py</code>. Integration target: <a href="local-sources.html#source-13">Newton’s proxy-wrench interface</a>.</footer>
+  <aside class="notes">This is a proposed lagged schedule compatible in concept with the current example. Inspect and respect the exact proxy lifecycle when implementing the adapter, including rewind behavior and multiple coupling iterations. MPM currently exposes grid impulses; the new solver must supply equivalent per-body wrenches through the appropriate hook rather than calling a removed MPM impulse field. If reactions are derived as impulses, divide by the actual timestep. Do not apply both reconstructed and separately projected contact impulses twice.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s14">
+  <div class="eyebrow">13 / IMPLEMENTATION PLAN <span class="pill proposed">RESULTS ON SLIDES 15–18</span></div>
+  <h2 id="s14">Implementation milestones</h2>
+  <table class="roadmap"><thead><tr><th>Milestone</th><th>Task</th><th>Success criteria</th></tr></thead><tbody>
+    <tr><td><b>1 · Data collection</b></td><td>Record particle motion and body reactions using an MPM iteration cap of 25–50.</td><td>Particle and body trajectories remain stable. Support forces balance weight in static tests.</td></tr>
+    <tr><td><b>2 · Force reconstruction</b></td><td>First check whether body reactions are uniquely determined. Then reconstruct forces using explicit material and contact relationships.</td><td>Estimated reactions agree with MPM and take less time to compute than the MPM update.</td></tr>
+    <tr><td><b>3 · Motion prediction</b></td><td>Train a graph neural network to predict particle motion from MPM trajectories.</td><td>Predicted trajectories match MPM on test episodes over multiple timesteps.</td></tr>
+    <tr><td><b>4 · Coupled simulation</b></td><td>Use NeRD and reconstructed reactions in Newton to simulate particles and moving bodies.</td><td>Body motion and sand deformation remain close to MPM without running the MPM solver.</td></tr>
+    <tr><td><b>5 · Larger scenes</b></td><td>Increase the number of particles while updating every particle at each timestep.</td><td>The complete simulation runs faster than MPM while maintaining the required accuracy.</td></tr>
+  </tbody></table>
+  <footer>Define acceptable motion and force errors before evaluation. Measure runtime for the complete simulation, including contact queries and force reconstruction.</footer>
+  <aside class="notes">Milestone 1 uses the existing MPM iteration range of 25–50 rather than requiring additional iterations or a convergence sweep. Start with the G1 settings of max_iterations=25 and tolerance=1.0e-4. Check stable particle and body motion, ground penetration, and static force balance. Investigate timestep or solver settings only when a specific check fails. Milestone 2 evaluates analytical force reconstruction on MPM motion before adding neural prediction error. It also requires a material model; contact geometry alone is insufficient. MPM is restricted to reference-data generation and offline validation. No MPM solve is allowed at inference. Any material relationships or additional state used in reconstruction must have their own nonlearned update compatible with that constraint. Milestone 3 evaluates repeated predictions on episodes excluded from training. Milestone 4 tests freely moving bodies, including support, settling, and sliding. Milestone 5 compares total runtime against MPM with the same documented baseline settings, without inflating the MPM iteration cap. Every material particle is updated at every timestep, with local graph connections. Region selection is outside the current scope. Numerical accuracy thresholds must be selected for the intended task. The small collection experiment has passed its checks; force reconstruction has not met its accuracy or runtime criteria. The following slides report measured results and explain the missing force-uniqueness analysis.</aside>
+</section>
+
+<section class="slide result-slide" aria-labelledby="s15">
+  <div class="eyebrow">14 / MILESTONE 1 RESULTS <span class="pill verified">COLLECTION CHECKS PASSED</span></div>
+  <h2 id="s15">Reference data collected from parallel MPM simulations</h2>
+  <div class="result-stats"><div><b>2</b><span>parallel environments</span></div><div><b>500</b><span>particles per environment</span></div><div><b>4 × 2 s</b><span>recorded episodes</span></div><div><b>1,600</b><span>recorded transitions</span></div></div>
+  <figure class="snapshot"><img src="assets/recorded-scene.svg" alt="Recorded particle positions in one episode after settling, pressing, and sliding. A prescribed blue box presses into sand retained by rigid ground and walls."><figcaption>Actual recorded positions, projected onto the x–z plane. Front and rear walls are omitted from the illustration.</figcaption></figure>
+  <div class="result-note"><b>Verified:</b> recording alignment, episode resets, particle retention, settling, and total linear momentum balance.</div>
+  <footer>25 MPM iterations maximum · tolerance 1e-4 · timestep 5 ms · momentum residual 0.00084% of the reference scale.<br>Small validation dataset; no model training. Recorded data retained locally · <a href="local-sources.html#source-14">Implementation and run commands</a></footer>
+  <aside class="notes">Two GPU environments were simulated together, with two episodes per environment. Each episode has 400 transitions and 401 states. The six rigid bodies are the ground beneath the material, four retaining walls, and a box with prescribed motion. There is no free rigid-body response in this experiment. Images show demo_0 at state indices 100, 200, and 300. All 500 material particles are projected onto x–z; overlap in depth is not a 2D simulation. Positions are in centimeters relative to the environment origin; z=0 is the initial sand surface. The sand surface settles to approximately z=-4 cm. Momentum residual is computed from the sum of material momentum change minus gravity plus material-on-body impulses, normalized by the larger of material weight and total body reaction at each step. The aggregate relative residual is 8.36386278711258e-6. This validates recording alignment and total linear impulse, not individual reaction accuracy or all torque components. Tests were run before the example moved to branch junnosuke/particle_nerd in the separate IsaacLab-particle-nerd worktree. No simulation was rerun to produce these slides.</aside>
+</section>
+
+<section class="slide result-slide" aria-labelledby="s16">
+  <div class="eyebrow">15 / MILESTONE 2 METHOD <span class="pill open">EXPERIMENTAL ASSUMPTION</span></div>
+  <h2 id="s16">Estimate body reactions from recorded particle motion</h2>
+  <div class="split reconstruction-method">
+    <figure>
+      <svg viewBox="0 0 510 330" role="img" aria-label="Schematic particle graph. Neighbor forces transmit load through material particles; contact forces act between particles and a box or ground. The opposite contact force is accumulated on each body.">
+        <defs><marker id="force-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#247967"/></marker></defs>
+        <rect x="179" y="20" width="150" height="62" rx="4" fill="#d6e4ec" stroke="#386481" stroke-width="2"/>
+        <text x="254" y="57" text-anchor="middle">Rigid box</text>
+        <g stroke="#b5bdb0" stroke-width="3"><path d="M110 185L192 133L274 155L367 185L284 244L185 244Z M110 185L185 244L192 133L284 244L274 155 M185 244L274 155L367 185" fill="none"/></g>
+        <g fill="#c39b5d" stroke="#fafbf8" stroke-width="2"><circle cx="110" cy="185" r="12"/><circle cx="192" cy="133" r="12"/><circle cx="274" cy="155" r="12"/><circle cx="367" cy="185" r="12"/><circle cx="185" cy="244" r="12"/><circle cx="284" cy="244" r="12"/></g>
+        <rect x="56" y="290" width="395" height="14" fill="#58696e"/>
+        <g stroke="#247967" stroke-width="3" marker-end="url(#force-arrow)"><path d="M192 86V118"/><path d="M274 86V140"/><path d="M185 286V259"/><path d="M284 286V259"/><path d="M350 76V29"/></g>
+        <text x="366" y="49" class="svg-small">Box reaction</text>
+        <text x="25" y="106" class="svg-small">Neighbor forces</text><path d="M128 112L150 151" stroke="#8a9c92"/>
+        <text x="255" y="326" text-anchor="middle" class="svg-small">Rigid ground beneath the material</text>
+      </svg>
+      <figcaption>Schematic of the reconstruction assumption; not an MPM force network.</figcaption>
+    </figure>
+    <div class="method-steps"><p><b>1. Measure acceleration</b><br>Use the change in each particle’s velocity.</p><p><b>2. Solve particle force balance</b><br>Allow compressive forces between neighbors and friction-limited contact forces.</p><p><b>3. Sum reactions on each body</b><br>Apply equal-and-opposite contact forces and their moments about the body center.</p></div>
+  </div>
+  <div class="callout amber"><b>Key assumption</b><p>A small force penalty selects one solution when motion admits several force distributions. This does not reproduce Newton’s granular material law.</p></div>
+  <footer>Inputs: MPM particle motion, mass, gravity, and rigid-box geometry. MPM reaction forces are withheld until evaluation.<br>No neural model is used. All particles participate; ground and moving boxes use the same contact representation.</footer>
+  <aside class="notes">The implemented inverse problem uses particle position at the end of the interval and acceleration from successive velocities. Internal forces act along neighbor edges and are compressive. Contact forces are nonnegative combinations of four rays inside a Coulomb friction cone. A quadratic penalty of 1e-4 on force coefficients selects a solution. Neighbor radius is 0.065 m and candidate contact distance is 0.04 m. These are experimental assumptions, not a granular constitutive law or a full PBD simulation. The baseline does not evolve material stress history, enforce a sliding friction law, or represent APIC particle angular momentum. Torque is the moment of the estimated contact force about each box center. The cable analogy motivates reconstructing reactions but does not supply the missing particle-material mechanics.</aside>
+</section>
+
+<section class="slide result-slide" aria-labelledby="s17">
+  <div class="eyebrow">16 / MILESTONE 2 RESULTS <span class="pill open">SUCCESS CRITERIA NOT MET</span></div>
+  <h2 id="s17">The current reconstruction misses the box reaction</h2>
+  <div class="results-grid">
+    <figure class="result-plot"><img src="assets/box-force-history.svg" alt="Vertical sand force on the moving box in episode zero. The MPM reference reaches above 500 newtons during pressing. Four reconstruction markers are near zero; at one second the reference is 130.9 newtons and the estimate is 10.4 newtons."><figcaption>One recorded episode. Positive force points upward.<br>Reconstruction markers show only the four evaluated times.</figcaption></figure>
+    <div class="metric-column"><div><b>38.5%</b><span>relative body-force error<br>across 16 sampled frames</span></div><div><b>79.9 N</b><span>moving-box force RMSE<br>across those 16 frames</span></div><div><b>7.0 s</b><span>median CPU reconstruction time<br>per sampled frame</span></div><p class="small warning-text"><b>16 / 16 solves reached the iteration limit.</b> These are provisional estimates.</p></div>
+  </div>
+  <footer>Relative error = norm of all estimated-minus-reference body forces / norm of all reference body forces.<br>Four frames per episode, six bodies per frame; force error includes all three components. <a href="results/force_evaluation.json">Full evaluation results</a>.</footer>
+  <aside class="notes">The time-history figure is demo_0 only. The green line shows all 400 measured MPM impulses divided by dt. Orange markers show reconstruction at transition indices 99, 199, 299, and 399; no interpolation between estimates is implied. Aggregate statistics include these four times from each of four episodes. The 38.5347% error is an L2 ratio over the sampled body-force vectors, not a full-trajectory error. Moving-box force RMSE is 79.9103 N; torque RMSE is 1.3526 N m. Median reconstruction time is 6.9691 s on CPU with one BLAS thread. This is not a matched end-to-end speedup benchmark. The inverse optimizer, distinct from the 25-iteration MPM solver, reached its 100-iteration limit for every sample. Mean particle force-balance relative residual was 0.00047785, but it is not a reaction-accuracy metric. The present results establish that this implementation is inadequate for deployment; they do not identify a unique source of error.</aside>
+</section>
+
+<section class="slide result-slide" aria-labelledby="s18">
+  <div class="eyebrow">17 / INTERPRETATION <span class="pill open">MECHANICS STILL UNRESOLVED</span></div>
+  <h2 id="s18">Correct total force can hide incorrect body forces</h2>
+  <div class="results-grid interpretation-grid">
+    <figure class="result-plot"><img src="assets/body-force-distribution.svg" alt="At one second, MPM predicts -352.8 N on rigid ground, -37.8 N on the four walls, and +130.9 N on the moving box. Reconstruction gives -250.2 N, -19.8 N, and +10.4 N. Both totals are approximately -259.65 N."><figcaption>Episode 0 at 1.0 s: force exerted by sand on each body.<br>Positive is upward; negative is downward.</figcaption></figure>
+    <div class="interpretation"><div class="total-force"><span>Total vertical force on all bodies</span><p><b>−259.65 N</b> MPM<br><b>−259.65 N</b> reconstruction</p></div><p>The totals agree, but the estimated upward force on the moving box is much too small.</p><p><b>Implication:</b> satisfying particle force balance does not validate the force on each body.</p></div>
+  </div>
+  <div class="result-note"><b>Next:</b> check whether the full particle equations uniquely determine body reactions, before choosing a force-selection rule.</div>
+  <footer>Optimization error and the material-force assumption are both unresolved. A separate one-frame diagnostic converged under adjusted tolerances but retained 44.8% body-force error; it is not a full reevaluation.</footer>
+  <aside class="notes">At demo_0 transition 199, the signed vertical material-on-body forces are: MPM rigid ground -352.777 N, four walls summed -37.7922 N, box +130.917 N; baseline reconstructed ground -250.1816 N, walls -19.8274 N, box +10.3583 N. Totals are -259.65218 and -259.65076 N. Showing wall forces prevents attributing the entire balance to only the ground and moving box. This close total is consistent with fitting particle force balance. It does not uniquely allocate forces to the bodies. The baseline solve shown here did not converge. A separate diagnostic on the same frame changed outer tolerance to 1e-4 and LSMR tolerance to auto, terminated successfully by relative cost change after 57 iterations, and still had a 44.7906% body-force error. This is limited evidence that stopping at 100 iterations is not the sole issue; it does not prove which material law is needed. No change to the production solver or new training was made for this slide update.</aside>
+</section>
+
+<section class="slide chain-slide" aria-labelledby="s19">
+  <div class="eyebrow">18 / EQUATIONS OF MOTION <span class="pill proposed">ONE-DIMENSIONAL EXAMPLE</span></div>
+  <h2 id="s19">Equations link the rigid body, particles, and ground</h2>
+  <p class="chain-intro">Upward is positive. Each contact force appears with opposite signs on the two objects it connects.</p>
+  <div class="chain-layout">
+    <figure><svg viewBox="0 0 310 310" role="img" aria-label="Vertical contact chain: rigid box, particle 1, particle 2, particle 3, fixed ground. The shared contact forces are B, S12, S23, and G.">
+      <defs><marker id="chain-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse"><path d="M0 0L6 3L0 6" fill="#596d73"/></marker></defs>
+      <g stroke="#596d73" stroke-width="2" marker-start="url(#chain-arrow)" marker-end="url(#chain-arrow)"><path d="M135 43V72"/><path d="M135 104V133"/><path d="M135 165V194"/><path d="M135 226V255"/></g>
+      <rect x="55" y="6" width="160" height="32" rx="3" fill="#d6e4ec" stroke="#386481"/>
+      <text x="135" y="29" text-anchor="middle">Rigid box</text>
+      <g fill="#e6d2ae" stroke="#a98245"><rect x="72" y="78" width="126" height="22" rx="11"/><rect x="72" y="139" width="126" height="22" rx="11"/><rect x="72" y="200" width="126" height="22" rx="11"/></g>
+      <g text-anchor="middle" class="svg-small"><text x="135" y="95">Particle 1</text><text x="135" y="156">Particle 2</text><text x="135" y="217">Particle 3</text></g>
+      <rect x="35" y="261" width="200" height="35" fill="#dce1de" stroke="#596d73"/><text x="135" y="285" text-anchor="middle">Fixed ground</text>
+      <g class="chain-force-label"><text x="157" y="64" fill="#386481">B</text><text x="157" y="125" fill="#247967">S₁₂</text><text x="157" y="186" fill="#247967">S₂₃</text><text x="157" y="247" fill="#98621e">G</text></g>
+    </svg><figcaption>B, S₁₂, S₂₃, G: compressive force magnitudes at successive contacts.</figcaption></figure>
+    <div class="chain-equations">
+      <div><b>Rigid box</b><span>m<sub>b</sub> a<sub>b</sub> = <em class="external-force">U</em> + <em class="box-force">B</em> − W<sub>b</sub></span></div>
+      <div><b>Particle 1</b><span>m₁ a₁ = <em class="internal-force">S₁₂</em> − <em class="box-force">B</em> − W₁</span></div>
+      <div><b>Particle 2</b><span>m₂ a₂ = <em class="internal-force">S₂₃</em> − <em class="internal-force">S₁₂</em> − W₂</span></div>
+      <div><b>Particle 3</b><span>m₃ a₃ = <em class="ground-force">G</em> − <em class="internal-force">S₂₃</em> − W₃</span></div>
+      <div><b>Fixed ground</b><span>0 = <em class="external-force">R</em> − <em class="ground-force">G</em> − W<sub>g</sub></span></div>
+      <p class="chain-definitions">m = mass; a = vertical acceleration; W = weight (m g).<br><b>U:</b> external actuator force on the box. <b>R:</b> external support force on the ground. Both are signed upward.</p>
+    </div>
+  </div>
+  <div class="chain-sum"><b>Add all five equations:</b><span>m<sub>b</sub> a<sub>b</sub> + m₁ a₁ + m₂ a₂ + m₃ a₃ = U + R − Σ<sub>i</sub> m<sub>i</sub> g</span></div>
+  <div class="result-note">Contact forces cancel in the sum. <b>The actuator force U and support force R remain.</b><br>With known U and measured box acceleration, B follows from the box equation. With prescribed box motion and unknown U, that equation introduces another unknown.</div>
+  <footer>Sum over the box, particles 1–3, and supported ground slab. Vertical translation only; zero ground acceleration does not imply zero contact force.</footer>
+  <aside class="notes">This schematic extends the following three-particle example to include both rigid objects. The box can move vertically; the ground slab is fixed by an external support. B is the magnitude of the upward force of particle 1 on the box and the downward force of the box on particle 1. S12 is upward on particle 1 and downward on particle 2. S23 is upward on particle 2 and downward on particle 3. G is upward on particle 3 and downward on the ground. U is the signed net external actuator or holding force on the box; R is the signed external force holding the ground slab fixed. Weights are positive magnitudes acting downward. There are no other forces in this example. Summing the five equations cancels B, S12, S23, and G. This removes internal forces from the total balance but also removes the contact forces we want to reconstruct. For specified accelerations and known weights, the six unknowns are B, S12, S23, G, U, R. The five independent balances admit the variation: increase B, S12, S23, G, and R by the same amount, and decrease U by that amount. Every acceleration remains unchanged. This corresponds to the next slide's stationary example with a stronger downward holding force on the box and a stronger upward ground support. If U is independently known and the box acceleration is measured, the box equation instead determines its net contact force in this simple chain. In a forward coupled simulation the next box acceleration is itself an output, so one cannot assume it is independently known to close reconstruction. In three dimensions include vector force balances and rigid-body moment balances, with actuator, joint, and support reactions represented explicitly. This is an illustrative equation chain, not the completed uniqueness analysis for the recorded MPM scene. No MPM solve is introduced at inference.</aside>
+</section>
+
+<section class="slide ambiguity-slide" aria-labelledby="s20">
+  <div class="eyebrow">19 / WHY THE FORCES ARE AMBIGUOUS <span class="pill open">EXACT FORCE-BALANCE EXAMPLE</span></div>
+  <h2 id="s20">Different contact forces can produce identical motion</h2>
+  <p class="ambiguity-intro">Three stationary particles. Only particle 1 touches the box; only particle 3 touches the ground.</p>
+  <div class="ambiguity-cases">
+<article><h3>A · Lower compression</h3><svg viewBox="0 0 560 288" role="img" aria-label="case-a: three stationary particles, each weighing 10 newtons. Box force 20 N downward, internal compression 30 and 40 N, ground force 50 N upward.">
+ <defs><marker id="arrow-case-a" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#386481"/></marker><marker id="inner-case-a" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#247967"/></marker></defs>
+ <rect x="185" y="7" width="114" height="32" rx="3" fill="#d6e4ec" stroke="#386481"/><text x="242" y="29" text-anchor="middle" class="svg-small">Fixed box</text>
+ <g fill="#c39b5d"><circle cx="242" cy="86" r="13"/><circle cx="242" cy="154" r="13"/><circle cx="242" cy="222" r="13"/></g>
+ <g class="particle-label"><text x="193" y="92">1</text><text x="193" y="160">2</text><text x="193" y="228">3</text></g>
+ <g stroke="#386481" stroke-width="3" marker-end="url(#arrow-case-a)"><path d="M242 42V67"/><path d="M242 269V242"/></g>
+ <text x="310" y="62" class="svg-small">Box on particle 1: 20 N ↓</text>
+ <text x="310" y="259" class="svg-small">Ground on particle 3: 50 N ↑</text>
+ <g stroke="#247967" stroke-width="2.5" marker-end="url(#inner-case-a)"><path d="M232 121V104"/><path d="M252 119V136"/><path d="M232 189V172"/><path d="M252 187V204"/></g>
+ <text x="275" y="125" class="svg-small">30 N between 1 and 2</text><text x="275" y="193" class="svg-small">40 N between 2 and 3</text>
+ <rect x="145" y="272" width="195" height="9" fill="#58696e"/>
+ <text x="29" y="132" class="svg-small">Weight of each</text><text x="29" y="155" class="svg-small">particle: 10 N ↓</text>
+ </svg><div class="balance-lines"><div><span>Particle 1</span><code>30 − 20 − 10 = 0 N</code></div><div><span>Particle 2</span><code>40 − 30 − 10 = 0 N</code></div><div><span>Particle 3</span><code>50 − 40 − 10 = 0 N</code></div></div></article><article><h3>B · Add 100 N along the entire chain</h3><svg viewBox="0 0 560 288" role="img" aria-label="case-b: three stationary particles, each weighing 10 newtons. Box force 120 N downward, internal compression 130 and 140 N, ground force 150 N upward.">
+ <defs><marker id="arrow-case-b" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#386481"/></marker><marker id="inner-case-b" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#247967"/></marker></defs>
+ <rect x="185" y="7" width="114" height="32" rx="3" fill="#d6e4ec" stroke="#386481"/><text x="242" y="29" text-anchor="middle" class="svg-small">Fixed box</text>
+ <g fill="#c39b5d"><circle cx="242" cy="86" r="13"/><circle cx="242" cy="154" r="13"/><circle cx="242" cy="222" r="13"/></g>
+ <g class="particle-label"><text x="193" y="92">1</text><text x="193" y="160">2</text><text x="193" y="228">3</text></g>
+ <g stroke="#386481" stroke-width="3" marker-end="url(#arrow-case-b)"><path d="M242 42V67"/><path d="M242 269V242"/></g>
+ <text x="310" y="62" class="svg-small">Box on particle 1: 120 N ↓</text>
+ <text x="310" y="259" class="svg-small">Ground on particle 3: 150 N ↑</text>
+ <g stroke="#247967" stroke-width="2.5" marker-end="url(#inner-case-b)"><path d="M232 121V104"/><path d="M252 119V136"/><path d="M232 189V172"/><path d="M252 187V204"/></g>
+ <text x="275" y="125" class="svg-small">130 N between 1 and 2</text><text x="275" y="193" class="svg-small">140 N between 2 and 3</text>
+ <rect x="145" y="272" width="195" height="9" fill="#58696e"/>
+ <text x="29" y="132" class="svg-small">Weight of each</text><text x="29" y="155" class="svg-small">particle: 10 N ↓</text>
+ </svg><div class="balance-lines"><div><span>Particle 1</span><code>130 − 120 − 10 = 0 N</code></div><div><span>Particle 2</span><code>140 − 130 − 10 = 0 N</code></div><div><span>Particle 3</span><code>150 − 140 − 10 = 0 N</code></div></div></article></div>
+  <div class="result-note"><b>Every particle equation is satisfied in both cases.</b> Adding the equations gives ground force − box force = 30 N in either case.</div>
+  <footer>Upward force is positive. Equal-and-opposite internal forces cancel. Identical geometry and zero acceleration do not select A or B.<br>This example uses force balance and compressive contact only; a material law or a known boundary load could provide the missing information.</footer>
+  <aside class="notes">This is an exact one-dimensional counterexample, not simulation data. The three particles each weigh 10 N and have zero acceleration. Let B be the downward box force, S12 and S23 be compressive internal forces, and G be the upward ground force. The individual balances are S12-B-10=0, S23-S12-10=0, G-S23-10=0. Thus S12=B+10, S23=B+20, G=B+30. There are three independent scalar equations for four unknown force magnitudes. Any nonnegative B gives a compressive solution. Adding 100 N to all four unknowns changes the box and ground reactions while leaving every particle equation unchanged. The change (100,100,100,100) is a null-space direction of the balance matrix and affects the body reactions. Known contact locations and internal action-reaction are already included. This is stronger than showing ambiguity only in the summed system. It does not prove that every three-dimensional particle scene has ambiguous body reactions; that must be checked for the actual geometry and constraints. It also does not claim that both states satisfy a specified elastic or granular constitutive law with identical history. Such a law is exactly the additional information omitted by force balance alone. The fixed box has an unmeasured holding reaction, so its own equilibrium does not provide a known applied load. Body reactions are opposite to the body-on-particle forces illustrated here.</aside>
+</section>
+
+<section class="slide analysis-slide" aria-labelledby="s21">
+  <div class="eyebrow">20 / REQUIRED ANALYSIS BEFORE RECONSTRUCTION <span class="pill open">NOT YET COMPLETED</span></div>
+  <h2 id="s21">Check whether the equations determine each body reaction</h2>
+  <div class="flow"><div><b>1. Assemble all balances</b><span>Balance each particle’s forces. Internal forces have opposite signs on neighbors. Include contact forces only where contact occurs.</span></div><div><b>2. Look for force changes</b><span>Can forces change while every balance remains satisfied and contact constraints remain valid?</span></div><div><b>3. Check body reactions</b><span>If those changes alter a body’s net force or torque, motion alone has not determined that reaction.</span></div></div>
+  <div class="split compact"><div><h3>Some ambiguity is acceptable</h3><p>Internal forces may be nonunique while every body reaction is unchanged. We only need the body reactions to be determined.</p></div><div><h3>Otherwise, identify missing information</h3><p>Examples: a material force–deformation relationship, material history, or a known applied boundary load. Test whether it resolves the ambiguity.</p></div></div>
+  <div class="callout amber"><b>Correction to the work sequence</b><p>This analysis should have preceded the minimum-force implementation. That implementation is an exploratory baseline, not a validated reconstruction method.</p></div>
+  <footer><b>Inference requirement:</b> NeRD particle motion + nonlearned reaction reconstruction. No MPM solve at inference.<br>MPM is used only to generate reference data and evaluate results.</footer>
+  <aside class="notes">For the full particle system, write A f = b, where f contains internal-force and contact-force unknowns and b contains known inertial loads after subtracting gravity and other known external loads. Let R f collect per-body forces and moments. If an admissible perturbation d satisfies A d = 0 but R d is nonzero, body reactions are not uniquely determined by the balance equations. A null-space direction that changes only internal forces is harmless for the reaction output. Inequality constraints matter: a linear null-space direction establishes feasible ambiguity only when a nonzero perturbation remains inside compression, friction, and contact conditions. In larger systems one can bound each reaction component over the feasible force set rather than assume that all rank deficiency affects body reactions. Net torque and angular-momentum constraints must be included consistently with the selected particle state and internal-force model. The actual full-scene analysis has not been performed yet. Known material parameters are useful only when explicit material equations use them. For the cable analogy, known connectivity and a rod law add structure; arbitrary particle-neighborhood edges do not provide the same information. The user explicitly excludes any MPM solve at inference. Mathematical ideas from continuum mechanics may inform a separate reconstruction, but inference must not retain or reintroduce the MPM update. No new numerical experiment or implementation is claimed by these slides.</aside>
+</section>
+
+<section class="slide dem-slide" aria-labelledby="s22">
+  <div class="eyebrow">21 / CURRENT RECONSTRUCTION <span class="pill verified">IMPLEMENTED BASELINE</span></div>
+  <h2 id="s22">The current estimate omits most material properties</h2>
+  <table class="dem-table"><thead><tr><th>Assumption</th><th>What the implementation uses</th></tr></thead><tbody>
+    <tr><td>Particle–particle forces</td><td>Particles within 6.5 cm transmit equal-and-opposite compressive forces along their connecting line. No separate tangential force.</td></tr>
+    <tr><td>Particle–body forces</td><td>Particles within 4 cm of a body surface are contact candidates. Forces obey a four-sided approximation of the friction cone.</td></tr>
+    <tr><td>Choice among possible solutions</td><td>A quadratic penalty favors small force coefficients. It supplies no force–deformation relationship.</td></tr>
+  </tbody></table>
+  <div class="dem-objective"><b>Current objective</b><span>minimize: force-balance error² + 0.0001 × Σ force coefficient²</span></div>
+  <div class="split compact dem-details"><div><h3>Parameters used directly</h3><p>Particle mass and particle–body friction. Density affects the recorded particle mass.</p></div><div><h3>Material properties not used directly</h3><p>Young’s modulus, Poisson’s ratio, internal material friction, plasticity, and material history.</p></div></div>
+  <div class="result-note">With identical motion, masses, geometry, and body friction, changing an omitted material parameter does not change the estimate. It can affect the result indirectly by changing the motion.</div>
+  <footer>Source: <a href="local-sources.html#source-15">current reconstruction implementation</a>. Small force-balance error does not establish accurate forces on individual bodies.</footer>
+  <aside class="notes">This describes the existing nonlearned force reconstruction, not a trained particle motion model. It solves three translational force-balance equations per material particle. Particle pairs within the neighbor radius carry one nonnegative central-force coefficient. A candidate particle–body contact carries four nonnegative friction-ray coefficients. The positive quadratic regularization penalizes these coefficients; it is not exactly a penalty on the norm of each resultant contact force, because that depends on its ray representation. Appending sqrt(regularization) times the identity with a zero target is equivalent to soft equations favoring zero coefficients. It makes the objective strictly convex in exact arithmetic but does not establish physical correctness. The evaluated baseline solves reached their iteration limit. The code does not read the recorded particle radii, rigid-body velocities or accelerations, Young’s modulus, Poisson’s ratio, internal friction, deformation state, or material history. It computes body torque from contact-force moment arms but does not solve rigid-body dynamics or particle angular-momentum equations. The 4 cm contact shell is a geometric heuristic, not measured grain overlap. The separate DEM-inspired implementation and its measurements are described on the following slides.</aside>
+</section>
+
+<section class="slide dem-slide" aria-labelledby="s23">
+  <div class="eyebrow">22 / DISCRETE ELEMENT METHOD <span class="pill proposed">SOURCE OF ADDITIONAL EQUATIONS</span></div>
+  <h2 id="s23">Relate each contact force to deformation and motion</h2>
+  <p class="dem-intro">A simple noncohesive DEM contact law supplies force values from overlap, relative velocity, and contact history.</p>
+  <div class="dem-contact-layout">
+    <figure><svg viewBox="0 0 320 265" role="img" aria-label="A finite-sized particle contacts a rigid surface. Normal force acts away from the surface, and tangential friction opposes sliding. Overlap is the distance the particle extends into the surface.">
+      <defs><marker id="dem-force-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#386481"/></marker><marker id="dem-motion-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0L6 3L0 6" fill="#247967"/></marker></defs>
+      <rect x="20" y="182" width="280" height="55" fill="#dce1de"/>
+      <circle cx="156" cy="128" r="65" fill="#e6d2ae" fill-opacity=".8" stroke="#a98245" stroke-width="2"/>
+      <path d="M20 182H300" stroke="#596d73" stroke-width="2"/>
+      <g stroke="#386481" stroke-width="3" marker-end="url(#dem-force-arrow)"><path d="M156 125V30"/><path d="M154 177H75"/></g>
+      <path d="M225 104H288" stroke="#247967" stroke-width="3" marker-end="url(#dem-motion-arrow)"/>
+      <text x="168" y="43" class="svg-small">Normal force</text><text x="30" y="159" class="svg-small">Friction</text><text x="224" y="90" class="svg-small">Sliding</text>
+      <text x="156" y="224" text-anchor="middle" class="svg-small">Rigid-body surface</text>
+      <path d="M212 193H259M234 182V193M229 182H239" fill="none" stroke="#98621e" stroke-width="2"/>
+      <text x="263" y="199" class="svg-small">δ</text><text x="156" y="257" text-anchor="middle" class="svg-small">δ = particle–surface overlap</text>
+    </svg><figcaption>Illustration of a DEM grain.<br>MPM material points are not physical grains.</figcaption></figure>
+    <div class="dem-laws">
+      <div><b>Normal force magnitude · active contact</b><p>F<sub>n</sub> = max(0, k<sub>n</sub> δ + c<sub>n</sub> v<sub>close</sub>)</p><span>Elastic compression + damping; closing speed is positive.</span></div>
+      <div><b>Tangential force vector · before sliding</b><p>F<sub>t,trial</sub> = −k<sub>t</sub> ξ − c<sub>t</sub> v<sub>t</sub></p><span>ξ accumulates relative tangential displacement during contact.</span></div>
+      <div><b>Sliding limit</b><p>‖F<sub>t</sub>‖ ≤ μ F<sub>n</sub></p><span>Cap the trial force and update history when sliding occurs.</span></div>
+    </div>
+  </div>
+  <div class="result-note"><b>Additional equations:</b> force is related to contact deformation and history, rather than selected only by a small-force preference. Separated particles carry no contact force.</div>
+  <footer>k: contact stiffness; c: damping coefficient; μ: contact friction. Ground and moving bodies use the same law with their own geometry and surface velocity.<br>Source: <a href="https://docs.lammps.org/pair_granular.html">LAMMPS granular contact laws</a> and <a href="https://docs.lammps.org/fix_wall_gran.html">particle–wall contacts</a>. The equations show a linear spring–damper model; Hertz–Mindlin is an alternative.</footer>
+  <aside class="notes">DEM means discrete element method. The equations illustrate one noncohesive linear spring–dashpot model, not all DEM formulations. For positive overlap, the normal force is the positive part of stiffness times overlap plus damping times signed closing speed. Use zero force after separation; do not apply a damping force across a gap. Tangential velocity is measured at the contact point relative to the other particle or rigid surface, including rotational contributions where represented. Transport tangential history into the changing contact plane, update it over the contact interval, correct it when the Coulomb bound is reached, and reset it when contact is lost. Static friction may remain nonzero at zero instantaneous tangential velocity because of stored tangential displacement. The force on the other object is equal and opposite. Particle–particle contacts can use the same law structure with appropriate radii and contact parameters. Hertz–Mindlin models provide nonlinear normal and tangential relationships involving elastic parameters and contact geometry. These are physical model parameters, so nonlearned does not mean parameter-free. This slide explains the source equations only; it does not claim their direct applicability to Newton MPM material points. References: https://docs.lammps.org/pair_granular.html ; https://docs.lammps.org/fix_wall_gran.html ; https://docs.lammps.org/Howto_granular.html .</aside>
+</section>
+
+<section class="slide dem-slide warp-slide" aria-labelledby="s24">
+  <div class="eyebrow">23 / WARP IMPLEMENTATION REFERENCE <span class="pill proposed">SOURCE REVIEWED</span></div>
+  <h2 id="s24">Warp provides a simple DEM contact-force kernel</h2>
+  <p class="dem-intro">Linear spring–damper contact, velocity-based friction, and short-range cohesion. No tangential history.</p>
+  <div class="warp-laws"><div><b>Normal force on particle i</b><p>F<sub>n</sub> = −s n</p><span>s = k<sub>n</sub> c + k<sub>d</sub> min(v<sub>n</sub>, 0)</span></div><div><b>Tangential force magnitude</b><p>‖F<sub>t</sub>‖ = min(k<sub>f</sub> ‖v<sub>t</sub>‖, μ |s|)</p><span>Direction opposes tangential relative velocity.</span></div></div>
+  <p class="dem-intro">For particle pairs: c = center distance − 2 × radius; n points toward particle i; v<sub>n</sub> = n · relative velocity.</p>
+  <table class="dem-table"><tbody><tr><td><b>Cohesion</b></td><td>Positive gaps can produce attraction within a cutoff.</td></tr><tr><td><b>Static friction</b></td><td>Zero tangential speed gives zero friction; no stored tangential displacement.</td></tr><tr><td><b>Geometry</b></td><td>Equal-radius particles and a fixed plane; no arbitrary moving-body contacts.</td></tr></tbody></table>
+  <div class="result-note"><b>Proposed reuse:</b> hash-grid neighbors and contact-force evaluation. Add rigid-body surface velocity and reaction accumulation. NeRD supplies motion; do not use the example’s particle integration.</div>
+  <footer>Source: <a href="https://github.com/NVIDIA/warp/blob/main/warp/examples/core/example_dem.py">NVIDIA Warp · example_dem.py</a>. This is a standalone Warp example, not Newton’s implicit MPM solver.</footer>
+  <aside class="notes">A CPU reference adaptation has now been implemented and evaluated. Warp GPU kernels have not yet been integrated. Compare a velocity-only contact model against the history-based model on the previous slide. Keep source-equivalent behavior separate from changes made for noncohesive sand. Effective geometry and material parameters must still be justified for MPM trajectories. Evaluating a contact law is not a proof that reconstructed forces are physically identifiable.</aside>
+</section>
+
+<section class="slide dem-slide" aria-labelledby="s25">
+  <div class="eyebrow">24 / RECONSTRUCTION EXPERIMENT <span class="pill open">PRELIMINARY EVALUATION COMPLETE</span></div>
+  <h2 id="s25">Test a contact law on the recorded particle motion</h2>
+  <div class="dem-objective"><b>Evaluated objective</b><span>minimize: force-balance error² + λ × contact-law error²</span></div>
+  <p class="dem-intro">The second term favors forces predicted by the contact law. λ sets its weight relative to motion consistency.</p>
+  <div class="flow"><div><b>1. Define effective contacts</b><span>Specify reference spacing or effective radii, contact stiffness, damping, and friction. Do not equate MPM spacing with grain overlap.</span></div><div><b>2. Compare contact laws</b><span>Evaluate velocity-only friction and a history-based law. Use particle and body velocities; maintain history through each frame.</span></div><div><b>3. Evaluate body reactions</b><span>Compare with MPM reference forces on each body, including densely sampled impact intervals and small position perturbations.</span></div></div>
+  <div class="split compact dem-details"><div><h3>Main modeling question</h3><p>What effective deformation should determine force? MPM particles sample a continuum; their radius is not automatically a grain radius.</p></div><div><h3>Success criteria</h3><p>Lower body-force error with small balance residual, stable estimates under position errors, and acceptable reconstruction time.</p></div></div>
+  <div class="result-note">A penetration-only law gives zero support force at zero overlap and zero relative speed. Reference geometry and contact compliance must therefore be defined and tested.</div>
+  <footer><b>Inference:</b> NeRD motion → nonlearned contact-force reconstruction → Newton rigid-body update. No MPM solve at inference.<br>Fix parameters before final evaluation; use separate episodes if calibration is needed. The first evaluation did not improve force accuracy; results follow.</footer>
+  <aside class="notes">The CPU reference implementation is dem_reconstruction.py in the isolated IsaacLab-particle-nerd worktree. It compares velocity-only friction and a tangential-history law, with four nonnegative rays per particle-particle and particle-body contact. It fits particle translation equations and physical contact-force priors. Effective particle-pair rest distance is the sum of recorded radii; body contact offset is zero. Candidate geometry retains the original 6.5 cm particle neighborhood and 4 cm body shell. Separated candidates have a zero constitutive prior, but the soft inverse fit may assign them nonzero force. Tangential pair forces do not reconstruct physical grain rotation or APIC angular momentum. Histories are updated at every recorded step, corrected on sliding, and reset after separation. Body surface velocity includes rotation. Calibration uses demo_0 and demo_1: three stiffnesses and two prior weights per friction model, 12 sampled calibration frames. Evaluation uses demo_2 and demo_3, with 52 matched frames including dense impact samples and the exact reference peak in each episode. Reference impulses are used for scalar parameter calibration and scoring, never as inference inputs. The previously inspected validation file is reused, so this is not a pristine final test set. See the next slides for measured losses, convergence, runtime, and sensitivity. NeRD motion training and coupled inference remain unimplemented. No MPM solve occurs in the reconstruction.</aside>
+</section>
+
+<section class="slide dem-slide" aria-labelledby="s26">
+  <div class="eyebrow">25 / MEASURED DEM RECONSTRUCTION <span class="pill open">ACCURACY DID NOT IMPROVE</span></div>
+  <h2 id="s26">The DEM prior increased force prediction loss</h2>
+  <p class="dem-intro">52 matched frames from two evaluation episodes. Parameters selected on two different episodes.<br>Force MSE averages squared error across frames, six bodies, and three force components.</p>
+  <table class="dem-metrics"><thead><tr><th>Method</th><th>Force MSE<br>[N²]</th><th>Box force<br>RMSE [N]</th><th>Particle balance<br>residual</th><th>Converged<br>frames</th></tr></thead><tbody><tr><td>Original baseline</td><td>5,290</td><td>214.8</td><td>0.04%</td><td>0 / 52</td></tr><tr><td>Zero prior · new basis</td><td>6,877</td><td>225.2</td><td>14.78%</td><td>52 / 52</td></tr><tr><td>DEM · velocity friction</td><td>6,554</td><td>223.9</td><td>13.86%</td><td>52 / 52</td></tr><tr><td>DEM · contact history</td><td>6,524</td><td>224.0</td><td>13.92%</td><td>52 / 52</td></tr></tbody></table>
+  <div class="result-note"><b>Contact history: 23.3% higher force MSE than the original baseline.</b> The prior improves on the zero-prior variant with the same new force basis, but neither DEM variant meets the particle-balance criterion.</div>
+  <p class="small">Both selected variants: stiffness 100 N/m; prior weight 0.1. No calibration candidate met both convergence and mean balance residual ≤ 5%.</p>
+  <footer>Box RMSE uses the force-vector error; balance residual is normalized per frame by the particle inertial load after subtracting gravity.<br>The original baseline reached its iteration limit on all 52 frames. The new solver met its projected-gradient criterion. These are different convergence tests.<br>Data: <a href="results/dem_experiment.json">DEM experiment</a> · <a href="results/dem_original_baseline.json">matched original baseline</a> · <a href="results/dem_summary.json">summary</a>.</footer>
+  <aside class="notes">This compares reference-motion reconstruction only, not a learned motion rollout. MSE equals mean((predicted force minus reference force)^2) over selected frames, six bodies, and three components. Force references are recorded MPM impulses divided by the 5 ms interval. The zero-prior ablation uses exactly the history model's new basis, geometry, and weight, but a zero physical-force target; it is distinct from the original coefficient-regularized central-force baseline. All weak-prior calibration trials at weight 0.001 had at least some frames failing convergence within 1000 iterations. Converged weight-0.1 trials did not pass the 5% balance gate. The diagnostic selection therefore used the lowest MSE among converged calibration trials; this failure is reported, not treated as successful validation. Selected stiffness is the lowest tested value, so this is a bounded preliminary experiment, not an exhaustive parameter search. Median CPU assembly-plus-fit times were 0.521 s for velocity friction and 0.611 s for contact history, versus 6.695 s for the original baseline. These were measured during concurrent CPU jobs and are not a controlled speed benchmark. The changed force basis and optimizer also prevent attributing runtime differences solely to the DEM law. The history variant's relative force L2 error is 73.16%, versus 65.88% for the original. Eight independent mechanics tests pass, including opposed preload with zero particle acceleration, rotating-body friction, persistent static friction and separation reset, and internal action-reaction. These tests establish implementation contracts, not accuracy on MPM trajectories.</aside>
+</section>
+
+<section class="slide result-slide dem-slide" aria-labelledby="s27">
+  <div class="eyebrow">26 / PEAK FORCE AND SENSITIVITY <span class="pill open">CONTACT MODEL REMAINS INSUFFICIENT</span></div>
+  <h2 id="s27">The reconstructed box force still misses the impact load</h2>
+  <figure class="dem-force-figure"><img src="assets/dem-force-history.svg" alt="In both evaluation episodes, the reference vertical force on the moving box peaks above 500 N. The original baseline gives about 11 to 13 N at the peak; the DEM history reconstruction gives about minus 2.5 N."><figcaption>Material force on the moving box. Markers show evaluated frames; connecting lines interpolate between samples.</figcaption></figure>
+  <div class="dem-peak-stats"><div><b>515–519 N</b><span>MPM force at each reference peak</span></div><div><b>−2.5 N</b><span>DEM history estimate at those same frames</span></div><div><b>0.08 / 0.39 N</b><span>Force change RMSE for 0.1 / 1 mm position offsets</span></div></div>
+  <div class="result-note"><b>Conclusion:</b> adding this effective contact law did not resolve the missing body loads. Revisit effective contact geometry and material relationships before using the estimate for two-way coupling.</div>
+  <footer>Position sensitivity: 12 matched frames, all body-force components, persistent Gaussian particle offsets per coordinate. Velocities and accelerations unchanged.<br>Small sensitivity does not establish force accuracy. This experiment uses recorded MPM motion; no MPM solve is retained at inference.</footer>
+  <aside class="notes">Both reference peak frames occur at step 166, approximately 0.835 s after reset. Episode 2: MPM vertical box force 515.1077 N, original baseline 10.8785 N, velocity DEM fit -2.2992 N, history DEM fit -2.5109 N, direct history law 0.4968 N. Episode 3: reference 518.5536 N, original 13.0084 N, velocity fit -2.3033 N, history fit -2.5058 N, direct history law 0.7592 N. Negative means the estimated material force on the box points downward. These are values at the exact reference peak frames, not maxima taken at different times. Direct contact-law predictions were evaluated at all 800 test transitions. Inverse methods were evaluated at 52 matched frames; plotted interpolation does not imply continuous inverse evaluation. Geometry sensitivity selected the history model using calibration loss, then tested persistent offsets of 0.1 and 1 mm standard deviation per coordinate on 12 evaluation frames. Force-change RMSE against clean estimates was 0.0778 and 0.3876 N per component. The clean/noisy comparison uses the same subset and does not compare its MSE directly to the 52-frame table. This result does not establish that DEM in general cannot work. It rejects this particular effective geometry, shared stiffness, soft contact prior, and tested parameter range as an adequate reconstruction for these trajectories. No additional parameter tuning on evaluation episodes was performed.</aside>
+</section>
+
+<section class="slide" aria-labelledby="s28">
+  <div class="eyebrow">27 / EVIDENCE & OPEN QUESTIONS <span class="pill open">RESEARCH STATUS</span></div>
+  <h2 id="s28">The hypothesis is clear; the particle reconstruction is open</h2>
+  <div class="split compact"><div><h3>Established by the sources</h3><ul><li>Cable NeRD separates learned motion from analytical reactions.</li><li>Newton exposes collider identity and body-reaction coupling.</li><li>L-GBND represents terrain–tool interactions with typed nodes.</li></ul></div><div><h3>To establish experimentally</h3><ul><li>A suitable material law and reconstruction discretization.</li><li>Sufficient particle state for stable inference.</li><li>Accurate reactions from imperfect learned motion.</li><li>A net speed benefit for the coupled simulation.</li></ul></div></div>
+  <div class="references"><a href="local-sources.html#source-16">[1] Cable NeRD · slides 23–24</a><a href="https://arxiv.org/pdf/2503.23270">[2] L-GBND · Liu, Li & Hauser</a><a href="https://github.com/Chaoqi-LIU/lgbnd">[3] L-GBND · released architecture</a><a href="https://mmacklin.com/xpbd.pdf">[4] XPBD · Macklin et al.</a><a href="local-sources.html#source-17">[5] Newton · coupled example</a><a href="local-sources.html#source-18">[6] Newton · implicit MPM solver</a></div>
+  <footer>October 2026 · Collection and reconstruction experiments completed. Neural motion prediction and coupled deployment remain untested.</footer>
+  <aside class="notes">Reference-motion reconstruction has now been evaluated. It fits particle force balance closely but produces inaccurate per-body reactions at high CPU cost. All 16 baseline solves reached their iteration limit; one diagnostic with adjusted tolerances also retained a large force error. A formal check of whether body reactions are uniquely determined by the full particle system was not completed before implementing the baseline. This is the next required analysis. MPM is used for data generation and offline validation only; no MPM solve is permitted at inference. External links require internet access; the presentation itself works offline. Local Newton source links depend on the sibling repository layout. The original cable slide deck remains in ../deformables.</aside>
+</section>
+
+</main>
+<nav class="toolbar" aria-label="Presentation controls">
+  <a class="brand" href="#1" aria-label="First slide">PARTICLE NeRD <span>/ PLAN &amp; RESULTS</span></a>
+  <div class="nav-controls"><button id="prev" aria-label="Previous slide">←</button><span id="counter" aria-live="polite">1 / 28</span><button id="next" aria-label="Next slide">→</button><span class="divider"></span><button id="overview" title="Overview (O)">Overview</button><button id="notes" title="Speaker notes (N)">Notes</button><button id="fullscreen" title="Full screen (F)">Full screen</button><button id="print" title="Print or save as PDF">PDF</button></div>
+</nav>
+<div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
+<dialog id="notes-dialog"><div class="dialog-head"><b id="notes-title">Speaker notes</b><button id="close-notes" aria-label="Close speaker notes">✕</button></div><div id="notes-body"></div></dialog>
+<div id="status" class="sr-only" role="status"></div>
+<noscript><style>.slide{display:flex!important;position:relative!important;margin:24px auto}.toolbar,.progress{display:none}body{overflow:auto}#deck{position:static;transform:none}</style></noscript>
+</body>
+</html>
