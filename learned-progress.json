@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T10:44:23.406120+00:00",
+  "updated_at": "2026-10-15T10:49:25.284544+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
@@ -289,12 +289,29 @@
           ]
         ]
       }
+    },
+    {
+      "name": "Newton rigid-body integration",
+      "preserve": true,
+      "summary": "All six validation episodes complete with learned particles and analytical forces. Mean particle error 1.42 cm, body-position error 1.76 cm, force error 5.24 N. Newton handles rigid dynamics and direct rigid contacts; it contains no MPM particles or MPM solver. Reference-force replay reproduces one box trajectory within 0.53 micrometers RMS.",
+      "metrics": {
+        "particle_position_rmse_m": 0.01422637157763044,
+        "body_position_rmse_m": 0.01762342651258534,
+        "force_vector_rmse_N": 5.239452087703273,
+        "body_orientation_rmse_deg": 11.551037155897241
+      }
+    },
+    {
+      "name": "Learned box simulation",
+      "summary": "Left: reference MJWarp\u2013MPM. Right: four-step GNN + static-contact correction + analytical reactions + Newton MJWarp. The right view uses predicted particles and body motion throughout. This validation episode still underestimates impact: peak vertical material-on-box force 98.5 N versus 145.0 N reference.",
+      "video": "assets/learned-box.mp4",
+      "poster": "assets/learned-box-poster.png"
     }
   ],
   "limitations": [
     "The initial model drifted through rigid ground. Longer one-step training alone made this worse.",
     "Static-contact correction is an explicit geometric approximation. Projecting particles against the moving body caused all six coupled validation rollouts to stop early.",
-    "The current evaluator uses free-body rigid integration and stops at direct rigid-tray contact.",
+    "Primary training comparisons use free-body rigid integration. A separate Newton MJWarp adapter now handles rigid contacts and completes all six validation episodes.",
     "Material stress and plastic strain are not inputs. Full particle momentum consistency is not enforced.",
     "All three shape families occur in training; unseen mesh-shape generalization remains untested.",
     "Large G1 testbed inference and isolated runtime comparisons remain unmeasured."
@@ -302,8 +319,8 @@
   "run_state": {
     "status": "Experiments running",
     "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
-    "updated_at": "2026-10-15T10:44:22.938427+00:00",
-    "training_update": 27900,
-    "elapsed_seconds": 904
+    "updated_at": "2026-10-15T10:49:24.818005+00:00",
+    "training_update": 37300,
+    "elapsed_seconds": 1206
   }
 }
