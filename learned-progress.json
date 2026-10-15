@@ -1,45 +1,258 @@
 {
-  "updated_at": "2026-10-15T09:45:46.737687+00:00",
+  "updated_at": "2026-10-15T10:19:18.230508+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Baseline measured; improving rollout stability",
+  "phase": "Validation rollouts: unroll4/validation, none projection",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
-      "name": "Diverse reference data collected",
-      "summary": "66 complete dynamic episodes: 48 training, 6 validation, 12 reserved test. Each has 300 steps at 5 ms and 4,000 particles. Shapes: box, sphere, cylinder. Training density 800\u20132400 kg/m\u00b3; material friction 0.25\u20130.70; Young modulus 10^5\u201310^15 Pa; moving-body mass 1\u20134 kg. Validation/test use separate parameter combinations.",
+      "name": "Reference data",
+      "summary": "156 training, 6 validation, and 12 reserved test episodes collected. Each episode contains 4,000 particles and 300 transitions at 5 ms. Box, sphere, and cylinder geometries; 0.02 m MPM grid; 25 MPM iterations. Additional training independently varies body mass across material sets and includes smaller bodies.",
       "metrics": {
-        "completed_configurations": 21,
-        "failed_configurations": []
+        "collection_failures": []
       }
     },
     {
-      "name": "Initial GNN: insufficient rollout stability",
-      "summary": "A 64-channel, three-pass graph network trained for 5,000 updates. Its selected validation checkpoint slightly improves one-step velocity prediction over keeping the current velocity. Full rollouts show large particle drift and inaccurate body forces.",
-      "figure": "assets/learned-baseline.png",
-      "metrics": {
-        "one_step": {
-          "velocity_vector_rmse_m_s": 0.018215445801615715,
-          "position_vector_rmse_m": 9.107722697234387e-05,
-          "near_body_velocity_vector_rmse_m_s": 0.06667441874742508,
-          "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
-          "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
-          "transitions": 60
+      "name": "Coupled rollout comparison",
+      "summary": "Means of episode RMS errors over completed 1.5-second rollouts. Failed runs are shown explicitly; their shorter-horizon errors are excluded. All methods except the stationary baseline predict particle motion. Parameters are selected on validation episodes only.",
+      "table": {
+        "columns": [
+          "Method",
+          "Split",
+          "Completed",
+          "Particle error [cm]",
+          "Body position error [cm]",
+          "Force error [N]"
+        ],
+        "rows": [
+          [
+            "Initial GNN",
+            "validation",
+            "6/6",
+            "10.05",
+            "3.32",
+            "16.23"
+          ],
+          [
+            "Project against every body",
+            "validation",
+            "0/6",
+            "\u2014",
+            "\u2014",
+            "\u2014"
+          ],
+          [
+            "GNN + static-contact correction",
+            "validation",
+            "6/6",
+            "1.48",
+            "1.88",
+            "7.84"
+          ],
+          [
+            "Longer one-step training",
+            "validation",
+            "6/6",
+            "34.21",
+            "3.62",
+            "13.55"
+          ],
+          [
+            "Stationary particle baseline",
+            "validation",
+            "6/6",
+            "2.17",
+            "5.09",
+            "19.61"
+          ]
+        ]
+      },
+      "metrics": [
+        {
+          "name": "Initial GNN",
+          "path": "baseline/validation",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 10.052485143144924,
+          "body_cm": 3.3161850598593947,
+          "force_N": 16.225118847013597,
+          "checkpoint_step": 4000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.018215445801615715,
+            "position_vector_rmse_m": 9.107722697234387e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.06667441874742508,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "selection_score": 7.49559104385284
         },
-        "coupled_mean_particle_position_rmse_cm": 10.052485143144924,
-        "coupled_mean_body_position_rmse_cm": 3.3161850598593947,
-        "coupled_mean_force_vector_rmse_N": 16.225118847013597,
-        "completed_rollouts": 6,
-        "evaluated_rollouts": 6
+        {
+          "name": "Project against every body",
+          "path": "long_one_step/projected",
+          "split": "validation",
+          "completed": 0,
+          "episodes": 6,
+          "particle_cm": null,
+          "body_cm": null,
+          "force_N": null,
+          "checkpoint_step": 30000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.013171518221497536,
+            "position_vector_rmse_m": 6.585758963545581e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.057011641561985016,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          }
+        },
+        {
+          "name": "GNN + static-contact correction",
+          "path": "long_one_step/static_projection",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 1.4753938807795444,
+          "body_cm": 1.883903688658604,
+          "force_N": 7.83732381548599,
+          "checkpoint_step": 30000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.013171518221497536,
+            "position_vector_rmse_m": 6.585758963545581e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.057011645287275314,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "selection_score": 2.0715149754933737
+        },
+        {
+          "name": "Longer one-step training",
+          "path": "long_one_step/validation",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 34.2065155506134,
+          "body_cm": 3.6156185247948702,
+          "force_N": 13.546132904090143,
+          "checkpoint_step": 30000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.013171518221497536,
+            "position_vector_rmse_m": 6.585758963545581e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.057011641561985016,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "selection_score": 19.588373682908642
+        },
+        {
+          "name": "Stationary particle baseline",
+          "path": "stationary",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 2.1653986535966396,
+          "body_cm": 5.0882630257726,
+          "force_N": 19.610171410045204,
+          "checkpoint_step": 4000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.018215445801615715,
+            "position_vector_rmse_m": 9.107722697234387e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.06667441874742508,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          }
+        }
+      ]
+    },
+    {
+      "name": "Current validation selection",
+      "summary": "GNN + static-contact correction. Selection requires all six coupled validation rollouts to complete, then compares particle, body-position, and force errors with fixed normalization scales. This is a development result, not an independent test result.",
+      "figure": "assets/learned-current.png"
+    },
+    {
+      "name": "Sampled SDF geometry check",
+      "summary": "Reference particle and body states isolate geometry error. Thirty sampled transitions per shape. At 5 mm SDF sampling, force differences from analytic geometry are 0.11\u20130.22 N RMS. Arbitrary mesh-derived SDFs are not tested.",
+      "table": {
+        "columns": [
+          "Shape",
+          "SDF spacing [mm]",
+          "Force error vs MPM [N]",
+          "Difference vs analytic [N]"
+        ],
+        "rows": [
+          [
+            "box",
+            0.0,
+            "5.19",
+            "0.00"
+          ],
+          [
+            "box",
+            10.0,
+            "5.18",
+            "0.22"
+          ],
+          [
+            "box",
+            5.0,
+            "5.16",
+            "0.18"
+          ],
+          [
+            "sphere",
+            0.0,
+            "6.35",
+            "0.00"
+          ],
+          [
+            "sphere",
+            10.0,
+            "6.85",
+            "0.98"
+          ],
+          [
+            "sphere",
+            5.0,
+            "6.44",
+            "0.22"
+          ],
+          [
+            "cylinder",
+            0.0,
+            "5.08",
+            "0.00"
+          ],
+          [
+            "cylinder",
+            10.0,
+            "5.36",
+            "0.34"
+          ],
+          [
+            "cylinder",
+            5.0,
+            "5.13",
+            "0.11"
+          ]
+        ]
       }
     }
   ],
   "limitations": [
-    "This is a failed initial baseline, not a validated replacement for MPM.",
-    "Validation is used for development; reserved test episodes have not been evaluated.",
-    "The current coupled diagnostic uses free-body integration and stops if the body intersects the rigid tray.",
-    "Material stress, plastic strain, and MPM grid state are not network inputs. Velocity history may not fully describe material memory.",
-    "Sampled SDF support is implemented; rollout accuracy and cost still need measurement.",
-    "These are 0.32 m \u00d7 0.32 m \u00d7 0.16 m material beds. Large G1 testbed scaling remains untested for the GNN."
-  ]
+    "The initial model drifted through rigid ground. Longer one-step training alone made this worse.",
+    "Static-contact correction is an explicit geometric approximation. Projecting particles against the moving body caused all six coupled validation rollouts to stop early.",
+    "The current evaluator uses free-body rigid integration and stops at direct rigid-tray contact.",
+    "Material stress and plastic strain are not inputs. Full particle momentum consistency is not enforced.",
+    "All three shape families occur in training; unseen mesh-shape generalization remains untested.",
+    "Large G1 testbed inference and isolated runtime comparisons remain unmeasured."
+  ],
+  "run_state": {
+    "status": "Experiments running",
+    "phase": "Validation rollouts: unroll4/validation, none projection",
+    "updated_at": "2026-10-15T10:19:17.777462+00:00"
+  }
 }
