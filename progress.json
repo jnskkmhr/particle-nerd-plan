@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T05:59:00.130366+00:00",
+  "updated_at": "2026-10-15T05:59:42.381746+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "In progress",
   "current_task": "Evaluating initial history on new validation episodes.",
@@ -98,6 +98,26 @@
           "orientation_rmse_deg": 3.707022173286836,
           "final_position_error_m": 0.008044611446757359,
           "final_orientation_error_deg": 3.248421799606864,
+          "skipped_reference_rigid_contacts": 0
+        }
+      },
+      {
+        "name": "initial_history",
+        "split": "Validation",
+        "force_vector_rmse_N": 6.768409386509323,
+        "force_component_mse_N2": 15.27045520779584,
+        "torque_vector_rmse_Nm": 0.2621575772414641,
+        "peak_force_rmse_N": 60.00777789814316,
+        "samples": 12800,
+        "solver_failures": 0,
+        "replay": {
+          "episodes": 8,
+          "valid": true,
+          "invalid_episodes": 0,
+          "position_rmse_m": 0.002716296020988179,
+          "orientation_rmse_deg": 2.5679334441153774,
+          "final_position_error_m": 0.0030556790901418458,
+          "final_orientation_error_deg": 2.960527914892503,
           "skipped_reference_rigid_contacts": 0
         }
       }
