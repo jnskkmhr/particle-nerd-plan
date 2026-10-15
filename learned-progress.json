@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T15:45:16.772510+00:00",
+  "updated_at": "2026-10-15T15:55:36.785770+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged. \u00b7 update 18,150",
+  "phase": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged. \u00b7 update 19,500",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -2025,14 +2025,14 @@
   ],
   "run_state": {
     "status": "Experiments running",
-    "phase": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged. \u00b7 update 18,150",
+    "phase": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged. \u00b7 update 19,500",
     "updated_at": "2026-10-15T13:23:24.648916+00:00",
     "status_detail": "No further parameter selection uses the test results.",
     "deployment": {
-      "updated_at": "2026-10-15T15:45:16.280773+00:00",
+      "updated_at": "2026-10-15T15:55:36.292420+00:00",
       "phase": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged.",
-      "training_update": 18150
+      "training_update": 19500
     },
-    "training_update": 18150
+    "training_update": 19500
   }
 }
