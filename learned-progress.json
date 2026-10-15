@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T10:49:25.284544+00:00",
+  "updated_at": "2026-10-15T10:50:12.331922+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
@@ -14,7 +14,7 @@
     },
     {
       "name": "Coupled rollout comparison",
-      "summary": "Means of episode RMS errors over completed 1.5-second rollouts. Failed runs are shown explicitly; their shorter-horizon errors are excluded. All methods except the stationary baseline predict particle motion. Parameters are selected on validation episodes only.",
+      "summary": "Means of episode RMS errors over completed 1.5-second rollouts. Failed runs are shown explicitly; their shorter-horizon errors are excluded. All methods except the stationary baseline predict particle motion. Peak error is the RMS vertical-force error at each reference peak time. Parameters are selected on validation episodes only.",
       "table": {
         "columns": [
           "Method",
@@ -22,7 +22,8 @@
           "Completed",
           "Particle error [cm]",
           "Body position error [cm]",
-          "Force error [N]"
+          "Force error [N]",
+          "Peak error [N]"
         ],
         "rows": [
           [
@@ -31,12 +32,14 @@
             "6/6",
             "10.05",
             "3.32",
-            "16.23"
+            "16.23",
+            "136.38"
           ],
           [
             "Project against every body",
             "validation",
             "0/6",
+            "\u2014",
             "\u2014",
             "\u2014",
             "\u2014"
@@ -47,7 +50,8 @@
             "6/6",
             "1.48",
             "1.88",
-            "7.84"
+            "7.84",
+            "62.71"
           ],
           [
             "Longer one-step training",
@@ -55,7 +59,8 @@
             "6/6",
             "34.21",
             "3.62",
-            "13.55"
+            "13.55",
+            "134.34"
           ],
           [
             "Stationary particle baseline",
@@ -63,7 +68,8 @@
             "6/6",
             "2.17",
             "5.09",
-            "19.61"
+            "19.61",
+            "120.52"
           ],
           [
             "Four-step rollout training",
@@ -71,7 +77,8 @@
             "6/6",
             "4.65",
             "1.76",
-            "5.24"
+            "5.24",
+            "50.71"
           ],
           [
             "Four-step training + static-contact correction",
@@ -79,7 +86,8 @@
             "6/6",
             "1.42",
             "1.76",
-            "5.24"
+            "5.24",
+            "50.72"
           ]
         ]
       },
@@ -102,6 +110,7 @@
             "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
             "transitions": 60
           },
+          "peak_at_reference_time_rmse_N": 136.37553973866645,
           "selection_score": 7.49559104385284
         },
         {
@@ -121,7 +130,8 @@
             "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
             "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
             "transitions": 60
-          }
+          },
+          "peak_at_reference_time_rmse_N": null
         },
         {
           "name": "GNN + static-contact correction",
@@ -141,6 +151,7 @@
             "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
             "transitions": 60
           },
+          "peak_at_reference_time_rmse_N": 62.70731471762699,
           "selection_score": 2.0715149754933737
         },
         {
@@ -161,6 +172,7 @@
             "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
             "transitions": 60
           },
+          "peak_at_reference_time_rmse_N": 134.33747039470646,
           "selection_score": 19.588373682908642
         },
         {
@@ -173,7 +185,8 @@
           "body_cm": 5.0882630257726,
           "force_N": 19.610171410045204,
           "checkpoint_step": 4000,
-          "one_step": null
+          "one_step": null,
+          "peak_at_reference_time_rmse_N": 120.51947527914307
         },
         {
           "name": "Four-step rollout training",
@@ -193,6 +206,7 @@
             "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
             "transitions": 60
           },
+          "peak_at_reference_time_rmse_N": 50.71139295095324,
           "selection_score": 3.4680885445114313
         },
         {
@@ -213,6 +227,7 @@
             "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
             "transitions": 60
           },
+          "peak_at_reference_time_rmse_N": 50.719524480872934,
           "selection_score": 1.8544695400772384
         }
       ]
@@ -306,6 +321,44 @@
       "summary": "Left: reference MJWarp\u2013MPM. Right: four-step GNN + static-contact correction + analytical reactions + Newton MJWarp. The right view uses predicted particles and body motion throughout. This validation episode still underestimates impact: peak vertical material-on-box force 98.5 N versus 145.0 N reference.",
       "video": "assets/learned-box.mp4",
       "poster": "assets/learned-box-poster.png"
+    },
+    {
+      "name": "Learned cylinder simulation",
+      "summary": "Four-step GNN with static-contact correction; dynamic Newton rigid body. All 4,000 particle positions are predicted. Peak upward material-on-body force: 73.1 N predicted, 115.2 N reference. This is a validation episode.",
+      "video": "assets/learned-cylinder.mp4",
+      "poster": "assets/learned-cylinder-poster.png",
+      "metrics": {
+        "shape": "cylinder",
+        "mass_kg": 1.5,
+        "particles": 4000,
+        "duration_s": 1.4999999664723873,
+        "model": "Four-step GNN + static-contact correction",
+        "rigid_solver": "Newton MJWarp, Euler",
+        "force_alignment": "Previous step estimated/reference material wrench applied during each rigid transition",
+        "force_vector_rmse_N": 5.232564708802199,
+        "reference_peak_vertical_N": 115.24776477920483,
+        "learned_peak_vertical_N": 73.07929477168902,
+        "scope": "Validation, not reserved test; distinct predicted and reference particle trajectories"
+      }
+    },
+    {
+      "name": "Learned sphere simulation",
+      "summary": "Four-step GNN with static-contact correction; dynamic Newton rigid body. All 4,000 particle positions are predicted. Peak upward material-on-body force: 72.6 N predicted, 62.9 N reference. This is a validation episode.",
+      "video": "assets/learned-sphere.mp4",
+      "poster": "assets/learned-sphere-poster.png",
+      "metrics": {
+        "shape": "sphere",
+        "mass_kg": 1.5,
+        "particles": 4000,
+        "duration_s": 1.4999999664723873,
+        "model": "Four-step GNN + static-contact correction",
+        "rigid_solver": "Newton MJWarp, Euler",
+        "force_alignment": "Previous step estimated/reference material wrench applied during each rigid transition",
+        "force_vector_rmse_N": 3.1059958541227326,
+        "reference_peak_vertical_N": 62.944026208162896,
+        "learned_peak_vertical_N": 72.64718430813899,
+        "scope": "Validation, not reserved test; distinct predicted and reference particle trajectories"
+      }
     }
   ],
   "limitations": [
