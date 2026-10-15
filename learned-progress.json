@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T11:29:39.885404+00:00",
+  "updated_at": "2026-10-15T11:40:46.915413+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Validation rollouts: deep_evaluations/step_100000, static projection",
+  "phase": "Validation rollouts: deep_evaluations/step_075000, none projection",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -72,7 +72,61 @@
             "\u2014"
           ],
           [
+            "Deeper GNN (25,000 updates)",
+            "validation",
+            "6/6",
+            "2.74",
+            "2.21",
+            "11.96",
+            "79.29"
+          ],
+          [
+            "Deeper GNN (25,000 updates) + static correction",
+            "validation",
+            "6/6",
+            "2.71",
+            "2.21",
+            "11.96",
+            "79.29"
+          ],
+          [
+            "Deeper GNN (50,000 updates)",
+            "validation",
+            "6/6",
+            "4.46",
+            "3.92",
+            "6.95",
+            "34.97"
+          ],
+          [
+            "Deeper GNN (50,000 updates) + static correction",
+            "validation",
+            "6/6",
+            "4.53",
+            "3.92",
+            "6.95",
+            "34.97"
+          ],
+          [
+            "Deeper GNN (75,000 updates)",
+            "validation",
+            "6/6",
+            "2.53",
+            "2.35",
+            "12.52",
+            "66.56"
+          ],
+          [
             "Deeper GNN (100,000 updates)",
+            "validation",
+            "0/6",
+            "\u2014",
+            "\u2014",
+            "\u2014",
+            "\u2014"
+          ],
+          [
+            "Deeper GNN (100,000 updates) + static correction",
             "validation",
             "0/6",
             "\u2014",
@@ -239,8 +293,133 @@
           "peak_at_reference_time_rmse_N": null
         },
         {
+          "name": "Deeper GNN (25,000 updates)",
+          "path": "deep_evaluations/step_025000/none",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 2.7432328710953398,
+          "body_cm": 2.211218775098356,
+          "force_N": 11.962029100870177,
+          "checkpoint_step": 25000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.020474134013056755,
+            "position_vector_rmse_m": 0.00010237066777712099,
+            "near_body_velocity_vector_rmse_m_s": 0.06566349416971207,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 79.29455020943671,
+          "selection_score": 3.0753272781403567
+        },
+        {
+          "name": "Deeper GNN (25,000 updates) + static correction",
+          "path": "deep_evaluations/step_025000/static",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 2.7126944934328394,
+          "body_cm": 2.2113779529121187,
+          "force_N": 11.962219906183032,
+          "checkpoint_step": 25000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.020474134013056755,
+            "position_vector_rmse_m": 0.00010237066777712099,
+            "near_body_velocity_vector_rmse_m_s": 0.06566348671913147,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 79.29144351055386,
+          "selection_score": 3.0601472184816307
+        },
+        {
+          "name": "Deeper GNN (50,000 updates)",
+          "path": "deep_evaluations/step_050000/none",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 4.464120355745157,
+          "body_cm": 3.9172566004100293,
+          "force_N": 6.94926198145692,
+          "checkpoint_step": 50000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.019454246386885643,
+            "position_vector_rmse_m": 9.727122976024676e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.06180575117468834,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 34.97164682263547,
+          "selection_score": 4.5381515771504395
+        },
+        {
+          "name": "Deeper GNN (50,000 updates) + static correction",
+          "path": "deep_evaluations/step_050000/static",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 4.5307302226622905,
+          "body_cm": 3.920969930384097,
+          "force_N": 6.949161695635943,
+          "checkpoint_step": 50000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.019454246386885643,
+            "position_vector_rmse_m": 9.727122976024676e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.06180575117468834,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 34.972718580574735,
+          "selection_score": 4.573308161304991
+        },
+        {
+          "name": "Deeper GNN (75,000 updates)",
+          "path": "deep_evaluations/step_075000/none",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 2.526226143042247,
+          "body_cm": 2.3541750517987636,
+          "force_N": 12.515534911712386,
+          "checkpoint_step": 75000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.019700374454259872,
+            "position_vector_rmse_m": 9.850187006961095e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.06503485888242722,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 66.5633864123314,
+          "selection_score": 3.065977343006124
+        },
+        {
           "name": "Deeper GNN (100,000 updates)",
           "path": "deep_evaluations/step_100000/none",
+          "split": "validation",
+          "completed": 0,
+          "episodes": 6,
+          "particle_cm": null,
+          "body_cm": null,
+          "force_N": null,
+          "checkpoint_step": 100000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.013443057425320148,
+            "position_vector_rmse_m": 6.7215285624222e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.052571993321180344,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": null
+        },
+        {
+          "name": "Deeper GNN (100,000 updates) + static correction",
+          "path": "deep_evaluations/step_100000/static",
           "split": "validation",
           "completed": 0,
           "episodes": 6,
@@ -838,7 +1017,7 @@
   ],
   "run_state": {
     "status": "Experiments running",
-    "phase": "Validation rollouts: deep_evaluations/step_100000, static projection",
-    "updated_at": "2026-10-15T11:29:39.415881+00:00"
+    "phase": "Validation rollouts: deep_evaluations/step_075000, none projection",
+    "updated_at": "2026-10-15T11:39:05.927834+00:00"
   }
 }
