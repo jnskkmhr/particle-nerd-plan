@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T08:19:47.317806+00:00",
+  "updated_at": "2026-10-15T08:50:02.162183+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "Paused",
-  "current_task": "Experiment remains paused. Slide 34 now compares the recorded MPM box with the estimated-force box using synchronized Newton RTX rendering.",
+  "current_task": "Requested G1-sized 0.02 m-grid reference, frozen-estimator evaluation, and Newton RTX video with synchronized GRF completed. Broad parameter search remains paused.",
   "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
@@ -69,6 +69,20 @@
       "mean_replay_position_rmse_m": 0.003825841407370705,
       "mean_replay_orientation_rmse_deg": 3.519324156668391,
       "conclusion": "Mean force and motion errors improve; impact-peak error worsens."
+    },
+    {
+      "name": "G1-sized level tray at 0.02 m grid",
+      "episodes": 1,
+      "particles": 296875,
+      "bed_size_m": [
+        2,
+        2,
+        0.3
+      ],
+      "reference_state_force_vector_rmse_N": 10.133731980972586,
+      "replay_force_vector_rmse_N": 12.353811440938545,
+      "replay_position_rmse_m": 0.01226450788070907,
+      "conclusion": "Frozen small-bed model still underestimates impact; no learned particle rollout or particle feedback."
     }
   ],
   "overnight_study": {
