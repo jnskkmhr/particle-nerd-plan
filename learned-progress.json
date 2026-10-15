@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T11:20:06.370686+00:00",
+  "updated_at": "2026-10-15T11:23:38.774847+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
@@ -239,7 +239,7 @@
     },
     {
       "name": "Sampled SDF geometry check",
-      "summary": "Reference particle and body states isolate geometry error. Thirty sampled transitions per shape. At 5 mm SDF sampling, force differences from analytic geometry are 0.11\u20130.22 N RMS. Arbitrary mesh-derived SDFs are not tested.",
+      "summary": "Reference particle and body states isolate geometry error. Thirty sampled transitions per shape. At 5 mm SDF sampling, force differences from analytic geometry are 0.11\u20130.22 N RMS. A separate triangle-mesh SDF control is reported below.",
       "table": {
         "columns": [
           "Shape",
@@ -518,6 +518,168 @@
           "elapsed_s": 9.807755457004532
         }
       }
+    },
+    {
+      "name": "Triangle meshes through the same SDF interface",
+      "preserve": true,
+      "summary": "Closed triangle meshes now produce distance fields using Warp closest-point and parity queries. A concave-prism check preserves the notch and interior sign. On triangulated box, sphere, and cylinder controls, a 5 mm field changes reconstructed forces by roughly 0.13\u20130.44 N RMS relative to analytic geometry. Thirty recorded transitions per shape; no MPM solve and no force refitting. Learned dynamics on unseen mesh shapes are not tested.",
+      "figure": "assets/mesh-sdf-concave.png",
+      "table": {
+        "columns": [
+          "Triangulated shape",
+          "Force error vs MPM [N]",
+          "Difference vs analytic [N]"
+        ],
+        "rows": [
+          [
+            "box",
+            "5.163",
+            "0.178"
+          ],
+          [
+            "sphere",
+            "6.558",
+            "0.442"
+          ],
+          [
+            "cylinder",
+            "5.148",
+            "0.128"
+          ]
+        ]
+      },
+      "metrics": [
+        {
+          "shape": "box",
+          "sdf_spacing_m": 0.0,
+          "samples": 30,
+          "force_vector_rmse_N": 5.192076540063544,
+          "force_difference_from_analytic_rmse_N": 0.0,
+          "distance_max_error_m": 0.0,
+          "solver_failures": 0
+        },
+        {
+          "shape": "box",
+          "sdf_spacing_m": 0.01,
+          "samples": 30,
+          "force_vector_rmse_N": 5.1790594263049075,
+          "force_difference_from_analytic_rmse_N": 0.21665300015991706,
+          "distance_max_error_m": 0.0021595693583974663,
+          "solver_failures": 0
+        },
+        {
+          "shape": "box",
+          "sdf_spacing_m": 0.005,
+          "samples": 30,
+          "force_vector_rmse_N": 5.163300505982772,
+          "force_difference_from_analytic_rmse_N": 0.17763571241267134,
+          "distance_max_error_m": 0.0011732558724253384,
+          "solver_failures": 0
+        },
+        {
+          "shape": "sphere",
+          "sdf_spacing_m": 0.0,
+          "samples": 30,
+          "force_vector_rmse_N": 6.347867309385411,
+          "force_difference_from_analytic_rmse_N": 0.0,
+          "distance_max_error_m": 0.0,
+          "solver_failures": 0
+        },
+        {
+          "shape": "sphere",
+          "sdf_spacing_m": 0.01,
+          "samples": 30,
+          "force_vector_rmse_N": 7.045349403330793,
+          "force_difference_from_analytic_rmse_N": 1.2071920310328983,
+          "distance_max_error_m": 0.0005095257401154475,
+          "solver_failures": 0
+        },
+        {
+          "shape": "sphere",
+          "sdf_spacing_m": 0.005,
+          "samples": 30,
+          "force_vector_rmse_N": 6.558264401989607,
+          "force_difference_from_analytic_rmse_N": 0.44161859081966115,
+          "distance_max_error_m": 0.000220611637391753,
+          "solver_failures": 0
+        },
+        {
+          "shape": "cylinder",
+          "sdf_spacing_m": 0.0,
+          "samples": 30,
+          "force_vector_rmse_N": 5.0832719803324915,
+          "force_difference_from_analytic_rmse_N": 0.0,
+          "distance_max_error_m": 0.0,
+          "solver_failures": 0
+        },
+        {
+          "shape": "cylinder",
+          "sdf_spacing_m": 0.01,
+          "samples": 30,
+          "force_vector_rmse_N": 5.396329987191594,
+          "force_difference_from_analytic_rmse_N": 0.3863428269690464,
+          "distance_max_error_m": 0.0029322276288862178,
+          "solver_failures": 0
+        },
+        {
+          "shape": "cylinder",
+          "sdf_spacing_m": 0.005,
+          "samples": 30,
+          "force_vector_rmse_N": 5.148012502437783,
+          "force_difference_from_analytic_rmse_N": 0.12818714042843798,
+          "distance_max_error_m": 0.0013867071531212761,
+          "solver_failures": 0
+        }
+      ]
+    },
+    {
+      "name": "Deeper model: large-bed development snapshot",
+      "preserve": true,
+      "summary": "An intermediate deeper model still transfers poorly: 2.88 cm particle error, 12.85 cm box-position error, and 80.89 N force error over 0.5 s. This snapshot uses eight message-passing layers, six-frame history, one-step training, and 156 training episodes; the earlier model used three layers, four-step training, and 48 episodes. Several factors differ, so this is not an isolated depth comparison. Larger architecture alone has not established stable deployment.",
+      "metrics": {
+        "scope": "Development scaling diagnostic, 100 transitions / 0.5 s; all 296875 particles. Not a full-duration independent test.",
+        "metrics": {
+          "episode": "g1_validation_material/demo_0",
+          "mode": "coupled",
+          "projection": "static",
+          "sampled_sdf": false,
+          "stationary_particle_baseline": false,
+          "rigid_solver": "newton",
+          "edge_chunk_size": 65536,
+          "direct_rigid_contact_steps": 1,
+          "body_shape": "box",
+          "body_mass_kg": 1.5,
+          "material": {
+            "density": 1200.0,
+            "young_modulus": 1000000.0,
+            "poisson_ratio": 0.3,
+            "friction": 0.4,
+            "yield_pressure": 1000000000000000.0,
+            "tensile_yield_ratio": 0.0,
+            "yield_stress": 0.0,
+            "hardening": 0.0,
+            "dilatancy": 0.0,
+            "viscosity": 0.0
+          },
+          "steps": 100,
+          "requested_steps": 100,
+          "complete": true,
+          "stop_reason": "completed",
+          "particle_position_rmse_m": 0.028820645064115524,
+          "final_particle_position_rmse_m": 0.03986702859401703,
+          "body_position_rmse_m": 0.12847772175397063,
+          "body_orientation_rmse_deg": 58.98801262108499,
+          "force_vector_rmse_N": 80.88574355727191,
+          "reference_peak_vertical_force_N": 112.36777556764578,
+          "predicted_peak_vertical_force_N": 513.3113046996125,
+          "force_at_reference_peak_error_N": -112.36777556764578,
+          "reference_peak_time_s": 0.17249999614432454,
+          "torque_vector_rmse_Nm": 1.3094345018776443,
+          "force_solver_failures": 0,
+          "seconds_per_step": 1.5731839046100504,
+          "reference_has_rigid_tray_contact": false
+        }
+      }
     }
   ],
   "limitations": [
@@ -525,7 +687,7 @@
     "Static-contact correction is an explicit geometric approximation. Projecting particles against the moving body caused all six coupled validation rollouts to stop early.",
     "Primary training comparisons use free-body rigid integration. A separate Newton MJWarp adapter now handles rigid contacts and completes all six validation episodes.",
     "Material stress and plastic strain are not inputs. Full particle momentum consistency is not enforced.",
-    "All three shape families occur in training; unseen mesh-shape generalization remains untested.",
+    "All three shape families occur in training. Mesh-to-SDF geometry is implemented, but rigid mesh import and learned generalization to unseen mesh shapes remain untested.",
     "The G1-sized bed passes a three-state all-particle inference memory check; stable full-duration rollouts and isolated speed comparisons remain unestablished.",
     "The planned 32-step training extension is validation-only and does not replace the frozen model used for independent test results."
   ],
