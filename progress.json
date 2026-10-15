@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T11:27:10.453540+00:00",
+  "updated_at": "2026-10-15T11:27:12.343105+00:00",
   "target_end": "2026-10-15T09:30:00-07:00",
   "status": "In progress",
-  "current_task": "Validation rollouts: deep_evaluations/final, none projection \u2014 see learned dynamics study.",
+  "current_task": "Validation rollouts: deep_evaluations/final, static projection \u2014 see learned dynamics study.",
   "validated_results": "156 training reference episodes plus 18 validation/test episodes collected. Learned particle and coupled-force ablations are measured.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
