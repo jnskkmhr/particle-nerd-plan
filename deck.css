@@ -79,3 +79,5 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 
 .dem-metrics{margin-bottom:12px}.dem-metrics th{font-size:12px;line-height:1.35;padding:12px}.dem-metrics td{font-size:20px;padding:10px 12px}.dem-metrics th:first-child{width:30%}.dem-slide .result-note+.small{font-size:17px;margin-top:12px}.dem-force-figure img{height:285px}.dem-peak-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:15px}.dem-peak-stats>div{border-top:2px solid var(--green);padding-top:9px}.dem-peak-stats b{font-size:29px;display:block}.dem-peak-stats span{font-size:16px;color:var(--muted)}
 .slide[aria-labelledby="body-contact-method"] .equation{margin:0 0 14px;padding:14px 20px}
+
+.slide[aria-labelledby="particle-balance-results"] .equation{margin:0 0 14px;padding:14px 20px;font-size:19px}

@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T04:39:18.577625+00:00",
+  "updated_at": "2026-10-15T04:57:22.461116+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "in progress",
-  "current_task": "Checking full particle force balance and sensitivity after improving box-force RMSE to 9.85 N and replay position RMSE to 1.13 cm.",
+  "current_task": "Independent force and motion results published. Testing whether a complete particle-contact solve can reduce dependence on effective contact mass.",
   "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
@@ -44,6 +44,20 @@
       "episodes": 8,
       "transitions": 3200,
       "limitations": "Reference particle motion held fixed during box replay. Reused development evaluation episodes; fresh final test pending."
+    },
+    {
+      "name": "Corrected friction: independent evaluation",
+      "episodes": 32,
+      "transitions": 12800,
+      "force_vector_rmse_N": 9.406884905438107,
+      "force_component_mse_N2": 29.49649454138643,
+      "force_rmse_95_percent_interval_N": [
+        8.907563505785333,
+        9.870324792343792
+      ],
+      "mean_episode_position_rmse_m": 0.00720809038616708,
+      "mean_episode_orientation_rmse_deg": 4.350103287554619,
+      "limitations": "Recorded particle trajectories, one material and one box geometry. About 35% relative force error remains."
     }
   ]
 }
