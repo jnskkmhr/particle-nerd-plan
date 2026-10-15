@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T05:58:14.021291+00:00",
+  "updated_at": "2026-10-15T05:59:00.130366+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "In progress",
-  "current_task": "Evaluating baseline on new validation episodes.",
+  "current_task": "Evaluating initial history on new validation episodes.",
   "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
@@ -74,13 +74,34 @@
   "overnight_study": {
     "started_at": "2026-10-15T05:58:07.452254+00:00",
     "deadline": "2026-10-15T14:00:00+00:00",
-    "phase": "Evaluating baseline on new validation episodes.",
+    "phase": "Evaluating initial history on new validation episodes.",
     "calibration_episodes": 64,
     "validation_episodes": 32,
     "test_episodes": 64,
     "trials": 0,
     "completed_searches": 0,
-    "models": [],
+    "models": [
+      {
+        "name": "baseline",
+        "split": "Validation",
+        "force_vector_rmse_N": 9.321080478266834,
+        "force_component_mse_N2": 28.96084709410902,
+        "torque_vector_rmse_Nm": 0.33974205540083363,
+        "peak_force_rmse_N": 38.32682221149101,
+        "samples": 12800,
+        "solver_failures": 0,
+        "replay": {
+          "episodes": 8,
+          "valid": true,
+          "invalid_episodes": 0,
+          "position_rmse_m": 0.006339456730128392,
+          "orientation_rmse_deg": 3.707022173286836,
+          "final_position_error_m": 0.008044611446757359,
+          "final_orientation_error_deg": 3.248421799606864,
+          "skipped_reference_rigid_contacts": 0
+        }
+      }
+    ],
     "peak_definition": "Upward particle-on-box force error at the time of each reference impact peak.",
     "limitation": "Reference particle motion; replay holds particle trajectories fixed. No learned or fully coupled NeRD rollout.",
     "error": null
