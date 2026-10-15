@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T10:39:21.279359+00:00",
+  "updated_at": "2026-10-15T10:44:23.406120+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
@@ -302,8 +302,8 @@
   "run_state": {
     "status": "Experiments running",
     "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
-    "updated_at": "2026-10-15T10:39:20.816329+00:00",
-    "training_update": 18050,
-    "elapsed_seconds": 602
+    "updated_at": "2026-10-15T10:44:22.938427+00:00",
+    "training_update": 27900,
+    "elapsed_seconds": 904
   }
 }
