@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T16:05:56.801195+00:00",
+  "updated_at": "2026-10-15T16:09:46.814217+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
-  "status": "Experiments running",
-  "phase": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged. \u00b7 update 20,800",
+  "status": "Scheduled study complete",
+  "phase": "Frozen-model test and Newton deployment checks complete; any 32-step extension is validation-only.",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -214,6 +214,24 @@
             "3.51",
             "6.25",
             "68.79"
+          ],
+          [
+            "32-step validation-only extension (one-step selection) + static correction",
+            "validation",
+            "4/6",
+            "0.94",
+            "4.14",
+            "5.97",
+            "69.54"
+          ],
+          [
+            "32-step validation-only extension (final checkpoint) + static correction",
+            "validation",
+            "0/6",
+            "\u2014",
+            "\u2014",
+            "\u2014",
+            "\u2014"
           ],
           [
             "Eight-step training (one-step selection)",
@@ -722,6 +740,46 @@
           },
           "peak_at_reference_time_rmse_N": 68.79153435112583,
           "selection_score": 2.58655675292982
+        },
+        {
+          "name": "32-step validation-only extension (one-step selection) + static correction",
+          "path": "rollout32_evaluations/best/static",
+          "split": "validation",
+          "completed": 4,
+          "episodes": 6,
+          "particle_cm": 0.9400709765031934,
+          "body_cm": 4.144487634749375,
+          "force_N": 5.969321999901637,
+          "checkpoint_step": 17500,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.01179574802517891,
+            "position_vector_rmse_m": 5.8978738807616976e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.05648590996861458,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 69.54256084609926
+        },
+        {
+          "name": "32-step validation-only extension (final checkpoint) + static correction",
+          "path": "rollout32_evaluations/final/static",
+          "split": "validation",
+          "completed": 0,
+          "episodes": 6,
+          "particle_cm": null,
+          "body_cm": null,
+          "force_N": null,
+          "checkpoint_step": 21118,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.012167001143097878,
+            "position_vector_rmse_m": 6.083500435572105e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.05738797411322594,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": null
         },
         {
           "name": "Eight-step training (one-step selection)",
@@ -2024,15 +2082,9 @@
     "The planned 32-step training extension is validation-only and does not replace the frozen model used for independent test results."
   ],
   "run_state": {
-    "status": "Experiments running",
-    "phase": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged. \u00b7 update 20,800",
-    "updated_at": "2026-10-15T13:23:24.648916+00:00",
-    "status_detail": "No further parameter selection uses the test results.",
-    "deployment": {
-      "updated_at": "2026-10-15T16:05:56.309728+00:00",
-      "phase": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged.",
-      "training_update": 20800
-    },
-    "training_update": 20800
+    "status": "Scheduled study complete",
+    "phase": "Frozen-model test and Newton deployment checks complete; any 32-step extension is validation-only.",
+    "updated_at": "2026-10-15T16:09:46.331190+00:00",
+    "status_detail": "No further parameter selection uses the test results."
   }
 }
