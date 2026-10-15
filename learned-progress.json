@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T11:23:40.922423+00:00",
+  "updated_at": "2026-10-15T11:24:42.756379+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Validation rollouts: deep_evaluations/best, none projection",
@@ -34,6 +34,15 @@
             "3.32",
             "16.23",
             "136.38"
+          ],
+          [
+            "Deeper GNN (one-step selection)",
+            "validation",
+            "0/6",
+            "\u2014",
+            "\u2014",
+            "\u2014",
+            "\u2014"
           ],
           [
             "Project against every body",
@@ -112,6 +121,26 @@
           },
           "peak_at_reference_time_rmse_N": 136.37553973866645,
           "selection_score": 7.49559104385284
+        },
+        {
+          "name": "Deeper GNN (one-step selection)",
+          "path": "deep_evaluations/best/none",
+          "split": "validation",
+          "completed": 0,
+          "episodes": 6,
+          "particle_cm": null,
+          "body_cm": null,
+          "force_N": null,
+          "checkpoint_step": 100000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.013443057425320148,
+            "position_vector_rmse_m": 6.7215285624222e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.052571993321180344,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": null
         },
         {
           "name": "Project against every body",
