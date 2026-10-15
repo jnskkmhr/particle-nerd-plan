@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T10:59:29.173298+00:00",
+  "updated_at": "2026-10-15T11:04:31.101576+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
@@ -404,6 +404,56 @@
           }
         ]
       }
+    },
+    {
+      "name": "Large-bed rollout: poor transfer",
+      "preserve": true,
+      "summary": "All 296,875 particles and the dynamic 2 kg box advance without MPM for 100 steps (0.5 s). Particle error is 1.33 cm, box-position error 5.57 cm, and force error 45.03 N. The predicted impact occurs too late. This changes both bed size and material parameters relative to the six small-bed validation episodes, so it does not isolate the cause. This is a short development diagnostic, not a successful full-bed simulator.",
+      "figure": "assets/learned-g1-short.png",
+      "metrics": {
+        "scope": "Development scaling diagnostic, 100 transitions / 0.5 s; all 296875 particles. Not a full-duration independent test.",
+        "metrics": {
+          "episode": "g1_testbed_grid002/demo_0",
+          "mode": "coupled",
+          "projection": "static",
+          "sampled_sdf": false,
+          "stationary_particle_baseline": false,
+          "rigid_solver": "newton",
+          "edge_chunk_size": 65536,
+          "direct_rigid_contact_steps": 0,
+          "body_shape": "box",
+          "body_mass_kg": 2.0,
+          "material": {
+            "density": 1600.0,
+            "young_modulus": 1000000000000000.0,
+            "poisson_ratio": 0.3,
+            "friction": 0.48,
+            "yield_pressure": 1000000000000000.0,
+            "tensile_yield_ratio": 0.0,
+            "yield_stress": 0.0,
+            "hardening": 0.0,
+            "dilatancy": 0.0,
+            "viscosity": 0.0
+          },
+          "steps": 100,
+          "requested_steps": 100,
+          "complete": true,
+          "stop_reason": "completed",
+          "particle_position_rmse_m": 0.01333337090909481,
+          "final_particle_position_rmse_m": 0.016406994313001633,
+          "body_position_rmse_m": 0.055742060729006074,
+          "body_orientation_rmse_deg": 1.1306023106559155,
+          "force_vector_rmse_N": 45.03456748469761,
+          "reference_peak_vertical_force_N": 266.1018431060428,
+          "predicted_peak_vertical_force_N": 139.47611004908399,
+          "force_at_reference_peak_error_N": -266.1018431060428,
+          "reference_peak_time_s": 0.17249999614432454,
+          "torque_vector_rmse_Nm": 0.7209889789582368,
+          "force_solver_failures": 0,
+          "seconds_per_step": 0.8344544740101992,
+          "reference_has_rigid_tray_contact": false
+        }
+      }
     }
   ],
   "limitations": [
@@ -412,13 +462,14 @@
     "Primary training comparisons use free-body rigid integration. A separate Newton MJWarp adapter now handles rigid contacts and completes all six validation episodes.",
     "Material stress and plastic strain are not inputs. Full particle momentum consistency is not enforced.",
     "All three shape families occur in training; unseen mesh-shape generalization remains untested.",
-    "Large G1 testbed inference and isolated runtime comparisons remain unmeasured."
+    "The G1-sized bed passes a three-state all-particle inference memory check; stable full-duration rollouts and isolated speed comparisons remain unestablished.",
+    "The planned 32-step training extension is validation-only and does not replace the frozen model used for independent test results."
   ],
   "run_state": {
     "status": "Experiments running",
     "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
-    "updated_at": "2026-10-15T10:59:28.696466+00:00",
-    "training_update": 56400,
-    "elapsed_seconds": 1810
+    "updated_at": "2026-10-15T11:04:30.617862+00:00",
+    "training_update": 66300,
+    "elapsed_seconds": 2112
   }
 }
