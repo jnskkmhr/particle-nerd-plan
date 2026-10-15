@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T11:40:46.915413+00:00",
+  "updated_at": "2026-10-15T11:52:30.905090+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Validation rollouts: deep_evaluations/step_075000, none projection",
+  "phase": "Training rollout8_full: 8-step rollout, up to 20000 updates \u00b7 update 5,000",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -113,6 +113,15 @@
             "6/6",
             "2.53",
             "2.35",
+            "12.52",
+            "66.56"
+          ],
+          [
+            "Deeper GNN (75,000 updates) + static correction",
+            "validation",
+            "6/6",
+            "1.47",
+            "2.38",
             "12.52",
             "66.56"
           ],
@@ -396,6 +405,27 @@
           },
           "peak_at_reference_time_rmse_N": 66.5633864123314,
           "selection_score": 3.065977343006124
+        },
+        {
+          "name": "Deeper GNN (75,000 updates) + static correction",
+          "path": "deep_evaluations/step_075000/static",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 1.4676931158949933,
+          "body_cm": 2.375416129609332,
+          "force_N": 12.515602553277295,
+          "checkpoint_step": 75000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.01970037631690502,
+            "position_vector_rmse_m": 9.850187938283649e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.06503485888242722,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 66.56335936802893,
+          "selection_score": 2.5473347504160273
         },
         {
           "name": "Deeper GNN (100,000 updates)",
@@ -1017,7 +1047,9 @@
   ],
   "run_state": {
     "status": "Experiments running",
-    "phase": "Validation rollouts: deep_evaluations/step_075000, none projection",
-    "updated_at": "2026-10-15T11:39:05.927834+00:00"
+    "phase": "Training rollout8_full: 8-step rollout, up to 20000 updates \u00b7 update 5,000",
+    "updated_at": "2026-10-15T11:52:30.405615+00:00",
+    "training_update": 5000,
+    "elapsed_seconds": 601
   }
 }
