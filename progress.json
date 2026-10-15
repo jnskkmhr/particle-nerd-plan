@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T14:22:36.656800+00:00",
+  "updated_at": "2026-10-15T14:32:56.681244+00:00",
   "target_end": "2026-10-15T09:30:00-07:00",
   "status": "In progress",
-  "current_task": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged. \u00b7 update 7,350 \u2014 see learned dynamics study.",
+  "current_task": "Additional 32-step training with early-transition sampling; validation only, frozen test model unchanged. \u00b7 update 8,700 \u2014 see learned dynamics study.",
   "validated_results": "156 training reference episodes plus 18 validation/test episodes collected. Learned particle and coupled-force ablations are measured.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
