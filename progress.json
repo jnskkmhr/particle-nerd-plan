@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T03:51:07.758121+00:00",
+  "updated_at": "2026-10-15T04:21:08.129226+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "in progress",
-  "current_task": "Dynamic reference validation passed. Collecting independent calibration episodes and evaluating the original force estimator on dynamic motion.",
+  "current_task": "Testing material-surface velocity reconstruction after a matched-frame 44.7% reduction in dynamic box-force MSE.",
   "validated_results": "Existing DEM results use a prescribed box trajectory. They do not validate a freely moving rigid body.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
@@ -25,6 +25,15 @@
       "configuration": "2 kg free box; randomized initial pose and velocity; 25 MPM iterations; dt 5 ms; one lagged coupling pass",
       "box_mean_force_balance_residual_N": 1.973812682237975e-06,
       "particle_relative_momentum_residual": 8.368089491894001e-06
+    },
+    {
+      "name": "Body-contact approximation",
+      "status": "evaluated",
+      "matched_frames": 160,
+      "box_force_mse_N2": 32.71026411839064,
+      "original_matched_box_force_mse_N2": 59.1468023433468,
+      "separate_test_force_vector_rmse_N": 10.688775953391099,
+      "limitations": "Reference particle motion; one dynamic body; impact and steady-support errors remain."
     }
   ]
 }
