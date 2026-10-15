@@ -1,0 +1,11 @@
+{
+  "updated_at": "2026-10-15T09:23:31.384397+00:00",
+  "deadline": "2026-10-15T09:30:00-07:00",
+  "status": "Implementation in progress",
+  "phase": "Geometry interface and diverse reference collection",
+  "scope": "No MPM or force network at inference. All particles included. GNN particle motion plus analytical body contact forces.",
+  "results": [],
+  "limitations": [
+    "No learned rollout results yet. Earlier videos replay recorded MPM particles."
+  ]
+}

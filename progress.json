@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T09:09:54.683464+00:00",
-  "target_end": "2026-10-15T07:00:00-07:00",
-  "status": "Paused",
-  "current_task": "Four controlled horizontal/spinning launches completed, evaluated with frozen force parameters, and rendered with synchronized GRF. Broad parameter search remains paused.",
+  "updated_at": "2026-10-15T09:23:31.384397+00:00",
+  "target_end": "2026-10-15T09:30:00-07:00",
+  "status": "In progress",
+  "current_task": "Implementing a learned particle GNN, integrating analytical contact forces, and collecting diverse materials/masses/shapes. Deadline: today 9:30 a.m. Pacific. Previous videos still use recorded MPM particles.",
   "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
