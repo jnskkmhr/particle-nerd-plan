@@ -1,11 +1,45 @@
 {
-  "updated_at": "2026-10-15T09:23:31.384397+00:00",
+  "updated_at": "2026-10-15T09:45:46.737687+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
-  "status": "Implementation in progress",
-  "phase": "Geometry interface and diverse reference collection",
-  "scope": "No MPM or force network at inference. All particles included. GNN particle motion plus analytical body contact forces.",
-  "results": [],
+  "status": "Experiments running",
+  "phase": "Baseline measured; improving rollout stability",
+  "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
+  "results": [
+    {
+      "name": "Diverse reference data collected",
+      "summary": "66 complete dynamic episodes: 48 training, 6 validation, 12 reserved test. Each has 300 steps at 5 ms and 4,000 particles. Shapes: box, sphere, cylinder. Training density 800\u20132400 kg/m\u00b3; material friction 0.25\u20130.70; Young modulus 10^5\u201310^15 Pa; moving-body mass 1\u20134 kg. Validation/test use separate parameter combinations.",
+      "metrics": {
+        "completed_configurations": 21,
+        "failed_configurations": []
+      }
+    },
+    {
+      "name": "Initial GNN: insufficient rollout stability",
+      "summary": "A 64-channel, three-pass graph network trained for 5,000 updates. Its selected validation checkpoint slightly improves one-step velocity prediction over keeping the current velocity. Full rollouts show large particle drift and inaccurate body forces.",
+      "figure": "assets/learned-baseline.png",
+      "metrics": {
+        "one_step": {
+          "velocity_vector_rmse_m_s": 0.018215445801615715,
+          "position_vector_rmse_m": 9.107722697234387e-05,
+          "near_body_velocity_vector_rmse_m_s": 0.06667441874742508,
+          "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+          "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+          "transitions": 60
+        },
+        "coupled_mean_particle_position_rmse_cm": 10.052485143144924,
+        "coupled_mean_body_position_rmse_cm": 3.3161850598593947,
+        "coupled_mean_force_vector_rmse_N": 16.225118847013597,
+        "completed_rollouts": 6,
+        "evaluated_rollouts": 6
+      }
+    }
+  ],
   "limitations": [
-    "No learned rollout results yet. Earlier videos replay recorded MPM particles."
+    "This is a failed initial baseline, not a validated replacement for MPM.",
+    "Validation is used for development; reserved test episodes have not been evaluated.",
+    "The current coupled diagnostic uses free-body integration and stops if the body intersects the rigid tray.",
+    "Material stress, plastic strain, and MPM grid state are not network inputs. Velocity history may not fully describe material memory.",
+    "Sampled SDF support is implemented; rollout accuracy and cost still need measurement.",
+    "These are 0.32 m \u00d7 0.32 m \u00d7 0.16 m material beds. Large G1 testbed scaling remains untested for the GNN."
   ]
 }
