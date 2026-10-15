@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-14T20:45:00-07:00",
+  "updated_at": "2026-10-15T03:51:07.758121+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "in progress",
-  "current_task": "Validate randomized dynamic MJWarp\u2013MPM reference collection before evaluating force reconstruction.",
+  "current_task": "Dynamic reference validation passed. Collecting independent calibration episodes and evaluating the original force estimator on dynamic motion.",
   "validated_results": "Existing DEM results use a prescribed box trajectory. They do not validate a freely moving rigid body.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
@@ -21,8 +21,10 @@
     },
     {
       "name": "Dynamic MJWarp\u2013MPM collector",
-      "status": "implementation and validation in progress",
-      "configuration": "2 kg free box; randomized initial pose and velocity; 25 MPM iterations; dt 5 ms; one lagged coupling pass"
+      "status": "Four 400-step episodes validated; randomized resets and fixed walls checked.",
+      "configuration": "2 kg free box; randomized initial pose and velocity; 25 MPM iterations; dt 5 ms; one lagged coupling pass",
+      "box_mean_force_balance_residual_N": 1.973812682237975e-06,
+      "particle_relative_momentum_residual": 8.368089491894001e-06
     }
   ]
 }
