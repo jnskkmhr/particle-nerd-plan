@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T07:20:53.269777+00:00",
+  "updated_at": "2026-10-15T07:20:55.555980+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "In progress",
-  "current_task": "Validating completed contact search 1.",
+  "current_task": "Calibrating contact response: search 2, peak-error weight 0.03.",
   "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
@@ -74,7 +74,7 @@
   "overnight_study": {
     "started_at": "2026-10-15T05:58:07.452254+00:00",
     "deadline": "2026-10-15T14:00:00+00:00",
-    "phase": "Validating completed contact search 1.",
+    "phase": "Calibrating contact response: search 2, peak-error weight 0.03.",
     "calibration_episodes": 64,
     "validation_episodes": 32,
     "test_episodes": 64,
