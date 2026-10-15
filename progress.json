@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T07:41:34.129743+00:00",
+  "updated_at": "2026-10-15T08:19:47.317806+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "Paused",
-  "current_task": "Experiment paused. Slide 29 now explains force-estimation inputs, outputs, equations, and contact iterations with step-by-step diagrams.",
+  "current_task": "Experiment remains paused. Slide 34 now compares the recorded MPM box with the estimated-force box using synchronized Newton RTX rendering.",
   "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
