@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T10:21:02.310588+00:00",
+  "updated_at": "2026-10-15T10:22:44.257363+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Validation rollouts: unroll4/validation, static projection",
@@ -70,6 +70,14 @@
             "validation",
             "6/6",
             "4.65",
+            "1.76",
+            "5.24"
+          ],
+          [
+            "unroll4 \u00b7 validation \u00b7 static",
+            "validation",
+            "6/6",
+            "1.42",
             "1.76",
             "5.24"
           ]
@@ -193,12 +201,32 @@
             "transitions": 60
           },
           "selection_score": 3.4680885445114313
+        },
+        {
+          "name": "unroll4 \u00b7 validation \u00b7 static",
+          "path": "unroll4/validation/static",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 1.422640417392055,
+          "body_cm": 1.7623538595153445,
+          "force_N": 5.239448032470773,
+          "checkpoint_step": 9000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.015570531599223614,
+            "position_vector_rmse_m": 7.785265625597556e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.05930954962968826,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "selection_score": 1.8544695400772384
         }
       ]
     },
     {
       "name": "Current validation selection",
-      "summary": "GNN + static-contact correction. Selection requires all six coupled validation rollouts to complete, then compares particle, body-position, and force errors with fixed normalization scales. This is a development result, not an independent test result.",
+      "summary": "unroll4 \u00b7 validation \u00b7 static. Selection requires all six coupled validation rollouts to complete, then compares particle, body-position, and force errors with fixed normalization scales. This is a development result, not an independent test result.",
       "figure": "assets/learned-current.png"
     },
     {
