@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T06:31:52.485163+00:00",
+  "updated_at": "2026-10-15T06:42:37.224799+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "In progress",
   "current_task": "Calibrating contact response: search 1, peak-error weight 0.",
@@ -78,7 +78,7 @@
     "calibration_episodes": 64,
     "validation_episodes": 32,
     "test_episodes": 64,
-    "trials": 30,
+    "trials": 40,
     "completed_searches": 0,
     "models": [
       {
