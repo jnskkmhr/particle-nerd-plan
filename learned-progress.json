@@ -454,6 +454,70 @@
           "reference_has_rigid_tray_contact": false
         }
       }
+    },
+    {
+      "name": "Controlled large-bed comparison",
+      "preserve": true,
+      "summary": "The transfer error remains when material, box mass, and initial box state match small-bed validation. With recorded particles, the freely integrated box has 0.49 cm position error and 11.63 N force error. With learned particles, those errors rise to 5.72 cm and 24.88 N. The initial top particle layer is 2.68 cm too low on average at 0.5 s. This implicates particle-motion transfer in the additional error; the analytical estimator still has its own impact error.",
+      "figure": "assets/learned-g1-control.png",
+      "metrics": {
+        "learned": {
+          "scope": "Development scaling diagnostic, 100 transitions / 0.5 s; all 296875 particles. Not a full-duration independent test.",
+          "metrics": {
+            "episode": "g1_validation_material/demo_0",
+            "mode": "coupled",
+            "projection": "static",
+            "sampled_sdf": false,
+            "stationary_particle_baseline": false,
+            "rigid_solver": "newton",
+            "edge_chunk_size": 65536,
+            "direct_rigid_contact_steps": 0,
+            "body_shape": "box",
+            "body_mass_kg": 1.5,
+            "material": {
+              "density": 1200.0,
+              "young_modulus": 1000000.0,
+              "poisson_ratio": 0.3,
+              "friction": 0.4,
+              "yield_pressure": 1000000000000000.0,
+              "tensile_yield_ratio": 0.0,
+              "yield_stress": 0.0,
+              "hardening": 0.0,
+              "dilatancy": 0.0,
+              "viscosity": 0.0
+            },
+            "steps": 100,
+            "requested_steps": 100,
+            "complete": true,
+            "stop_reason": "completed",
+            "particle_position_rmse_m": 0.014441617764532566,
+            "final_particle_position_rmse_m": 0.01678338460624218,
+            "body_position_rmse_m": 0.057199747082908384,
+            "body_orientation_rmse_deg": 4.82522537608446,
+            "force_vector_rmse_N": 24.88233056250833,
+            "reference_peak_vertical_force_N": 112.36777556764578,
+            "predicted_peak_vertical_force_N": 105.85844051273637,
+            "force_at_reference_peak_error_N": -112.36777556764578,
+            "reference_peak_time_s": 0.17249999614432454,
+            "torque_vector_rmse_Nm": 0.3628454240479998,
+            "force_solver_failures": 0,
+            "seconds_per_step": 0.8454488802294509,
+            "reference_has_rigid_tray_contact": false
+          }
+        },
+        "recorded_particle_control": {
+          "scope": "Reference particles retained, freely integrated Newton box; material and initial body state match the learned large-bed diagnostic. No particle learning is used in this control.",
+          "steps": 100,
+          "body_position_rmse_m": 0.004887825809419155,
+          "body_orientation_rmse_deg": 1.3801512735288508,
+          "force_vector_rmse_N": 11.628236308426802,
+          "reference_peak_force_N": 112.36777556764578,
+          "force_at_reference_peak_N": 74.17620979969854,
+          "estimated_peak_force_N": 78.12171498781854,
+          "solver_failures": 0,
+          "elapsed_s": 9.807755457004532
+        }
+      }
     }
   ],
   "limitations": [
