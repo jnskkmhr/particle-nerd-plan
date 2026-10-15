@@ -38,6 +38,31 @@
   document.getElementById('contact-step-back').addEventListener('click', () => showContactStep(contactStep - 1));
   document.getElementById('contact-step-next').addEventListener('click', () => showContactStep((contactStep + 1) % 5));
 
+  const gnnTabs = [...document.querySelectorAll('[data-gnn-tab]')];
+  let gnnStep = 0;
+  function showGnnStep(index, focus = false) {
+    gnnStep = (index + gnnTabs.length) % gnnTabs.length;
+    gnnTabs.forEach((tab, i) => {
+      tab.setAttribute('aria-selected', String(i === gnnStep));
+      tab.tabIndex = i === gnnStep ? 0 : -1;
+      document.getElementById(tab.getAttribute('aria-controls')).hidden = i !== gnnStep;
+    });
+    document.getElementById('gnn-back').disabled = gnnStep === 0;
+    document.getElementById('gnn-status').textContent = gnnTabs[gnnStep].textContent;
+    document.getElementById('gnn-next').textContent = gnnStep === 4 ? 'Inputs ↺' : 'Next →';
+    if (focus) gnnTabs[gnnStep].focus();
+  }
+  gnnTabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => showGnnStep(i));
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault(); event.stopPropagation();
+      showGnnStep(event.key === 'Home' ? 0 : event.key === 'End' ? 4 : gnnStep + (event.key === 'ArrowRight' ? 1 : -1), true);
+    });
+  });
+  document.getElementById('gnn-back').addEventListener('click', () => showGnnStep(gnnStep - 1));
+  document.getElementById('gnn-next').addEventListener('click', () => showGnnStep(gnnStep + 1));
+
   const replaySelector = document.getElementById('replay-case');
   const replayCases = JSON.parse(document.getElementById('replay-cases').textContent);
   replaySelector.addEventListener('change', () => {

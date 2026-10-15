@@ -2076,6 +2076,11 @@
       "summary": "Right-drag a dynamic object in Newton GL or RTX. At 4,000 particles, MPM takes 10.1\u201310.3 ms/step; the current NeRD pipeline takes 21.8\u201325.8 ms/step. Force estimation is the largest profiled component. See Interactive play & timing for commands and methodology.",
       "figure": "assets/solver-timing.png",
       "preserve": true
+    },
+    {
+      "name": "Selected-checkpoint data audit and GNN implementation",
+      "summary": "The frozen selected model uses 48 training episodes from four correlated material/mass tuples, with 4,000 particles in a 0.32\u00d70.32\u00d70.16m bed and fixed 0.02m MPM grid. Later 156-episode data were used by other candidate models. The G1-sized bed, foot-sized box, coarse sampling, and mouse interaction are OOD. Default play restores recorded validation geometry; G1 is an explicit option. Slides 44\u201345 and the Exact training conditions page provide details.",
+      "preserve": true
     }
   ],
   "limitations": [

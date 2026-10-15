@@ -1,0 +1,353 @@
+{
+  "checkpoint_sha256": "17697553a36a9cb359123394124ac7ed3300a27ede3c60501485d242d88ffabd",
+  "selected_step": 9000,
+  "arguments": {
+    "data": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015",
+    "output": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/unroll4",
+    "steps": 15000,
+    "unroll": 4,
+    "hidden": 64,
+    "passes": 3,
+    "radius": 0.035,
+    "noise": 0.003,
+    "learning_rate": 0.0001,
+    "evaluate_every": 3000,
+    "seed": 1701,
+    "resume": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/unroll4/initial.pt",
+    "deadline": "2026-10-15T16:15:00+00:00"
+  },
+  "split_counts": {
+    "train": 48,
+    "validation": 6
+  },
+  "train": [
+    {
+      "file": "train_0_box.hdf5",
+      "density": 800.0,
+      "friction": 0.25,
+      "E": 100000.0,
+      "body_mass": 1.0,
+      "shape": "box",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "linear": [
+        0.11999999731779099,
+        0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_0_cylinder.hdf5",
+      "density": 800.0,
+      "friction": 0.25,
+      "E": 100000.0,
+      "body_mass": 1.0,
+      "shape": "cylinder",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "linear": [
+        0.11999999731779099,
+        0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_0_sphere.hdf5",
+      "density": 800.0,
+      "friction": 0.25,
+      "E": 100000.0,
+      "body_mass": 1.0,
+      "shape": "sphere",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ],
+      "linear": [
+        0.11999999731779099,
+        -0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_1_box.hdf5",
+      "density": 1600.0,
+      "friction": 0.48,
+      "E": 10000000.0,
+      "body_mass": 2.0,
+      "shape": "box",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "linear": [
+        -0.11999999731779099,
+        0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        3.0,
+        0.0,
+        2.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_1_cylinder.hdf5",
+      "density": 1600.0,
+      "friction": 0.48,
+      "E": 10000000.0,
+      "body_mass": 2.0,
+      "shape": "cylinder",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "linear": [
+        -0.11999999731779099,
+        0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        3.0,
+        0.0,
+        2.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_1_sphere.hdf5",
+      "density": 1600.0,
+      "friction": 0.48,
+      "E": 10000000.0,
+      "body_mass": 2.0,
+      "shape": "sphere",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ],
+      "linear": [
+        -0.11999999731779099,
+        -0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        3.0,
+        0.0,
+        2.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_2_box.hdf5",
+      "density": 2400.0,
+      "friction": 0.7,
+      "E": 1000000000000000.0,
+      "body_mass": 4.0,
+      "shape": "box",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "linear": [
+        0.11999999731779099,
+        0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        -3.0,
+        2.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_2_cylinder.hdf5",
+      "density": 2400.0,
+      "friction": 0.7,
+      "E": 1000000000000000.0,
+      "body_mass": 4.0,
+      "shape": "cylinder",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "linear": [
+        0.11999999731779099,
+        0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        -3.0,
+        2.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_2_sphere.hdf5",
+      "density": 2400.0,
+      "friction": 0.7,
+      "E": 1000000000000000.0,
+      "body_mass": 4.0,
+      "shape": "sphere",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ],
+      "linear": [
+        0.11999999731779099,
+        -0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        -3.0,
+        2.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_3_box.hdf5",
+      "density": 1600.0,
+      "friction": 0.7,
+      "E": 100000.0,
+      "body_mass": 1.0,
+      "shape": "box",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "linear": [
+        -0.11999999731779099,
+        0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_3_cylinder.hdf5",
+      "density": 1600.0,
+      "friction": 0.7,
+      "E": 100000.0,
+      "body_mass": 1.0,
+      "shape": "cylinder",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.07999999821186066
+      ],
+      "linear": [
+        -0.11999999731779099,
+        0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    },
+    {
+      "file": "train_3_sphere.hdf5",
+      "density": 1600.0,
+      "friction": 0.7,
+      "E": 100000.0,
+      "body_mass": 1.0,
+      "shape": "sphere",
+      "body_size": [
+        0.11999999731779099,
+        0.11999999731779099,
+        0.11999999731779099
+      ],
+      "linear": [
+        -0.11999999731779099,
+        -0.03999999910593033,
+        -0.10000000149011612
+      ],
+      "angular": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "frames": 301,
+      "particles": 4000
+    }
+  ],
+  "initial_checkpoint": {
+    "config": {
+      "hidden": 64,
+      "passes": 3,
+      "radius": 0.035,
+      "velocity_scale": 0.1
+    },
+    "step": 12000,
+    "arguments": {
+      "data": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015",
+      "output": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/long_one_step",
+      "steps": 30000,
+      "hidden": 64,
+      "passes": 3,
+      "radius": 0.035,
+      "noise": 0.003,
+      "learning_rate": 0.0001,
+      "evaluate_every": 3000,
+      "seed": 1701,
+      "resume": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/baseline/best.pt",
+      "deadline": "2026-10-15T16:15:00+00:00"
+    }
+  },
+  "initial_split_counts": {
+    "train": 48,
+    "validation": 6
+  },
+  "initial_same_train_files": true
+}
