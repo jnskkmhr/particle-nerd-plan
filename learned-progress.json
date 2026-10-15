@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T11:28:01.334105+00:00",
+  "updated_at": "2026-10-15T11:28:34.120255+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Validation rollouts: deep_evaluations/final, static projection",
@@ -55,6 +55,15 @@
           ],
           [
             "Deeper GNN (final checkpoint)",
+            "validation",
+            "0/6",
+            "\u2014",
+            "\u2014",
+            "\u2014",
+            "\u2014"
+          ],
+          [
+            "Deeper GNN (final checkpoint) + static correction",
             "validation",
             "0/6",
             "\u2014",
@@ -183,6 +192,26 @@
         {
           "name": "Deeper GNN (final checkpoint)",
           "path": "deep_evaluations/final/none",
+          "split": "validation",
+          "completed": 0,
+          "episodes": 6,
+          "particle_cm": null,
+          "body_cm": null,
+          "force_N": null,
+          "checkpoint_step": 100000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.013443057425320148,
+            "position_vector_rmse_m": 6.7215285624222e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.052571993321180344,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": null
+        },
+        {
+          "name": "Deeper GNN (final checkpoint) + static correction",
+          "path": "deep_evaluations/final/static",
           "split": "validation",
           "completed": 0,
           "episodes": 6,
