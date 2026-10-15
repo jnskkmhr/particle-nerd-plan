@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T12:12:36.150893+00:00",
+  "updated_at": "2026-10-15T12:22:39.721665+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Training rollout8_full: 8-step rollout, up to 20000 updates \u00b7 update 15,550",
+  "phase": "Validation rollouts: rollout8_evaluations/best, none projection",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -169,6 +169,15 @@
             "3.62",
             "13.55",
             "134.34"
+          ],
+          [
+            "Eight-step training (one-step selection)",
+            "validation",
+            "3/6",
+            "1.96",
+            "5.56",
+            "8.99",
+            "95.01"
           ],
           [
             "Stationary particle baseline",
@@ -528,6 +537,26 @@
           },
           "peak_at_reference_time_rmse_N": 134.33747039470646,
           "selection_score": 19.588373682908642
+        },
+        {
+          "name": "Eight-step training (one-step selection)",
+          "path": "rollout8_evaluations/best/none",
+          "split": "validation",
+          "completed": 3,
+          "episodes": 6,
+          "particle_cm": 1.9583954786260922,
+          "body_cm": 5.557905878401164,
+          "force_N": 8.98934260005202,
+          "checkpoint_step": 20000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.011217938736081123,
+            "position_vector_rmse_m": 5.6089692426703266e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.052549347281455994,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 95.0119486295658
         },
         {
           "name": "Stationary particle baseline",
@@ -1047,9 +1076,7 @@
   ],
   "run_state": {
     "status": "Experiments running",
-    "phase": "Training rollout8_full: 8-step rollout, up to 20000 updates \u00b7 update 15,550",
-    "updated_at": "2026-10-15T12:12:35.629698+00:00",
-    "training_update": 15550,
-    "elapsed_seconds": 1806
+    "phase": "Validation rollouts: rollout8_evaluations/best, none projection",
+    "updated_at": "2026-10-15T12:21:18.735201+00:00"
   }
 }
