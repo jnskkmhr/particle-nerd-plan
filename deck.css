@@ -81,3 +81,7 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .slide[aria-labelledby="body-contact-method"] .equation{margin:0 0 14px;padding:14px 20px}
 
 .slide[aria-labelledby="particle-balance-results"] .equation{margin:0 0 14px;padding:14px 20px;font-size:19px}
+
+.slide[aria-labelledby="contact-history-results"] .equation{margin:0 0 14px;padding:14px 20px;font-size:18px}
+.slide[aria-labelledby="overnight-study-results"] .dem-table th:first-child{width:31%}
+.slide[aria-labelledby="overnight-study-results"] .dem-table td{font-size:18px;padding:10px 12px}

@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T04:57:22.461116+00:00",
+  "updated_at": "2026-10-15T05:45:58.980877+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "in progress",
-  "current_task": "Independent force and motion results published. Testing whether a complete particle-contact solve can reduce dependence on effective contact mass.",
+  "current_task": "Preparing a larger timed study: 64 fitting, 32 validation, and 64 independent test episodes; compare mean force and impact-peak errors.",
   "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
@@ -58,6 +58,17 @@
       "mean_episode_position_rmse_m": 0.00720809038616708,
       "mean_episode_orientation_rmse_deg": 4.350103287554619,
       "limitations": "Recorded particle trajectories, one material and one box geometry. About 35% relative force error remains."
+    },
+    {
+      "name": "Contact history with recalibrated parameters",
+      "dataset": "32 reused development episodes",
+      "force_vector_rmse_N": 6.662845784510885,
+      "force_component_mse_N2": 14.797837982724822,
+      "peak_force_rmse_N": 62.222687926766476,
+      "memoryless_peak_force_rmse_N": 40.547886058224755,
+      "mean_replay_position_rmse_m": 0.003825841407370705,
+      "mean_replay_orientation_rmse_deg": 3.519324156668391,
+      "conclusion": "Mean force and motion errors improve; impact-peak error worsens."
     }
   ]
 }
