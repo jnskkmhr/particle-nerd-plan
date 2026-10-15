@@ -38,6 +38,27 @@
   document.getElementById('contact-step-back').addEventListener('click', () => showContactStep(contactStep - 1));
   document.getElementById('contact-step-next').addEventListener('click', () => showContactStep((contactStep + 1) % 5));
 
+  const replaySelector = document.getElementById('replay-case');
+  const replayCases = JSON.parse(document.getElementById('replay-cases').textContent);
+  replaySelector.addEventListener('change', () => {
+    const selected = replayCases[Number(replaySelector.value)];
+    const video = document.getElementById('motion-video');
+    video.pause();
+    video.poster = selected.poster;
+    video.querySelector('source').src = selected.video;
+    video.querySelector('a').href = selected.video;
+    video.load();
+    const poster = document.querySelector('.replay-print-poster');
+    poster.src = selected.poster;
+    poster.alt = selected.label + ': MPM reference and estimated-force replay with synchronized GRF';
+    document.getElementById('replay-initial').textContent = selected.description;
+    document.getElementById('replay-metrics').textContent = selected.metrics;
+    document.getElementById('replay-profile-link').href = selected.profile;
+    document.getElementById('replay-profile-link').textContent = selected.id === 'drop'
+      ? 'GRF profile and impact detail' : 'GRF, horizontal force, and torque profiles';
+    document.getElementById('replay-video-link').href = selected.video;
+  });
+
   function resize() {
     const scale = Math.max(0.05, Math.min((innerWidth - 24) / 1280, (innerHeight - 92) / 720));
     document.documentElement.style.setProperty('--scale', scale);
