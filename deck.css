@@ -85,3 +85,40 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .slide[aria-labelledby="contact-history-results"] .equation{margin:0 0 14px;padding:14px 20px;font-size:18px}
 .slide[aria-labelledby="overnight-study-results"] .dem-table th:first-child{width:31%}
 .slide[aria-labelledby="overnight-study-results"] .dem-table td{font-size:18px;padding:10px 12px}
+
+/* Slide 29: inputs, equations, and interactive contact reconstruction. */
+.contact-walkthrough .eyebrow{margin-bottom:14px}
+.contact-walkthrough h2{font-size:37px;margin-bottom:17px}
+.contact-tabs{display:flex;gap:8px;margin-bottom:16px}
+.contact-tabs button,.contact-step-controls button{border:1px solid #bdcec7;border-radius:4px;background:#f4f7f3;color:var(--ink);font-size:15px;padding:9px 13px}
+.contact-tabs button[aria-selected=true]{background:var(--green);color:white;border-color:var(--green)}
+.contact-panels{height:385px;flex-shrink:0}
+.contact-panel{display:grid;grid-template-columns:300px 1fr;gap:27px;height:100%;animation:contact-enter .25s ease-out}
+.contact-panel[hidden]{display:none}
+.contact-panel figure{padding:12px;background:#eff3ef;align-self:start}
+.contact-panel figure svg{height:270px}
+.contact-panel figcaption{font-size:14px;line-height:1.35;margin:8px 4px 0;text-align:left}
+.contact-panel svg text{font-size:17px}
+.contact-panel svg .diagram-small{font-size:12px}
+.contact-panel svg .diagram-ground{font-size:11px;fill:white}
+.contact-vector{stroke-dasharray:160;stroke-dashoffset:0;animation:contact-arrow .6s ease-out}
+.contact-explanation h3{font-size:23px;margin:0 0 12px}
+.contact-explanation p{font-size:18px;line-height:1.4;margin:0}
+.contact-explanation .contact-small{font-size:15px;line-height:1.38;margin:10px 0 0;color:var(--muted)}
+.contact-equations{background:#e9efea;border-left:3px solid var(--green);padding:10px 14px;margin:12px 0;font-size:22px;line-height:1.6;color:#1b5548}
+.contact-equations sub,.contact-equations sup{font-size:65%}
+.contact-equations.contact-dense{font-size:18px;line-height:1.4;margin:6px 0;padding:6px 12px}
+#contact-panel-3 .contact-small{font-size:14px;line-height:1.35;margin-top:8px}
+.contact-note{background:#edf2f7;border-left:3px solid var(--blue);font-size:17px;line-height:1.4;padding:10px 13px;margin-top:12px}
+.contact-io{display:grid;grid-template-columns:145px 1fr;column-gap:12px;row-gap:10px}
+.contact-io>b{font-size:15px;color:var(--green);padding-top:3px}
+.contact-step-controls{display:flex;align-items:center;gap:9px;margin-top:14px}
+.contact-step-controls span{font-size:14px;color:var(--muted);margin-right:auto}
+.contact-step-controls button{padding:6px 12px}
+.contact-step-controls button:disabled{opacity:.4;cursor:default}
+.contact-walkthrough footer{font-size:12px;padding-top:10px}
+.contact-print-summary{display:none}
+@keyframes contact-enter{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes contact-arrow{from{stroke-dashoffset:160}to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.contact-panel,.contact-vector{animation:none}}
+@media print{.contact-tabs,.contact-step-controls{display:none!important}.contact-panels{height:385px}.contact-panel{display:none!important;animation:none}#contact-panel-0{display:grid!important}.contact-vector{animation:none}.contact-print-summary{display:block;font-size:16px;line-height:1.65;margin-top:8px}}

@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T07:20:55.555980+00:00",
+  "updated_at": "2026-10-15T07:41:34.129743+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
-  "status": "In progress",
-  "current_task": "Calibrating contact response: search 2, peak-error weight 0.03.",
+  "status": "Paused",
+  "current_task": "Experiment paused. Slide 29 now explains force-estimation inputs, outputs, equations, and contact iterations with step-by-step diagrams.",
   "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
@@ -74,11 +74,11 @@
   "overnight_study": {
     "started_at": "2026-10-15T05:58:07.452254+00:00",
     "deadline": "2026-10-15T14:00:00+00:00",
-    "phase": "Calibrating contact response: search 2, peak-error weight 0.03.",
+    "phase": "Paused during the second parameter search. Independent test evaluation has not started.",
     "calibration_episodes": 64,
     "validation_episodes": 32,
     "test_episodes": 64,
-    "trials": 75,
+    "trials": 81,
     "completed_searches": 1,
     "models": [
       {
@@ -144,6 +144,7 @@
     ],
     "peak_definition": "Upward particle-on-box force error at the time of each reference impact peak.",
     "limitation": "Reference particle motion; replay holds particle trajectories fixed. No learned or fully coupled NeRD rollout.",
-    "error": null
+    "error": null,
+    "paused_at": "2026-10-15T07:27:47.152253+00:00"
   }
 }

@@ -7,6 +7,37 @@
   let current = 0;
   let overview = false;
 
+  // The contact derivation stays on slide 29; ordinary slide navigation is unchanged.
+  const contactTabs = [...document.querySelectorAll('[data-contact-tab]')];
+  let contactStep = 0;
+  function showContactStep(index, focus = false) {
+    contactStep = Math.max(0, Math.min(contactTabs.length - 1, index));
+    contactTabs.forEach((tab, i) => {
+      const selected = i === contactStep;
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      panel.hidden = !selected;
+      panel.classList.toggle('is-visible', selected);
+    });
+    document.getElementById('contact-step-back').disabled = contactStep === 0;
+    document.getElementById('contact-step-next').textContent = contactStep === 4 ? 'Inputs ↺' : `Step ${contactStep + 1} →`;
+    document.getElementById('contact-step-status').textContent = contactStep === 0
+      ? 'Inputs and outputs · select a step to see its equations'
+      : `Step ${contactStep} of 4 · ${contactTabs[contactStep].textContent.split(' · ')[1]}`;
+    if (focus) contactTabs[contactStep].focus();
+  }
+  contactTabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => showContactStep(i));
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault(); event.stopPropagation();
+      showContactStep(event.key === 'Home' ? 0 : event.key === 'End' ? 4 : (contactStep + (event.key === 'ArrowRight' ? 1 : 4)) % 5, true);
+    });
+  });
+  document.getElementById('contact-step-back').addEventListener('click', () => showContactStep(contactStep - 1));
+  document.getElementById('contact-step-next').addEventListener('click', () => showContactStep((contactStep + 1) % 5));
+
   function resize() {
     const scale = Math.max(0.05, Math.min((innerWidth - 24) / 1280, (innerHeight - 92) / 720));
     document.documentElement.style.setProperty('--scale', scale);
