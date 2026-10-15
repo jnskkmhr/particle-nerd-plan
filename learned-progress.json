@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T13:06:53.884115+00:00",
+  "updated_at": "2026-10-15T13:17:39.964622+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Training rollout16_full: 16-step rollout, up to 12000 updates \u00b7 update 10,350",
+  "phase": "Validation rollouts: rollout16_evaluations/final, none projection",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -169,6 +169,33 @@
             "3.62",
             "13.55",
             "134.34"
+          ],
+          [
+            "Sixteen-step training (one-step selection)",
+            "validation",
+            "6/6",
+            "1.07",
+            "3.85",
+            "6.47",
+            "71.85"
+          ],
+          [
+            "Sixteen-step training (one-step selection) + static correction",
+            "validation",
+            "6/6",
+            "1.06",
+            "3.85",
+            "6.47",
+            "71.83"
+          ],
+          [
+            "Sixteen-step training (final checkpoint)",
+            "validation",
+            "6/6",
+            "1.09",
+            "3.50",
+            "6.24",
+            "68.76"
           ],
           [
             "Eight-step training (one-step selection)",
@@ -564,6 +591,69 @@
           },
           "peak_at_reference_time_rmse_N": 134.33747039470646,
           "selection_score": 19.588373682908642
+        },
+        {
+          "name": "Sixteen-step training (one-step selection)",
+          "path": "rollout16_evaluations/best/none",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 1.0688562567035356,
+          "body_cm": 3.8476934365151476,
+          "force_N": 6.470603174950381,
+          "checkpoint_step": 10000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.011816464364528656,
+            "position_vector_rmse_m": 5.908232050205048e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.0565863661468029,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 71.84825267074604,
+          "selection_score": 2.7818050053568606
+        },
+        {
+          "name": "Sixteen-step training (one-step selection) + static correction",
+          "path": "rollout16_evaluations/best/static",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 1.0569723943869271,
+          "body_cm": 3.849452336546223,
+          "force_N": 6.469621292552314,
+          "checkpoint_step": 10000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.011816464364528656,
+            "position_vector_rmse_m": 5.908232050205048e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.0565863661468029,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 71.83129681668538,
+          "selection_score": 2.776693430094191
+        },
+        {
+          "name": "Sixteen-step training (final checkpoint)",
+          "path": "rollout16_evaluations/final/none",
+          "split": "validation",
+          "completed": 6,
+          "episodes": 6,
+          "particle_cm": 1.0882456476489701,
+          "body_cm": 3.5007355762675543,
+          "force_N": 6.243195951604868,
+          "checkpoint_step": 12000,
+          "one_step": {
+            "velocity_vector_rmse_m_s": 0.012522824108600616,
+            "position_vector_rmse_m": 6.261411914346843e-05,
+            "near_body_velocity_vector_rmse_m_s": 0.056593384593725204,
+            "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+            "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+            "transitions": 60
+          },
+          "peak_at_reference_time_rmse_N": 68.75928349597076,
+          "selection_score": 2.606650409538506
         },
         {
           "name": "Eight-step training (one-step selection)",
@@ -1163,9 +1253,7 @@
   ],
   "run_state": {
     "status": "Experiments running",
-    "phase": "Training rollout16_full: 16-step rollout, up to 12000 updates \u00b7 update 10,350",
-    "updated_at": "2026-10-15T13:06:53.372204+00:00",
-    "training_update": 10350,
-    "elapsed_seconds": 2408
+    "phase": "Validation rollouts: rollout16_evaluations/final, none projection",
+    "updated_at": "2026-10-15T13:16:18.984914+00:00"
   }
 }
