@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T07:20:09.837472+00:00",
+  "updated_at": "2026-10-15T07:20:53.269777+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "In progress",
   "current_task": "Validating completed contact search 1.",
@@ -79,7 +79,7 @@
     "validation_episodes": 32,
     "test_episodes": 64,
     "trials": 75,
-    "completed_searches": 0,
+    "completed_searches": 1,
     "models": [
       {
         "name": "baseline",
@@ -118,6 +118,26 @@
           "orientation_rmse_deg": 2.5679334441153774,
           "final_position_error_m": 0.0030556790901418458,
           "final_orientation_error_deg": 2.960527914892503,
+          "skipped_reference_rigid_contacts": 0
+        }
+      },
+      {
+        "name": "search_1",
+        "split": "Validation",
+        "force_vector_rmse_N": 6.734674223417788,
+        "force_component_mse_N2": 15.118612298522663,
+        "torque_vector_rmse_Nm": 0.2634775510882329,
+        "peak_force_rmse_N": 58.34554952199643,
+        "samples": 12800,
+        "solver_failures": 0,
+        "replay": {
+          "episodes": 8,
+          "valid": true,
+          "invalid_episodes": 0,
+          "position_rmse_m": 0.002600777687808154,
+          "orientation_rmse_deg": 2.504645624793286,
+          "final_position_error_m": 0.0030256901738921938,
+          "final_orientation_error_deg": 2.9668261088002446,
           "skipped_reference_rigid_contacts": 0
         }
       }
