@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-15T10:34:19.269274+00:00",
+  "updated_at": "2026-10-15T10:39:21.279359+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
   "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
@@ -66,7 +66,7 @@
             "19.61"
           ],
           [
-            "unroll4 \u00b7 validation \u00b7 none",
+            "Four-step rollout training",
             "validation",
             "6/6",
             "4.65",
@@ -74,7 +74,7 @@
             "5.24"
           ],
           [
-            "unroll4 \u00b7 validation \u00b7 static",
+            "Four-step training + static-contact correction",
             "validation",
             "6/6",
             "1.42",
@@ -176,7 +176,7 @@
           "one_step": null
         },
         {
-          "name": "unroll4 \u00b7 validation \u00b7 none",
+          "name": "Four-step rollout training",
           "path": "unroll4/validation/none",
           "split": "validation",
           "completed": 6,
@@ -196,7 +196,7 @@
           "selection_score": 3.4680885445114313
         },
         {
-          "name": "unroll4 \u00b7 validation \u00b7 static",
+          "name": "Four-step training + static-contact correction",
           "path": "unroll4/validation/static",
           "split": "validation",
           "completed": 6,
@@ -219,7 +219,7 @@
     },
     {
       "name": "Current validation selection",
-      "summary": "unroll4 \u00b7 validation \u00b7 static. Selection requires all six coupled validation rollouts to complete, then compares particle, body-position, and force errors with fixed normalization scales. This is a development result, not an independent test result.",
+      "summary": "Four-step training + static-contact correction. Selection requires all six coupled validation rollouts to complete, then compares particle, body-position, and force errors with fixed normalization scales. This is a development result, not an independent test result.",
       "figure": "assets/learned-current.png"
     },
     {
@@ -302,8 +302,8 @@
   "run_state": {
     "status": "Experiments running",
     "phase": "Training deep_full_cached: 1-step rollout, up to 100000 updates",
-    "updated_at": "2026-10-15T10:34:18.725266+00:00",
-    "training_update": 9000,
-    "elapsed_seconds": 300
+    "updated_at": "2026-10-15T10:39:20.816329+00:00",
+    "training_update": 18050,
+    "elapsed_seconds": 602
   }
 }
