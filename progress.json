@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-15T04:21:08.129226+00:00",
+  "updated_at": "2026-10-15T04:39:18.577625+00:00",
   "target_end": "2026-10-15T07:00:00-07:00",
   "status": "in progress",
-  "current_task": "Testing material-surface velocity reconstruction after a matched-frame 44.7% reduction in dynamic box-force MSE.",
-  "validated_results": "Existing DEM results use a prescribed box trajectory. They do not validate a freely moving rigid body.",
+  "current_task": "Checking full particle force balance and sensitivity after improving box-force RMSE to 9.85 N and replay position RMSE to 1.13 cm.",
+  "validated_results": "Dynamic reference collection, matched-frame force comparisons, and rigid-box replay measured. Learned particle motion and fully coupled rollout remain untested.",
   "inference_constraint": "No MPM solver at inference.",
   "experiments": [
     {
@@ -34,6 +34,16 @@
       "original_matched_box_force_mse_N2": 59.1468023433468,
       "separate_test_force_vector_rmse_N": 10.688775953391099,
       "limitations": "Reference particle motion; one dynamic body; impact and steady-support errors remain."
+    },
+    {
+      "name": "Surface velocity and penetration correction",
+      "force_vector_rmse_N": 9.85304053108231,
+      "force_component_mse_N2": 32.36080256905026,
+      "mean_episode_position_rmse_m": 0.01133019088107759,
+      "mean_episode_orientation_rmse_deg": 8.93063254933556,
+      "episodes": 8,
+      "transitions": 3200,
+      "limitations": "Reference particle motion held fixed during box replay. Reused development evaluation episodes; fresh final test pending."
     }
   ]
 }
