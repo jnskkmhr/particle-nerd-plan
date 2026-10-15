@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-15T11:52:30.905090+00:00",
+  "updated_at": "2026-10-15T12:02:33.475788+00:00",
   "deadline": "2026-10-15T09:30:00-07:00",
   "status": "Experiments running",
-  "phase": "Training rollout8_full: 8-step rollout, up to 20000 updates \u00b7 update 5,000",
+  "phase": "Training rollout8_full: 8-step rollout, up to 20000 updates \u00b7 update 10,300",
   "scope": "All particles predicted. No MPM or force network at inference. Reference data use dynamic two-way MJWarp\u2013MPM.",
   "results": [
     {
@@ -1047,9 +1047,9 @@
   ],
   "run_state": {
     "status": "Experiments running",
-    "phase": "Training rollout8_full: 8-step rollout, up to 20000 updates \u00b7 update 5,000",
-    "updated_at": "2026-10-15T11:52:30.405615+00:00",
-    "training_update": 5000,
-    "elapsed_seconds": 601
+    "phase": "Training rollout8_full: 8-step rollout, up to 20000 updates \u00b7 update 10,300",
+    "updated_at": "2026-10-15T12:02:32.927300+00:00",
+    "training_update": 10300,
+    "elapsed_seconds": 1203
   }
 }
