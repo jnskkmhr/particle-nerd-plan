@@ -32,5 +32,5 @@
   "particle_count": 4000,
   "grid_spacing_m": 0.02,
   "force_alignment": "Box force/torque use lagged feedback actually applied during each rigid transition. Tray reaction is minus current sand-on-tray wrench, summed over ground and walls.",
-  "scope": "Two autonomous MPM rollouts, 2 versus 50 exact contact/material sweeps; neither includes neural refinement or analytical force reconstruction."
+  "scope": "Two autonomous MPM rollouts, 2 versus 50 exact contact/material solver iterations; neither includes neural refinement or analytical force reconstruction."
 }
