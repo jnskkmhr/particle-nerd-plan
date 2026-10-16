@@ -1,0 +1,22 @@
+{
+  "case": "y-pitch-negative",
+  "initial_body_velocity": [
+    0.0,
+    -0.44999998807907104,
+    -0.10000000149011612,
+    0.0,
+    -3.0,
+    0.0
+  ],
+  "dt": 0.005,
+  "steps": 600,
+  "duration_s": 6.04,
+  "playback_speed": 0.5,
+  "drag": null,
+  "body_position_rms_difference_mm": 18.599409103393555,
+  "initial_state_sha256": "f5d45a155cb646203f009078b391e90d0b8a824501264ec486313c68f58a5702",
+  "particle_count": 4000,
+  "grid_spacing_m": 0.02,
+  "force_alignment": "Box force/torque use lagged feedback actually applied during each rigid transition. Tray reaction is minus current sand-on-tray wrench, summed over ground and walls.",
+  "scope": "Two autonomous MPM rollouts, 2 versus 50 exact contact/material sweeps; neither includes neural refinement or analytical force reconstruction."
+}
