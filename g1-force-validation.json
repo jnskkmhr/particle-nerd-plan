@@ -1,0 +1,1154 @@
+{
+  "scope": "Independent CPU-only validation of completed case metadata, time pairing, actuator telemetry, proxy rewind, and geometry; not force-accuracy certification",
+  "cases_checked": 19,
+  "all_data_checks_passed": true,
+  "interpretation": "Passing checks establish recorded-state, units, time-alignment and calculation integrity; they do not establish accurate force prediction or stable robot control.",
+  "validation_script_sha256": "34c82cbabe38567c0b636835ea1db548d4066338862d827e3e23d2a34fb9122e",
+  "source_checks": [
+    "Newton lagged proxy coupling copies old foot pose and post-articulation velocity, then removes previous feedback using proxy inertia; the recorder captures after this rewind.",
+    "Foot centers of mass use model.body_com transformed by body pose; shape corners use the independent collision-shape transform.",
+    "Native MuJoCo actuator forces are logged separately from Newton feed-forward joint force; they are not estimator target inputs.",
+    "Matched-input estimators read the same pre-MPM proxy/particle positions and post-MPM particle velocities. Captured proxy arrays are checked exactly; per-step particle velocities are not stored.",
+    "Policy inputs are proprioceptive history and command; foot-contact observations belong to the privileged critic group.",
+    "Root state combines world root-link pose (XYZW quaternion) and world center-of-mass velocity; report velocity uses inverse quaternion rotation into root-link axes."
+  ],
+  "analytic_contract_test": {
+    "execution": "Separate recorded test run; not executed by this validation script",
+    "passed": true,
+    "test_count": 1,
+    "scope": "GPU single-contact analytic impulse with rotated offset collision shape and nonzero COM offset, followed by separated-contact reset",
+    "reported_runtime_s": 2.16
+  },
+  "checks": [
+    "finite trace and snapshot arrays",
+    "requested material parameters and total mass",
+    "command timing",
+    "four physics intervals per policy step",
+    "native actuator force present and nonzero",
+    "exact one-interval feedback delay",
+    "independent proxy-velocity rewind calculation",
+    "left/right foot identity and actual collision geometry",
+    "ground clearance and separate rigid-ground force telemetry when available",
+    "matched-input estimator parameters and proxy states"
+  ],
+  "cases": [
+    {
+      "case": "clay-backward-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 6.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.01855154057299868,
+          "minimum_foot_COM_above_rigid_ground_m": 0.05343375061429434,
+          "minimum_corner_minus_foot_margin_m": -0.00019846017205937816,
+          "intervals_with_possible_direct_ground_contact": 14,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.019111072539549467,
+          "minimum_foot_COM_above_rigid_ground_m": 0.055820070327447346,
+          "minimum_corner_minus_foot_margin_m": 0.0003610717944914077,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          130.5097198486328,
+          0.0
+        ],
+        "mean_vertical_force_N_per_foot": [
+          0.7097173929214478,
+          0.0
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          13,
+          0
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": null
+    },
+    {
+      "case": "clay-forward-mass-comparison",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017592452098888045,
+          "minimum_foot_COM_above_rigid_ground_m": 0.05440590094638731,
+          "minimum_corner_minus_foot_margin_m": -0.0011575486461700146,
+          "intervals_with_possible_direct_ground_contact": 40,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017609457584898458,
+          "minimum_foot_COM_above_rigid_ground_m": 0.06328176918907513,
+          "minimum_corner_minus_foot_margin_m": -0.0011405431601596017,
+          "intervals_with_possible_direct_ground_contact": 44,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          410.14398193359375,
+          351.0999755859375
+        ],
+        "mean_vertical_force_N_per_foot": [
+          8.1988525390625,
+          9.809855461120605
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          32,
+          34
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": {
+        "category": "contact_model_effective_mass_change",
+        "changed_parameters": [
+          "effective_mass_scale"
+        ],
+        "primary": {
+          "iterations": 200,
+          "effective_mass_scale": 10.0
+        },
+        "comparison": {
+          "iterations": 200,
+          "effective_mass_scale": 100.0
+        },
+        "recorded_proxy_inputs_identical": true,
+        "particle_input_validation": "Collector code supplies both estimators the same MPM state_out.particle_qd; full per-step particle velocities are not recorded."
+      }
+    },
+    {
+      "case": "clay-forward-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.92,
+      "outcome": "left_initial_material_footprint",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.01800977132986542,
+          "minimum_foot_COM_above_rigid_ground_m": 0.05471790120183212,
+          "minimum_corner_minus_foot_margin_m": -0.0007402294151926392,
+          "intervals_with_possible_direct_ground_contact": 25,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017868665778408732,
+          "minimum_foot_COM_above_rigid_ground_m": 0.06149987294499426,
+          "minimum_corner_minus_foot_margin_m": -0.0008813349666493275,
+          "intervals_with_possible_direct_ground_contact": 27,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": null,
+      "paired_comparison": null
+    },
+    {
+      "case": "clay-turn-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 6.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.0209411293544845,
+          "minimum_foot_COM_above_rigid_ground_m": 0.05219314888901405,
+          "minimum_corner_minus_foot_margin_m": 0.0021911286094264404,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.02129861970893432,
+          "minimum_foot_COM_above_rigid_ground_m": 0.056829069972340385,
+          "minimum_corner_minus_foot_margin_m": 0.002548618963876259,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "mean_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          0,
+          0
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": null
+    },
+    {
+      "case": "sand-backward-estimated-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 5.54,
+      "outcome": "left_initial_material_footprint",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017688964879025437,
+          "minimum_foot_COM_above_rigid_ground_m": 0.03740195446344269,
+          "minimum_corner_minus_foot_margin_m": -0.0010610358660326225,
+          "intervals_with_possible_direct_ground_contact": 125,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017281206580804842,
+          "minimum_foot_COM_above_rigid_ground_m": 0.038742724153183916,
+          "minimum_corner_minus_foot_margin_m": -0.0014687941642532176,
+          "intervals_with_possible_direct_ground_contact": 131,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          708.7029418945312,
+          820.5239868164062
+        ],
+        "mean_vertical_force_N_per_foot": [
+          30.235076904296875,
+          32.024227142333984
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          119,
+          126
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": null
+    },
+    {
+      "case": "sand-backward-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 5.64,
+      "outcome": "left_initial_material_footprint",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.17624513517646584,
+          "minimum_foot_COM_above_rigid_ground_m": 0.21083858605383987,
+          "minimum_corner_minus_foot_margin_m": 0.15749513443140778,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.19215826787652024,
+          "minimum_foot_COM_above_rigid_ground_m": 0.22617110930888912,
+          "minimum_corner_minus_foot_margin_m": 0.17340826713146218,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": null,
+      "paired_comparison": null
+    },
+    {
+      "case": "sand-forward-estimated-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.8000000000000003,
+      "outcome": "left_initial_material_footprint",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.037912531815181394,
+          "minimum_foot_COM_above_rigid_ground_m": 0.07718837419405017,
+          "minimum_corner_minus_foot_margin_m": 0.019162531070123334,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017872700409091946,
+          "minimum_foot_COM_above_rigid_ground_m": 0.06876587171922927,
+          "minimum_corner_minus_foot_margin_m": -0.0008773003359661136,
+          "intervals_with_possible_direct_ground_contact": 3,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          0.0,
+          95.9451904296875
+        ],
+        "mean_vertical_force_N_per_foot": [
+          0.0,
+          0.2400445193052292
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          0,
+          2
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": null
+    },
+    {
+      "case": "sand-forward-grid002",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.1803375616826911,
+          "minimum_foot_COM_above_rigid_ground_m": 0.236889829451571,
+          "minimum_corner_minus_foot_margin_m": 0.16158756093763305,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.15221532482143718,
+          "minimum_foot_COM_above_rigid_ground_m": 0.18500120450067087,
+          "minimum_corner_minus_foot_margin_m": 0.13346532407637912,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "mean_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          0,
+          0
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": {
+        "category": "solver_iteration_convergence",
+        "changed_parameters": [
+          "iterations"
+        ],
+        "primary": {
+          "iterations": 200,
+          "effective_mass_scale": 10.0
+        },
+        "comparison": {
+          "iterations": 50,
+          "effective_mass_scale": 10.0
+        },
+        "recorded_proxy_inputs_identical": true,
+        "particle_input_validation": "Collector code supplies both estimators the same MPM state_out.particle_qd; full per-step particle velocities are not recorded."
+      }
+    },
+    {
+      "case": "sand-forward-iteration-comparison",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.2087783497535124,
+          "minimum_foot_COM_above_rigid_ground_m": 0.2579346825067403,
+          "minimum_corner_minus_foot_margin_m": 0.19002834900845433,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.18756870808938692,
+          "minimum_foot_COM_above_rigid_ground_m": 0.2157023235280625,
+          "minimum_corner_minus_foot_margin_m": 0.16881870734432886,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "mean_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          0,
+          0
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": {
+        "category": "solver_iteration_convergence",
+        "changed_parameters": [
+          "iterations"
+        ],
+        "primary": {
+          "iterations": 200,
+          "effective_mass_scale": 10.0
+        },
+        "comparison": {
+          "iterations": 50,
+          "effective_mass_scale": 10.0
+        },
+        "recorded_proxy_inputs_identical": true,
+        "particle_input_validation": "Collector code supplies both estimators the same MPM state_out.particle_qd; full per-step particle velocities are not recorded."
+      }
+    },
+    {
+      "case": "sand-forward-mass-comparison",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.20264111661958378,
+          "minimum_foot_COM_above_rigid_ground_m": 0.2659803581153828,
+          "minimum_corner_minus_foot_margin_m": 0.18389111587452572,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.20782486634002167,
+          "minimum_foot_COM_above_rigid_ground_m": 0.23732351955646624,
+          "minimum_corner_minus_foot_margin_m": 0.18907486559496361,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "mean_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          0,
+          0
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": {
+        "category": "contact_model_effective_mass_change",
+        "changed_parameters": [
+          "effective_mass_scale"
+        ],
+        "primary": {
+          "iterations": 200,
+          "effective_mass_scale": 10.0
+        },
+        "comparison": {
+          "iterations": 200,
+          "effective_mass_scale": 100.0
+        },
+        "recorded_proxy_inputs_identical": true,
+        "particle_input_validation": "Collector code supplies both estimators the same MPM state_out.particle_qd; full per-step particle velocities are not recorded."
+      }
+    },
+    {
+      "case": "sand-forward-reference-i200",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.54,
+      "outcome": "left_initial_material_footprint",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.1565153492040814,
+          "minimum_foot_COM_above_rigid_ground_m": 0.20827899210623602,
+          "minimum_corner_minus_foot_margin_m": 0.13776534845902333,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.1423419033044448,
+          "minimum_foot_COM_above_rigid_ground_m": 0.17912334622489623,
+          "minimum_corner_minus_foot_margin_m": 0.12359190255938673,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "mean_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          0,
+          0
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": null
+    },
+    {
+      "case": "sand-forward-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.64,
+      "outcome": "left_initial_material_footprint",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.1856266352185041,
+          "minimum_foot_COM_above_rigid_ground_m": 0.22651783788160595,
+          "minimum_corner_minus_foot_margin_m": 0.16687663447344603,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.14284099485446372,
+          "minimum_foot_COM_above_rigid_ground_m": 0.17218684001030932,
+          "minimum_corner_minus_foot_margin_m": 0.12409099410940566,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": null,
+      "paired_comparison": null
+    },
+    {
+      "case": "sand-turn-estimated-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 4.5,
+      "outcome": "terminated",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.01601223113042527,
+          "minimum_foot_COM_above_rigid_ground_m": 0.03816022486115067,
+          "minimum_corner_minus_foot_margin_m": -0.00273776961463279,
+          "intervals_with_possible_direct_ground_contact": 128,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.01741234593702723,
+          "minimum_foot_COM_above_rigid_ground_m": 0.04149893735732052,
+          "minimum_corner_minus_foot_margin_m": -0.0013376548080308304,
+          "intervals_with_possible_direct_ground_contact": 157,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          845.04736328125,
+          685.031005859375
+        ],
+        "mean_vertical_force_N_per_foot": [
+          46.3732795715332,
+          43.51258087158203
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          118,
+          140
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": null
+    },
+    {
+      "case": "sand-turn-estimated-m100-i200",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 6.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.18725969757086752,
+          "minimum_foot_COM_above_rigid_ground_m": 0.23528694552267593,
+          "minimum_corner_minus_foot_margin_m": 0.16850969682580946,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.23202179400462652,
+          "minimum_foot_COM_above_rigid_ground_m": 0.2587885733051003,
+          "minimum_corner_minus_foot_margin_m": 0.21327179325956847,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "mean_vertical_force_N_per_foot": [
+          0.0,
+          0.0
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          0,
+          0
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": null
+    },
+    {
+      "case": "sand-turn-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 6.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.21329810242933972,
+          "minimum_foot_COM_above_rigid_ground_m": 0.24847831986630242,
+          "minimum_corner_minus_foot_margin_m": 0.19454810168428166,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.21602655527711034,
+          "minimum_foot_COM_above_rigid_ground_m": 0.2691619994379354,
+          "minimum_corner_minus_foot_margin_m": 0.19727655453205228,
+          "intervals_with_possible_direct_ground_contact": 0,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": null,
+      "paired_comparison": null
+    },
+    {
+      "case": "snow-backward-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 6.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.018039087498580908,
+          "minimum_foot_COM_above_rigid_ground_m": 0.04233617232906556,
+          "minimum_corner_minus_foot_margin_m": -0.0007109132464771517,
+          "intervals_with_possible_direct_ground_contact": 321,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017580382948581053,
+          "minimum_foot_COM_above_rigid_ground_m": 0.041246980048994575,
+          "minimum_corner_minus_foot_margin_m": -0.0011696177964770071,
+          "intervals_with_possible_direct_ground_contact": 333,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": null,
+      "paired_comparison": null
+    },
+    {
+      "case": "snow-forward-mass-comparison",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 3.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017210720982657857,
+          "minimum_foot_COM_above_rigid_ground_m": 0.046214475455321646,
+          "minimum_corner_minus_foot_margin_m": -0.001539279762400203,
+          "intervals_with_possible_direct_ground_contact": 113,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.01455904753840176,
+          "minimum_foot_COM_above_rigid_ground_m": 0.045606607835434076,
+          "minimum_corner_minus_foot_margin_m": -0.0041909532066563004,
+          "intervals_with_possible_direct_ground_contact": 144,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": {
+        "peak_vertical_force_N_per_foot": [
+          319.9588623046875,
+          339.7791442871094
+        ],
+        "mean_vertical_force_N_per_foot": [
+          22.862396240234375,
+          33.639007568359375
+        ],
+        "intervals_vertical_force_above_1N_per_foot": [
+          106,
+          136
+        ],
+        "sampling": {
+          "quantity": "Force exerted by rigid ground planes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            0
+          ],
+          "ground_shape_labels": [
+            "/World/Ground/GroundPlane/CollisionPlane"
+          ],
+          "selection": "Rigid solver collision shapes with GeoType.PLANE, independent of task label regex",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        }
+      },
+      "paired_comparison": {
+        "category": "contact_model_effective_mass_change",
+        "changed_parameters": [
+          "effective_mass_scale"
+        ],
+        "primary": {
+          "iterations": 200,
+          "effective_mass_scale": 10.0
+        },
+        "comparison": {
+          "iterations": 200,
+          "effective_mass_scale": 100.0
+        },
+        "recorded_proxy_inputs_identical": true,
+        "particle_input_validation": "Collector code supplies both estimators the same MPM state_out.particle_qd; full per-step particle velocities are not recorded."
+      }
+    },
+    {
+      "case": "snow-forward-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 4.48,
+      "outcome": "left_initial_material_footprint",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.016870983548665452,
+          "minimum_foot_COM_above_rigid_ground_m": 0.043849059095525555,
+          "minimum_corner_minus_foot_margin_m": -0.0018790171963926072,
+          "intervals_with_possible_direct_ground_contact": 216,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.016269876785279858,
+          "minimum_foot_COM_above_rigid_ground_m": 0.04047181686817275,
+          "minimum_corner_minus_foot_margin_m": -0.002480123959778202,
+          "intervals_with_possible_direct_ground_contact": 281,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": null,
+      "paired_comparison": null
+    },
+    {
+      "case": "snow-turn-reference-i50",
+      "passed": true,
+      "failures": [],
+      "warnings": [
+        "Body labels and container metadata do not independently enumerate world-static collision shapes.",
+        "At least one foot approaches the rigid ground within its collision margin; material-only support is not established.",
+        "Rigid contact count is nonzero and includes self contacts; it cannot identify foot-ground contacts by itself."
+      ],
+      "duration_s": 6.0,
+      "outcome": "duration",
+      "ground_clearance": [
+        {
+          "foot": "left",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017089464924299413,
+          "minimum_foot_COM_above_rigid_ground_m": 0.03761211560040373,
+          "minimum_corner_minus_foot_margin_m": -0.0016605358207586463,
+          "intervals_with_possible_direct_ground_contact": 326,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        },
+        {
+          "foot": "right",
+          "minimum_foot_box_corner_above_rigid_ground_m": 0.017620306376074812,
+          "minimum_foot_COM_above_rigid_ground_m": 0.04133389701553897,
+          "minimum_corner_minus_foot_margin_m": -0.0011296943689832473,
+          "intervals_with_possible_direct_ground_contact": 325,
+          "criterion": "Minimum of old and new pose box corners minus ground z <= foot shape margin; conservative endpoint check, not measured contact force"
+        }
+      ],
+      "measured_rigid_ground_force": null,
+      "paired_comparison": null
+    }
+  ],
+  "separate_run_iteration_comparisons": [
+    {
+      "condition": [
+        "clay",
+        "forward",
+        0.04,
+        10.0
+      ],
+      "cases": [
+        "clay-forward-reference-i50",
+        "clay-forward-mass-comparison"
+      ],
+      "solver_iterations": [
+        50,
+        200
+      ],
+      "common_physics_steps": 600,
+      "equal_trace_lengths": false,
+      "maximum_absolute_component_difference": {
+        "reference_wrench": 1039.810302734375,
+        "free_body_pose": 0.32179346680641174,
+        "free_body_velocity": 23.394027709960938,
+        "command": 0.0
+      },
+      "identical_recorded_reference_inputs": false,
+      "limitation": "Particle transitions are not stored at every physics step; this checks recorded proxy states, reference wrenches, and commands only."
+    },
+    {
+      "condition": [
+        "sand",
+        "forward",
+        0.04,
+        10.0
+      ],
+      "cases": [
+        "sand-forward-reference-i50",
+        "sand-forward-iteration-comparison"
+      ],
+      "solver_iterations": [
+        50,
+        200
+      ],
+      "common_physics_steps": 600,
+      "equal_trace_lengths": false,
+      "maximum_absolute_component_difference": {
+        "reference_wrench": 329.4274597167969,
+        "free_body_pose": 0.14338693022727966,
+        "free_body_velocity": 12.045499801635742,
+        "command": 0.0
+      },
+      "identical_recorded_reference_inputs": false,
+      "limitation": "Particle transitions are not stored at every physics step; this checks recorded proxy states, reference wrenches, and commands only."
+    },
+    {
+      "condition": [
+        "sand",
+        "forward",
+        0.04,
+        10.0
+      ],
+      "cases": [
+        "sand-forward-reference-i50",
+        "sand-forward-mass-comparison"
+      ],
+      "solver_iterations": [
+        50,
+        200
+      ],
+      "common_physics_steps": 600,
+      "equal_trace_lengths": false,
+      "maximum_absolute_component_difference": {
+        "reference_wrench": 725.6717529296875,
+        "free_body_pose": 0.2110006958246231,
+        "free_body_velocity": 21.7633113861084,
+        "command": 0.0
+      },
+      "identical_recorded_reference_inputs": false,
+      "limitation": "Particle transitions are not stored at every physics step; this checks recorded proxy states, reference wrenches, and commands only."
+    },
+    {
+      "condition": [
+        "sand",
+        "forward",
+        0.04,
+        10.0
+      ],
+      "cases": [
+        "sand-forward-reference-i50",
+        "sand-forward-reference-i200"
+      ],
+      "solver_iterations": [
+        50,
+        200
+      ],
+      "common_physics_steps": 708,
+      "equal_trace_lengths": false,
+      "maximum_absolute_component_difference": {
+        "reference_wrench": 623.46630859375,
+        "free_body_pose": 0.37647029757499695,
+        "free_body_velocity": 14.518998146057129,
+        "command": 0.0
+      },
+      "identical_recorded_reference_inputs": false,
+      "limitation": "Particle transitions are not stored at every physics step; this checks recorded proxy states, reference wrenches, and commands only."
+    },
+    {
+      "condition": [
+        "snow",
+        "forward",
+        0.04,
+        10.0
+      ],
+      "cases": [
+        "snow-forward-reference-i50",
+        "snow-forward-mass-comparison"
+      ],
+      "solver_iterations": [
+        50,
+        200
+      ],
+      "common_physics_steps": 600,
+      "equal_trace_lengths": false,
+      "maximum_absolute_component_difference": {
+        "reference_wrench": 477.328369140625,
+        "free_body_pose": 0.23361553251743317,
+        "free_body_velocity": 12.699884414672852,
+        "command": 0.0
+      },
+      "identical_recorded_reference_inputs": false,
+      "limitation": "Particle transitions are not stored at every physics step; this checks recorded proxy states, reference wrenches, and commands only."
+    }
+  ]
+}
