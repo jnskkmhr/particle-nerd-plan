@@ -1,0 +1,64 @@
+{
+  "episode": "validation_diverse_6_box/demo_0",
+  "sample_radius_m": 0.00800000037997961,
+  "spacing_m": 0.016,
+  "rows": [
+    {
+      "step": 0,
+      "time_s": 0.0,
+      "learned": {
+        "nearest_neighbor_median_mm": 13.013829416268708,
+        "nearest_neighbor_p05_mm": 10.979707231066678,
+        "fraction_with_neighbor_below_half_initial_spacing": 0.0
+      },
+      "mpm": {
+        "nearest_neighbor_median_mm": 13.013829416268708,
+        "nearest_neighbor_p05_mm": 10.979707231066678,
+        "fraction_with_neighbor_below_half_initial_spacing": 0.0
+      }
+    },
+    {
+      "step": 100,
+      "time_s": 0.4999999888241291,
+      "learned": {
+        "nearest_neighbor_median_mm": 12.481477956618903,
+        "nearest_neighbor_p05_mm": 6.407994094825549,
+        "fraction_with_neighbor_below_half_initial_spacing": 0.07775
+      },
+      "mpm": {
+        "nearest_neighbor_median_mm": 12.30952997229294,
+        "nearest_neighbor_p05_mm": 9.391102784523053,
+        "fraction_with_neighbor_below_half_initial_spacing": 0.016
+      }
+    },
+    {
+      "step": 300,
+      "time_s": 1.4999999664723873,
+      "learned": {
+        "nearest_neighbor_median_mm": 12.128794768777095,
+        "nearest_neighbor_p05_mm": 4.765854357017422,
+        "fraction_with_neighbor_below_half_initial_spacing": 0.09275
+      },
+      "mpm": {
+        "nearest_neighbor_median_mm": 11.94602731996081,
+        "nearest_neighbor_p05_mm": 8.819750751154954,
+        "fraction_with_neighbor_below_half_initial_spacing": 0.027
+      }
+    },
+    {
+      "step": 600,
+      "time_s": 2.9999999329447746,
+      "learned": {
+        "nearest_neighbor_median_mm": 10.934036768801999,
+        "nearest_neighbor_p05_mm": 3.549826824537424,
+        "fraction_with_neighbor_below_half_initial_spacing": 0.206
+      },
+      "mpm": {
+        "nearest_neighbor_median_mm": 11.11384790782095,
+        "nearest_neighbor_p05_mm": 6.323902959126397,
+        "fraction_with_neighbor_below_half_initial_spacing": 0.108
+      }
+    }
+  ],
+  "scope": "Complete coupled rollout with recorded external loads, after swept tray fix. Neighbor metrics are offline diagnostics, outside the GPU simulation step."
+}
