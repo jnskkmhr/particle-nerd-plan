@@ -1,18 +1,184 @@
 {
-  "updated_utc": "2026-10-16T19:11:46.124543+00:00",
+  "updated_utc": "2026-10-16T19:13:28.501587+00:00",
   "status": {
     "state": "running",
     "completed": [
       "box-lift-50",
       "box-lift-25",
       "box-lift-10",
-      "box-lift-5"
+      "box-lift-5",
+      "box-lift-2"
     ],
-    "current": "box-lift-2",
+    "current": "box-lift-1",
     "total": 12,
-    "updated_utc": "2026-10-16T19:11:26.878483+00:00"
+    "updated_utc": "2026-10-16T19:12:53.212039+00:00"
   },
   "runs": [
+    {
+      "case": "box-lift",
+      "exact_contact_material_sweeps": 2,
+      "solver": [
+        "gs"
+      ],
+      "dt": 0.005,
+      "steps": 600,
+      "repeats": 3,
+      "seed": 20261016,
+      "scene": {
+        "scene": "small",
+        "bed_size_m": [
+          0.32,
+          0.32,
+          0.16
+        ],
+        "lattice_resolution": [
+          20,
+          20,
+          10
+        ],
+        "expected_particles_per_environment": 4000,
+        "particle_spacing_m": [
+          0.016,
+          0.016,
+          0.016
+        ],
+        "particle_radius_m": 0.008000000000000002,
+        "particles_per_cell_axis": 1.25,
+        "tray_motion": "fixed level tray"
+      },
+      "particle_count": 4000,
+      "jitter_fraction": 0.2,
+      "body_shape": "box",
+      "body_size_m": [
+        0.12,
+        0.12,
+        0.08
+      ],
+      "body_mass_kg": 1.5,
+      "material": {
+        "density": 1200,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "hardening": 0.0,
+        "viscosity": 0.0
+      },
+      "total": {
+        "mean_ms": 18.460444173672133,
+        "median_ms": 17.761096532922238,
+        "p95_ms": 21.97621189407073,
+        "samples": 1800
+      },
+      "repeat_means_ms": [
+        18.647996734750148,
+        18.57900892345545,
+        18.1543268628108
+      ],
+      "separately_profiled_components": {
+        "_particles_to_cells": {
+          "mean_ms": 1.7592173481049638,
+          "median_ms": 1.6787834465503693,
+          "p95_ms": 2.1293008758220817,
+          "samples": 600
+        },
+        "_rebuild_scratchpad": {
+          "mean_ms": 1.6161826852476224,
+          "median_ms": 1.5356350340880454,
+          "p95_ms": 2.004664292326197,
+          "samples": 600
+        },
+        "_rasterize_colliders": {
+          "mean_ms": 0.8782259398140013,
+          "median_ms": 0.8337010513059795,
+          "p95_ms": 1.0981929313857106,
+          "samples": 600
+        },
+        "_compute_unconstrained_velocity": {
+          "mean_ms": 0.8640173909952864,
+          "median_ms": 0.8189809741452336,
+          "p95_ms": 1.0842045012395827,
+          "samples": 600
+        },
+        "_build_collider_rigidity_operator": {
+          "mean_ms": 0.7722001282187799,
+          "median_ms": 0.7263899897225201,
+          "p95_ms": 1.0192261892370873,
+          "samples": 600
+        },
+        "_build_elasticity_system": {
+          "mean_ms": 1.4462074257122974,
+          "median_ms": 1.3701835414394736,
+          "p95_ms": 1.823461725143715,
+          "samples": 600
+        },
+        "_build_plasticity_system": {
+          "mean_ms": 1.0844377903655793,
+          "median_ms": 1.0212259367108345,
+          "p95_ms": 1.3927898602560163,
+          "samples": 600
+        },
+        "_load_warmstart": {
+          "mean_ms": 0.2749650254069517,
+          "median_ms": 0.2647775108925998,
+          "p95_ms": 0.3532301168888807,
+          "samples": 600
+        },
+        "_solve_rheology": {
+          "mean_ms": 2.9471758995593214,
+          "median_ms": 2.904630033299327,
+          "p95_ms": 3.727292804978787,
+          "samples": 600
+        },
+        "_save_for_next_warmstart": {
+          "mean_ms": 0.672315388219431,
+          "median_ms": 0.6449719658121467,
+          "p95_ms": 0.8458717609755695,
+          "samples": 600
+        },
+        "_update_particles": {
+          "mean_ms": 0.44691594627996284,
+          "median_ms": 0.4256945103406906,
+          "p95_ms": 0.5864406412001698,
+          "samples": 600
+        },
+        "_save_data": {
+          "mean_ms": 0.1235075721827646,
+          "median_ms": 0.11748354882001877,
+          "p95_ms": 0.15738309011794627,
+          "samples": 600
+        }
+      },
+      "residual_l2_mean": 0.0035650037101105643,
+      "residual_linf_mean": 0.040398506095821046,
+      "fraction_steps_below_solver_tolerance": 0.01,
+      "tolerance": 0.0001,
+      "gpu": "NVIDIA GeForce RTX 5080",
+      "cuda_graph": false,
+      "initial_state_sha256": "25cbf609f08aabe886db5d6351bdf85dcf3837bb950d46729e1a97a9c865e923",
+      "packages": {
+        "torch": "2.11.0+cu130",
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "mujoco": "3.15.0",
+        "mujoco-warp": "3.15.0",
+        "numpy": "2.4.6"
+      },
+      "isaaclab_commit": "cd1dfa54b52028fed55b16e2f4eeb79db970f4f5",
+      "timing_scope": "Synchronized NewtonManager.step: complete lagged MJWarp-MPM coupled physics; excludes external-action staging, scene cache update, rendering, recording, reset, compilation and diagnostics.",
+      "iteration_policy": "Exactly N contact/material sweeps, no early stop or residual readback in timed runs. Original Newton kernels, warmstart, assembly and particle/material update. Not stock max_iterations semantics.",
+      "reference": "50-sweep rollout is a numerical comparison, not established ground truth; compare 25 vs 50 before interpreting errors.",
+      "error_vs_50_sweeps": {
+        "particle_position_rms_mm": 9.125019073486328,
+        "particle_velocity_rms_m_s": 0.05857716500759125,
+        "body_position_rms_mm": 22.699325561523438,
+        "body_angle_rms_deg": 16.10791778564453,
+        "body_force_vector_rmse_n": 40.15477752685547,
+        "body_force_vector_nrmse": 1.0750153064727783,
+        "body_torque_vector_rmse_nm": 0.36446642875671387,
+        "peak_body_vertical_force_n": 240.6485137939453
+      },
+      "speedup_vs_50": 1.5073590876154102
+    },
     {
       "case": "box-lift",
       "exact_contact_material_sweeps": 5,
