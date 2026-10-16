@@ -690,6 +690,16 @@ This is one new scene demonstration, not a generalization benchmark or a fully c
 <footer>Open 2 × 2 × 0.5 m bed; 0.04 m grid; 63,504 particles; G1 mass 33.34 kg. One seed; short trials.<br><a href="g1-force.html">Force profiles, robot motion, parameter studies and exact settings →</a></footer>
 </section>
 <!-- G1_FORCE_SLIDES_END -->
+<!-- G1_NATIVE_PLAY_START -->
+<section class="slide" aria-labelledby="g1-force-native"><div class="eyebrow">54 / G1 NATIVE PLAY SCENE <span class="pill measured">PAIRED SIMULATION</span></div>
+<h2 id="g1-force-native">G1 walks from the platform onto sand</h2>
+<p class="small">Unchanged play scene: 2 × 2 × 0.3 m sand bed · 0.04 m grid · 39,690 particles · forward command 1 m/s.</p>
+<video controls playsinline preload="metadata" poster="assets/g1-force-play/comparison.jpg" style="display:block;width:100%;max-height:360px;background:#f7f9f7" aria-label="Native G1 scene: MPM reference versus estimated contact forces"><source src="assets/g1-force-play/comparison.mp4" type="video/mp4"></video>
+<p class="small"><b>Both runs reach the workspace boundary:</b> reference 3.68 s; estimated feedback 4.04 s.<br>Material-contact force RMSE: 97.2 N on the reference trajectory; 158.5 N on the estimated-feedback trajectory.</p>
+<footer>Same initial states, policy and scene; native RTX appearance and camera tracking. MPM advances particles in both runs.<br><a href="g1-force-play.html">Per-foot force profiles, motion comparison and exact settings →</a></footer>
+<aside class="notes">Confirmed task: IsaacContrib-Velocity-Sand-G1-29dof-MPM-Play; policy run 5f1xyc21, seed 42. No terrain, particle, material, lighting, color or camera overrides. Maximum 25 MPM solver iterations; analytical contact solver uses 200 iterations and effective particle mass multiplier 100, matching the previous improved estimator. Error is RMS of each foot's 3D material-force error, averaged across both feet and times where either reference material-force magnitude exceeds 20 N. Each estimate is compared with MPM feedback on its own trajectory. The paired video shows their shared recorded time interval, 0–3.68 s. Native workspace termination is retained. This is one short trial, with reference MPM particle motion, not validation of a learned particle model. CUDA graphs are disabled for diagnostic recording.</aside>
+</section>
+<!-- G1_NATIVE_PLAY_END -->
 </main>
 <nav class="toolbar" aria-label="Presentation controls">
   <a class="brand" href="#1" aria-label="First slide">PARTICLE NeRD <span>/ PLAN &amp; RESULTS</span></a>

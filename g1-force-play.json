@@ -1,0 +1,1568 @@
+{
+  "native_initial_frames_pixel_identical": true,
+  "scope": "Registered stock-play scene; reference versus estimated material-force feedback, both with MPM particle dynamics",
+  "scene_configs_equal": true,
+  "checkpoint_equal": true,
+  "all_recorded_initial_physical_and_observation_arrays_equal": true,
+  "initial_state_validation": "Recomputed SHA256 for every array in each initial_state.npz and checked metadata and pair equality",
+  "stock_scene_validation": "Verified stock_config.json and scene_config.json hashes; their only configuration difference is sim.physics.use_cuda_graph true to false. num_envs=1 is part of both snapshots. Headless collection subsequently suppresses visualizers and automatic recorders. Native replay uses saved visualizer settings.",
+  "metric_definition": "Force accuracy is computed within each trajectory against its own MPM contact solve, never by subtracting force profiles from the two different robot trajectories.",
+  "material_phase_definition": "Any foot's MPM material force magnitude exceeds 20 N. This excludes unloaded rigid-platform approach intervals from the primary error metric.",
+  "direct_support_sampling": "Rigid-floor/platform force sampled after the final rigid substep; material feedback applies over the coupled interval. Curves are not identical-time quadrature measurements.",
+  "video_common_last_simulation_time_s": 3.68,
+  "video_encoded_common_duration_s": 3.72,
+  "video_metadata": {
+    "reference_video": "particle_nerd_plan/assets/g1-force-play/reference-native.mp4",
+    "estimated_video": "particle_nerd_plan/assets/g1-force-play/estimated-native.mp4",
+    "input_streams": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "25/1",
+        "duration": "3.720000",
+        "nb_frames": "93"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "25/1",
+        "duration": "4.080000",
+        "nb_frames": "102"
+      }
+    ],
+    "common_duration_s": 3.72,
+    "common_last_simulation_time_s": 3.68,
+    "presentation": "Synchronized from time zero; shared recorded duration only. Each panel resized equally to 960 pixels wide. Labels outside scene. No scene recoloring or camera changes."
+  },
+  "force_timestamp": "Start of each coupled physics interval",
+  "runs": [
+    {
+      "case": "reference",
+      "feedback": "reference",
+      "metadata": {
+        "task": "IsaacContrib-Velocity-Sand-G1-29dof-MPM-Play",
+        "scene_mode": "task",
+        "stock_config_file": "stock_config.json",
+        "stock_config_sha256": "d66576200fb52c1abf2cbf0803dcf75b20c4cb9a67151305d29a633eeaae6c18",
+        "scene_config_file": "scene_config.json",
+        "scene_config_sha256": "d1ffe81b2f3f5a2847c12200ec4b5994a28b189e8457e73274cfcbcfcbf3b3c0",
+        "stock_visualizer_cfgs": [
+          {
+            "class_type": "isaaclab_visualizers.newton.newton_visualizer:NewtonGLVisualizer",
+            "cloning_contexts": [
+              "isaaclab_newton.cloner:NewtonReplicateContext"
+            ],
+            "view": null,
+            "window": {
+              "size": [
+                1920,
+                1080
+              ],
+              "fps": 30.0
+            },
+            "headless": false,
+            "cameras": null,
+            "eye": [
+              2.0,
+              -3.0,
+              0.5
+            ],
+            "lookat": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "focal_length": 12.0,
+            "background_color": null,
+            "origin_type": "asset",
+            "origin_env_index": 0,
+            "origin_track_path": "robot",
+            "streaming_view": false,
+            "streaming_sensor_prim_path": null,
+            "streaming_envs": 32,
+            "streaming_gt_types": [
+              "rgb"
+            ],
+            "streaming_depth_min": 0.1,
+            "streaming_depth_max": 10.0,
+            "max_visible_envs": null,
+            "visible_env_indices": null,
+            "randomly_sample_visible_envs": true,
+            "enable_markers": true,
+            "enable_live_plots": true,
+            "live_plots_update_interval": 5,
+            "visualizer_type": "newton_gl",
+            "world_spacing": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "show_joints": false,
+            "show_contacts": false,
+            "show_collision": false,
+            "show_springs": false,
+            "show_inertia_boxes": false,
+            "show_com": false,
+            "show_particles": false,
+            "particle_color": null,
+            "enable_picking": true,
+            "enable_shadows": true,
+            "enable_sky": true,
+            "enable_wireframe": false,
+            "sky_upper_color": [
+              0.2,
+              0.4,
+              0.6
+            ],
+            "sky_lower_color": [
+              0.5,
+              0.6,
+              0.7
+            ],
+            "light_color": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "class_type": "isaaclab_visualizers.newton.newton_visualizer:NewtonRTXVisualizer",
+            "cloning_contexts": [
+              "isaaclab_newton.cloner:NewtonReplicateContext"
+            ],
+            "view": null,
+            "window": {
+              "size": [
+                1920,
+                1080
+              ],
+              "fps": 30.0
+            },
+            "headless": false,
+            "cameras": null,
+            "eye": [
+              2.0,
+              -3.0,
+              0.5
+            ],
+            "lookat": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "focal_length": 12.0,
+            "background_color": null,
+            "origin_type": "asset",
+            "origin_env_index": 0,
+            "origin_track_path": "robot",
+            "streaming_view": false,
+            "streaming_sensor_prim_path": null,
+            "streaming_envs": 32,
+            "streaming_gt_types": [
+              "rgb"
+            ],
+            "streaming_depth_min": 0.1,
+            "streaming_depth_max": 10.0,
+            "max_visible_envs": null,
+            "visible_env_indices": null,
+            "randomly_sample_visible_envs": true,
+            "enable_markers": true,
+            "enable_live_plots": true,
+            "live_plots_update_interval": 5,
+            "visualizer_type": "newton_rtx",
+            "enable_picking": true,
+            "render_settings": {}
+          }
+        ],
+        "material_name": "stock_task_material",
+        "material": {
+          "density": 1600.0,
+          "young_modulus": 1000000000000000.0,
+          "friction": 0.48,
+          "yield_pressure": 1000000000000000.0,
+          "tensile_yield_ratio": 0.0,
+          "yield_stress": 0.0,
+          "hardening": 0.0,
+          "dilatancy": 0.0,
+          "viscosity": 0.0
+        },
+        "poisson_ratio": 0.3,
+        "feedback": "reference",
+        "command_name": "stock_task_commands",
+        "target_command": null,
+        "standing_duration_s": 0.0,
+        "requested_duration_s": 8.0,
+        "seed": 42,
+        "bed_dimensions_m": [
+          2.0,
+          2.0,
+          0.3
+        ],
+        "initial_surface_z_m": null,
+        "ground_z_m": null,
+        "container_walls": "stock task geometry; see scene_config.json",
+        "voxel_size_m": 0.04,
+        "particle_resolution": [
+          63,
+          63,
+          10
+        ],
+        "particle_spacing_m": [
+          0.031746031746031744,
+          0.031746031746031744,
+          0.03
+        ],
+        "particle_radius_m": 0.015576506238993287,
+        "jitter_m": 0.05,
+        "physics_dt_s": 0.005,
+        "control_dt_s": 0.02,
+        "mpm_solver_max_iterations": 25,
+        "mpm_tolerance": 0.0001,
+        "rigid_substeps_per_coupled_step": 2,
+        "coupling": "lagged ankle-roll link proxies",
+        "cuda_graph": false,
+        "estimator_iterations": 200,
+        "checkpoint": "/home/jkamohara/isaac/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/contrib/g1_29dof_mpm/benchmark/data/checkpoints/5f1xyc21/model_39998.pt",
+        "checkpoint_sha256": "2d858c14766b64d69c7e19aae4edc3b8403d49b344bd6278fc77ec6b7a5938c4",
+        "evaluation": "MPM particle velocities supplied to independent force reconstruction; MPM feedback drives G1.",
+        "force_convention": "World-frame force and torque about each foot body COM, order [Fx,Fy,Fz,Tx,Ty,Tz].",
+        "reference_timing": "reference_wrench is generated this step; applied_wrench is lagged feedback entering this step.",
+        "source_commit": "fe4bdf0f47f94745977a995bb51566d67b0dca71",
+        "runner_sha256": "0e43c6560b4aa888ebb84f382c2980949ecc0b72a0c05e5360fef8e00bac5086",
+        "packages": {
+          "newton": "1.8.0.dev0",
+          "warp-lang": "1.19.0.dev20261008",
+          "mujoco": "3.15.0",
+          "mujoco-warp": "3.15.0",
+          "torch": "2.11.0+cu130",
+          "numpy": "2.4.6"
+        },
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "jitter_definition": "Full width in meters of independent per-axis uniform offsets [-jitter/2, jitter/2]",
+        "material_bounds_local_m": [
+          [
+            -1.0,
+            -1.0,
+            -0.3
+          ],
+          [
+            1.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "material_asset_initial_position_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "task_preservation": "Registered task defaults retained for geometry, material, commands, resets, actuation and solver settings. Only num_envs=1, CUDA graphs disabled for instrumentation, and headless visualizer/video-recorder suppression differ. Collection stops at the first native termination.",
+        "particle_count": 39690,
+        "particle_mass_kg": 1919.9998779296875,
+        "robot_mass_kg": 33.34114074707031,
+        "body_labels": [
+          "/World/envs/env_0/Robot/Geometry/pelvis",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link/left_ankle_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/pelvis_contour_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link/right_ankle_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/head_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link/left_wrist_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link/left_wrist_yaw_link/left_rubber_hand",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/logo_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link/right_rubber_hand",
+          "/World/envs/env_0/MPMBedFloor",
+          "/World/envs/env_0/MPMBedWallFront",
+          "/World/envs/env_0/MPMApproachBank",
+          "/World/envs/env_0/MPMBedWallLeft",
+          "/World/envs/env_0/MPMBedWallRight"
+        ],
+        "foot_body_ids": [
+          6,
+          13
+        ],
+        "mpm_local_foot_body_ids": [
+          0,
+          1
+        ],
+        "foot_body_labels": [
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link/left_ankle_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link/right_ankle_roll_link"
+        ],
+        "body_com_local": [
+          [
+            0.0,
+            0.0,
+            -0.07604999840259552
+          ],
+          [
+            0.0027409999165683985,
+            0.047791000455617905,
+            -0.02606000006198883
+          ],
+          [
+            0.029812000691890717,
+            -0.0010450000409036875,
+            -0.08793400228023529
+          ],
+          [
+            -0.05770900100469589,
+            -0.010981000028550625,
+            -0.15078000724315643
+          ],
+          [
+            0.005456999875605106,
+            0.003963999915868044,
+            -0.12073999643325806
+          ],
+          [
+            -0.007269000168889761,
+            0.0,
+            0.011137000285089016
+          ],
+          [
+            0.0265050008893013,
+            0.0,
+            -0.01642500050365925
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0027409999165683985,
+            -0.047791000455617905,
+            -0.02606000006198883
+          ],
+          [
+            0.029812000691890717,
+            0.0010450000409036875,
+            -0.08793400228023529
+          ],
+          [
+            -0.05770900100469589,
+            0.010981000028550625,
+            -0.15078000724315643
+          ],
+          [
+            0.005456999875605106,
+            -0.003963999915868044,
+            -0.12073999643325806
+          ],
+          [
+            -0.007269000168889761,
+            0.0,
+            0.011137000285089016
+          ],
+          [
+            0.0265050008893013,
+            0.0,
+            -0.01642500050365925
+          ],
+          [
+            0.0034940000623464584,
+            0.00023299999884329736,
+            0.01803399994969368
+          ],
+          [
+            0.0,
+            2.300000051036477e-05,
+            0.0
+          ],
+          [
+            0.0009309999877586961,
+            0.0003459999861661345,
+            0.15082000195980072
+          ],
+          [
+            0.005266999825835228,
+            0.000299000006634742,
+            0.4498690068721771
+          ],
+          [
+            0.0,
+            0.035891998559236526,
+            -0.011628000065684319
+          ],
+          [
+            -0.00022699999681208283,
+            0.007269999943673611,
+            -0.06324300169944763
+          ],
+          [
+            0.010773000307381153,
+            -0.0029490001033991575,
+            -0.07200899720191956
+          ],
+          [
+            0.06495600193738937,
+            0.004453999921679497,
+            -0.010061999782919884
+          ],
+          [
+            0.01713944785296917,
+            0.0005375909386202693,
+            4.886400120085455e-07
+          ],
+          [
+            0.022999897599220276,
+            -0.0011168530909344554,
+            -0.001116580911912024
+          ],
+          [
+            0.022003816440701485,
+            0.0004948509740643203,
+            0.0005386112025007606
+          ],
+          [
+            0.05361310765147209,
+            -0.0029590523336082697,
+            0.002154130954295397
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.035891998559236526,
+            -0.011628000065684319
+          ],
+          [
+            -0.00022699999681208283,
+            -0.007269999943673611,
+            -0.06324300169944763
+          ],
+          [
+            0.010773000307381153,
+            0.0029490001033991575,
+            -0.07200899720191956
+          ],
+          [
+            0.06495600193738937,
+            -0.004453999921679497,
+            -0.010061999782919884
+          ],
+          [
+            0.01713944785296917,
+            -0.0005375909386202693,
+            4.886400120085455e-07
+          ],
+          [
+            0.022999897599220276,
+            0.0011168530909344554,
+            -0.001116580911912024
+          ],
+          [
+            0.022003816440701485,
+            -0.0004948509740643203,
+            0.0005386112025007606
+          ],
+          [
+            0.05361310765147209,
+            0.0029590523336082697,
+            0.002154130954295397
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "estimator": {
+          "method": "independent_virtual_foot_proxy",
+          "iterations": 200,
+          "effective_mass_scale": 100.0,
+          "gradient_radius_m": 0.065,
+          "gradient_contact_band_m": 0.08,
+          "stabilization": 0.01,
+          "additional_contact_offset_m": 0.0,
+          "surface_velocity_approximation": "instantaneous COM twist; MPM uses forward finite rotation",
+          "input_velocity": "MPM proxy input after lagged-wrench rewind; no additional gravity or actuation",
+          "particle_velocity": "reference MPM next velocity",
+          "feet": [
+            {
+              "body_id": 0,
+              "shape_id": 0,
+              "virtual_mass_kg": 1.9643064737319946,
+              "virtual_inertia_local": [
+                [
+                  0.0047625582665205,
+                  -7.344208370341221e-06,
+                  -0.0019020260078832507
+                ],
+                [
+                  -7.344208825088572e-06,
+                  0.03449919447302818,
+                  1.4062665059100254e-06
+                ],
+                [
+                  -0.0019020260078832507,
+                  1.4062705986361834e-06,
+                  0.035579368472099304
+                ]
+              ],
+              "body_com_local_m": [
+                0.0265050008893013,
+                0.0,
+                -0.01642500050365925
+              ],
+              "shape_half_extents_m": [
+                0.08500000089406967,
+                0.029999999329447746,
+                0.004999999888241291
+              ],
+              "shape_local_transform": [
+                0.03500000014901161,
+                0.0,
+                -0.030400000512599945,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "shape_margin_m": 0.01875000074505806,
+              "contact_friction": 1.0
+            },
+            {
+              "body_id": 1,
+              "shape_id": 1,
+              "virtual_mass_kg": 1.9632205963134766,
+              "virtual_inertia_local": [
+                [
+                  0.004747708328068256,
+                  7.32130820324528e-06,
+                  -0.0018960953457280993
+                ],
+                [
+                  7.321309112739982e-06,
+                  0.0343916229903698,
+                  -1.4018817182659404e-06
+                ],
+                [
+                  -0.0018960953457280993,
+                  -1.4018856973052607e-06,
+                  0.03546842560172081
+                ]
+              ],
+              "body_com_local_m": [
+                0.0265050008893013,
+                0.0,
+                -0.01642500050365925
+              ],
+              "shape_half_extents_m": [
+                0.08500000089406967,
+                0.029999999329447746,
+                0.004999999888241291
+              ],
+              "shape_local_transform": [
+                0.03500000014901161,
+                0.0,
+                -0.030400000512599945,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "shape_margin_m": 0.01875000074505806,
+              "contact_friction": 1.0
+            }
+          ]
+        },
+        "rigid_ground_foot_force_definition": {
+          "quantity": "Force exerted by selected rigid ground shapes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            33,
+            34
+          ],
+          "ground_shape_labels": [
+            "/World/envs/env_0/RigidBedFloor/geometry/mesh",
+            "/World/envs/env_0/ApproachPlatform/geometry/mesh"
+          ],
+          "selection": "Task's native support-shape mask (raw._shape_is_ground)",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        },
+        "generalized_force_telemetry": {
+          "available_fields": [
+            "qfrc_actuator",
+            "qfrc_bias",
+            "qfrc_passive"
+          ],
+          "coordinate_order": "MJWarp generalized velocity order; includes floating-base coordinates",
+          "timing": "MJWarp buffers retained after the last 0.0025 s rigid substep of each 0.005 s coupled step; not a time average over the coupled step",
+          "joint_force": "Newton feed-forward effort before integration; native actuator forces are separate",
+          "estimator_use": "Diagnostics only; estimator receives proxy free motion and particle velocities"
+        },
+        "rigid_contact_count_definition": "MJWarp nacon after the final rigid substep, all rigid contacts including self contact; excludes material-particle contacts",
+        "initial_state_sha256": {
+          "particle_q": "f9e021f6c03e369e4aa1b8d2024751f52842aa0268b2b041c05c14036fbe27aa",
+          "particle_qd": "758a0899dfc41c77fdeac828379fe562bde217504b742be6c0b791eb4d45a7d6",
+          "body_q": "beaf1bf59d80266bea2f43d08e38f35b63e93477668e4cc8cde0ef5bef00e72e",
+          "body_qd": "3dc463a76fc170607c07b104c3cb531362ce7d6e10c1a34e0c0f370aeae08ce8",
+          "joint_q": "89a6348ddecffe4a07491ae0d305636fe9e744a8d007acb1abda9a2a2210d33f",
+          "joint_qd": "9c0095c04ef53d9df41602f3783c90ef3c3e27cc9d0b38262d23930db6313f5a",
+          "observation_policy": "78f986eb3df88734d87ac92c160353a69d868b4e15a1c8d23a2ad690c54f2381",
+          "observation_critic": "76ee42c9753c6d5431fb89a655ed5bc9ad3b0a790e1eec2969db5c7143008182",
+          "observation_command": "a6038e71b268e2a7939aef53c8705ddcc884268ccd905e9d5513d32454dc4399",
+          "observation_privileged": "3f2174dfd2ae08676ebf0502ba66585c8350a6ca84d6b0bbacb242e77354689d"
+        },
+        "initial_state_time_s": 0.0,
+        "outcome": "terminated",
+        "terminal_terms": [
+          "outside_workspace"
+        ],
+        "physics_steps": 736,
+        "control_steps": 184,
+        "duration_s": 3.68,
+        "wall_seconds": 18.248922776983818,
+        "material_asset_initial_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "metadata_corrections": [
+          "Renamed material_asset_initial_rotation_wxyz to material_asset_initial_rotation_xyzw: native configuration quaternion order is XYZW. Values and simulation unchanged."
+        ]
+      },
+      "feet": [
+        {
+          "foot": "left",
+          "force_vector_rmse_all_steps_N": 80.86561619903745,
+          "force_vector_rmse_material_phase_N": 118.71762992129953,
+          "force_vector_rmse_own_loaded_steps_N": 103.6989910395306,
+          "torque_vector_rmse_material_phase_Nm": 6.392906626388624,
+          "vertical_bias_material_phase_N": -12.805099860424571,
+          "material_contact_samples": 227
+        },
+        {
+          "foot": "right",
+          "force_vector_rmse_all_steps_N": 46.913885365860374,
+          "force_vector_rmse_material_phase_N": 69.22802779036077,
+          "force_vector_rmse_own_loaded_steps_N": 79.02288725506871,
+          "torque_vector_rmse_material_phase_Nm": 4.950759034776201,
+          "vertical_bias_material_phase_N": -17.025525728172664,
+          "material_contact_samples": 219
+        }
+      ],
+      "initial_state_hashes": {
+        "particle_q": "f9e021f6c03e369e4aa1b8d2024751f52842aa0268b2b041c05c14036fbe27aa",
+        "particle_qd": "758a0899dfc41c77fdeac828379fe562bde217504b742be6c0b791eb4d45a7d6",
+        "body_q": "beaf1bf59d80266bea2f43d08e38f35b63e93477668e4cc8cde0ef5bef00e72e",
+        "body_qd": "3dc463a76fc170607c07b104c3cb531362ce7d6e10c1a34e0c0f370aeae08ce8",
+        "joint_q": "89a6348ddecffe4a07491ae0d305636fe9e744a8d007acb1abda9a2a2210d33f",
+        "joint_qd": "9c0095c04ef53d9df41602f3783c90ef3c3e27cc9d0b38262d23930db6313f5a",
+        "observation_policy": "78f986eb3df88734d87ac92c160353a69d868b4e15a1c8d23a2ad690c54f2381",
+        "observation_critic": "76ee42c9753c6d5431fb89a655ed5bc9ad3b0a790e1eec2969db5c7143008182",
+        "observation_command": "a6038e71b268e2a7939aef53c8705ddcc884268ccd905e9d5513d32454dc4399",
+        "observation_privileged": "3f2174dfd2ae08676ebf0502ba66585c8350a6ca84d6b0bbacb242e77354689d"
+      },
+      "initial_array_schema": {
+        "particle_q": {
+          "shape": [
+            39690,
+            3
+          ],
+          "dtype": "float32"
+        },
+        "particle_qd": {
+          "shape": [
+            39690,
+            3
+          ],
+          "dtype": "float32"
+        },
+        "body_q": {
+          "shape": [
+            40,
+            7
+          ],
+          "dtype": "float32"
+        },
+        "body_qd": {
+          "shape": [
+            40,
+            6
+          ],
+          "dtype": "float32"
+        },
+        "joint_q": {
+          "shape": [
+            71
+          ],
+          "dtype": "float32"
+        },
+        "joint_qd": {
+          "shape": [
+            65
+          ],
+          "dtype": "float32"
+        },
+        "observation_policy": {
+          "shape": [
+            1,
+            930
+          ],
+          "dtype": "float32"
+        },
+        "observation_critic": {
+          "shape": [
+            1,
+            940
+          ],
+          "dtype": "float32"
+        },
+        "observation_command": {
+          "shape": [
+            1,
+            7
+          ],
+          "dtype": "float32"
+        },
+        "observation_privileged": {
+          "shape": [
+            1,
+            160
+          ],
+          "dtype": "float32"
+        }
+      },
+      "scene_config_sha256_verified": "d1ffe81b2f3f5a2847c12200ec4b5994a28b189e8457e73274cfcbcfcbf3b3c0",
+      "stock_config_sha256_verified": "d66576200fb52c1abf2cbf0803dcf75b20c4cb9a67151305d29a633eeaae6c18",
+      "stock_configuration_only_change": "sim.physics.use_cuda_graph: true to false",
+      "lagged_feedback_exact": true,
+      "first_material_contact_s": 1.99,
+      "material_phase_duration_s": 1.69,
+      "force_vector_rmse_material_phase_N": 97.17611714272594,
+      "force_vector_rmse_all_steps_N": 66.10658258967527,
+      "mean_generated_material_Fz_both_feet_N": 157.41212463378906,
+      "mean_applied_material_Fz_both_feet_N": 156.98501586914062,
+      "mean_direct_rigid_support_Fz_both_feet_N": 160.6272735595703,
+      "peak_direct_rigid_support_Fz_both_feet_N": 2270.29833984375,
+      "last_recorded_root_link_position_m": [
+        0.6860877871513367,
+        -0.1090262308716774,
+        0.6188120245933533
+      ],
+      "root_link_displacement_m": [
+        3.129607915878296,
+        0.13594433665275574,
+        -0.09118795394897461
+      ],
+      "root_last_sample_time_s": 3.66
+    },
+    {
+      "case": "estimated",
+      "feedback": "estimated",
+      "metadata": {
+        "task": "IsaacContrib-Velocity-Sand-G1-29dof-MPM-Play",
+        "scene_mode": "task",
+        "stock_config_file": "stock_config.json",
+        "stock_config_sha256": "d66576200fb52c1abf2cbf0803dcf75b20c4cb9a67151305d29a633eeaae6c18",
+        "scene_config_file": "scene_config.json",
+        "scene_config_sha256": "d1ffe81b2f3f5a2847c12200ec4b5994a28b189e8457e73274cfcbcfcbf3b3c0",
+        "stock_visualizer_cfgs": [
+          {
+            "class_type": "isaaclab_visualizers.newton.newton_visualizer:NewtonGLVisualizer",
+            "cloning_contexts": [
+              "isaaclab_newton.cloner:NewtonReplicateContext"
+            ],
+            "view": null,
+            "window": {
+              "size": [
+                1920,
+                1080
+              ],
+              "fps": 30.0
+            },
+            "headless": false,
+            "cameras": null,
+            "eye": [
+              2.0,
+              -3.0,
+              0.5
+            ],
+            "lookat": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "focal_length": 12.0,
+            "background_color": null,
+            "origin_type": "asset",
+            "origin_env_index": 0,
+            "origin_track_path": "robot",
+            "streaming_view": false,
+            "streaming_sensor_prim_path": null,
+            "streaming_envs": 32,
+            "streaming_gt_types": [
+              "rgb"
+            ],
+            "streaming_depth_min": 0.1,
+            "streaming_depth_max": 10.0,
+            "max_visible_envs": null,
+            "visible_env_indices": null,
+            "randomly_sample_visible_envs": true,
+            "enable_markers": true,
+            "enable_live_plots": true,
+            "live_plots_update_interval": 5,
+            "visualizer_type": "newton_gl",
+            "world_spacing": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "show_joints": false,
+            "show_contacts": false,
+            "show_collision": false,
+            "show_springs": false,
+            "show_inertia_boxes": false,
+            "show_com": false,
+            "show_particles": false,
+            "particle_color": null,
+            "enable_picking": true,
+            "enable_shadows": true,
+            "enable_sky": true,
+            "enable_wireframe": false,
+            "sky_upper_color": [
+              0.2,
+              0.4,
+              0.6
+            ],
+            "sky_lower_color": [
+              0.5,
+              0.6,
+              0.7
+            ],
+            "light_color": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          {
+            "class_type": "isaaclab_visualizers.newton.newton_visualizer:NewtonRTXVisualizer",
+            "cloning_contexts": [
+              "isaaclab_newton.cloner:NewtonReplicateContext"
+            ],
+            "view": null,
+            "window": {
+              "size": [
+                1920,
+                1080
+              ],
+              "fps": 30.0
+            },
+            "headless": false,
+            "cameras": null,
+            "eye": [
+              2.0,
+              -3.0,
+              0.5
+            ],
+            "lookat": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "focal_length": 12.0,
+            "background_color": null,
+            "origin_type": "asset",
+            "origin_env_index": 0,
+            "origin_track_path": "robot",
+            "streaming_view": false,
+            "streaming_sensor_prim_path": null,
+            "streaming_envs": 32,
+            "streaming_gt_types": [
+              "rgb"
+            ],
+            "streaming_depth_min": 0.1,
+            "streaming_depth_max": 10.0,
+            "max_visible_envs": null,
+            "visible_env_indices": null,
+            "randomly_sample_visible_envs": true,
+            "enable_markers": true,
+            "enable_live_plots": true,
+            "live_plots_update_interval": 5,
+            "visualizer_type": "newton_rtx",
+            "enable_picking": true,
+            "render_settings": {}
+          }
+        ],
+        "material_name": "stock_task_material",
+        "material": {
+          "density": 1600.0,
+          "young_modulus": 1000000000000000.0,
+          "friction": 0.48,
+          "yield_pressure": 1000000000000000.0,
+          "tensile_yield_ratio": 0.0,
+          "yield_stress": 0.0,
+          "hardening": 0.0,
+          "dilatancy": 0.0,
+          "viscosity": 0.0
+        },
+        "poisson_ratio": 0.3,
+        "feedback": "estimated",
+        "command_name": "stock_task_commands",
+        "target_command": null,
+        "standing_duration_s": 0.0,
+        "requested_duration_s": 8.0,
+        "seed": 42,
+        "bed_dimensions_m": [
+          2.0,
+          2.0,
+          0.3
+        ],
+        "initial_surface_z_m": null,
+        "ground_z_m": null,
+        "container_walls": "stock task geometry; see scene_config.json",
+        "voxel_size_m": 0.04,
+        "particle_resolution": [
+          63,
+          63,
+          10
+        ],
+        "particle_spacing_m": [
+          0.031746031746031744,
+          0.031746031746031744,
+          0.03
+        ],
+        "particle_radius_m": 0.015576506238993287,
+        "jitter_m": 0.05,
+        "physics_dt_s": 0.005,
+        "control_dt_s": 0.02,
+        "mpm_solver_max_iterations": 25,
+        "mpm_tolerance": 0.0001,
+        "rigid_substeps_per_coupled_step": 2,
+        "coupling": "lagged ankle-roll link proxies",
+        "cuda_graph": false,
+        "estimator_iterations": 200,
+        "checkpoint": "/home/jkamohara/isaac/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/contrib/g1_29dof_mpm/benchmark/data/checkpoints/5f1xyc21/model_39998.pt",
+        "checkpoint_sha256": "2d858c14766b64d69c7e19aae4edc3b8403d49b344bd6278fc77ec6b7a5938c4",
+        "evaluation": "MPM particle velocities supplied to independent force reconstruction; Estimated feedback drives G1; MPM supplies particle motion.",
+        "force_convention": "World-frame force and torque about each foot body COM, order [Fx,Fy,Fz,Tx,Ty,Tz].",
+        "reference_timing": "reference_wrench is generated this step; applied_wrench is lagged feedback entering this step.",
+        "source_commit": "fe4bdf0f47f94745977a995bb51566d67b0dca71",
+        "runner_sha256": "0e43c6560b4aa888ebb84f382c2980949ecc0b72a0c05e5360fef8e00bac5086",
+        "packages": {
+          "newton": "1.8.0.dev0",
+          "warp-lang": "1.19.0.dev20261008",
+          "mujoco": "3.15.0",
+          "mujoco-warp": "3.15.0",
+          "torch": "2.11.0+cu130",
+          "numpy": "2.4.6"
+        },
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "jitter_definition": "Full width in meters of independent per-axis uniform offsets [-jitter/2, jitter/2]",
+        "material_bounds_local_m": [
+          [
+            -1.0,
+            -1.0,
+            -0.3
+          ],
+          [
+            1.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "material_asset_initial_position_m": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "task_preservation": "Registered task defaults retained for geometry, material, commands, resets, actuation and solver settings. Only num_envs=1, CUDA graphs disabled for instrumentation, and headless visualizer/video-recorder suppression differ. Collection stops at the first native termination.",
+        "particle_count": 39690,
+        "particle_mass_kg": 1919.9998779296875,
+        "robot_mass_kg": 33.34114074707031,
+        "body_labels": [
+          "/World/envs/env_0/Robot/Geometry/pelvis",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link/left_ankle_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/pelvis_contour_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link/right_ankle_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/head_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link/left_wrist_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link/left_wrist_yaw_link/left_rubber_hand",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/logo_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link/right_rubber_hand",
+          "/World/envs/env_0/MPMBedFloor",
+          "/World/envs/env_0/MPMBedWallFront",
+          "/World/envs/env_0/MPMApproachBank",
+          "/World/envs/env_0/MPMBedWallLeft",
+          "/World/envs/env_0/MPMBedWallRight"
+        ],
+        "foot_body_ids": [
+          6,
+          13
+        ],
+        "mpm_local_foot_body_ids": [
+          0,
+          1
+        ],
+        "foot_body_labels": [
+          "/World/envs/env_0/Robot/Geometry/pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link/left_knee_link/left_ankle_pitch_link/left_ankle_roll_link",
+          "/World/envs/env_0/Robot/Geometry/pelvis/right_hip_pitch_link/right_hip_roll_link/right_hip_yaw_link/right_knee_link/right_ankle_pitch_link/right_ankle_roll_link"
+        ],
+        "body_com_local": [
+          [
+            0.0,
+            0.0,
+            -0.07604999840259552
+          ],
+          [
+            0.0027409999165683985,
+            0.047791000455617905,
+            -0.02606000006198883
+          ],
+          [
+            0.029812000691890717,
+            -0.0010450000409036875,
+            -0.08793400228023529
+          ],
+          [
+            -0.05770900100469589,
+            -0.010981000028550625,
+            -0.15078000724315643
+          ],
+          [
+            0.005456999875605106,
+            0.003963999915868044,
+            -0.12073999643325806
+          ],
+          [
+            -0.007269000168889761,
+            0.0,
+            0.011137000285089016
+          ],
+          [
+            0.0265050008893013,
+            0.0,
+            -0.01642500050365925
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0027409999165683985,
+            -0.047791000455617905,
+            -0.02606000006198883
+          ],
+          [
+            0.029812000691890717,
+            0.0010450000409036875,
+            -0.08793400228023529
+          ],
+          [
+            -0.05770900100469589,
+            0.010981000028550625,
+            -0.15078000724315643
+          ],
+          [
+            0.005456999875605106,
+            -0.003963999915868044,
+            -0.12073999643325806
+          ],
+          [
+            -0.007269000168889761,
+            0.0,
+            0.011137000285089016
+          ],
+          [
+            0.0265050008893013,
+            0.0,
+            -0.01642500050365925
+          ],
+          [
+            0.0034940000623464584,
+            0.00023299999884329736,
+            0.01803399994969368
+          ],
+          [
+            0.0,
+            2.300000051036477e-05,
+            0.0
+          ],
+          [
+            0.0009309999877586961,
+            0.0003459999861661345,
+            0.15082000195980072
+          ],
+          [
+            0.005266999825835228,
+            0.000299000006634742,
+            0.4498690068721771
+          ],
+          [
+            0.0,
+            0.035891998559236526,
+            -0.011628000065684319
+          ],
+          [
+            -0.00022699999681208283,
+            0.007269999943673611,
+            -0.06324300169944763
+          ],
+          [
+            0.010773000307381153,
+            -0.0029490001033991575,
+            -0.07200899720191956
+          ],
+          [
+            0.06495600193738937,
+            0.004453999921679497,
+            -0.010061999782919884
+          ],
+          [
+            0.01713944785296917,
+            0.0005375909386202693,
+            4.886400120085455e-07
+          ],
+          [
+            0.022999897599220276,
+            -0.0011168530909344554,
+            -0.001116580911912024
+          ],
+          [
+            0.022003816440701485,
+            0.0004948509740643203,
+            0.0005386112025007606
+          ],
+          [
+            0.05361310765147209,
+            -0.0029590523336082697,
+            0.002154130954295397
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.035891998559236526,
+            -0.011628000065684319
+          ],
+          [
+            -0.00022699999681208283,
+            -0.007269999943673611,
+            -0.06324300169944763
+          ],
+          [
+            0.010773000307381153,
+            0.0029490001033991575,
+            -0.07200899720191956
+          ],
+          [
+            0.06495600193738937,
+            -0.004453999921679497,
+            -0.010061999782919884
+          ],
+          [
+            0.01713944785296917,
+            -0.0005375909386202693,
+            4.886400120085455e-07
+          ],
+          [
+            0.022999897599220276,
+            0.0011168530909344554,
+            -0.001116580911912024
+          ],
+          [
+            0.022003816440701485,
+            -0.0004948509740643203,
+            0.0005386112025007606
+          ],
+          [
+            0.05361310765147209,
+            0.0029590523336082697,
+            0.002154130954295397
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "estimator": {
+          "method": "independent_virtual_foot_proxy",
+          "iterations": 200,
+          "effective_mass_scale": 100.0,
+          "gradient_radius_m": 0.065,
+          "gradient_contact_band_m": 0.08,
+          "stabilization": 0.01,
+          "additional_contact_offset_m": 0.0,
+          "surface_velocity_approximation": "instantaneous COM twist; MPM uses forward finite rotation",
+          "input_velocity": "MPM proxy input after lagged-wrench rewind; no additional gravity or actuation",
+          "particle_velocity": "reference MPM next velocity",
+          "feet": [
+            {
+              "body_id": 0,
+              "shape_id": 0,
+              "virtual_mass_kg": 1.9643064737319946,
+              "virtual_inertia_local": [
+                [
+                  0.0047625582665205,
+                  -7.344208370341221e-06,
+                  -0.0019020260078832507
+                ],
+                [
+                  -7.344208825088572e-06,
+                  0.03449919447302818,
+                  1.4062665059100254e-06
+                ],
+                [
+                  -0.0019020260078832507,
+                  1.4062705986361834e-06,
+                  0.035579368472099304
+                ]
+              ],
+              "body_com_local_m": [
+                0.0265050008893013,
+                0.0,
+                -0.01642500050365925
+              ],
+              "shape_half_extents_m": [
+                0.08500000089406967,
+                0.029999999329447746,
+                0.004999999888241291
+              ],
+              "shape_local_transform": [
+                0.03500000014901161,
+                0.0,
+                -0.030400000512599945,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "shape_margin_m": 0.01875000074505806,
+              "contact_friction": 1.0
+            },
+            {
+              "body_id": 1,
+              "shape_id": 1,
+              "virtual_mass_kg": 1.9632205963134766,
+              "virtual_inertia_local": [
+                [
+                  0.004747708328068256,
+                  7.32130820324528e-06,
+                  -0.0018960953457280993
+                ],
+                [
+                  7.321309112739982e-06,
+                  0.0343916229903698,
+                  -1.4018817182659404e-06
+                ],
+                [
+                  -0.0018960953457280993,
+                  -1.4018856973052607e-06,
+                  0.03546842560172081
+                ]
+              ],
+              "body_com_local_m": [
+                0.0265050008893013,
+                0.0,
+                -0.01642500050365925
+              ],
+              "shape_half_extents_m": [
+                0.08500000089406967,
+                0.029999999329447746,
+                0.004999999888241291
+              ],
+              "shape_local_transform": [
+                0.03500000014901161,
+                0.0,
+                -0.030400000512599945,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "shape_margin_m": 0.01875000074505806,
+              "contact_friction": 1.0
+            }
+          ]
+        },
+        "rigid_ground_foot_force_definition": {
+          "quantity": "Force exerted by selected rigid ground shapes on each robot foot, world xyz, newtons",
+          "timing": "Last 0.0025 s rigid substep in each 0.005 s coupled step; not a substep average",
+          "ground_shape_ids": [
+            33,
+            34
+          ],
+          "ground_shape_labels": [
+            "/World/envs/env_0/RigidBedFloor/geometry/mesh",
+            "/World/envs/env_0/ApproachPlatform/geometry/mesh"
+          ],
+          "selection": "Task's native support-shape mask (raw._shape_is_ground)",
+          "foot_order": "Same order as foot_body_ids and estimated/reference wrenches",
+          "state_effect": "Diagnostic buffers only; does not change task contact observations or feedback"
+        },
+        "generalized_force_telemetry": {
+          "available_fields": [
+            "qfrc_actuator",
+            "qfrc_bias",
+            "qfrc_passive"
+          ],
+          "coordinate_order": "MJWarp generalized velocity order; includes floating-base coordinates",
+          "timing": "MJWarp buffers retained after the last 0.0025 s rigid substep of each 0.005 s coupled step; not a time average over the coupled step",
+          "joint_force": "Newton feed-forward effort before integration; native actuator forces are separate",
+          "estimator_use": "Diagnostics only; estimator receives proxy free motion and particle velocities"
+        },
+        "rigid_contact_count_definition": "MJWarp nacon after the final rigid substep, all rigid contacts including self contact; excludes material-particle contacts",
+        "initial_state_sha256": {
+          "particle_q": "f9e021f6c03e369e4aa1b8d2024751f52842aa0268b2b041c05c14036fbe27aa",
+          "particle_qd": "758a0899dfc41c77fdeac828379fe562bde217504b742be6c0b791eb4d45a7d6",
+          "body_q": "beaf1bf59d80266bea2f43d08e38f35b63e93477668e4cc8cde0ef5bef00e72e",
+          "body_qd": "3dc463a76fc170607c07b104c3cb531362ce7d6e10c1a34e0c0f370aeae08ce8",
+          "joint_q": "89a6348ddecffe4a07491ae0d305636fe9e744a8d007acb1abda9a2a2210d33f",
+          "joint_qd": "9c0095c04ef53d9df41602f3783c90ef3c3e27cc9d0b38262d23930db6313f5a",
+          "observation_policy": "78f986eb3df88734d87ac92c160353a69d868b4e15a1c8d23a2ad690c54f2381",
+          "observation_critic": "76ee42c9753c6d5431fb89a655ed5bc9ad3b0a790e1eec2969db5c7143008182",
+          "observation_command": "a6038e71b268e2a7939aef53c8705ddcc884268ccd905e9d5513d32454dc4399",
+          "observation_privileged": "3f2174dfd2ae08676ebf0502ba66585c8350a6ca84d6b0bbacb242e77354689d"
+        },
+        "initial_state_time_s": 0.0,
+        "outcome": "terminated",
+        "terminal_terms": [
+          "outside_workspace"
+        ],
+        "physics_steps": 808,
+        "control_steps": 202,
+        "duration_s": 4.04,
+        "wall_seconds": 20.058413808001205,
+        "material_asset_initial_rotation_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "metadata_corrections": [
+          "Renamed material_asset_initial_rotation_wxyz to material_asset_initial_rotation_xyzw: native configuration quaternion order is XYZW. Values and simulation unchanged."
+        ]
+      },
+      "feet": [
+        {
+          "foot": "left",
+          "force_vector_rmse_all_steps_N": 132.7521351644045,
+          "force_vector_rmse_material_phase_N": 186.04415743860383,
+          "force_vector_rmse_own_loaded_steps_N": 152.51906003240498,
+          "torque_vector_rmse_material_phase_Nm": 11.555365278149239,
+          "vertical_bias_material_phase_N": -22.922776688266488,
+          "material_contact_samples": 270
+        },
+        {
+          "foot": "right",
+          "force_vector_rmse_all_steps_N": 89.10214370080973,
+          "force_vector_rmse_material_phase_N": 125.08404146286604,
+          "force_vector_rmse_own_loaded_steps_N": 113.91558716805679,
+          "torque_vector_rmse_material_phase_Nm": 8.165154686105476,
+          "vertical_bias_material_phase_N": -8.464572507890514,
+          "material_contact_samples": 267
+        }
+      ],
+      "initial_state_hashes": {
+        "particle_q": "f9e021f6c03e369e4aa1b8d2024751f52842aa0268b2b041c05c14036fbe27aa",
+        "particle_qd": "758a0899dfc41c77fdeac828379fe562bde217504b742be6c0b791eb4d45a7d6",
+        "body_q": "beaf1bf59d80266bea2f43d08e38f35b63e93477668e4cc8cde0ef5bef00e72e",
+        "body_qd": "3dc463a76fc170607c07b104c3cb531362ce7d6e10c1a34e0c0f370aeae08ce8",
+        "joint_q": "89a6348ddecffe4a07491ae0d305636fe9e744a8d007acb1abda9a2a2210d33f",
+        "joint_qd": "9c0095c04ef53d9df41602f3783c90ef3c3e27cc9d0b38262d23930db6313f5a",
+        "observation_policy": "78f986eb3df88734d87ac92c160353a69d868b4e15a1c8d23a2ad690c54f2381",
+        "observation_critic": "76ee42c9753c6d5431fb89a655ed5bc9ad3b0a790e1eec2969db5c7143008182",
+        "observation_command": "a6038e71b268e2a7939aef53c8705ddcc884268ccd905e9d5513d32454dc4399",
+        "observation_privileged": "3f2174dfd2ae08676ebf0502ba66585c8350a6ca84d6b0bbacb242e77354689d"
+      },
+      "initial_array_schema": {
+        "particle_q": {
+          "shape": [
+            39690,
+            3
+          ],
+          "dtype": "float32"
+        },
+        "particle_qd": {
+          "shape": [
+            39690,
+            3
+          ],
+          "dtype": "float32"
+        },
+        "body_q": {
+          "shape": [
+            40,
+            7
+          ],
+          "dtype": "float32"
+        },
+        "body_qd": {
+          "shape": [
+            40,
+            6
+          ],
+          "dtype": "float32"
+        },
+        "joint_q": {
+          "shape": [
+            71
+          ],
+          "dtype": "float32"
+        },
+        "joint_qd": {
+          "shape": [
+            65
+          ],
+          "dtype": "float32"
+        },
+        "observation_policy": {
+          "shape": [
+            1,
+            930
+          ],
+          "dtype": "float32"
+        },
+        "observation_critic": {
+          "shape": [
+            1,
+            940
+          ],
+          "dtype": "float32"
+        },
+        "observation_command": {
+          "shape": [
+            1,
+            7
+          ],
+          "dtype": "float32"
+        },
+        "observation_privileged": {
+          "shape": [
+            1,
+            160
+          ],
+          "dtype": "float32"
+        }
+      },
+      "scene_config_sha256_verified": "d1ffe81b2f3f5a2847c12200ec4b5994a28b189e8457e73274cfcbcfcbf3b3c0",
+      "stock_config_sha256_verified": "d66576200fb52c1abf2cbf0803dcf75b20c4cb9a67151305d29a633eeaae6c18",
+      "stock_configuration_only_change": "sim.physics.use_cuda_graph: true to false",
+      "lagged_feedback_exact": true,
+      "first_material_contact_s": 1.99,
+      "material_phase_duration_s": 2.05,
+      "force_vector_rmse_material_phase_N": 158.52199523366465,
+      "force_vector_rmse_all_steps_N": 113.05379560808223,
+      "mean_generated_material_Fz_both_feet_N": 193.5835418701172,
+      "mean_applied_material_Fz_both_feet_N": 177.29554748535156,
+      "mean_direct_rigid_support_Fz_both_feet_N": 146.061279296875,
+      "peak_direct_rigid_support_Fz_both_feet_N": 2270.36572265625,
+      "last_recorded_root_link_position_m": [
+        0.6989206075668335,
+        0.09603656083345413,
+        0.563508927822113
+      ],
+      "root_link_displacement_m": [
+        3.1424407958984375,
+        0.34100714325904846,
+        -0.14649105072021484
+      ],
+      "root_last_sample_time_s": 4.0200000000000005
+    }
+  ]
+}
