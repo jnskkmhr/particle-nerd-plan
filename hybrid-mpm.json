@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-16T19:21:47.671340+00:00",
+  "updated_utc": "2026-10-16T19:22:41.166491+00:00",
   "status": {
     "state": "running",
     "completed": [
@@ -12,11 +12,12 @@
       "sphere-push-50",
       "sphere-push-25",
       "sphere-push-10",
-      "sphere-push-5"
+      "sphere-push-5",
+      "sphere-push-2"
     ],
-    "current": "sphere-push-2",
+    "current": "sphere-push-1",
     "total": 12,
-    "updated_utc": "2026-10-16T19:20:57.454287+00:00"
+    "updated_utc": "2026-10-16T19:22:22.313719+00:00"
   },
   "runs": [
     {
@@ -1008,6 +1009,171 @@
         "peak_body_vertical_force_n": 597.1453247070312
       },
       "speedup_vs_50": 1.0
+    },
+    {
+      "case": "sphere-push",
+      "exact_contact_material_sweeps": 2,
+      "solver": [
+        "gs"
+      ],
+      "dt": 0.005,
+      "steps": 600,
+      "repeats": 3,
+      "seed": 20261016,
+      "scene": {
+        "scene": "small",
+        "bed_size_m": [
+          0.48,
+          0.32,
+          0.12
+        ],
+        "lattice_resolution": [
+          24,
+          16,
+          6
+        ],
+        "expected_particles_per_environment": 2304,
+        "particle_spacing_m": [
+          0.02,
+          0.02,
+          0.02
+        ],
+        "particle_radius_m": 0.010000000000000002,
+        "particles_per_cell_axis": 1.0,
+        "tray_motion": "fixed level tray"
+      },
+      "particle_count": 2304,
+      "jitter_fraction": 0.2,
+      "body_shape": "sphere",
+      "body_size_m": [
+        0.12,
+        0.12,
+        0.12
+      ],
+      "body_mass_kg": 1.5,
+      "material": {
+        "density": 1200,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "hardening": 0.0,
+        "viscosity": 0.0
+      },
+      "total": {
+        "mean_ms": 18.459565436221762,
+        "median_ms": 17.723818018566817,
+        "p95_ms": 21.959510521264747,
+        "samples": 1800
+      },
+      "repeat_means_ms": [
+        18.570574706342693,
+        18.40544714378969,
+        18.402674458532903
+      ],
+      "separately_profiled_components": {
+        "_particles_to_cells": {
+          "mean_ms": 1.6367688794465114,
+          "median_ms": 1.5708190039731562,
+          "p95_ms": 1.9888576120138164,
+          "samples": 600
+        },
+        "_rebuild_scratchpad": {
+          "mean_ms": 1.5631323769533385,
+          "median_ms": 1.4941220288164914,
+          "p95_ms": 1.9545871240552508,
+          "samples": 600
+        },
+        "_rasterize_colliders": {
+          "mean_ms": 0.8486132888356224,
+          "median_ms": 0.8106909808702767,
+          "p95_ms": 1.0711490118410436,
+          "samples": 600
+        },
+        "_compute_unconstrained_velocity": {
+          "mean_ms": 0.8383377123391256,
+          "median_ms": 0.794777472037822,
+          "p95_ms": 1.0539154696743933,
+          "samples": 600
+        },
+        "_build_collider_rigidity_operator": {
+          "mean_ms": 0.7487025953984509,
+          "median_ms": 0.7063645171001554,
+          "p95_ms": 0.9819837985560294,
+          "samples": 600
+        },
+        "_build_elasticity_system": {
+          "mean_ms": 1.4199055653686325,
+          "median_ms": 1.3370374799706042,
+          "p95_ms": 1.8420662207063283,
+          "samples": 600
+        },
+        "_build_plasticity_system": {
+          "mean_ms": 1.0652042124032353,
+          "median_ms": 0.9971304680220783,
+          "p95_ms": 1.4447203837335105,
+          "samples": 600
+        },
+        "_load_warmstart": {
+          "mean_ms": 0.2771154325455427,
+          "median_ms": 0.2661410253494978,
+          "p95_ms": 0.360207533231005,
+          "samples": 600
+        },
+        "_solve_rheology": {
+          "mean_ms": 2.882684198557399,
+          "median_ms": 2.8296405216678977,
+          "p95_ms": 3.752748912665992,
+          "samples": 600
+        },
+        "_save_for_next_warmstart": {
+          "mean_ms": 0.6546265369979665,
+          "median_ms": 0.6244275136850774,
+          "p95_ms": 0.8501478529069572,
+          "samples": 600
+        },
+        "_update_particles": {
+          "mean_ms": 0.43669628076410544,
+          "median_ms": 0.4187630256637931,
+          "p95_ms": 0.558697193628177,
+          "samples": 600
+        },
+        "_save_data": {
+          "mean_ms": 0.11935234069824219,
+          "median_ms": 0.11255854042246938,
+          "p95_ms": 0.1569696818478405,
+          "samples": 600
+        }
+      },
+      "residual_l2_mean": 0.0049658847261441486,
+      "residual_linf_mean": 0.06058901598064055,
+      "fraction_steps_below_solver_tolerance": 0.008333333333333333,
+      "tolerance": 0.0001,
+      "gpu": "NVIDIA GeForce RTX 5080",
+      "cuda_graph": false,
+      "initial_state_sha256": "12f8f1f4d444510f3807c0bb0bd2aa60784c172280e6d2d83f45e02ac97d6ffe",
+      "packages": {
+        "torch": "2.11.0+cu130",
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "mujoco": "3.15.0",
+        "mujoco-warp": "3.15.0",
+        "numpy": "2.4.6"
+      },
+      "isaaclab_commit": "cd1dfa54b52028fed55b16e2f4eeb79db970f4f5",
+      "timing_scope": "Synchronized NewtonManager.step: complete lagged MJWarp-MPM coupled physics; excludes external-action staging, scene cache update, rendering, recording, reset, compilation and diagnostics.",
+      "iteration_policy": "Exactly N contact/material sweeps, no early stop or residual readback in timed runs. Original Newton kernels, warmstart, assembly and particle/material update. Not stock max_iterations semantics.",
+      "reference": "50-sweep rollout is a numerical comparison, not established ground truth; compare 25 vs 50 before interpreting errors.",
+      "error_vs_50_sweeps": {
+        "particle_position_rms_mm": 9.273296356201172,
+        "particle_velocity_rms_m_s": 0.029011933133006096,
+        "body_position_rms_mm": 142.7337188720703,
+        "body_angle_rms_deg": 28.003681182861328,
+        "body_force_vector_rmse_n": 5.186985492706299,
+        "body_force_vector_nrmse": 0.43995237350463867,
+        "body_torque_vector_rmse_nm": 0.04225365072488785,
+        "peak_body_vertical_force_n": 67.32906341552734
+      },
+      "speedup_vs_50": 1.500506915897106
     },
     {
       "case": "sphere-push",
