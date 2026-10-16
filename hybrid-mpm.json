@@ -1,10 +1,179 @@
 {
-  "updated_utc": "2026-10-16T19:03:42.329456+00:00",
+  "updated_utc": "2026-10-16T19:06:48.067368+00:00",
   "status": {
-    "state": "validating remote setup",
-    "completed": [],
-    "current": "short GPU smoke test and first-use compilation",
-    "total": 12
+    "state": "running",
+    "completed": [
+      "box-lift-50"
+    ],
+    "current": "box-lift-25",
+    "total": 12,
+    "updated_utc": "2026-10-16T19:06:41.925166+00:00"
   },
-  "runs": []
+  "runs": [
+    {
+      "case": "box-lift",
+      "exact_contact_material_sweeps": 50,
+      "solver": [
+        "gs"
+      ],
+      "dt": 0.005,
+      "steps": 600,
+      "repeats": 3,
+      "seed": 20261016,
+      "scene": {
+        "scene": "small",
+        "bed_size_m": [
+          0.32,
+          0.32,
+          0.16
+        ],
+        "lattice_resolution": [
+          20,
+          20,
+          10
+        ],
+        "expected_particles_per_environment": 4000,
+        "particle_spacing_m": [
+          0.016,
+          0.016,
+          0.016
+        ],
+        "particle_radius_m": 0.008000000000000002,
+        "particles_per_cell_axis": 1.25,
+        "tray_motion": "fixed level tray"
+      },
+      "particle_count": 4000,
+      "jitter_fraction": 0.2,
+      "body_shape": "box",
+      "body_size_m": [
+        0.12,
+        0.12,
+        0.08
+      ],
+      "body_mass_kg": 1.5,
+      "material": {
+        "density": 1200,
+        "young_modulus": 1000000.0,
+        "poisson_ratio": 0.3,
+        "friction": 0.4,
+        "hardening": 0.0,
+        "viscosity": 0.0
+      },
+      "total": {
+        "mean_ms": 27.82651828660164,
+        "median_ms": 26.770803495310247,
+        "p95_ms": 32.7863244630862,
+        "samples": 1800
+      },
+      "repeat_means_ms": [
+        27.585269680518344,
+        28.157342543709092,
+        27.736942635577485
+      ],
+      "separately_profiled_components": {
+        "_particles_to_cells": {
+          "mean_ms": 1.7567901854636148,
+          "median_ms": 1.701252011116594,
+          "p95_ms": 2.07870053127408,
+          "samples": 600
+        },
+        "_rebuild_scratchpad": {
+          "mean_ms": 1.6227533753650885,
+          "median_ms": 1.5395859954878688,
+          "p95_ms": 2.0305392798036337,
+          "samples": 600
+        },
+        "_rasterize_colliders": {
+          "mean_ms": 0.8723411780859655,
+          "median_ms": 0.8386430563405156,
+          "p95_ms": 1.072135125286877,
+          "samples": 600
+        },
+        "_compute_unconstrained_velocity": {
+          "mean_ms": 0.8526155434083194,
+          "median_ms": 0.8176229312084615,
+          "p95_ms": 1.0718248959165062,
+          "samples": 600
+        },
+        "_build_collider_rigidity_operator": {
+          "mean_ms": 0.795574820561645,
+          "median_ms": 0.7267090259119868,
+          "p95_ms": 1.0673537151888013,
+          "samples": 600
+        },
+        "_build_elasticity_system": {
+          "mean_ms": 1.4514657521309953,
+          "median_ms": 1.3804530608467758,
+          "p95_ms": 1.8203939020168036,
+          "samples": 600
+        },
+        "_build_plasticity_system": {
+          "mean_ms": 1.0855178461254884,
+          "median_ms": 1.0283070150762796,
+          "p95_ms": 1.394679758232087,
+          "samples": 600
+        },
+        "_load_warmstart": {
+          "mean_ms": 0.27717767865397036,
+          "median_ms": 0.26736443396657705,
+          "p95_ms": 0.34930592519231135,
+          "samples": 600
+        },
+        "_solve_rheology": {
+          "mean_ms": 11.444290767346198,
+          "median_ms": 10.976289573591202,
+          "p95_ms": 13.77970720059238,
+          "samples": 600
+        },
+        "_save_for_next_warmstart": {
+          "mean_ms": 0.7709922175854445,
+          "median_ms": 0.7391839753836393,
+          "p95_ms": 0.9744708891957998,
+          "samples": 600
+        },
+        "_update_particles": {
+          "mean_ms": 0.47884545871056616,
+          "median_ms": 0.4589600721374154,
+          "p95_ms": 0.6090585491620004,
+          "samples": 600
+        },
+        "_save_data": {
+          "mean_ms": 0.1307257179481288,
+          "median_ms": 0.1247755135409534,
+          "p95_ms": 0.16506658284924922,
+          "samples": 600
+        }
+      },
+      "residual_l2_mean": 6.148490495424186e-05,
+      "residual_linf_mean": 0.0007275592023198136,
+      "fraction_steps_below_solver_tolerance": 0.013333333333333334,
+      "tolerance": 0.0001,
+      "gpu": "NVIDIA GeForce RTX 5080",
+      "cuda_graph": false,
+      "initial_state_sha256": "25cbf609f08aabe886db5d6351bdf85dcf3837bb950d46729e1a97a9c865e923",
+      "packages": {
+        "torch": "2.11.0+cu130",
+        "newton": "1.8.0.dev0",
+        "warp-lang": "1.19.0.dev20261008",
+        "mujoco": "3.15.0",
+        "mujoco-warp": "3.15.0",
+        "numpy": "2.4.6"
+      },
+      "isaaclab_commit": "cd1dfa54b52028fed55b16e2f4eeb79db970f4f5",
+      "timing_scope": "Synchronized NewtonManager.step: complete lagged MJWarp-MPM coupled physics; excludes external-action staging, scene cache update, rendering, recording, reset, compilation and diagnostics.",
+      "iteration_policy": "Exactly N contact/material sweeps, no early stop or residual readback in timed runs. Original Newton kernels, warmstart, assembly and particle/material update. Not stock max_iterations semantics.",
+      "reference": "50-sweep rollout is a numerical comparison, not established ground truth; compare 25 vs 50 before interpreting errors.",
+      "error_vs_50_sweeps": {
+        "particle_position_rms_mm": 0.0,
+        "particle_velocity_rms_m_s": 0.0,
+        "body_position_rms_mm": 0.0,
+        "body_angle_rms_deg": 0.0,
+        "body_force_vector_rmse_n": 0.0,
+        "body_force_vector_nrmse": 0.0,
+        "body_torque_vector_rmse_nm": 0.0,
+        "peak_body_vertical_force_n": 597.1453247070312
+      },
+      "speedup_vs_50": 1.0
+    }
+  ]
 }
