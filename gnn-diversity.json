@@ -1,0 +1,1351 @@
+{
+  "status": "Pilot completed; candidate not promoted because coupled-motion regressions remain.",
+  "collection": {
+    "cases": [
+      {
+        "split": "train",
+        "bed": [
+          0.32,
+          0.32,
+          0.16
+        ],
+        "shape": "box",
+        "sampling": 1.0,
+        "jitter": 0.2,
+        "motion": "random-push",
+        "episodes": 2,
+        "seed": 33001,
+        "name": "train_diverse_0_box"
+      },
+      {
+        "split": "train",
+        "bed": [
+          0.32,
+          0.32,
+          0.16
+        ],
+        "shape": "sphere",
+        "sampling": 1.25,
+        "jitter": 0.2,
+        "motion": "lift",
+        "episodes": 2,
+        "seed": 40920,
+        "name": "train_diverse_1_sphere"
+      },
+      {
+        "split": "train",
+        "bed": [
+          0.48,
+          0.32,
+          0.12
+        ],
+        "shape": "sphere",
+        "sampling": 1.0,
+        "jitter": 0.2,
+        "motion": "random-push",
+        "episodes": 2,
+        "seed": 48839,
+        "name": "train_diverse_2_sphere"
+      },
+      {
+        "split": "train",
+        "bed": [
+          0.48,
+          0.32,
+          0.12
+        ],
+        "shape": "cylinder",
+        "sampling": 1.25,
+        "jitter": 0.2,
+        "motion": "lift",
+        "episodes": 2,
+        "seed": 56758,
+        "name": "train_diverse_3_cylinder"
+      },
+      {
+        "split": "train",
+        "bed": [
+          0.32,
+          0.32,
+          0.24
+        ],
+        "shape": "cylinder",
+        "sampling": 1.0,
+        "jitter": 0.2,
+        "motion": "random-push",
+        "episodes": 2,
+        "seed": 64677,
+        "name": "train_diverse_4_cylinder"
+      },
+      {
+        "split": "train",
+        "bed": [
+          0.32,
+          0.32,
+          0.24
+        ],
+        "shape": "box",
+        "sampling": 1.25,
+        "jitter": 0.2,
+        "motion": "lift",
+        "episodes": 2,
+        "seed": 72596,
+        "name": "train_diverse_5_box"
+      },
+      {
+        "split": "validation",
+        "bed": [
+          0.32,
+          0.32,
+          0.16
+        ],
+        "shape": "box",
+        "sampling": 1.25,
+        "jitter": 0.2,
+        "motion": "lift",
+        "episodes": 1,
+        "seed": 80515,
+        "name": "validation_diverse_6_box"
+      },
+      {
+        "split": "validation",
+        "bed": [
+          0.48,
+          0.32,
+          0.12
+        ],
+        "shape": "sphere",
+        "sampling": 1.0,
+        "jitter": 0.2,
+        "motion": "random-push",
+        "episodes": 1,
+        "seed": 88434,
+        "name": "validation_diverse_7_sphere"
+      },
+      {
+        "split": "validation",
+        "bed": [
+          0.32,
+          0.32,
+          0.24
+        ],
+        "shape": "cylinder",
+        "sampling": 1.25,
+        "jitter": 0.2,
+        "motion": "random-push",
+        "episodes": 1,
+        "seed": 96353,
+        "name": "validation_diverse_8_cylinder"
+      },
+      {
+        "split": "test",
+        "bed": [
+          0.64,
+          0.48,
+          0.16
+        ],
+        "shape": "box",
+        "sampling": 1.0,
+        "jitter": 0.2,
+        "motion": "lift",
+        "episodes": 1,
+        "seed": 104272,
+        "name": "test_diverse_9_box"
+      },
+      {
+        "split": "test",
+        "bed": [
+          0.32,
+          0.32,
+          0.16
+        ],
+        "shape": "box",
+        "sampling": 1.5,
+        "jitter": 0.2,
+        "motion": "lift",
+        "episodes": 1,
+        "seed": 112191,
+        "name": "test_diverse_10_box"
+      },
+      {
+        "split": "test",
+        "bed": [
+          0.48,
+          0.32,
+          0.12
+        ],
+        "shape": "cylinder",
+        "sampling": 1.0,
+        "jitter": 0.3,
+        "motion": "random-push",
+        "episodes": 1,
+        "seed": 120110,
+        "name": "test_diverse_11_cylinder"
+      }
+    ],
+    "completed": [
+      "train_diverse_0_box",
+      "train_diverse_1_sphere",
+      "train_diverse_2_sphere",
+      "train_diverse_3_cylinder",
+      "train_diverse_4_cylinder",
+      "train_diverse_5_box",
+      "validation_diverse_6_box",
+      "validation_diverse_7_sphere",
+      "validation_diverse_8_cylinder",
+      "test_diverse_9_box",
+      "test_diverse_10_box",
+      "test_diverse_11_cylinder"
+    ],
+    "failed": [],
+    "fixed_material": {
+      "density": 1200,
+      "friction": 0.4,
+      "young_modulus": 1000000.0,
+      "body_mass": 1.5
+    },
+    "scope": "Pilot isolates motion/bed/sampling coverage; not a complete material or geometry sweep."
+  },
+  "training": {
+    "arguments": {
+      "data": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/diverse_20261015/mixed_data",
+      "output": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/diverse_20261015/finetune",
+      "steps": 1000,
+      "unroll": 4,
+      "checkpoint_activations": false,
+      "history_length": 3,
+      "input_velocity_scale": 1.0,
+      "hidden": 64,
+      "passes": 3,
+      "radius": 0.035,
+      "noise": 0.003,
+      "early_transition_probability": 0.0,
+      "learning_rate": 0.0001,
+      "evaluate_every": 250,
+      "seed": 1701,
+      "resume": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/selected_model.pt",
+      "deadline": null
+    },
+    "episodes": {
+      "train": [
+        "train_0_box.hdf5/demo_0",
+        "train_0_box.hdf5/demo_1",
+        "train_0_box.hdf5/demo_2",
+        "train_0_box.hdf5/demo_3",
+        "train_0_cylinder.hdf5/demo_0",
+        "train_0_cylinder.hdf5/demo_1",
+        "train_0_cylinder.hdf5/demo_2",
+        "train_0_cylinder.hdf5/demo_3",
+        "train_0_sphere.hdf5/demo_0",
+        "train_0_sphere.hdf5/demo_1",
+        "train_0_sphere.hdf5/demo_2",
+        "train_0_sphere.hdf5/demo_3",
+        "train_1_box.hdf5/demo_0",
+        "train_1_box.hdf5/demo_1",
+        "train_1_box.hdf5/demo_2",
+        "train_1_box.hdf5/demo_3",
+        "train_1_cylinder.hdf5/demo_0",
+        "train_1_cylinder.hdf5/demo_1",
+        "train_1_cylinder.hdf5/demo_2",
+        "train_1_cylinder.hdf5/demo_3",
+        "train_1_sphere.hdf5/demo_0",
+        "train_1_sphere.hdf5/demo_1",
+        "train_1_sphere.hdf5/demo_2",
+        "train_1_sphere.hdf5/demo_3",
+        "train_2_box.hdf5/demo_0",
+        "train_2_box.hdf5/demo_1",
+        "train_2_box.hdf5/demo_2",
+        "train_2_box.hdf5/demo_3",
+        "train_2_cylinder.hdf5/demo_0",
+        "train_2_cylinder.hdf5/demo_1",
+        "train_2_cylinder.hdf5/demo_2",
+        "train_2_cylinder.hdf5/demo_3",
+        "train_2_sphere.hdf5/demo_0",
+        "train_2_sphere.hdf5/demo_1",
+        "train_2_sphere.hdf5/demo_2",
+        "train_2_sphere.hdf5/demo_3",
+        "train_3_box.hdf5/demo_0",
+        "train_3_box.hdf5/demo_1",
+        "train_3_box.hdf5/demo_2",
+        "train_3_box.hdf5/demo_3",
+        "train_3_cylinder.hdf5/demo_0",
+        "train_3_cylinder.hdf5/demo_1",
+        "train_3_cylinder.hdf5/demo_2",
+        "train_3_cylinder.hdf5/demo_3",
+        "train_3_sphere.hdf5/demo_0",
+        "train_3_sphere.hdf5/demo_1",
+        "train_3_sphere.hdf5/demo_2",
+        "train_3_sphere.hdf5/demo_3",
+        "train_diverse_0_box.hdf5/demo_0",
+        "train_diverse_0_box.hdf5/demo_1",
+        "train_diverse_0_box.hdf5/demo_2",
+        "train_diverse_0_box.hdf5/demo_3",
+        "train_diverse_1_sphere.hdf5/demo_0",
+        "train_diverse_1_sphere.hdf5/demo_1",
+        "train_diverse_1_sphere.hdf5/demo_2",
+        "train_diverse_1_sphere.hdf5/demo_3",
+        "train_diverse_2_sphere.hdf5/demo_0",
+        "train_diverse_2_sphere.hdf5/demo_1",
+        "train_diverse_2_sphere.hdf5/demo_2",
+        "train_diverse_2_sphere.hdf5/demo_3",
+        "train_diverse_3_cylinder.hdf5/demo_0",
+        "train_diverse_3_cylinder.hdf5/demo_1",
+        "train_diverse_3_cylinder.hdf5/demo_2",
+        "train_diverse_3_cylinder.hdf5/demo_3",
+        "train_diverse_4_cylinder.hdf5/demo_0",
+        "train_diverse_4_cylinder.hdf5/demo_1",
+        "train_diverse_4_cylinder.hdf5/demo_2",
+        "train_diverse_4_cylinder.hdf5/demo_3",
+        "train_diverse_5_box.hdf5/demo_0",
+        "train_diverse_5_box.hdf5/demo_1",
+        "train_diverse_5_box.hdf5/demo_2",
+        "train_diverse_5_box.hdf5/demo_3"
+      ],
+      "validation": [
+        "validation_diverse_6_box.hdf5/demo_0",
+        "validation_diverse_6_box.hdf5/demo_1",
+        "validation_diverse_7_sphere.hdf5/demo_0",
+        "validation_diverse_7_sphere.hdf5/demo_1",
+        "validation_diverse_8_cylinder.hdf5/demo_0",
+        "validation_diverse_8_cylinder.hdf5/demo_1"
+      ]
+    }
+  },
+  "audit": {
+    "models": {
+      "original": {
+        "checkpoint": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/selected_model.pt",
+        "sha256": "17697553a36a9cb359123394124ac7ed3300a27ede3c60501485d242d88ffabd",
+        "step": 9000,
+        "new_validation": {
+          "velocity_vector_rmse_m_s": 0.012034602463245392,
+          "position_vector_rmse_m": 6.0173010971255325e-05,
+          "near_body_velocity_vector_rmse_m_s": 0.04537173733115196,
+          "persistence_velocity_vector_rmse_m_s": 0.013564720749855042,
+          "gravity_velocity_vector_rmse_m_s": 0.04846585596960476,
+          "transitions": 120
+        },
+        "original_validation": {
+          "velocity_vector_rmse_m_s": 0.015570532530546188,
+          "position_vector_rmse_m": 7.785266091258833e-05,
+          "near_body_velocity_vector_rmse_m_s": 0.05930955335497856,
+          "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+          "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+          "transitions": 60
+        }
+      },
+      "candidate": {
+        "checkpoint": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/diverse_20261015/finetune/best.pt",
+        "sha256": "cf503c99537dbc002e01a24427d63380a8d2d5654accea77f7d1ed052c1a0e94",
+        "step": 500,
+        "new_validation": {
+          "velocity_vector_rmse_m_s": 0.012787782587110996,
+          "position_vector_rmse_m": 6.393891150640891e-05,
+          "near_body_velocity_vector_rmse_m_s": 0.04606866091489792,
+          "persistence_velocity_vector_rmse_m_s": 0.013564720749855042,
+          "gravity_velocity_vector_rmse_m_s": 0.04846585596960476,
+          "transitions": 120
+        },
+        "original_validation": {
+          "velocity_vector_rmse_m_s": 0.019203824922442436,
+          "position_vector_rmse_m": 9.60191224660175e-05,
+          "near_body_velocity_vector_rmse_m_s": 0.058482781052589417,
+          "persistence_velocity_vector_rmse_m_s": 0.021176230162382126,
+          "gravity_velocity_vector_rmse_m_s": 0.048474898207404735,
+          "transitions": 60
+        }
+      }
+    },
+    "data": {
+      "test_diverse_10_box.hdf5": {
+        "episodes": 2,
+        "transitions": 1200,
+        "particles_per_episode": [
+          6912
+        ],
+        "box_mean_force_balance_residual_N": 7.726431564858948e-06,
+        "box_relative_force_balance_residual": 3.460108420275123e-07,
+        "mean_linear_momentum_residual_N": 0.00020273506288655577,
+        "relative_linear_momentum_residual": 3.5547488821536845e-06
+      },
+      "test_diverse_11_cylinder.hdf5": {
+        "episodes": 2,
+        "transitions": 1200,
+        "particles_per_episode": [
+          2304
+        ],
+        "box_mean_force_balance_residual_N": 1.9375251836912828e-05,
+        "box_relative_force_balance_residual": 4.488548235103706e-06,
+        "mean_linear_momentum_residual_N": 0.0003218292797269366,
+        "relative_linear_momentum_residual": 5.675109322296684e-06
+      },
+      "test_diverse_9_box.hdf5": {
+        "episodes": 2,
+        "transitions": 1200,
+        "particles_per_episode": [
+          6144
+        ],
+        "box_mean_force_balance_residual_N": 5.404955254496956e-06,
+        "box_relative_force_balance_residual": 3.0962340305749405e-07,
+        "mean_linear_momentum_residual_N": 0.0008678276314678139,
+        "relative_linear_momentum_residual": 5.5541063340021966e-06
+      },
+      "train_diverse_0_box.hdf5": {
+        "episodes": 4,
+        "transitions": 2400,
+        "particles_per_episode": [
+          2048
+        ],
+        "box_mean_force_balance_residual_N": 1.9150261812401845e-05,
+        "box_relative_force_balance_residual": 7.129157972730932e-06,
+        "mean_linear_momentum_residual_N": 0.000365286085700518,
+        "relative_linear_momentum_residual": 6.922129170593607e-06
+      },
+      "train_diverse_1_sphere.hdf5": {
+        "episodes": 4,
+        "transitions": 2400,
+        "particles_per_episode": [
+          4000
+        ],
+        "box_mean_force_balance_residual_N": 6.151763423250924e-06,
+        "box_relative_force_balance_residual": 3.704484041663552e-07,
+        "mean_linear_momentum_residual_N": 0.0002433231356633314,
+        "relative_linear_momentum_residual": 4.10640523054561e-06
+      },
+      "train_diverse_2_sphere.hdf5": {
+        "episodes": 4,
+        "transitions": 2400,
+        "particles_per_episode": [
+          2304
+        ],
+        "box_mean_force_balance_residual_N": 8.318631640960351e-06,
+        "box_relative_force_balance_residual": 2.6163591595986937e-06,
+        "mean_linear_momentum_residual_N": 0.0003212445934265418,
+        "relative_linear_momentum_residual": 5.413574998911886e-06
+      },
+      "train_diverse_3_cylinder.hdf5": {
+        "episodes": 4,
+        "transitions": 2400,
+        "particles_per_episode": [
+          4800
+        ],
+        "box_mean_force_balance_residual_N": 8.548862891295111e-06,
+        "box_relative_force_balance_residual": 3.2222269836359366e-06,
+        "mean_linear_momentum_residual_N": 0.00027807092203801175,
+        "relative_linear_momentum_residual": 6.449424244979596e-06
+      },
+      "train_diverse_4_cylinder.hdf5": {
+        "episodes": 4,
+        "transitions": 2400,
+        "particles_per_episode": [
+          3072
+        ],
+        "box_mean_force_balance_residual_N": 1.5880498496060844e-05,
+        "box_relative_force_balance_residual": 1.709824316144143e-06,
+        "mean_linear_momentum_residual_N": 0.0007198298423024122,
+        "relative_linear_momentum_residual": 8.631349445619279e-06
+      },
+      "train_diverse_5_box.hdf5": {
+        "episodes": 4,
+        "transitions": 2400,
+        "particles_per_episode": [
+          6000
+        ],
+        "box_mean_force_balance_residual_N": 5.8156202430613494e-06,
+        "box_relative_force_balance_residual": 3.497587715854548e-07,
+        "mean_linear_momentum_residual_N": 0.0004698222614714117,
+        "relative_linear_momentum_residual": 5.076162610045215e-06
+      },
+      "validation_diverse_6_box.hdf5": {
+        "episodes": 2,
+        "transitions": 1200,
+        "particles_per_episode": [
+          4000
+        ],
+        "box_mean_force_balance_residual_N": 7.499394921110083e-06,
+        "box_relative_force_balance_residual": 3.673277754217569e-07,
+        "mean_linear_momentum_residual_N": 0.00024345363878940893,
+        "relative_linear_momentum_residual": 4.101179669650354e-06
+      },
+      "validation_diverse_7_sphere.hdf5": {
+        "episodes": 2,
+        "transitions": 1200,
+        "particles_per_episode": [
+          2304
+        ],
+        "box_mean_force_balance_residual_N": 2.5633683332406284e-05,
+        "box_relative_force_balance_residual": 2.4280414430844085e-06,
+        "mean_linear_momentum_residual_N": 0.0003252307453813804,
+        "relative_linear_momentum_residual": 5.457795395597419e-06
+      },
+      "validation_diverse_8_cylinder.hdf5": {
+        "episodes": 2,
+        "transitions": 1200,
+        "particles_per_episode": [
+          6000
+        ],
+        "box_mean_force_balance_residual_N": 2.7964373672926222e-05,
+        "box_relative_force_balance_residual": 2.431056769610521e-06,
+        "mean_linear_momentum_residual_N": 0.0004377998611092456,
+        "relative_linear_momentum_residual": 5.0684691880653015e-06
+      }
+    }
+  },
+  "rollouts": {
+    "original_validation": {
+      "checkpoint": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/selected_model.pt",
+      "split": "validation",
+      "episodes": [
+        {
+          "episode": "validation_diverse_6_box/demo_0",
+          "particles": 4000,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.016,
+              0.016,
+              0.016
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 80515
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.0431322306394577,
+          "mean_particle_position_vector_rmse_m": 0.029397838538570795,
+          "max_body_center_error_m": 0.08387961238622665,
+          "material_force_vector_rmse_N": 47.20025354075415,
+          "max_particle_com_height_excess_m": 0.03799488550671869,
+          "max_particle_p95_height_excess_m": 0.04221097845584154,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_6_box/demo_1",
+          "particles": 4000,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.016,
+              0.016,
+              0.016
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 80515
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.04409268498420715,
+          "mean_particle_position_vector_rmse_m": 0.030164054721244612,
+          "max_body_center_error_m": 0.07925868779420853,
+          "material_force_vector_rmse_N": 32.09532063464112,
+          "max_particle_com_height_excess_m": 0.03772289733114417,
+          "max_particle_p95_height_excess_m": 0.041544667445123196,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_7_sphere/demo_0",
+          "particles": 2304,
+          "conditions": {
+            "bed_size_m": [
+              0.48,
+              0.32,
+              0.12
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "random-push",
+            "seed": 88434
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.08964524418115616,
+          "mean_particle_position_vector_rmse_m": 0.048384421235762906,
+          "max_body_center_error_m": 0.2516133189201355,
+          "material_force_vector_rmse_N": 14.654719281330443,
+          "max_particle_com_height_excess_m": -0.017912653897332764,
+          "max_particle_p95_height_excess_m": -0.02809138596057892,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_7_sphere/demo_1",
+          "particles": 2304,
+          "conditions": {
+            "bed_size_m": [
+              0.48,
+              0.32,
+              0.12
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "random-push",
+            "seed": 88434
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.0879627913236618,
+          "mean_particle_position_vector_rmse_m": 0.04728627897512827,
+          "max_body_center_error_m": 3.795962333679199,
+          "material_force_vector_rmse_N": 11.575409218779376,
+          "max_particle_com_height_excess_m": -0.018641874582196266,
+          "max_particle_p95_height_excess_m": -0.02889440208673477,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_8_cylinder/demo_0",
+          "particles": 6000,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.24
+            ],
+            "particle_spacing_m": [
+              0.016,
+              0.016,
+              0.016
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "random-push",
+            "seed": 96353
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.051817286759614944,
+          "mean_particle_position_vector_rmse_m": 0.037494693903330094,
+          "max_body_center_error_m": 4.061617851257324,
+          "material_force_vector_rmse_N": 4.241732061571303,
+          "max_particle_com_height_excess_m": 0.046094052062195245,
+          "max_particle_p95_height_excess_m": 0.06746764201670885,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_8_cylinder/demo_1",
+          "particles": 6000,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.24
+            ],
+            "particle_spacing_m": [
+              0.016,
+              0.016,
+              0.016
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "random-push",
+            "seed": 96353
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.052581313997507095,
+          "mean_particle_position_vector_rmse_m": 0.03782461279615139,
+          "max_body_center_error_m": 2.348263740539551,
+          "material_force_vector_rmse_N": 8.757636354194513,
+          "max_particle_com_height_excess_m": 0.04548701246183759,
+          "max_particle_p95_height_excess_m": 0.06964568234980106,
+          "steps_above_strict_contact_tolerance": 0
+        }
+      ],
+      "columns": [
+        "time_s",
+        "particle_position_vector_rmse_m",
+        "predicted_particle_com_z_m",
+        "reference_particle_com_z_m",
+        "predicted_particle_p95_z_m",
+        "reference_particle_p95_z_m",
+        "predicted_body_z_m",
+        "reference_body_z_m",
+        "body_center_error_m",
+        "predicted_material_force_z_N",
+        "reference_material_force_z_N",
+        "force_vector_error_N"
+      ]
+    },
+    "candidate_validation": {
+      "checkpoint": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/diverse_20261015/finetune/best.pt",
+      "split": "validation",
+      "episodes": [
+        {
+          "episode": "validation_diverse_6_box/demo_0",
+          "particles": 4000,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.016,
+              0.016,
+              0.016
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 80515
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.029344022274017334,
+          "mean_particle_position_vector_rmse_m": 0.023181154763515222,
+          "max_body_center_error_m": 0.15739481151103973,
+          "material_force_vector_rmse_N": 53.69417485574856,
+          "max_particle_com_height_excess_m": 0.013911821987057912,
+          "max_particle_p95_height_excess_m": 0.029206596314907074,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_6_box/demo_1",
+          "particles": 4000,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.016,
+              0.016,
+              0.016
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 80515
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.03394496813416481,
+          "mean_particle_position_vector_rmse_m": 0.0251962665450507,
+          "max_body_center_error_m": 0.15852899849414825,
+          "material_force_vector_rmse_N": 41.58822476844292,
+          "max_particle_com_height_excess_m": 0.01377938536006694,
+          "max_particle_p95_height_excess_m": 0.028579944744706154,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_7_sphere/demo_0",
+          "particles": 2304,
+          "conditions": {
+            "bed_size_m": [
+              0.48,
+              0.32,
+              0.12
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "random-push",
+            "seed": 88434
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.042643316090106964,
+          "mean_particle_position_vector_rmse_m": 0.03408414222806944,
+          "max_body_center_error_m": 0.05906182527542114,
+          "material_force_vector_rmse_N": 14.54718252439621,
+          "max_particle_com_height_excess_m": 0.02409945561804408,
+          "max_particle_p95_height_excess_m": 0.046750376001000404,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_7_sphere/demo_1",
+          "particles": 2304,
+          "conditions": {
+            "bed_size_m": [
+              0.48,
+              0.32,
+              0.12
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "random-push",
+            "seed": 88434
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.04425552487373352,
+          "mean_particle_position_vector_rmse_m": 0.03450493447875488,
+          "max_body_center_error_m": 0.5604572892189026,
+          "material_force_vector_rmse_N": 10.96809743212144,
+          "max_particle_com_height_excess_m": 0.022939923588839728,
+          "max_particle_p95_height_excess_m": 0.04518436640501022,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_8_cylinder/demo_0",
+          "particles": 6000,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.24
+            ],
+            "particle_spacing_m": [
+              0.016,
+              0.016,
+              0.016
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "random-push",
+            "seed": 96353
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.03630426526069641,
+          "mean_particle_position_vector_rmse_m": 0.029198072270664854,
+          "max_body_center_error_m": 9.655423164367676,
+          "material_force_vector_rmse_N": 12.295271665226485,
+          "max_particle_com_height_excess_m": 0.020676044416368916,
+          "max_particle_p95_height_excess_m": 0.04521629959344864,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "validation_diverse_8_cylinder/demo_1",
+          "particles": 6000,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.24
+            ],
+            "particle_spacing_m": [
+              0.016,
+              0.016,
+              0.016
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "random-push",
+            "seed": 96353
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.039396658539772034,
+          "mean_particle_position_vector_rmse_m": 0.030487446887467132,
+          "max_body_center_error_m": 9.143842697143555,
+          "material_force_vector_rmse_N": 15.131354729258074,
+          "max_particle_com_height_excess_m": 0.02036893857882749,
+          "max_particle_p95_height_excess_m": 0.047806836664676666,
+          "steps_above_strict_contact_tolerance": 0
+        }
+      ],
+      "columns": [
+        "time_s",
+        "particle_position_vector_rmse_m",
+        "predicted_particle_com_z_m",
+        "reference_particle_com_z_m",
+        "predicted_particle_p95_z_m",
+        "reference_particle_p95_z_m",
+        "predicted_body_z_m",
+        "reference_body_z_m",
+        "body_center_error_m",
+        "predicted_material_force_z_N",
+        "reference_material_force_z_N",
+        "force_vector_error_N"
+      ]
+    },
+    "original_test": {
+      "checkpoint": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/learned_20261015/selected_model.pt",
+      "split": "test",
+      "episodes": [
+        {
+          "episode": "test_diverse_10_box/demo_0",
+          "particles": 6912,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.013333333333333334,
+              0.013333333333333334,
+              0.013333333333333334
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 112191
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.12215537577867508,
+          "mean_particle_position_vector_rmse_m": 0.0718031720139455,
+          "max_body_center_error_m": 0.07560119777917862,
+          "material_force_vector_rmse_N": 24.457601337290704,
+          "max_particle_com_height_excess_m": 0.10358466676404586,
+          "max_particle_p95_height_excess_m": 0.16298282146453857,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_10_box/demo_1",
+          "particles": 6912,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.013333333333333334,
+              0.013333333333333334,
+              0.013333333333333334
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 112191
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.13553763926029205,
+          "mean_particle_position_vector_rmse_m": 0.07926458312339188,
+          "max_body_center_error_m": 0.1101045161485672,
+          "material_force_vector_rmse_N": 50.2831349636626,
+          "max_particle_com_height_excess_m": 0.11260614543251508,
+          "max_particle_p95_height_excess_m": 0.18891553580760956,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_11_cylinder/demo_0",
+          "particles": 2304,
+          "conditions": {
+            "bed_size_m": [
+              0.48,
+              0.32,
+              0.12
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.3,
+            "interaction_mode": "random-push",
+            "seed": 120110
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.08703020960092545,
+          "mean_particle_position_vector_rmse_m": 0.04720839468288129,
+          "max_body_center_error_m": 0.15002240240573883,
+          "material_force_vector_rmse_N": 18.566986674295944,
+          "max_particle_com_height_excess_m": -0.017439586416003308,
+          "max_particle_p95_height_excess_m": -0.025394611060619354,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_11_cylinder/demo_1",
+          "particles": 2304,
+          "conditions": {
+            "bed_size_m": [
+              0.48,
+              0.32,
+              0.12
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.3,
+            "interaction_mode": "random-push",
+            "seed": 120110
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.08827146142721176,
+          "mean_particle_position_vector_rmse_m": 0.04701418993861201,
+          "max_body_center_error_m": 0.20284505188465118,
+          "material_force_vector_rmse_N": 33.32849325730193,
+          "max_particle_com_height_excess_m": -0.016984430693102903,
+          "max_particle_p95_height_excess_m": -0.024636447429656982,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_9_box/demo_0",
+          "particles": 6144,
+          "conditions": {
+            "bed_size_m": [
+              0.64,
+              0.48,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 104272
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.09292993694543839,
+          "mean_particle_position_vector_rmse_m": 0.05453042765469339,
+          "max_body_center_error_m": 0.43081963062286377,
+          "material_force_vector_rmse_N": 53.87342714696692,
+          "max_particle_com_height_excess_m": -0.02379281610410544,
+          "max_particle_p95_height_excess_m": -0.02741929143667221,
+          "steps_above_strict_contact_tolerance": 1
+        },
+        {
+          "episode": "test_diverse_9_box/demo_1",
+          "particles": 6144,
+          "conditions": {
+            "bed_size_m": [
+              0.64,
+              0.48,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 104272
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.08793943375349045,
+          "mean_particle_position_vector_rmse_m": 0.05285380826103695,
+          "max_body_center_error_m": 0.5672215819358826,
+          "material_force_vector_rmse_N": 75.14325891262732,
+          "max_particle_com_height_excess_m": -0.024527090999375417,
+          "max_particle_p95_height_excess_m": -0.030404523015022278,
+          "steps_above_strict_contact_tolerance": 1
+        }
+      ],
+      "columns": [
+        "time_s",
+        "particle_position_vector_rmse_m",
+        "predicted_particle_com_z_m",
+        "reference_particle_com_z_m",
+        "predicted_particle_p95_z_m",
+        "reference_particle_p95_z_m",
+        "predicted_body_z_m",
+        "reference_body_z_m",
+        "body_center_error_m",
+        "predicted_material_force_z_N",
+        "reference_material_force_z_N",
+        "force_vector_error_N"
+      ]
+    },
+    "candidate_test": {
+      "checkpoint": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/results/diverse_20261015/finetune/best.pt",
+      "split": "test",
+      "episodes": [
+        {
+          "episode": "test_diverse_10_box/demo_0",
+          "particles": 6912,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.013333333333333334,
+              0.013333333333333334,
+              0.013333333333333334
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 112191
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.08289732038974762,
+          "mean_particle_position_vector_rmse_m": 0.05066400290345579,
+          "max_body_center_error_m": 0.25565335154533386,
+          "material_force_vector_rmse_N": 35.88106876032269,
+          "max_particle_com_height_excess_m": 0.048518379845244,
+          "max_particle_p95_height_excess_m": 0.11777885258197784,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_10_box/demo_1",
+          "particles": 6912,
+          "conditions": {
+            "bed_size_m": [
+              0.32,
+              0.32,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.013333333333333334,
+              0.013333333333333334,
+              0.013333333333333334
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 112191
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.0878366082906723,
+          "mean_particle_position_vector_rmse_m": 0.05368513157571821,
+          "max_body_center_error_m": 0.37399718165397644,
+          "material_force_vector_rmse_N": 43.30861491564362,
+          "max_particle_com_height_excess_m": 0.05594014272396445,
+          "max_particle_p95_height_excess_m": 0.13418832421302795,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_11_cylinder/demo_0",
+          "particles": 2304,
+          "conditions": {
+            "bed_size_m": [
+              0.48,
+              0.32,
+              0.12
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.3,
+            "interaction_mode": "random-push",
+            "seed": 120110
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.039797887206077576,
+          "mean_particle_position_vector_rmse_m": 0.03283904003304391,
+          "max_body_center_error_m": 0.09445451945066452,
+          "material_force_vector_rmse_N": 14.435800139038008,
+          "max_particle_com_height_excess_m": 0.023455764296765352,
+          "max_particle_p95_height_excess_m": 0.04438665695488453,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_11_cylinder/demo_1",
+          "particles": 2304,
+          "conditions": {
+            "bed_size_m": [
+              0.48,
+              0.32,
+              0.12
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.3,
+            "interaction_mode": "random-push",
+            "seed": 120110
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.04208510369062424,
+          "mean_particle_position_vector_rmse_m": 0.033932420350029135,
+          "max_body_center_error_m": 0.13568949699401855,
+          "material_force_vector_rmse_N": 15.258646942671492,
+          "max_particle_com_height_excess_m": 0.023383330302749528,
+          "max_particle_p95_height_excess_m": 0.04279744252562523,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_9_box/demo_0",
+          "particles": 6144,
+          "conditions": {
+            "bed_size_m": [
+              0.64,
+              0.48,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 104272
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.03723151981830597,
+          "mean_particle_position_vector_rmse_m": 0.02799085681455229,
+          "max_body_center_error_m": 0.17905066907405853,
+          "material_force_vector_rmse_N": 30.157837633292687,
+          "max_particle_com_height_excess_m": 0.01542034158622603,
+          "max_particle_p95_height_excess_m": 0.020640239119529724,
+          "steps_above_strict_contact_tolerance": 0
+        },
+        {
+          "episode": "test_diverse_9_box/demo_1",
+          "particles": 6144,
+          "conditions": {
+            "bed_size_m": [
+              0.64,
+              0.48,
+              0.16
+            ],
+            "particle_spacing_m": [
+              0.02,
+              0.02,
+              0.02
+            ],
+            "particle_jitter_fraction": 0.2,
+            "interaction_mode": "lift",
+            "seed": 104272
+          },
+          "completed_steps": 600,
+          "requested_steps": 600,
+          "stop_reason": "completed",
+          "final_particle_position_vector_rmse_m": 0.03712359815835953,
+          "mean_particle_position_vector_rmse_m": 0.02770029791056004,
+          "max_body_center_error_m": 0.3829744756221771,
+          "material_force_vector_rmse_N": 57.74160060902788,
+          "max_particle_com_height_excess_m": 0.014919323310702282,
+          "max_particle_p95_height_excess_m": 0.018626168370246887,
+          "steps_above_strict_contact_tolerance": 0
+        }
+      ],
+      "columns": [
+        "time_s",
+        "particle_position_vector_rmse_m",
+        "predicted_particle_com_z_m",
+        "reference_particle_com_z_m",
+        "predicted_particle_p95_z_m",
+        "reference_particle_p95_z_m",
+        "predicted_body_z_m",
+        "reference_body_z_m",
+        "body_center_error_m",
+        "predicted_material_force_z_N",
+        "reference_material_force_z_N",
+        "force_vector_error_N"
+      ]
+    }
+  },
+  "selection": "Lowest new-validation one-step velocity RMSE among 250/500/750/1000 additional updates, before test evaluation. Original checkpoint was subsequently checked as a baseline and was better on this metric.",
+  "all_rollouts_completed": true,
+  "source_sha256": {
+    "collect.py": "a0e88a50864c2ad83fefd480590bcc30f809cfb648288cd63a57cfb54e6c9f65",
+    "collect_diverse_data.py": "7e1876bd611f71a55d3debe6ce93619f6e1fbd626a3a70d24871b2c212b7a0dd",
+    "interaction_schedule.py": "0b0ef3cbf15e70b8e2313ae7f9a79edecbefc057e1260092a1578601d1c13216",
+    "terms/actions.py": "642e8a4704792846f7fd5262b3fb686565ab1d2edeffcbae698f5908d9d3dc93",
+    "terms/events.py": "bf9ac224816e3691d6d244b7fdad7c32e8b7e7b4b6d89837cf2243998a385895",
+    "scene_cfg.py": "fd694165df1c1c91563663eefc93929c8ded620656b782112926332d7bc27da2",
+    "dataset.py": "37a44f65394f7e375614cd0aa0a571b1762728343d5d0b8973b50a109cc431c5",
+    "learning_data.py": "efdac9027239d37f215663e1086183e6aefb78bde5437270be5b5250432ce8e9",
+    "evaluate_interactions.py": "addb21e7ce096d1c320810e96359873cc12d75069112159d57012e273e04c936",
+    "train_particles.py": "6634a0e2b32be99da0cf53cdfc924a2d338f6cafda94f3159b6147981478c724",
+    "particle_model.py": "f778ad7e9baed37d4bef545682d96d3a183e70bc4e0c3140705df75698900bdd",
+    "gpu_simulation.py": "bfccce31dd77cbd0470b9d6e5eb1583f6057a78024c9e50eecb2090852860896",
+    "gpu_kernels.py": "00419fe994eb89f0b01d99bc7412087e586fa87bd780423767b452139bfa0ea4"
+  },
+  "recorded_jitter_audit": {
+    "test_diverse_10_box.hdf5": {
+      "max_fraction_of_spacing": 0.19999265670776367,
+      "offset_standard_deviation_fraction": 0.11556086430718521,
+      "independent_episode_positions": true
+    },
+    "test_diverse_11_cylinder.hdf5": {
+      "max_fraction_of_spacing": 0.2999787563458085,
+      "offset_standard_deviation_fraction": 0.1734262456922358,
+      "independent_episode_positions": true
+    },
+    "test_diverse_9_box.hdf5": {
+      "max_fraction_of_spacing": 0.19999614357948303,
+      "offset_standard_deviation_fraction": 0.11555754999360167,
+      "independent_episode_positions": true
+    },
+    "train_diverse_0_box.hdf5": {
+      "max_fraction_of_spacing": 0.19999897480010986,
+      "offset_standard_deviation_fraction": 0.11595710514006757,
+      "independent_episode_positions": true
+    },
+    "train_diverse_1_sphere.hdf5": {
+      "max_fraction_of_spacing": 0.19999529235064983,
+      "offset_standard_deviation_fraction": 0.11573215472999107,
+      "independent_episode_positions": true
+    },
+    "train_diverse_2_sphere.hdf5": {
+      "max_fraction_of_spacing": 0.19998320937156677,
+      "offset_standard_deviation_fraction": 0.11549181352085407,
+      "independent_episode_positions": true
+    },
+    "train_diverse_3_cylinder.hdf5": {
+      "max_fraction_of_spacing": 0.19998675584793113,
+      "offset_standard_deviation_fraction": 0.11543822948885678,
+      "independent_episode_positions": true
+    },
+    "train_diverse_4_cylinder.hdf5": {
+      "max_fraction_of_spacing": 0.19999760389328092,
+      "offset_standard_deviation_fraction": 0.11559764955527632,
+      "independent_episode_positions": true
+    },
+    "train_diverse_5_box.hdf5": {
+      "max_fraction_of_spacing": 0.20000237226486206,
+      "offset_standard_deviation_fraction": 0.11553509657921612,
+      "independent_episode_positions": true
+    },
+    "validation_diverse_6_box.hdf5": {
+      "max_fraction_of_spacing": 0.19999254122376442,
+      "offset_standard_deviation_fraction": 0.11610870660566219,
+      "independent_episode_positions": true
+    },
+    "validation_diverse_7_sphere.hdf5": {
+      "max_fraction_of_spacing": 0.19999003410339355,
+      "offset_standard_deviation_fraction": 0.11521175014703679,
+      "independent_episode_positions": true
+    },
+    "validation_diverse_8_cylinder.hdf5": {
+      "max_fraction_of_spacing": 0.19999420642852783,
+      "offset_standard_deviation_fraction": 0.11586022936767258,
+      "independent_episode_positions": true
+    }
+  }
+}
