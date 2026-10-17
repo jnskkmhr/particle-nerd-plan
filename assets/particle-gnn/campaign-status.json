@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-17T09:52:26.402902+00:00",
+  "updated_utc": "2026-10-17T09:54:16.836106+00:00",
   "stages": [
     {
       "stage": "Cloud runtime",
@@ -14,18 +14,17 @@
     {
       "stage": "Training",
       "status": "COMPLETED: particle-gnn-train-1",
-      "detail": "Latest recorded validation: optimizer step 10,000 of 10,000. Training uses 776 episodes and checkpoint selection uses 109 separate validation episodes. See measured curves below."
+      "detail": "10,000 updates on four NVIDIA L40 GPUs; optimization took 653.5 seconds. Validation selected update 7,500. The selected checkpoint has been downloaded and verified locally."
     },
     {
       "stage": "Inference",
-      "status": "GPU implementation checks passed",
-      "detail": "Verified complete radius graph, remote-body isolation, training/inference parity and Warp state updates. A 250-step recording/evaluation check runs successfully; this is an execution check, not evidence of prediction accuracy."
+      "status": "Implemented and evaluated; accuracy insufficient",
+      "detail": "All 12 held-out five-second rollouts remain finite but are worse than stationary sand. Median final error is 7.06 cm versus 1.65 cm for the frozen-particle baseline. Local compiled particle steps take about 17.3 ms on RTX 5090; this excludes rigid dynamics and force estimation."
     }
   ],
   "notes": [
-    "The CLI submission response timed out, but a separate query confirmed the server started the job. It was not resubmitted.",
-    "The local smoke checkpoint is only an implementation test; no trained-model accuracy result is claimed.",
-    "Some dynamic-box trajectories reach the rigid ground outside the sand pile. The recorder stores sand-on-box force but not direct ground-on-box force. A large translational force residual is flagged in the metadata rather than treated as a complete contact-force label; episode 456 was checked at its largest residual and its lowest box corner was 4.8 mm below the rigid-ground plane."
+    "Some dynamic-box trajectories reach the rigid ground outside the sand pile. The recorder stores sand-on-box force but not direct ground-on-box force. A large translational force residual is flagged in the metadata rather than treated as a complete contact-force label; episode 456 was checked at its largest residual and its lowest box corner was 4.8 mm below the rigid-ground plane.",
+    "The new inference code advances particles without MPM while replaying current box pose and velocity from a held-out recording. It does not yet integrate the analytical force estimator or advance box motion independently."
   ],
   "links": [
     {
