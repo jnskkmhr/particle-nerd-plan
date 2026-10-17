@@ -1,0 +1,53 @@
+[
+  {
+    "name": "rest",
+    "mass_kg": 1.5,
+    "comparison_time_s": 5.0,
+    "settled_time_s": 1.3800000000000001,
+    "box_center_z_m": 0.22683747112751007,
+    "lowest_box_corner_z_m": 0.15833199924041413,
+    "nearby_surface_estimate_z_m": 0.21181000769138336,
+    "approximate_embedment_m": 0.05347800845096923,
+    "near_particle_rms_difference_vs_1_5kg_m": 0.0,
+    "near_particle_count": 3201,
+    "mean_last_half_second_sand_vertical_force_N": 14.712231636047363,
+    "max_force_balance_residual_N": 1.925561731670953e-05,
+    "max_fraction_below_ground_by_more_than_grid": 0.0,
+    "matched_initial_states": true,
+    "all_finite": true
+  },
+  {
+    "name": "rest-5kg",
+    "mass_kg": 5.0,
+    "comparison_time_s": 5.0,
+    "settled_time_s": 1.36,
+    "box_center_z_m": 0.2221682220697403,
+    "lowest_box_corner_z_m": 0.1748572579324762,
+    "nearby_surface_estimate_z_m": 0.212822824716568,
+    "approximate_embedment_m": 0.0379655667840918,
+    "near_particle_rms_difference_vs_1_5kg_m": 0.014189065434038639,
+    "near_particle_count": 3201,
+    "mean_last_half_second_sand_vertical_force_N": 49.048095703125,
+    "max_force_balance_residual_N": 5.83664264388625e-05,
+    "max_fraction_below_ground_by_more_than_grid": 0.0,
+    "matched_initial_states": true,
+    "all_finite": true
+  },
+  {
+    "name": "rest-10kg",
+    "mass_kg": 10.0,
+    "comparison_time_s": 5.0,
+    "settled_time_s": 1.26,
+    "box_center_z_m": 0.1897171139717102,
+    "lowest_box_corner_z_m": 0.1230349492260764,
+    "nearby_surface_estimate_z_m": 0.21399706602096558,
+    "approximate_embedment_m": 0.09096211679488918,
+    "near_particle_rms_difference_vs_1_5kg_m": 0.026262741535902023,
+    "near_particle_count": 3201,
+    "mean_last_half_second_sand_vertical_force_N": 98.08513641357422,
+    "max_force_balance_residual_N": 0.00011697899162182808,
+    "max_fraction_below_ground_by_more_than_grid": 0.0,
+    "matched_initial_states": true,
+    "all_finite": true
+  }
+]
