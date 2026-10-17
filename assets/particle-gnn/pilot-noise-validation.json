@@ -1,0 +1,65 @@
+{
+  "training_episodes": [
+    0,
+    1
+  ],
+  "validation_episodes": [
+    8
+  ],
+  "optimizer_steps_per_run": 2000,
+  "selected_noise_m_s": 0.0005,
+  "caveat": "Development comparison with two training episodes, not the full 1000-episode experiment",
+  "results": [
+    {
+      "velocity_noise_m_s": 0.005,
+      "best_validation": {
+        "step": 250,
+        "train_loss": 0.0002511842398962472,
+        "elapsed_s": 11.213939905166626,
+        "position_rmse_m": 3.1967244096474276e-05,
+        "velocity_rmse_m_s": 0.001795002875317915,
+        "constant_velocity_position_rmse_m": 6.250076048169659e-06,
+        "near_box_position_rmse_m": 4.854286262635356e-05,
+        "moving_particle_position_rmse_m": 0.00011207421986219056,
+        "transitions": 24,
+        "checkpoint_selection_score_m": 6.419477552833947e-05
+      },
+      "rollout_final_rmse_m": 0.4050667881965637,
+      "frozen_final_rmse_m": 0.008012126199901104
+    },
+    {
+      "velocity_noise_m_s": 0.0005,
+      "best_validation": {
+        "step": 250,
+        "train_loss": 0.0001484457832766566,
+        "elapsed_s": 19.25295352935791,
+        "position_rmse_m": 6.690855444955256e-06,
+        "velocity_rmse_m_s": 0.00045044541768394055,
+        "constant_velocity_position_rmse_m": 6.250076048169659e-06,
+        "near_box_position_rmse_m": 1.829768466888213e-05,
+        "moving_particle_position_rmse_m": 5.118414551816757e-05,
+        "transitions": 24,
+        "checkpoint_selection_score_m": 2.5390895210668316e-05
+      },
+      "rollout_final_rmse_m": 0.07187369465827942,
+      "frozen_final_rmse_m": 0.008012126199901104
+    },
+    {
+      "velocity_noise_m_s": 0.0,
+      "best_validation": {
+        "step": 250,
+        "train_loss": 0.00014713189518423064,
+        "elapsed_s": 19.467259168624878,
+        "position_rmse_m": 7.014892373428243e-06,
+        "velocity_rmse_m_s": 0.0004577183928065999,
+        "constant_velocity_position_rmse_m": 6.250076048169659e-06,
+        "near_box_position_rmse_m": 1.861975871391737e-05,
+        "moving_particle_position_rmse_m": 5.0654288775355984e-05,
+        "transitions": 24,
+        "checkpoint_selection_score_m": 2.542964662090053e-05
+      },
+      "rollout_final_rmse_m": 0.08409219235181808,
+      "frozen_final_rmse_m": 0.008012126199901104
+    }
+  ]
+}
