@@ -1,0 +1,19 @@
+{
+  "input_paths": [
+    "assets/g1-force-velocities/straight-vx-p1p0-wz-p0p0/reference-native.mp4",
+    "assets/g1-force-filter/vx-1/none/none-native.mp4",
+    "assets/g1-force-filter/vx-1/ema/ema-native.mp4",
+    "assets/g1-force-filter/vx-1/contact/contact-native.mp4"
+  ],
+  "labels": [
+    "MPM reference feedback",
+    "No filter",
+    "5 ms EMA",
+    "5 ms contact-aware EMA"
+  ],
+  "encoded_duration_s": 4.76,
+  "common_last_simulation_time_s": 4.72,
+  "fps": 25,
+  "scene_changes": [],
+  "composition": "Equal native-view resizing and external labels only"
+}

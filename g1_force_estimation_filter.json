@@ -1,0 +1,254 @@
+{
+  "conclusion": "Plain 5 ms EMA improves force RMSE and forward-speed tracking in both tested commands. Contact-aware filtering increases support-onset impulse error in both tested commands. Large downward spikes remain with both filters. These single-seed trials justify further evaluation, not a general robustness claim.",
+  "scope": "Six new closed-loop runs: two forward commands and three filter modes. One seed, one sand material. Existing matched MPM-feedback runs provide policy context.",
+  "method": {
+    "velocities_m_s": [
+      0.5,
+      1.0
+    ],
+    "modes": [
+      "none",
+      "ema",
+      "contact"
+    ],
+    "tau_s": 0.005,
+    "duration_s": 8.0,
+    "bed_m": [
+      5,
+      2,
+      0.3
+    ],
+    "seed": 42,
+    "estimator_iterations": 200,
+    "effective_mass_scale": 100,
+    "source_hashes": {
+      "proxy_estimator.py": "c6c58c5cbbb4b1058d805facc8c73d5922d2b96580d5a98ad6c7a01e4ad84e42",
+      "wrench_filter.py": "deba773cee177ab04826586dba958e701737f87a66ba24d262210feec5a92c17",
+      "collect.py": "7838b105ac7e191382b8c2c17d88485867a02a5e3e6b2ac6aa31a178fc8f81fb",
+      "task_variants.py": "c2da73d530b3bb8a23a3f0db29d909f449d78f9449ccd6909b9b62a75804e722"
+    }
+  },
+  "cases": [
+    {
+      "case": "vx-0.5",
+      "vx_m_s": 0.5,
+      "reference": {
+        "duration_s": 8.0,
+        "outcome": "duration",
+        "terminal_terms": [],
+        "force_vector_rmse_N": 0.0,
+        "raw_force_vector_rmse_N": 59.204185485839844,
+        "torque_vector_rmse_Nm": 0.0,
+        "mean_body_vx_m_s": 0.46193678648737724,
+        "velocity_tracking_rmse_m_s": 0.12202502971994325,
+        "material_active_s": 7.955,
+        "direct_rigid_support_s": 0.0,
+        "support_onset_50ms_impulse_vector_rmse_Ns": 0.0,
+        "support_onset_events": 24,
+        "minimum_filtered_Fz_N": -529.0054931640625
+      },
+      "runs": {
+        "none": {
+          "duration_s": 8.0,
+          "outcome": "duration",
+          "terminal_terms": [],
+          "force_vector_rmse_N": 95.62716674804688,
+          "raw_force_vector_rmse_N": 95.62716674804688,
+          "torque_vector_rmse_Nm": 6.387394428253174,
+          "mean_body_vx_m_s": 0.43171253358744693,
+          "velocity_tracking_rmse_m_s": 0.1497709023159984,
+          "material_active_s": 7.95,
+          "direct_rigid_support_s": 0.0,
+          "support_onset_50ms_impulse_vector_rmse_Ns": 3.5349063873291016,
+          "support_onset_events": 34,
+          "minimum_filtered_Fz_N": -896.1299438476562,
+          "largest_downward_raw_force": {
+            "time_s": 2.85,
+            "foot": "left",
+            "raw_Fz_N": -896.1299438476562,
+            "filtered_Fz_N": -896.1299438476562,
+            "reference_Fz_N": -200.11770629882812,
+            "normal_Fz_N": -656.3624267578125,
+            "friction_Fz_N": -239.76751708984375,
+            "foot_vertical_velocity_m_s": 2.839165687561035,
+            "proxy_free_vertical_velocity_m_s": 3.623401403427124,
+            "solver_residual_Ns": 0.0001456732229140181
+          },
+          "force_rms_when_no_active_contact_N": 0.0
+        },
+        "ema": {
+          "duration_s": 8.0,
+          "outcome": "duration",
+          "terminal_terms": [],
+          "force_vector_rmse_N": 69.11805725097656,
+          "raw_force_vector_rmse_N": 84.31975555419922,
+          "torque_vector_rmse_Nm": 4.359076023101807,
+          "mean_body_vx_m_s": 0.4342605546123484,
+          "velocity_tracking_rmse_m_s": 0.13704175434457855,
+          "material_active_s": 7.95,
+          "direct_rigid_support_s": 0.0,
+          "support_onset_50ms_impulse_vector_rmse_Ns": 2.736172676086426,
+          "support_onset_events": 28,
+          "minimum_filtered_Fz_N": -1018.95361328125,
+          "largest_downward_raw_force": {
+            "time_s": 3.415,
+            "foot": "right",
+            "raw_Fz_N": -1404.9720458984375,
+            "filtered_Fz_N": -1018.95361328125,
+            "reference_Fz_N": -113.62440490722656,
+            "normal_Fz_N": -1739.55908203125,
+            "friction_Fz_N": 334.5870666503906,
+            "foot_vertical_velocity_m_s": 2.182957649230957,
+            "proxy_free_vertical_velocity_m_s": 3.088777542114258,
+            "solver_residual_Ns": 0.010258298854248338
+          },
+          "force_rms_when_no_active_contact_N": 19.736371994018555
+        },
+        "contact": {
+          "duration_s": 8.0,
+          "outcome": "duration",
+          "terminal_terms": [],
+          "force_vector_rmse_N": 85.05377960205078,
+          "raw_force_vector_rmse_N": 96.41654968261719,
+          "torque_vector_rmse_Nm": 4.909358501434326,
+          "mean_body_vx_m_s": 0.44248231282721057,
+          "velocity_tracking_rmse_m_s": 0.14583964346806244,
+          "material_active_s": 7.95,
+          "direct_rigid_support_s": 0.0,
+          "support_onset_50ms_impulse_vector_rmse_Ns": 4.479071617126465,
+          "support_onset_events": 30,
+          "minimum_filtered_Fz_N": -734.6145629882812,
+          "largest_downward_raw_force": {
+            "time_s": 5.465,
+            "foot": "right",
+            "raw_Fz_N": -963.5868530273438,
+            "filtered_Fz_N": -734.6145629882812,
+            "reference_Fz_N": -37.0208854675293,
+            "normal_Fz_N": -408.53021240234375,
+            "friction_Fz_N": -555.0567016601562,
+            "foot_vertical_velocity_m_s": 2.712489128112793,
+            "proxy_free_vertical_velocity_m_s": 3.581406593322754,
+            "solver_residual_Ns": 1.9755314531202295e-05
+          },
+          "force_rms_when_no_active_contact_N": 0.0
+        }
+      },
+      "validated_identical_initial_state_config_checkpoint": true
+    },
+    {
+      "case": "vx-1",
+      "vx_m_s": 1.0,
+      "reference": {
+        "duration_s": 4.74,
+        "outcome": "terminated",
+        "terminal_terms": [
+          "outside_workspace"
+        ],
+        "force_vector_rmse_N": 0.0,
+        "raw_force_vector_rmse_N": 96.65866088867188,
+        "torque_vector_rmse_Nm": 0.0,
+        "mean_body_vx_m_s": 0.8791966830992531,
+        "velocity_tracking_rmse_m_s": 0.2954862240161415,
+        "material_active_s": 4.665,
+        "direct_rigid_support_s": 0.0,
+        "support_onset_50ms_impulse_vector_rmse_Ns": 0.0,
+        "support_onset_events": 19,
+        "minimum_filtered_Fz_N": -278.4830017089844
+      },
+      "runs": {
+        "none": {
+          "duration_s": 5.98,
+          "outcome": "terminated",
+          "terminal_terms": [
+            "outside_workspace"
+          ],
+          "force_vector_rmse_N": 144.31063842773438,
+          "raw_force_vector_rmse_N": 144.31063842773438,
+          "torque_vector_rmse_Nm": 8.953566551208496,
+          "mean_body_vx_m_s": 0.6974010902915414,
+          "velocity_tracking_rmse_m_s": 0.38839060400572417,
+          "material_active_s": 5.905,
+          "direct_rigid_support_s": 0.0,
+          "support_onset_50ms_impulse_vector_rmse_Ns": 4.36794900894165,
+          "support_onset_events": 26,
+          "minimum_filtered_Fz_N": -1200.320556640625,
+          "largest_downward_raw_force": {
+            "time_s": 2.5300000000000002,
+            "foot": "left",
+            "raw_Fz_N": -1200.320556640625,
+            "filtered_Fz_N": -1200.320556640625,
+            "reference_Fz_N": -11.937776565551758,
+            "normal_Fz_N": -399.4612121582031,
+            "friction_Fz_N": -800.8593139648438,
+            "foot_vertical_velocity_m_s": 2.1176705360412598,
+            "proxy_free_vertical_velocity_m_s": 5.088461399078369,
+            "solver_residual_Ns": 0.0008136727220967963
+          },
+          "force_rms_when_no_active_contact_N": 0.0
+        },
+        "ema": {
+          "duration_s": 5.04,
+          "outcome": "terminated",
+          "terminal_terms": [
+            "outside_workspace"
+          ],
+          "force_vector_rmse_N": 96.8629150390625,
+          "raw_force_vector_rmse_N": 120.9267349243164,
+          "torque_vector_rmse_Nm": 5.956057071685791,
+          "mean_body_vx_m_s": 0.8235326190745629,
+          "velocity_tracking_rmse_m_s": 0.2973098790863,
+          "material_active_s": 4.97,
+          "direct_rigid_support_s": 0.0,
+          "support_onset_50ms_impulse_vector_rmse_Ns": 3.7706336975097656,
+          "support_onset_events": 24,
+          "minimum_filtered_Fz_N": -653.3433837890625,
+          "largest_downward_raw_force": {
+            "time_s": 4.165,
+            "foot": "left",
+            "raw_Fz_N": -857.4358520507812,
+            "filtered_Fz_N": -541.874755859375,
+            "reference_Fz_N": -2.2857353687286377,
+            "normal_Fz_N": -438.06146240234375,
+            "friction_Fz_N": -419.3743591308594,
+            "foot_vertical_velocity_m_s": 1.3779549598693848,
+            "proxy_free_vertical_velocity_m_s": 1.3770687580108643,
+            "solver_residual_Ns": 1.7317375671620198e-09
+          },
+          "force_rms_when_no_active_contact_N": 19.562320709228516
+        },
+        "contact": {
+          "duration_s": 5.4,
+          "outcome": "terminated",
+          "terminal_terms": [
+            "outside_workspace"
+          ],
+          "force_vector_rmse_N": 134.52838134765625,
+          "raw_force_vector_rmse_N": 149.26210021972656,
+          "torque_vector_rmse_Nm": 7.459750175476074,
+          "mean_body_vx_m_s": 0.7735045979594728,
+          "velocity_tracking_rmse_m_s": 0.3333107565764566,
+          "material_active_s": 5.33,
+          "direct_rigid_support_s": 0.0,
+          "support_onset_50ms_impulse_vector_rmse_Ns": 5.15240478515625,
+          "support_onset_events": 24,
+          "minimum_filtered_Fz_N": -1117.00390625,
+          "largest_downward_raw_force": {
+            "time_s": 2.71,
+            "foot": "right",
+            "raw_Fz_N": -1497.259765625,
+            "filtered_Fz_N": -1117.00390625,
+            "reference_Fz_N": -77.773681640625,
+            "normal_Fz_N": -711.2061767578125,
+            "friction_Fz_N": -786.0535888671875,
+            "foot_vertical_velocity_m_s": 5.401164531707764,
+            "proxy_free_vertical_velocity_m_s": 6.581920623779297,
+            "solver_residual_Ns": 3.7290809050345455e-06
+          },
+          "force_rms_when_no_active_contact_N": 0.0
+        }
+      },
+      "validated_identical_initial_state_config_checkpoint": true
+    }
+  ],
+  "validation": "Finite arrays; identical initial state/observations/config/checkpoint; exact one-step selected-wrench feedback; contact event behavior; normal+friction equals raw wrench; no MPM force input to filter."
+}
