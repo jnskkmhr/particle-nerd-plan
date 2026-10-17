@@ -7,7 +7,7 @@
   let current = 0;
   let overview = false;
 
-  // The contact derivation stays on slide 29; ordinary slide navigation is unchanged.
+  // Interactive contact derivation within the methodology deck.
   const contactTabs = [...document.querySelectorAll('[data-contact-tab]')];
   let contactStep = 0;
   function showContactStep(index, focus = false) {
@@ -62,27 +62,6 @@
   });
   document.getElementById('gnn-back').addEventListener('click', () => showGnnStep(gnnStep - 1));
   document.getElementById('gnn-next').addEventListener('click', () => showGnnStep(gnnStep + 1));
-
-  const replaySelector = document.getElementById('replay-case');
-  const replayCases = JSON.parse(document.getElementById('replay-cases').textContent);
-  replaySelector.addEventListener('change', () => {
-    const selected = replayCases[Number(replaySelector.value)];
-    const video = document.getElementById('motion-video');
-    video.pause();
-    video.poster = selected.poster;
-    video.querySelector('source').src = selected.video;
-    video.querySelector('a').href = selected.video;
-    video.load();
-    const poster = document.querySelector('.replay-print-poster');
-    poster.src = selected.poster;
-    poster.alt = selected.label + ': MPM reference and estimated-force replay with synchronized GRF';
-    document.getElementById('replay-initial').textContent = selected.description;
-    document.getElementById('replay-metrics').textContent = selected.metrics;
-    document.getElementById('replay-profile-link').href = selected.profile;
-    document.getElementById('replay-profile-link').textContent = selected.id === 'drop'
-      ? 'GRF profile and impact detail' : 'GRF, horizontal force, and torque profiles';
-    document.getElementById('replay-video-link').href = selected.video;
-  });
 
   function resize() {
     const scale = Math.max(0.05, Math.min((innerWidth - 24) / 1280, (innerHeight - 92) / 720));
