@@ -1,0 +1,32 @@
+{
+  "definition": "Reference-stationary means displacement from the initial settled position remains below 1 mm throughout the evaluated interval. Unintended movement means the corresponding GNN particle moves more than 1 cm at any time. Heights are particle-center z above the rigid-ground plane.",
+  "episodes": [
+    {
+      "index": 288,
+      "duration_s": 5.0,
+      "reference_stationary_particles": 5742,
+      "stationary_particles_predicted_to_move_over_1cm": 5741,
+      "fraction_of_reference_stationary_particles_moving_over_1cm": 0.9998258446534308,
+      "reference_final_max_height_m": 0.22075553238391876,
+      "predicted_final_max_height_m": 0.31762292981147766
+    },
+    {
+      "index": 352,
+      "duration_s": 5.0,
+      "reference_stationary_particles": 5175,
+      "stationary_particles_predicted_to_move_over_1cm": 5174,
+      "fraction_of_reference_stationary_particles_moving_over_1cm": 0.9998067632850242,
+      "reference_final_max_height_m": 0.2226060926914215,
+      "predicted_final_max_height_m": 0.375728964805603
+    },
+    {
+      "index": 800,
+      "duration_s": 5.0,
+      "reference_stationary_particles": 6502,
+      "stationary_particles_predicted_to_move_over_1cm": 6500,
+      "fraction_of_reference_stationary_particles_moving_over_1cm": 0.9996924023377423,
+      "reference_final_max_height_m": 0.22374878823757172,
+      "predicted_final_max_height_m": 0.2922954559326172
+    }
+  ]
+}
