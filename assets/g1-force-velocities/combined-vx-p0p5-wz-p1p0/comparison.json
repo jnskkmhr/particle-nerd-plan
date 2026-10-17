@@ -1,0 +1,23 @@
+{
+  "reference_video": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/assets/g1-force-velocities/combined-vx-p0p5-wz-p1p0/reference-native.mp4",
+  "estimated_video": "/home/jkamohara/isaac/particle_nerd/particle_nerd_plan/assets/g1-force-velocities/combined-vx-p0p5-wz-p1p0/estimated-native.mp4",
+  "input_streams": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "r_frame_rate": "25/1",
+      "duration": "8.040000",
+      "nb_frames": "201"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "r_frame_rate": "25/1",
+      "duration": "8.040000",
+      "nb_frames": "201"
+    }
+  ],
+  "common_duration_s": 8.04,
+  "common_last_simulation_time_s": 8.0,
+  "presentation": "Synchronized from time zero; shared recorded duration only. Each panel resized equally to 960 pixels wide. Labels outside scene. No scene recoloring or camera changes."
+}
