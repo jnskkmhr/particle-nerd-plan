@@ -1,0 +1,29 @@
+{
+  "updated_utc": "2026-10-17T08:23:25.746771+00:00",
+  "stages": [
+    {
+      "stage": "Cloud runtime",
+      "status": "Smoke test; packaging fix",
+      "detail": "First OSMO job installed dependencies, then found missing IsaacLab apps files. Fixed the source snapshot; second smoke is being submitted."
+    },
+    {
+      "stage": "Collection",
+      "status": "Local pilot passed; cloud campaign pending smoke",
+      "detail": "Two independent local episodes completed validation. Target: 1,000 episodes on isaac-lab-l40-07."
+    },
+    {
+      "stage": "Training",
+      "status": "GPU forward/backward verified",
+      "detail": "Full 16,384-particle graph test passed with 705,918 edges. No trained-model accuracy result yet."
+    },
+    {
+      "stage": "Inference",
+      "status": "Implementation under test",
+      "detail": "GPU particle predictor and held-out recurrent evaluator implemented; model checkpoint pending."
+    }
+  ],
+  "notes": [
+    "Do not interpret the MPM preview videos as GNN output.",
+    "Raw recordings include the settling interval, increasing storage above the 98.7 GB estimate for five seconds alone."
+  ]
+}
