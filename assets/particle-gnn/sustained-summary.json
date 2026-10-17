@@ -1,0 +1,50 @@
+[
+  {
+    "name": "long-push-5kg",
+    "mass_kg": 5,
+    "horizontal_box_path_length_m": 0.1649547666311264,
+    "max_horizontal_box_displacement_m": 0.10301192849874496,
+    "max_box_speed_m_s": 0.1252201646566391,
+    "max_box_angular_speed_rad_s": 0.9519479274749756,
+    "max_force_balance_residual_N": 5.83664264388625e-05,
+    "all_states_finite": true,
+    "force_schedule_verified": true,
+    "active_schedule_duration_s": 4.65
+  },
+  {
+    "name": "long-push-10kg",
+    "mass_kg": 10,
+    "horizontal_box_path_length_m": 0.11665841937065125,
+    "max_horizontal_box_displacement_m": 0.061749182641506195,
+    "max_box_speed_m_s": 0.12175431847572327,
+    "max_box_angular_speed_rad_s": 0.7394070625305176,
+    "max_force_balance_residual_N": 0.00011699769837100219,
+    "all_states_finite": true,
+    "force_schedule_verified": true,
+    "active_schedule_duration_s": 4.65
+  },
+  {
+    "name": "continuous-drag-5kg",
+    "mass_kg": 5,
+    "horizontal_box_path_length_m": 2.556795597076416,
+    "max_horizontal_box_displacement_m": 0.5488165020942688,
+    "max_box_speed_m_s": 0.9572890400886536,
+    "max_box_angular_speed_rad_s": 7.455586910247803,
+    "max_force_balance_residual_N": 9.37546738819556e-05,
+    "all_states_finite": true,
+    "force_schedule_verified": true,
+    "active_schedule_duration_s": 4.65
+  },
+  {
+    "name": "continuous-drag-10kg",
+    "mass_kg": 10,
+    "horizontal_box_path_length_m": 2.38968563079834,
+    "max_horizontal_box_displacement_m": 0.5234494805335999,
+    "max_box_speed_m_s": 0.8858448266983032,
+    "max_box_angular_speed_rad_s": 6.584219455718994,
+    "max_force_balance_residual_N": 0.00018832245144603205,
+    "all_states_finite": true,
+    "force_schedule_verified": true,
+    "active_schedule_duration_s": 4.65
+  }
+]
