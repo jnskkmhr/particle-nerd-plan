@@ -43,6 +43,18 @@
     {
       "label": "Completed four-GPU execution check",
       "url": "https://us-west-2-aws.osmo.nvidia.com/workflows/particle-gnn-train-smoke-1"
+    },
+    {
+      "label": "Training GPU metrics",
+      "url": "https://dashboards.telemetry.dgxc.ngc.nvidia.com/d/workflow_resources/workflow-resources-v2?orgId=46&var-datasource=ae6qyv87oh0cgd&var-cluster=osmogroot-dgxc-k8s-forge-az04-prd1&var-namespace=osmo-prod&var-uuid=d5138e88b43a4389&from=now-1h&to=now"
+    },
+    {
+      "label": "Training task dashboard",
+      "url": "https://forge-az04-prd1.osmo.nvidia.com/dashboard/#/search?namespace=osmo-prod&q=d5138e88b43a4389"
+    },
+    {
+      "label": "Training workflow",
+      "url": "https://us-west-2-aws.osmo.nvidia.com/workflows/particle-gnn-train-1"
     }
   ]
 }
