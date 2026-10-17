@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-17T08:42:57.057787+00:00",
+  "updated_utc": "2026-10-17T08:45:09.580739+00:00",
   "stages": [
     {
       "stage": "Cloud runtime",
@@ -9,7 +9,7 @@
     {
       "stage": "Collection",
       "status": "RUNNING: particle-gnn-collect-1",
-      "detail": "At least 0 of 1,000 accepted episodes are visible in storage checkpoints. Worker states: {'RUNNING': 20, 'INITIALIZING': 12}. Checkpoints lag active simulation by up to five minutes."
+      "detail": "At least 0 of 1,000 accepted episodes are visible in storage checkpoints. Worker states: {'RUNNING': 32}. Checkpoints lag active simulation by up to five minutes."
     },
     {
       "stage": "Training",
