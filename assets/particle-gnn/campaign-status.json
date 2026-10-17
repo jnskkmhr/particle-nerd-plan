@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-17T09:27:44.473193+00:00",
+  "updated_utc": "2026-10-17T09:30:10.723877+00:00",
   "stages": [
     {
       "stage": "Cloud runtime",
@@ -8,8 +8,8 @@
     },
     {
       "stage": "Collection",
-      "status": "RUNNING: particle-gnn-collect-1",
-      "detail": "At least 979 of 1,000 accepted episodes were verified from worker metadata or uploaded records. Worker states: {'COMPLETED': 23, 'RUNNING': 9}. This is a lower bound: live workers are inspected every five minutes. Completed worker outputs are uploaded to storage; the periodic metadata checkpoint pattern in this run does not match its file paths."
+      "status": "COMPLETED: particle-gnn-collect-1",
+      "detail": "At least 1,000 of 1,000 accepted episodes were verified from worker metadata or uploaded records. Worker states: {'COMPLETED': 32}. This is a lower bound: live workers are inspected every five minutes. Completed worker outputs are uploaded to storage; the periodic metadata checkpoint pattern in this run does not match its file paths."
     },
     {
       "stage": "Training",
