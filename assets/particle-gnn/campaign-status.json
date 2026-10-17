@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-17T09:37:08.490244+00:00",
+  "updated_utc": "2026-10-17T09:38:24.216315+00:00",
   "stages": [
     {
       "stage": "Cloud runtime",
@@ -14,7 +14,7 @@
     {
       "stage": "Training",
       "status": "RUNNING: particle-gnn-train-1",
-      "detail": "Latest recorded validation: optimizer step 500 of 10,000. Training uses 776 episodes and checkpoint selection uses 109 separate validation episodes. See measured curves below."
+      "detail": "Latest recorded validation: optimizer step 1,500 of 10,000. Training uses 776 episodes and checkpoint selection uses 109 separate validation episodes. See measured curves below."
     },
     {
       "stage": "Inference",
