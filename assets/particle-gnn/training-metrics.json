@@ -96,5 +96,47 @@
     "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
     "transitions": 109,
     "checkpoint_selection_score_m": 0.0002537962805251592
+  },
+  {
+    "step": 4000,
+    "train_loss": 0.00024913143108642544,
+    "elapsed_s": 261.67680525779724,
+    "position_rmse_m": 0.00014482427721353066,
+    "velocity_rmse_m_s": 0.010577978121271104,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.00024680681358565845,
+    "moving_particle_position_rmse_m": 0.0003771341252841552,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.00025625507202778146
+  },
+  {
+    "step": 4500,
+    "train_loss": 0.00020453308631635992,
+    "elapsed_s": 294.5140335559845,
+    "position_rmse_m": 0.00012583526235550167,
+    "velocity_rmse_m_s": 0.009670586582763506,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.00024880251995280976,
+    "moving_particle_position_rmse_m": 0.0003614756118160634,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.0002453711313747916
+  },
+  {
+    "step": 5000,
+    "train_loss": 0.0001357073184146884,
+    "elapsed_s": 327.11295676231384,
+    "position_rmse_m": 0.00013317447715217244,
+    "velocity_rmse_m_s": 0.010545145725493175,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.0002488223986985102,
+    "moving_particle_position_rmse_m": 0.00036615768371021874,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.0002493848531869671
   }
 ]
