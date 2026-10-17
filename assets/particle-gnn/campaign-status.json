@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-17T09:49:23.196039+00:00",
+  "updated_utc": "2026-10-17T09:52:26.402902+00:00",
   "stages": [
     {
       "stage": "Cloud runtime",
@@ -13,8 +13,8 @@
     },
     {
       "stage": "Training",
-      "status": "10,000 updates completed; held-out evaluation running",
-      "detail": "Optimization took 653.5 seconds. The predefined validation score selects update 7,500. Test results are pending."
+      "status": "COMPLETED: particle-gnn-train-1",
+      "detail": "Latest recorded validation: optimizer step 10,000 of 10,000. Training uses 776 episodes and checkpoint selection uses 109 separate validation episodes. See measured curves below."
     },
     {
       "stage": "Inference",
