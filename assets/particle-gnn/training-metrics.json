@@ -40,5 +40,33 @@
     "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
     "transitions": 109,
     "checkpoint_selection_score_m": 0.0002655650301664903
+  },
+  {
+    "step": 2000,
+    "train_loss": 0.0001443468222410047,
+    "elapsed_s": 131.02022314071655,
+    "position_rmse_m": 0.00015090828248566854,
+    "velocity_rmse_m_s": 0.012031948685000066,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.0002510170207854958,
+    "moving_particle_position_rmse_m": 0.00038316001124693623,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.0002616951048393669
+  },
+  {
+    "step": 2500,
+    "train_loss": 0.00028446954922810617,
+    "elapsed_s": 163.57394337654114,
+    "position_rmse_m": 0.00014098094953795304,
+    "velocity_rmse_m_s": 0.011103822778636493,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.00025289583911465504,
+    "moving_particle_position_rmse_m": 0.00037396883265371564,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.00025594854043544123
   }
 ]
