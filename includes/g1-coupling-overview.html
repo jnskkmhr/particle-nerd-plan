@@ -1,0 +1,51 @@
+<section id="simulation-overview" aria-labelledby="simulation-overview-title">
+<h2 id="simulation-overview-title">How the coupled simulation works</h2>
+<p><strong>Both runs simulate the material with MPM at every step.</strong> The comparison changes the material force and torque sent back to the robot. Particle motion is live: the robot’s actual foot motion changes the material, which changes the next force estimate.</p>
+<figure style="margin:20px 0">
+<svg viewBox="0 0 1200 570" role="img" aria-labelledby="coupling-title coupling-desc" style="display:block;width:100%;height:auto;background:#edf2ef;border-radius:6px">
+<title id="coupling-title">Closed-loop MJWarp–MPM simulation with estimated foot-force feedback</title>
+<desc id="coupling-desc">MJWarp advances the articulated robot using the previous material wrench. Newton prepares virtual foot states. MPM advances material particles. The estimator uses current particle positions and next particle velocities to reconstruct foot wrenches. The feedback buffer selects MPM or estimated wrenches, which are applied during the next five-millisecond step.</desc>
+<defs><marker id="coupling-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#386481"/></marker><marker id="coupling-reference-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#79867d"/></marker></defs>
+<g font-family="system-ui,sans-serif" fill="#22363b">
+<text x="30" y="34" font-size="20" font-weight="650">Newton coupler schedules the steps and transfers state and force buffers</text>
+<g stroke="#386481" stroke-width="2" fill="#fafbf8">
+<rect x="30" y="72" width="340" height="165" rx="5"/>
+<rect x="430" y="72" width="340" height="165" rx="5"/>
+<rect x="830" y="72" width="340" height="165" rx="5"/>
+<rect x="830" y="340" width="340" height="165" rx="5"/>
+<rect x="430" y="340" width="340" height="165" rx="5"/>
+</g>
+<g font-size="21" font-weight="650">
+<text x="48" y="104">1 · MJWarp: robot dynamics</text><text x="448" y="104">2 · Coupler: foot preparation</text><text x="848" y="104">3 · MPM: material dynamics</text>
+<text x="848" y="372">4 · Analytical force estimator</text><text x="448" y="372">5 · Coupler feedback buffer</text>
+</g>
+<g font-size="17">
+<text x="48" y="138">In: robot state, actuator torques,</text><text x="48" y="162">gravity, previous material wrench</text><text x="48" y="195">Out: updated robot pose/velocity</text><text x="48" y="219">Also solves direct rigid contacts</text>
+<text x="448" y="138">Copy old foot pose + new velocity</text><text x="448" y="162">Remove previous material-wrench</text><text x="448" y="186">contribution using virtual inertia</text><text x="448" y="219">Out: prepared foot-proxy state</text>
+<text x="848" y="138">In: current material + foot states</text><text x="848" y="162">Out: next particle positions,</text><text x="848" y="186">velocities, and material state</text><text x="848" y="219">Also computes reference wrenches</text>
+<text x="848" y="406">In: x(t), v(t + Δt), foot-proxy</text><text x="848" y="430">state, geometry, mass and inertia</text><text x="848" y="463">Out: estimated foot force + torque</text><text x="848" y="487">MPM force is not an input</text>
+<text x="448" y="406">Reference run: keep MPM wrench</text><text x="448" y="430">Estimated run: replace foot entries</text><text x="448" y="454">with the reconstructed wrench</text><text x="448" y="487">Apply during the next robot step</text>
+</g>
+<g fill="none" stroke="#386481" stroke-width="3" marker-end="url(#coupling-arrow)">
+<path d="M370 157H424"/><path d="M770 157H824"/><path d="M1000 237V333"/><path d="M830 420H777"/>
+<path d="M430 420H200V244"/>
+</g>
+<g font-size="16" fill="#386481"><text x="1015" y="283">next particle</text><text x="1015" y="306">velocities</text><text x="40" y="310">Saved force + torque</text><text x="40" y="335">for next Δt = 5 ms</text></g>
+<path d="M830 207H801V281H600V333" fill="none" stroke="#79867d" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#coupling-reference-arrow)"/>
+<text x="435" y="268" font-size="16" fill="#596d73">MPM reference force + torque</text>
+<text x="30" y="548" font-size="17">The estimator also retains particle positions and prepared foot states from before the MPM update.</text>
+</g></svg>
+<figcaption class="small">Solid arrows show the estimated-feedback loop; the dashed arrow supplies the alternative reference wrench. Both wrenches are logged on each run’s own trajectory. A wrench means force and torque, expressed in world coordinates with torque about the foot’s center of mass.</figcaption>
+</figure>
+<details><summary>Exact inputs, outputs, and timing</summary>
+<ol>
+<li><strong>MJWarp updates the articulated robot.</strong> Inputs are the current generalized position and velocity, actuator torques, gravity, direct rigid contacts, and the previous material wrench. Outputs are the next robot state and foot velocities. Actuation and joint dynamics are included here.</li>
+<li><strong>Newton prepares independent virtual foot bodies for material coupling.</strong> In the current lagged mode, it copies each foot’s old pose and updated velocity. It subtracts the previous material-wrench velocity contribution using the proxy mass and inertia. This operation changes the proxy state, not the already advanced robot state. The estimator captures this state and the current particle positions.</li>
+<li><strong>MPM updates the material.</strong> It consumes the prepared foot states and the current material state, then advances particle positions, velocities, and its internal material variables. The current foot motion therefore changes the material simulation. MPM also calculates reference contact wrenches.</li>
+<li><strong>The analytical solver reconstructs foot wrenches.</strong> It reads the saved particle positions, next particle velocities from MPM, prepared foot states, and collision geometry. A local velocity-gradient fit estimates material velocity at the foot surface. The contact solver enforces unilateral normal impulses and friction. Force = Σ impulse / Δt; torque = Σ (contact lever arm × impulse) / Δt. MPM reference wrenches and measured next robot accelerations are not estimator inputs.</li>
+<li><strong>The feedback buffer selects what drives the next robot step.</strong> Reference mode retains the MPM foot wrench; estimated mode overwrites those foot entries with the estimate. The estimate does not retroactively update the robot or modify the MPM particles during this step. It affects both through subsequent coupled steps.</li>
+</ol>
+<p><strong>Timing:</strong> one coupling interval is 5 ms; MJWarp uses two 2.5 ms rigid substeps. The policy updates every 20 ms. New material wrenches are applied in the following coupling interval. Direct foot contact with the rigid floor or approach platform remains part of MJWarp’s rigid-contact solve.</p>
+<p><strong>Scope:</strong> no particle GNN runs in this benchmark. The estimator uses Newton’s independent virtual-foot approximation, rather than a full articulated contact-response solve coupling both feet through the robot’s generalized mass matrix.</p>
+</details>
+</section>
