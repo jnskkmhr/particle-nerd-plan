@@ -1,0 +1,15 @@
+{
+  "device": "NVIDIA GeForce RTX 5090",
+  "particle_count": 16384,
+  "episode": 8,
+  "checkpoint": "Pilot noise 0.0005, selected step 250",
+  "warmup_steps_excluded": 3,
+  "eager_gpu_ms": 36.83305740356445,
+  "eager_wall_ms": 36.85308000422083,
+  "compiled_gpu_ms": 16.130752563476562,
+  "compiled_wall_ms": 16.152113996213302,
+  "gpu_speedup": 2.2834060133661893,
+  "first_step_max_position_difference_m": 8.344650268554688e-07,
+  "scope": "Particle graph, geometry, GNN and state update; excludes recording, rendering, rigid dynamics and analytical force estimation",
+  "model_quality": "Pilot remains inaccurate; timing does not establish physical accuracy"
+}

@@ -26,7 +26,8 @@
     "The CLI submission response timed out, but a separate query confirmed the server started the job. It was not resubmitted.",
     "Training will begin after collection metadata is checked for all 1,000 accepted episodes.",
     "The local smoke checkpoint is only an implementation test; no trained-model accuracy result is claimed.",
-    "Raw recordings include settling, approximately 125 GB for 1,000 episodes based on the local pilot."
+    "Raw recordings include settling, approximately 125 GB for 1,000 episodes based on the local pilot.",
+    "Some dynamic-box trajectories reach the rigid ground outside the sand pile. The recorder stores sand-on-box force but not direct ground-on-box force. A large translational force residual is flagged in the metadata rather than treated as a complete contact-force label; episode 456 was checked at its largest residual and its lowest box corner was 4.8 mm below the rigid-ground plane."
   ],
   "links": [
     {
