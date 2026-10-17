@@ -1,0 +1,24 @@
+{
+  "accepted_metadata_sha256": "efe19f93e050bfea12f46056bf6aafdc4fdd9130c01ca708c8e5d154f509b4a6",
+  "completed": 1000,
+  "expected": 1000,
+  "complete": true,
+  "splits": {
+    "train": 776,
+    "test": 115,
+    "validation": 109
+  },
+  "cases": {
+    "rest": 200,
+    "continuous-drag": 400,
+    "long-push": 400
+  },
+  "mass_min_kg": 5.003283733658363,
+  "mass_max_kg": 9.996053966854348,
+  "stored_bytes": 125279502232,
+  "total_particle_frames": 318296,
+  "post_settle_particle_frames": 251000,
+  "episodes_with_unaccounted_body_force_over_0_01_N": 44,
+  "rejected_seed_attempts_before_acceptance": 0,
+  "missing_episode_ids": []
+}

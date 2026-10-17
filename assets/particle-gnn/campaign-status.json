@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-17T09:30:10.723877+00:00",
+  "updated_utc": "2026-10-17T09:31:39.115760+00:00",
   "stages": [
     {
       "stage": "Cloud runtime",
@@ -8,13 +8,13 @@
     },
     {
       "stage": "Collection",
-      "status": "COMPLETED: particle-gnn-collect-1",
-      "detail": "At least 1,000 of 1,000 accepted episodes were verified from worker metadata or uploaded records. Worker states: {'COMPLETED': 32}. This is a lower bound: live workers are inspected every five minutes. Completed worker outputs are uploaded to storage; the periodic metadata checkpoint pattern in this run does not match its file paths."
+      "status": "COMPLETED and audited",
+      "detail": "All 1,000 unique episodes are uploaded: 776 training, 109 validation and 115 test. Every episode has 251 post-settlement frames. Stored HDF5 size: 125.28 GB; no rejected seeds."
     },
     {
       "stage": "Training",
-      "status": "Four-GPU execution check passed",
-      "detail": "particle-gnn-train-smoke-1 completed 25 updates, saved a checkpoint and evaluated 250 recurrent steps on a separate pilot episode. Full-dataset training has not started; the pilot does not establish accuracy."
+      "status": "Full-data submission in progress",
+      "detail": "Four GPUs, 10,000 optimizer updates; velocity noise 0.0005 m/s. Validation covers every eligible validation episode."
     },
     {
       "stage": "Inference",
@@ -24,9 +24,7 @@
   ],
   "notes": [
     "The CLI submission response timed out, but a separate query confirmed the server started the job. It was not resubmitted.",
-    "Training will begin after collection metadata is checked for all 1,000 accepted episodes.",
     "The local smoke checkpoint is only an implementation test; no trained-model accuracy result is claimed.",
-    "Raw recordings include settling, approximately 125 GB for 1,000 episodes based on the local pilot.",
     "Some dynamic-box trajectories reach the rigid ground outside the sand pile. The recorder stores sand-on-box force but not direct ground-on-box force. A large translational force residual is flagged in the metadata rather than treated as a complete contact-force label; episode 456 was checked at its largest residual and its lowest box corner was 4.8 mm below the rigid-ground plane."
   ],
   "links": [
