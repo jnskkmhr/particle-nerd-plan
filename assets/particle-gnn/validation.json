@@ -1,0 +1,23 @@
+[
+  {
+    "case": "rest",
+    "passed": true,
+    "states_50Hz": 320,
+    "post_settlement_states_50Hz": 251,
+    "max_body_force_balance_residual_N": 1.925561731670953e-05
+  },
+  {
+    "case": "push-spin",
+    "passed": true,
+    "states_50Hz": 322,
+    "post_settlement_states_50Hz": 251,
+    "max_body_force_balance_residual_N": 1.629710820919171e-05
+  },
+  {
+    "case": "drag-lift",
+    "passed": true,
+    "states_50Hz": 321,
+    "post_settlement_states_50Hz": 251,
+    "max_body_force_balance_residual_N": 1.5284010970498542e-05
+  }
+]

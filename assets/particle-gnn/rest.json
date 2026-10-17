@@ -1,0 +1,107 @@
+{
+  "manifest": {
+    "case": "rest",
+    "seed": 41001,
+    "scene": {
+      "scene": "open-ground",
+      "bed_size_m": [
+        1.0,
+        1.0,
+        0.5
+      ],
+      "lattice_resolution": [
+        32,
+        32,
+        16
+      ],
+      "expected_particles_per_environment": 16384,
+      "particle_spacing_m": [
+        0.03125,
+        0.03125,
+        0.03125
+      ],
+      "particle_radius_m": 0.015625000000000003,
+      "particles_per_cell_axis": 1.25,
+      "tray_motion": null,
+      "container_walls": false,
+      "ground_z_m": 0.0,
+      "initial_material_surface_z_m": 0.5,
+      "voxel_size_m": 0.04
+    },
+    "material": {
+      "density": 1600.0,
+      "young_modulus": 1000000000000000.0,
+      "poisson_ratio": 0.3,
+      "friction": 0.48,
+      "yield_pressure": 1000000000000000.0,
+      "tensile_yield_ratio": 0.0,
+      "yield_stress": 0.0,
+      "hardening": 0.0,
+      "dilatancy": 0.0,
+      "viscosity": 0.0
+    },
+    "particle_count": 16384,
+    "body_mass_kg": 1.5,
+    "body_size_m": [
+      0.12,
+      0.12,
+      0.08
+    ],
+    "initial_body_pose": [
+      -0.04931699484586716,
+      0.061181724071502686,
+      0.6017226576805115,
+      0.09110157191753387,
+      -0.0005109906196594238,
+      0.9910068511962891,
+      0.0980089008808136
+    ],
+    "initial_body_velocity": [
+      -0.0635908842086792,
+      -0.24058213829994202,
+      -0.04228753596544266,
+      0.8994513750076294,
+      0.751859188079834,
+      0.4400138854980469
+    ],
+    "dt": 0.005,
+    "record_hz": 50,
+    "solver_max_iterations": 25,
+    "solver_tolerance": 0.0001,
+    "solver_iteration_policy": "Newton stock convergence/iteration loop",
+    "solver": [
+      "gs"
+    ],
+    "settled_step": 276,
+    "settled_time_s": 1.3800000000000001,
+    "settled_criterion": "Body speed <0.02 m/s and angular speed <0.2 rad/s, supported by sand (>1.5 N material force), sustained 0.3 s after initial 0.5 s",
+    "post_settle_duration_s": 5.0,
+    "total_steps": 1276,
+    "jitter_fraction": 0.2,
+    "min_particle_center_z_m": -0.005412684287875891,
+    "max_fraction_particle_centers_below_ground_by_more_than_grid": 0.0,
+    "pulses": [],
+    "drag": null,
+    "elapsed_wall_seconds": 46.23099687701324,
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "packages": {
+      "newton": "1.8.0.dev0",
+      "warp-lang": "1.19.0.dev20261008",
+      "torch": "2.11.0+cu130",
+      "mujoco-warp": "3.15.0"
+    },
+    "source_sha256": "f0811d6620600b1b300edaef58b365b4a5a2e6fce06d3ee3e974efd92e58ae75",
+    "status": "complete",
+    "physics": "MPM particles + MJWarp dynamic box; no GNN or estimated force feedback"
+  },
+  "measurements": {
+    "case": "rest",
+    "settled_time_s": 1.3800000000000001,
+    "duration_s": 6.38,
+    "max_post_settlement_box_center_displacement_m": 0.011335891671478748,
+    "max_material_force_N": 102.35710906982422,
+    "mean_body_force_balance_residual_N": 1.1716978460647764e-06,
+    "max_body_force_balance_residual_N": 1.925561731670953e-05,
+    "ground_violation_fraction": 0.0
+  }
+}
