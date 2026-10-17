@@ -222,5 +222,47 @@
     "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
     "transitions": 109,
     "checkpoint_selection_score_m": 0.0002375561667026922
+  },
+  {
+    "step": 8500,
+    "train_loss": 8.55113472055109e-05,
+    "elapsed_s": 555.5363667011261,
+    "position_rmse_m": 0.00011483886194813797,
+    "velocity_rmse_m_s": 0.009021811798945885,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.0002476529882085718,
+    "moving_particle_position_rmse_m": 0.00034920970233010836,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.0002372338508289394
+  },
+  {
+    "step": 9000,
+    "train_loss": 7.287660650536054e-05,
+    "elapsed_s": 588.4077081680298,
+    "position_rmse_m": 0.00011409560874553401,
+    "velocity_rmse_m_s": 0.00869213284611507,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.00024731525649923837,
+    "moving_particle_position_rmse_m": 0.00034837502242351785,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.00023659529588943007
+  },
+  {
+    "step": 9500,
+    "train_loss": 0.00024377320243638677,
+    "elapsed_s": 620.9510624408722,
+    "position_rmse_m": 0.00011421331115796196,
+    "velocity_rmse_m_s": 0.008737435504025295,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.00024797683267458424,
+    "moving_particle_position_rmse_m": 0.00034680087375491735,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.00023633033919582118
   }
 ]
