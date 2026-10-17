@@ -1,0 +1,16 @@
+[
+  {
+    "step": 500,
+    "train_loss": 0.00022277757688812016,
+    "elapsed_s": 32.9927613735199,
+    "position_rmse_m": 0.00018249631086531256,
+    "velocity_rmse_m_s": 0.014585302808249987,
+    "constant_velocity_position_rmse_m": 0.00019322381801408178,
+    "near_box_position_rmse_m": 0.000248959391447828,
+    "moving_particle_position_rmse_m": 0.0004126082452502724,
+    "constant_velocity_near_box_position_rmse_m": 0.00025307415885606274,
+    "constant_velocity_moving_particle_position_rmse_m": 0.000429752806253002,
+    "transitions": 109,
+    "checkpoint_selection_score_m": 0.0002813546491878043
+  }
+]
