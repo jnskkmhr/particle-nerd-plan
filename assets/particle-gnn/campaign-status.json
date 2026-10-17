@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-17T08:51:07.809114+00:00",
+  "updated_utc": "2026-10-17T08:57:48.662629+00:00",
   "stages": [
     {
       "stage": "Cloud runtime",
@@ -9,7 +9,7 @@
     {
       "stage": "Collection",
       "status": "RUNNING: particle-gnn-collect-1",
-      "detail": "At least 206 of 1,000 accepted episodes were verified from worker metadata or uploaded records. Worker states: {'RUNNING': 32}. This is a lower bound: live workers are inspected every five minutes; storage checkpoint delivery is not yet verified."
+      "detail": "At least 370 of 1,000 accepted episodes were verified from worker metadata or uploaded records. Worker states: {'RUNNING': 32}. This is a lower bound: live workers are inspected every five minutes; storage checkpoint delivery is not yet verified."
     },
     {
       "stage": "Training",
@@ -23,10 +23,27 @@
     }
   ],
   "notes": [
-    "Collection workflow: https://us-west-2-aws.osmo.nvidia.com/workflows/particle-gnn-collect-1",
     "The CLI submission response timed out, but a separate query confirmed the server started the job. It was not resubmitted.",
     "Training will begin after collection metadata is checked for all 1,000 accepted episodes.",
     "The local smoke checkpoint is only an implementation test; no trained-model accuracy result is claimed.",
     "Raw recordings include settling, approximately 125 GB for 1,000 episodes based on the local pilot."
+  ],
+  "links": [
+    {
+      "label": "Collection workflow",
+      "url": "https://us-west-2-aws.osmo.nvidia.com/workflows/particle-gnn-collect-1"
+    },
+    {
+      "label": "Collection GPU metrics",
+      "url": "https://dashboards.telemetry.dgxc.ngc.nvidia.com/d/workflow_resources/workflow-resources-v2?orgId=46&var-datasource=ae6qyv87oh0cgd&var-cluster=osmogroot-dgxc-k8s-forge-az04-prd1&var-namespace=osmo-prod&var-uuid=25e05ed8395e4aa2&from=now-1h&to=now"
+    },
+    {
+      "label": "Collection task dashboard",
+      "url": "https://forge-az04-prd1.osmo.nvidia.com/dashboard/#/search?namespace=osmo-prod&q=25e05ed8395e4aa2"
+    },
+    {
+      "label": "Completed four-GPU execution check",
+      "url": "https://us-west-2-aws.osmo.nvidia.com/workflows/particle-gnn-train-smoke-1"
+    }
   ]
 }
