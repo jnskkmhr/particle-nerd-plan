@@ -1,0 +1,64 @@
+{
+  "input": "Reference MPM states at every step; fixed selected model and threshold",
+  "diagnostic_only": true,
+  "trajectories": [
+    {
+      "index": 117,
+      "frames": 250,
+      "precision": 0.8424054105533081,
+      "recall": 0.9317217807990894,
+      "false_positive_rate": 0.014673251167361883,
+      "counts": [
+        296322,
+        55435,
+        21715,
+        3722528
+      ],
+      "recurrent_precision": 0.3675120669871886,
+      "recurrent_recall": 0.48743070774784064,
+      "recurrent_false_positive_rate": 0.07061768471528175
+    },
+    {
+      "index": 453,
+      "frames": 250,
+      "precision": 0.7730450736351465,
+      "recall": 0.9436719587700183,
+      "false_positive_rate": 0.008049280014149488,
+      "counts": [
+        109130,
+        32039,
+        6514,
+        3948317
+      ],
+      "recurrent_precision": 0.26541776008772483,
+      "recurrent_recall": 0.5483725917470859,
+      "recurrent_false_positive_rate": 0.044094799560642314
+    },
+    {
+      "index": 460,
+      "frames": 250,
+      "precision": 0.6933623393706364,
+      "recall": 0.9333764663817615,
+      "false_positive_rate": 0.006005052427793357,
+      "counts": [
+        54820,
+        24244,
+        3913,
+        4013023
+      ],
+      "recurrent_precision": 0.17899466816057416,
+      "recurrent_recall": 0.7779272300069807,
+      "recurrent_false_positive_rate": 0.05190863026894184
+    }
+  ],
+  "reference_aggregate": {
+    "precision": 0.8046853965978427,
+    "recall": 0.9347256576782951,
+    "false_positive_rate": 0.009471169978329181
+  },
+  "recurrent_aggregate": {
+    "precision": 0.28834825327510916,
+    "recall": 0.5363921415719293,
+    "false_positive_rate": 0.055264147114013666
+  }
+}
