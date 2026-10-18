@@ -1,14 +1,33 @@
 {
   "status": {
-    "stage": "RTX 5080 pilot complete; full-dataset experiment being prepared",
-    "detail": "The revised learned selector greatly reduced stationary-particle drift on validation trajectory #8, but deformation accuracy remains insufficient. This pilot trained on only two trajectories; it is not an independent test result.",
+    "stage": "Full-dataset experiment running in OSMO",
+    "detail": "particle-gnn-region-1 is RUNNING on four L40 GPUs in isaac-lab-l40-07. The RTX 5080 pilot below is complete; full-dataset test results are pending.",
     "findings": [
       "On validation trajectory #8 (sustained push), original-GNN final position RMSE was 7.06 cm. Reference-motion selection with a 0.5 mm displacement label reduced this to 0.66 cm. Reference-motion selection uses future MPM data and cannot be deployed.",
       "The revised learned selector used current-state features and reduced final position RMSE to 1.38 cm. Of 6,221 reference-stationary particles, 9 moved more than 1 cm; the original GNN moved 6,220. Velocity features are scaled to resolve motion near rest.",
       "Freezing every particle gives 0.80 cm overall error and 2.11 cm error on displaced particles in this trajectory. Learned selection gives 3.14 cm error on displaced particles. Thus, reduced drift alone does not establish accurate deformation prediction. Reference-motion selection gives 1.67 cm error on displaced particles, suggesting that better activity prediction can help.",
       "The full-dataset experiment will train on 776 trajectories, calibrate classification thresholds on 109 validation trajectories, compare two motion-label distances on six validation rollouts, and evaluate the chosen selector on 12 previously unused test trajectories. The motion GNN remains fixed; this first experiment measures whether selection alone helps."
     ],
-    "links": []
+    "links": [
+      {
+        "label": "OSMO experiment",
+        "url": "https://us-west-2-aws.osmo.nvidia.com/workflows/particle-gnn-region-1"
+      },
+      {
+        "label": "GPU and memory usage",
+        "url": "https://dashboards.telemetry.dgxc.ngc.nvidia.com/d/workflow_resources/workflow-resources-v2?orgId=46&var-datasource=ae6qyv87oh0cgd&var-cluster=osmogroot-dgxc-k8s-forge-az04-prd1&var-namespace=osmo-prod&var-uuid=2fa6ff0c3dc24b27&from=now-1h&to=now"
+      },
+      {
+        "label": "Task dashboard",
+        "url": "https://forge-az04-prd1.osmo.nvidia.com/dashboard/#/search?namespace=osmo-prod&q=2fa6ff0c3dc24b27"
+      }
+    ],
+    "visuals": [
+      {
+        "src": "assets/particle-gnn/region-pilot-validation-8.mp4",
+        "caption": "Pilot validation trajectory #8, 6.06 kg box. Left: MPM particles. Right: original motion GNN with the revised activity selector trained on two trajectories. Both replay the same recorded box motion. Five seconds are shown; this is a validation illustration, not an independent test."
+      }
+    ]
   },
   "experiments": [
     {
