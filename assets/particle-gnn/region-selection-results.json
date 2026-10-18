@@ -1,0 +1,9 @@
+{
+  "status": {
+    "stage": "RTX 5080 pilot running",
+    "detail": "GPU invariance and activity-label checks passed. Comparing original GNN, reference-motion selection and a velocity threshold on validation trajectory #8, then training a small selector pilot. No new accuracy result is claimed yet.",
+    "findings": [],
+    "links": []
+  },
+  "experiments": []
+}
