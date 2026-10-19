@@ -212,10 +212,10 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 /* Per-particle embedding data flow. */
 .embedding-heading{font-size:18px;font-weight:650;color:var(--ink);margin:4px 0 10px}
 .embedding-schematic{display:block;width:100%;height:285px}
-.embedding-boxes rect{fill:#f1f4ef;stroke:#b9ccc2;rx:4}
+.embedding-boxes rect{fill:none;stroke:#386481;stroke-width:1.8;rx:4}
 .embedding-text text{text-anchor:middle;font-size:16px}
 .embedding-lines{fill:none;stroke:#247967;stroke-width:2;marker-end:url(#embedding-arrow)}
 .embedding-dimension{font-size:13px;fill:#596d73;text-anchor:middle}
-.embedding-sum{font-size:16px;fill:#fff;text-anchor:middle;font-weight:700}
+.embedding-sum{font-size:16px;fill:#247967;text-anchor:middle;font-weight:700}
 .embedding-node{font-size:18px;text-anchor:middle;font-weight:600}
 .embedding-note{padding:10px 13px;margin-top:9px;background:#e8efea;border-left:3px solid var(--green);font-size:18px}
