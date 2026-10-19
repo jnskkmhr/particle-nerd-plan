@@ -39,7 +39,7 @@
   document.getElementById('contact-step-next').addEventListener('click', () => showContactStep((contactStep + 1) % 5));
 
   const graphTabs = [...document.querySelectorAll('[data-graph-tab]')];
-  const graphCaptions = ['Material particle i · 26 input values', 'Directed particle edge j → i · 7 input values', 'Particle i / collider b · 9 input values', 'Particle encoding + weighted collider encodings'];
+  const graphCaptions = ['Material particle i · 26 input values', 'Directed particle edge j → i · 7 input values', 'Particle i / collider b · 9 input values', 'Collider information → particle-node features'];
   function showGraphTab(index, focus = false) {
     graphTabs.forEach((tab, i) => {
       tab.setAttribute('aria-selected', String(i === index));

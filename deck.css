@@ -208,3 +208,14 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 #graph-panel-3 .graph-summary{font-size:16px;line-height:1.3;padding:9px 13px;margin:9px 0}
 #graph-panel-3 .graph-detail{margin-top:8px}
 .graph-representation sub{line-height:0}
+
+/* Per-particle embedding data flow. */
+.embedding-heading{font-size:18px;font-weight:650;color:var(--ink);margin:4px 0 10px}
+.embedding-schematic{display:block;width:100%;height:285px}
+.embedding-boxes rect{fill:#f1f4ef;stroke:#b9ccc2;rx:4}
+.embedding-text text{text-anchor:middle;font-size:16px}
+.embedding-lines{fill:none;stroke:#247967;stroke-width:2;marker-end:url(#embedding-arrow)}
+.embedding-dimension{font-size:13px;fill:#596d73;text-anchor:middle}
+.embedding-sum{font-size:16px;fill:#fff;text-anchor:middle;font-weight:700}
+.embedding-node{font-size:18px;text-anchor:middle;font-weight:600}
+.embedding-note{padding:10px 13px;margin-top:9px;background:#e8efea;border-left:3px solid var(--green);font-size:18px}
