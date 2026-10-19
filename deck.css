@@ -142,3 +142,17 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .slide[aria-labelledby="learned-sdf-title"] table{margin-bottom:14px}
 .slide[aria-labelledby="learned-sdf-title"] td{font-size:19px;line-height:1.3;padding:10px 12px}
 .slide[aria-labelledby="learned-sdf-title"] .lead{font-size:22px;margin-bottom:16px}
+
+/* Current implementation: concise methodology tables and diagrams. */
+.current-method .compact-table td{font-size:19px;padding:12px 15px;line-height:1.35}
+.current-method .compact-table th{padding:10px 15px}
+.current-method .equation{font-size:25px}
+.current-method .three article{min-height:280px}
+.current-method .flow.four span{font-size:16px}
+.current-method[data-route="scope"] .compact-table td:first-child{width:24%}
+.current-method[data-route="scope"] .compact-table td{font-size:18px;padding:11px 14px}
+.current-method[data-route="collection"] li{font-size:21px}
+
+.current-method[data-route="gnn-update"] .flow{margin-bottom:16px}
+.current-method[data-route="gnn-update"] .equation{padding:14px 20px;margin:8px 0 16px}
+.current-method[data-route="gnn-update"] .callout{margin-top:18px}

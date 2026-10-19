@@ -2,7 +2,7 @@
 .controls{display:flex;flex-wrap:wrap;gap:20px}.controls label{display:grid;gap:5px}canvas{width:100%;height:auto;background:#f1f4f1;border:1px solid #cbd7d8;border-radius:6px}.legend{font-size:15px}button,input{accent-color:#287e75}button{padding:9px 15px;border:1px solid #386481;background:#eaf0ee;color:inherit;border-radius:4px}h1{font-size:34px}
 </style><style>.site-nav{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin:0 0 24px;padding:0 0 14px;border-bottom:1px solid #d2ddde;font-size:14px;line-height:1.6}.site-nav a{white-space:nowrap}</style><body>
 <nav class="site-nav" aria-label="Research pages"><a href="index.html">Methodology</a> · <a href="box_force_estimation.html">Box force estimation</a> · <a href="g1_force_estimation.html">G1 force estimation</a> · <a href="gnn-implementation.html">GNN implementation</a> · <a href="compute-profile.html">Compute profile</a></nav>
-<p><a href="index.html#23">Slides</a> · <a href="compute-profile.html">GPU implementation</a> · <a href="dataset.html">Original dataset audit</a></p>
+<p><a href="index.html#gnn-inputs">Slides</a> · <a href="compute-profile.html">GPU implementation</a> · <a href="dataset.html">Original dataset audit</a></p>
 <h1>Particle GNN: implementation, training data, and limitations</h1>
 <p>October 15, 2026. Particle motion is learned; rigid-body motion and contact reactions use the existing analytical pipeline. MPM is used to collect reference data, never inside learned inference.</p>
 <div class="note"><b>Graph capture:</b> only the MJWarp rigid-body substep is CUDA-graph captured. The GNN uses <code>torch.compile</code>. Neighbor construction, the GNN, integration, and contact reconstruction have not been captured together as one CUDA graph.</div>
