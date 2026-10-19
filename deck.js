@@ -38,6 +38,29 @@
   document.getElementById('contact-step-back').addEventListener('click', () => showContactStep(contactStep - 1));
   document.getElementById('contact-step-next').addEventListener('click', () => showContactStep((contactStep + 1) % 5));
 
+  const graphTabs = [...document.querySelectorAll('[data-graph-tab]')];
+  const graphCaptions = ['Material particle i · 26 input values', 'Directed particle edge j → i · 7 input values', 'Particle i / collider b · 9 input values', 'Particle encoding + weighted collider encodings'];
+  function showGraphTab(index, focus = false) {
+    graphTabs.forEach((tab, i) => {
+      tab.setAttribute('aria-selected', String(i === index));
+      tab.tabIndex = i === index ? 0 : -1;
+      document.getElementById(tab.getAttribute('aria-controls')).hidden = i !== index;
+    });
+    document.querySelector('.graph-diagram').dataset.highlight = String(index);
+    document.getElementById('graph-caption').textContent = graphCaptions[index];
+    if (focus) graphTabs[index].focus();
+  }
+  graphTabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => showGraphTab(i));
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault(); event.stopPropagation();
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? graphTabs.length - 1
+        : (i + (event.key === 'ArrowRight' ? 1 : graphTabs.length - 1)) % graphTabs.length;
+      showGraphTab(next, true);
+    });
+  });
+
   function resize() {
     const scale = Math.max(0.05, Math.min((innerWidth - 24) / 1280, (innerHeight - 92) / 720));
     document.documentElement.style.setProperty('--scale', scale);

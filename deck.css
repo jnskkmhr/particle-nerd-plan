@@ -176,3 +176,35 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .overview-columns p{min-height:58px}
 .overview-columns figure{margin-top:8px}
 .overview-columns svg{height:180px}
+
+/* Particle-graph input inspector. */
+.graph-representation .eyebrow{margin-bottom:17px}
+.graph-representation h2{margin-bottom:18px}
+.graph-tabs{display:flex;gap:8px;margin-bottom:19px}
+.graph-tabs button{padding:9px 13px;border:1px solid #bacdc6;border-radius:4px;background:#f4f7f3;color:var(--ink);font-size:16px}
+.graph-tabs button[aria-selected="true"]{background:var(--green);color:white}
+.graph-layout{display:grid;grid-template-columns:385px 1fr;gap:26px;align-items:start}
+.graph-diagram{padding:14px 8px;margin-top:6px}
+.graph-diagram .g-small{font-size:15px}
+.graph-diagram .g-light{fill:white;font-size:19px}
+.graph-diagram figcaption{font-size:15px;margin:10px 0 0}
+.graph-diagram[data-highlight="0"] .graph-collider,.graph-diagram[data-highlight="0"] .graph-edges{opacity:.3}
+.graph-diagram[data-highlight="1"] .graph-collider{opacity:.25}
+.graph-diagram[data-highlight="2"] .graph-edges,.graph-diagram[data-highlight="3"] .graph-edges{opacity:.2}
+.graph-feature-table{margin-bottom:12px}
+.graph-feature-table th{font-size:12px;padding:8px 10px;text-transform:none;letter-spacing:0}
+.graph-feature-table td{font-size:16px;line-height:1.35;padding:9px 10px}
+.graph-feature-table td:last-child,.graph-feature-table th:last-child{text-align:right}
+.graph-summary{background:#e8efea;border-left:3px solid var(--green);padding:11px 13px;font-size:17px;line-height:1.4;margin:12px 0}
+.graph-detail{font-size:14px;line-height:1.5;color:var(--muted);margin-top:12px}
+.graph-formula{font-size:20px;line-height:1.5;color:#1b5548;margin:12px 0}
+.graph-key-table{margin:12px 0}
+.graph-key-table th{font-size:14px;text-transform:none;letter-spacing:0;border-bottom:1px solid var(--line);padding:10px}
+.graph-key-table td{font-size:16px;padding:10px}
+.graph-print-summary{display:none}
+@media print{.graph-tabs{display:none}.graph-panels [role="tabpanel"]{display:none!important}#graph-panel-0{display:block!important}.graph-print-summary{display:block;font-size:14px;line-height:1.5}.graph-representation footer{display:none}}
+#graph-panel-3 .graph-key-table th,#graph-panel-3 .graph-key-table td{padding:6px 10px}
+#graph-panel-3 .graph-formula{margin:8px 0}
+#graph-panel-3 .graph-summary{font-size:16px;line-height:1.3;padding:9px 13px;margin:9px 0}
+#graph-panel-3 .graph-detail{margin-top:8px}
+.graph-representation sub{line-height:0}
