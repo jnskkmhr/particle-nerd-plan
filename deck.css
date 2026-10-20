@@ -249,3 +249,12 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .region-input-label{font-size:16px;fill:#596d73}
 
 .region-mask-label{font-size:16px;fill:#247967}
+
+/* Contact solve: explicit connection from free velocity to the iterative response. */
+.solve-tabs{display:flex;gap:5px;margin:0 0 10px}
+.solve-tabs button{border:1px solid #bdcec7;border-radius:4px;background:transparent;color:var(--ink);font-size:13px;padding:7px 9px;cursor:pointer}
+.solve-tabs button[aria-selected=true]{background:var(--green);color:white}
+.solve-panel[hidden]{display:none}
+.solve-panel h4{font-size:18px;margin:0 0 8px}
+.contact-solve-detail .contact-note{font-size:15px;padding:8px 11px;margin-top:9px}
+.contact-solve-detail .contact-equations{font-size:17px;line-height:1.45}
