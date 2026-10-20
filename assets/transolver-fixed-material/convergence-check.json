@@ -1,0 +1,191 @@
+[
+  {
+    "case": "wide-circle",
+    "offset": 40,
+    "limit": 2000,
+    "normal_constraints_feasible": true,
+    "normal_feasibility_status": 0,
+    "minimum_uniform_normal_slack_m_s": 0.0,
+    "contacts": 18,
+    "iterations": 2000,
+    "residual": 0.2505704452998607,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      236.3181915283203,
+      -25.053558349609375,
+      17.026273727416992,
+      -1.818773627281189,
+      3.2113656997680664,
+      0.6850311756134033
+    ]
+  },
+  {
+    "case": "wide-circle",
+    "offset": 40,
+    "limit": 20000,
+    "normal_constraints_feasible": true,
+    "normal_feasibility_status": 0,
+    "minimum_uniform_normal_slack_m_s": 0.0,
+    "contacts": 18,
+    "iterations": 20000,
+    "residual": 0.2505597797892847,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      236.318603515625,
+      -25.054752349853516,
+      17.02752113342285,
+      -1.8187583684921265,
+      3.211416244506836,
+      0.6850560903549194
+    ]
+  },
+  {
+    "case": "wide-circle",
+    "offset": 40,
+    "limit": 100000,
+    "normal_constraints_feasible": true,
+    "normal_feasibility_status": 0,
+    "minimum_uniform_normal_slack_m_s": 0.0,
+    "contacts": 18,
+    "iterations": 100000,
+    "residual": 0.25055977748115765,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      236.318603515625,
+      -25.05475425720215,
+      17.02752113342285,
+      -1.8187583684921265,
+      3.211416244506836,
+      0.6850560903549194
+    ]
+  },
+  {
+    "case": "figure-eight",
+    "offset": 164,
+    "limit": 2000,
+    "normal_constraints_feasible": false,
+    "normal_feasibility_status": 2,
+    "minimum_uniform_normal_slack_m_s": 0.03496905285491163,
+    "contacts": 18,
+    "iterations": 2000,
+    "residual": 0.2741562059595637,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      159.09832763671875,
+      2.4603800773620605,
+      37.20015335083008,
+      -0.6376976370811462,
+      1.1433409452438354,
+      -0.5732815265655518
+    ]
+  },
+  {
+    "case": "figure-eight",
+    "offset": 164,
+    "limit": 20000,
+    "normal_constraints_feasible": false,
+    "normal_feasibility_status": 2,
+    "minimum_uniform_normal_slack_m_s": 0.03496905285491163,
+    "contacts": 18,
+    "iterations": 20000,
+    "residual": 0.2761093289567498,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      159.36886596679688,
+      2.48879075050354,
+      36.91476058959961,
+      -0.624584436416626,
+      1.1577088832855225,
+      -0.5799936056137085
+    ]
+  },
+  {
+    "case": "figure-eight",
+    "offset": 164,
+    "limit": 100000,
+    "normal_constraints_feasible": false,
+    "normal_feasibility_status": 2,
+    "minimum_uniform_normal_slack_m_s": 0.03496905285491163,
+    "contacts": 18,
+    "iterations": 100000,
+    "residual": 0.27619910037333284,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      159.37818908691406,
+      2.4933371543884277,
+      36.89786911010742,
+      -0.623836100101471,
+      1.1583855152130127,
+      -0.5802483558654785
+    ]
+  },
+  {
+    "case": "vertical-drop",
+    "offset": 20,
+    "limit": 2000,
+    "normal_constraints_feasible": true,
+    "normal_feasibility_status": 0,
+    "minimum_uniform_normal_slack_m_s": 0.0,
+    "contacts": 28,
+    "iterations": 2000,
+    "residual": 0.13248615387895413,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      0.4997789263725281,
+      67.0654067993164,
+      190.24900817871094,
+      -0.8380158543586731,
+      0.5285380482673645,
+      -0.1765250712633133
+    ]
+  },
+  {
+    "case": "vertical-drop",
+    "offset": 20,
+    "limit": 20000,
+    "normal_constraints_feasible": true,
+    "normal_feasibility_status": 0,
+    "minimum_uniform_normal_slack_m_s": 0.0,
+    "contacts": 28,
+    "iterations": 20000,
+    "residual": 0.13017286027381658,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      0.3052375316619873,
+      67.03986358642578,
+      190.3346710205078,
+      -0.8396668434143066,
+      0.5325315594673157,
+      -0.1697196513414383
+    ]
+  },
+  {
+    "case": "vertical-drop",
+    "offset": 20,
+    "limit": 100000,
+    "normal_constraints_feasible": true,
+    "normal_feasibility_status": 0,
+    "minimum_uniform_normal_slack_m_s": 0.0,
+    "contacts": 28,
+    "iterations": 100000,
+    "residual": 0.13022755445382472,
+    "converged": false,
+    "finite": true,
+    "wrench": [
+      0.32249993085861206,
+      67.02408599853516,
+      190.36264038085938,
+      -0.837462306022644,
+      0.5325108170509338,
+      -0.1712038367986679
+    ]
+  }
+]
