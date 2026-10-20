@@ -1,0 +1,28 @@
+{
+  "frames": 251,
+  "valid_transitions": 250,
+  "root_start_xyz_m": [
+    0.01129598543047905,
+    -0.048994116485118866,
+    0.7599999904632568
+  ],
+  "root_end_xyz_m": [
+    0.5154904723167419,
+    0.18378807604312897,
+    0.6166322231292725
+  ],
+  "command_start": [
+    0.15000000596046448,
+    0.0,
+    0.0
+  ],
+  "command_end": [
+    0.10000000149011612,
+    0.05000000074505806,
+    0.25
+  ],
+  "file_bytes": 714830317,
+  "particles_per_environment": 118440,
+  "duration_s": 5,
+  "force_sampling": "Final 5 ms substep of each 20 ms recording interval"
+}

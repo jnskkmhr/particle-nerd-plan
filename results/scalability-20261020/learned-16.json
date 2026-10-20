@@ -1,0 +1,175 @@
+{
+  "backend": "learned",
+  "environments": 16,
+  "simulated_interval_s": 0.02,
+  "steps": 60,
+  "warmup": 20,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "checkpoint_sha256": "c749f82b2139e08ae4229e913ca5cfdfba27b46263699aa2f7a353fb7d35b959",
+  "motion": "Gravity and initial recorded body velocity; zero external wrench",
+  "memory_before": {
+    "device_used_GiB": 2.16046142578125,
+    "torch_peak_allocated_GiB": 0.0
+  },
+  "particles_per_environment": 16384,
+  "neural_config": {
+    "dt": 0.02,
+    "model": {
+      "hidden": 128,
+      "heads": 4,
+      "slices": 64,
+      "layers": 4,
+      "history": 3,
+      "displacement_scale": 0.02
+    },
+    "features": {
+      "support": 0.07
+    },
+    "body_size_m": [
+      1.1600000858306885,
+      0.31949999928474426,
+      0.22349999845027924
+    ],
+    "geometry": "shovel",
+    "body_contact_friction": 0.5
+  },
+  "neural_precision": "BF16 autocast",
+  "neural_cuda_graph": true,
+  "timings": {
+    "wall": {
+      "median_ms": 49.34773949207738,
+      "p95_ms": 53.322904874221415,
+      "mean_ms": 49.47622410060527
+    },
+    "gpu_stream_interval": {
+      "median_ms": 49.33536148071289,
+      "p95_ms": 53.256480026245114,
+      "mean_ms": 49.348527145385745
+    },
+    "raw_wall_ms": [
+      52.92839999310672,
+      46.94594698958099,
+      50.66013301257044,
+      50.95292197074741,
+      52.312537969555706,
+      52.26606799988076,
+      46.9923039781861,
+      47.78914200142026,
+      46.45175102632493,
+      47.835150035098195,
+      45.925503014586866,
+      46.662016946356744,
+      47.056335024535656,
+      45.415961008984596,
+      49.149790953379124,
+      45.89617601595819,
+      48.33541699917987,
+      46.90534295514226,
+      50.73464603628963,
+      48.3317410107702,
+      46.57876904821023,
+      53.23654197854921,
+      54.73296804120764,
+      53.24869102332741,
+      50.651080964598805,
+      51.58146203029901,
+      54.914323962293565,
+      52.17772501055151,
+      52.72716598119587,
+      51.561270956881344,
+      54.75690902676433,
+      51.49977799737826,
+      51.18413700256497,
+      49.807122035417706,
+      52.08374897483736,
+      47.56725998595357,
+      51.82783101918176,
+      48.35872497642413,
+      50.46728695742786,
+      48.9467210136354,
+      49.79207500582561,
+      46.395996992941946,
+      49.821191001683474,
+      45.69102800451219,
+      50.24890904314816,
+      49.337016011122614,
+      50.058690016157925,
+      46.51600000215694,
+      52.5656359968707,
+      46.43869900610298,
+      50.18850101623684,
+      45.73020403040573,
+      48.91339200548828,
+      51.594980992376804,
+      49.35846297303215,
+      46.45619500661269,
+      48.910535988397896,
+      48.631694982759655,
+      48.786734987515956,
+      45.68070004461333
+    ]
+  },
+  "finite": true,
+  "stage_scope": "Separate instrumented 10-step continuation after primary timings; eager features, captured NN/force/rigid",
+  "stages": {
+    "features_and_batch_copy": {
+      "median_ms": 3.6191999912261963,
+      "p95_ms": 4.146222376823426,
+      "mean_ms": 3.7406399965286257
+    },
+    "neural_network": {
+      "median_ms": 24.332159996032715,
+      "p95_ms": 26.236939525604246,
+      "mean_ms": 24.48159694671631
+    },
+    "particle_update_force_and_rigid": {
+      "median_ms": 22.562064170837402,
+      "p95_ms": 23.697935771942138,
+      "mean_ms": 22.17123203277588
+    }
+  },
+  "final_contacts": [
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133,
+    133
+  ],
+  "final_iterations": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+  ],
+  "scope": "Batched NN + per-environment GPU features, particle update, captured force estimator and MJWarp",
+  "limitation": "Force and rigid solvers remain per-environment instances, dispatched in a Python loop; not a fused batched contact solver",
+  "memory": {
+    "device_used_GiB": 5.57550048828125,
+    "torch_peak_allocated_GiB": 1.2590174674987793
+  },
+  "environment_steps_per_second": 324.2296438435391,
+  "per_environment_ms": 3.0842337182548363
+}

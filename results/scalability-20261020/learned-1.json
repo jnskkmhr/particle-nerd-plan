@@ -1,0 +1,145 @@
+{
+  "backend": "learned",
+  "environments": 1,
+  "simulated_interval_s": 0.02,
+  "steps": 60,
+  "warmup": 20,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "checkpoint_sha256": "c749f82b2139e08ae4229e913ca5cfdfba27b46263699aa2f7a353fb7d35b959",
+  "motion": "Gravity and initial recorded body velocity; zero external wrench",
+  "memory_before": {
+    "device_used_GiB": 2.3070068359375,
+    "torch_peak_allocated_GiB": 0.0
+  },
+  "particles_per_environment": 16384,
+  "neural_config": {
+    "dt": 0.02,
+    "model": {
+      "hidden": 128,
+      "heads": 4,
+      "slices": 64,
+      "layers": 4,
+      "history": 3,
+      "displacement_scale": 0.02
+    },
+    "features": {
+      "support": 0.07
+    },
+    "body_size_m": [
+      1.1600000858306885,
+      0.31949999928474426,
+      0.22349999845027924
+    ],
+    "geometry": "shovel",
+    "body_contact_friction": 0.5
+  },
+  "neural_precision": "BF16 autocast",
+  "neural_cuda_graph": true,
+  "timings": {
+    "wall": {
+      "median_ms": 2.9825044912286103,
+      "p95_ms": 3.555742683238349,
+      "mean_ms": 3.12641124764923
+    },
+    "gpu_stream_interval": {
+      "median_ms": 2.916240096092224,
+      "p95_ms": 3.316958403587341,
+      "mean_ms": 3.0203295866648356
+    },
+    "raw_wall_ms": [
+      3.5371120320633054,
+      3.1221050303429365,
+      3.364978008903563,
+      2.936268982011825,
+      2.9022599919699132,
+      2.8688059537671506,
+      2.862483961507678,
+      3.29292198875919,
+      2.997630974277854,
+      2.853739948477596,
+      2.919588005170226,
+      2.877847000490874,
+      3.1018569716252387,
+      3.3716579782776535,
+      2.958663972094655,
+      2.9173939838074148,
+      2.856489969417453,
+      2.9415760072879493,
+      3.155997022986412,
+      3.3947319607250392,
+      5.319783987943083,
+      2.9370940173976123,
+      3.1131510040722787,
+      3.4340929705649614,
+      3.0156460124999285,
+      2.9298869776539505,
+      2.924935019109398,
+      2.8816789854317904,
+      3.1416540150530636,
+      3.421231987886131,
+      3.023691999260336,
+      2.9265149496495724,
+      2.9262839816510677,
+      3.1413109973073006,
+      3.33802099339664,
+      2.9673780081793666,
+      2.888744988013059,
+      2.8697640518657863,
+      2.8721210546791553,
+      3.452930017374456,
+      3.046605037525296,
+      2.935163036454469,
+      2.9254229739308357,
+      2.8729820041917264,
+      3.064755001105368,
+      3.335982037242502,
+      3.055352019146085,
+      2.930532966274768,
+      2.9285039636306465,
+      2.926966000813991,
+      3.347788006067276,
+      3.3671899582259357,
+      4.106036038137972,
+      3.909725055564195,
+      3.061689028982073,
+      3.3603619667701423,
+      3.020110016223043,
+      2.882201981265098,
+      2.8735430096276104,
+      2.873738994821906
+    ]
+  },
+  "finite": true,
+  "stage_scope": "Separate instrumented 10-step continuation after primary timings; eager features, captured NN/force/rigid",
+  "stages": {
+    "features_and_batch_copy": {
+      "median_ms": 0.24473600089550018,
+      "p95_ms": 0.34197439253330225,
+      "mean_ms": 0.262339198589325
+    },
+    "neural_network": {
+      "median_ms": 1.3985599875450134,
+      "p95_ms": 1.4011232078075408,
+      "mean_ms": 1.3974751949310302
+    },
+    "particle_update_force_and_rigid": {
+      "median_ms": 1.3622239828109741,
+      "p95_ms": 1.6025744020938872,
+      "mean_ms": 1.3884703993797303
+    }
+  },
+  "final_contacts": [
+    133
+  ],
+  "final_iterations": [
+    8
+  ],
+  "scope": "Batched NN + per-environment GPU features, particle update, captured force estimator and MJWarp",
+  "limitation": "Force and rigid solvers remain per-environment instances, dispatched in a Python loop; not a fused batched contact solver",
+  "memory": {
+    "device_used_GiB": 2.7735595703125,
+    "torch_peak_allocated_GiB": 0.1080479621887207
+  },
+  "environment_steps_per_second": 335.28868202577655,
+  "per_environment_ms": 2.9825044912286103
+}

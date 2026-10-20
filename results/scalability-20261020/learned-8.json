@@ -1,0 +1,159 @@
+{
+  "backend": "learned",
+  "environments": 8,
+  "simulated_interval_s": 0.02,
+  "steps": 60,
+  "warmup": 20,
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "checkpoint_sha256": "c749f82b2139e08ae4229e913ca5cfdfba27b46263699aa2f7a353fb7d35b959",
+  "motion": "Gravity and initial recorded body velocity; zero external wrench",
+  "memory_before": {
+    "device_used_GiB": 2.43756103515625,
+    "torch_peak_allocated_GiB": 0.0
+  },
+  "particles_per_environment": 16384,
+  "neural_config": {
+    "dt": 0.02,
+    "model": {
+      "hidden": 128,
+      "heads": 4,
+      "slices": 64,
+      "layers": 4,
+      "history": 3,
+      "displacement_scale": 0.02
+    },
+    "features": {
+      "support": 0.07
+    },
+    "body_size_m": [
+      1.1600000858306885,
+      0.31949999928474426,
+      0.22349999845027924
+    ],
+    "geometry": "shovel",
+    "body_contact_friction": 0.5
+  },
+  "neural_precision": "BF16 autocast",
+  "neural_cuda_graph": true,
+  "timings": {
+    "wall": {
+      "median_ms": 22.73100451566279,
+      "p95_ms": 25.180217906017788,
+      "mean_ms": 23.299882021577407
+    },
+    "gpu_stream_interval": {
+      "median_ms": 22.6343994140625,
+      "p95_ms": 25.12267436981201,
+      "mean_ms": 23.170983505249023
+    },
+    "raw_wall_ms": [
+      25.17658000579104,
+      22.02645200304687,
+      22.037911985535175,
+      23.243114992510527,
+      24.4203619658947,
+      22.102554969023913,
+      22.102100017946213,
+      22.09392300574109,
+      25.07169096497819,
+      23.53175904136151,
+      22.133112011943012,
+      22.47811504639685,
+      24.68096697703004,
+      23.58453901251778,
+      22.10831001866609,
+      22.093818988651037,
+      23.365825007203966,
+      25.077264988794923,
+      22.206439985893667,
+      22.592552995774895,
+      22.6175679708831,
+      25.4509859951213,
+      23.920815030578524,
+      22.684621042571962,
+      22.577747993636876,
+      25.249338010326028,
+      24.01285496307537,
+      22.23015803610906,
+      22.280668024905026,
+      25.011992023792118,
+      24.13516101660207,
+      22.746102011296898,
+      22.826316009741277,
+      23.48110399907455,
+      24.371245002839714,
+      22.823183971922845,
+      22.58729701861739,
+      22.345014032907784,
+      24.914517009165138,
+      24.09515203908086,
+      22.635811008512974,
+      22.63650798704475,
+      25.012944010086358,
+      23.22091703535989,
+      22.66230300301686,
+      22.586426988709718,
+      23.810687998775393,
+      24.31403298396617,
+      22.67732797190547,
+      22.71590702002868,
+      22.275705996435136,
+      25.567310047335923,
+      22.576520044822246,
+      22.676723019685596,
+      22.674766019918025,
+      25.01232997747138,
+      23.167194973211735,
+      22.230268048588187,
+      22.334218956530094,
+      24.715783016290516
+    ]
+  },
+  "finite": true,
+  "stage_scope": "Separate instrumented 10-step continuation after primary timings; eager features, captured NN/force/rigid",
+  "stages": {
+    "features_and_batch_copy": {
+      "median_ms": 2.2346560955047607,
+      "p95_ms": 2.342841649055481,
+      "mean_ms": 2.251686453819275
+    },
+    "neural_network": {
+      "median_ms": 10.148047924041748,
+      "p95_ms": 12.8073326587677,
+      "mean_ms": 10.811596870422363
+    },
+    "particle_update_force_and_rigid": {
+      "median_ms": 10.316287994384766,
+      "p95_ms": 10.835014247894287,
+      "mean_ms": 10.2975359916687
+    }
+  },
+  "final_contacts": [
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134
+  ],
+  "final_iterations": [
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8
+  ],
+  "scope": "Batched NN + per-environment GPU features, particle update, captured force estimator and MJWarp",
+  "limitation": "Force and rigid solvers remain per-environment instances, dispatched in a Python loop; not a fused batched contact solver",
+  "memory": {
+    "device_used_GiB": 4.28912353515625,
+    "torch_peak_allocated_GiB": 0.6426844596862793
+  },
+  "environment_steps_per_second": 351.94221155020244,
+  "per_environment_ms": 2.8413755644578487
+}
