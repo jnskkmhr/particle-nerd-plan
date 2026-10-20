@@ -38,25 +38,28 @@
   document.getElementById('contact-step-back').addEventListener('click', () => showContactStep(contactStep - 1));
   document.getElementById('contact-step-next').addEventListener('click', () => showContactStep((contactStep + 1) % 5));
 
-  const solveTabs = [...document.querySelectorAll('[data-solve-tab]')];
-  function showSolveTab(index, focus = false) {
+  for (const selector of ['[data-solve-tab]', '[data-material-tab]']) {
+    const solveTabs = [...document.querySelectorAll(selector)];
+    function showSolveTab(index, focus = false) {
+      solveTabs.forEach((tab, i) => {
+        tab.setAttribute('aria-selected', String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = i !== index;
+      });
+      if (focus) solveTabs[index].focus();
+    }
     solveTabs.forEach((tab, i) => {
-      tab.setAttribute('aria-selected', String(i === index));
-      tab.tabIndex = i === index ? 0 : -1;
-      document.getElementById(tab.getAttribute('aria-controls')).hidden = i !== index;
+      tab.addEventListener('click', () => showSolveTab(i));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault(); event.stopPropagation();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? solveTabs.length - 1
+          : (i + (event.key === 'ArrowRight' ? 1 : solveTabs.length - 1)) % solveTabs.length;
+        showSolveTab(next, true);
+      });
     });
-    if (focus) solveTabs[index].focus();
+
   }
-  solveTabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => showSolveTab(i));
-    tab.addEventListener('keydown', event => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      event.preventDefault(); event.stopPropagation();
-      const next = event.key === 'Home' ? 0 : event.key === 'End' ? solveTabs.length - 1
-        : (i + (event.key === 'ArrowRight' ? 1 : solveTabs.length - 1)) % solveTabs.length;
-      showSolveTab(next, true);
-    });
-  });
 
   const graphTabs = [...document.querySelectorAll('[data-graph-tab]')];
   const graphCaptions = ['Material particle i · 26 input values', 'Directed particle edge j → i · 7 input values', 'Particle i / collider b · 9 input values', 'Collider information → particle-node features'];

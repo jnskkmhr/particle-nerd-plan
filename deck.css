@@ -264,3 +264,17 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .free-motion-definitions>b{color:var(--green)}
 #contact-panel-1 .contact-small{margin-top:7px;font-size:14px}
 #contact-panel-1 .contact-note{font-size:15px;margin-top:8px;padding:8px 12px}
+
+/* Object and material notation is defined before each contact equation. */
+.notation-list{display:grid;grid-template-columns:125px 1fr;gap:8px 13px;font-size:16px;line-height:1.35;margin:10px 0}
+.notation-list>b{color:var(--green)}
+.material-panel[hidden]{display:none}
+.material-panel h4{font-size:18px;margin:0 0 8px}
+.material-panel .notation-list{font-size:15px;gap:6px 12px}
+.material-panel .contact-small{font-size:14px;margin-top:7px}
+.material-panel .contact-note{font-size:16px}
+#contact-panel-2 .contact-explanation>h3{font-size:22px}
+
+.slide[data-route="gnn-update"] .equation{margin:12px 0;padding:12px 22px}
+.slide[data-route="gnn-update"] .callout{margin-top:12px;padding:14px 22px}
+.slide[data-route="gnn-update"] .callout p{font-size:19px}
