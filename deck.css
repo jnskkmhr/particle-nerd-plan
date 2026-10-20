@@ -278,3 +278,22 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .slide[data-route="gnn-update"] .equation{margin:12px 0;padding:12px 22px}
 .slide[data-route="gnn-update"] .callout{margin-top:12px;padding:14px 22px}
 .slide[data-route="gnn-update"] .callout p{font-size:19px}
+
+/* Paper-style algorithm: the complete timestep precedes the detailed derivation. */
+#contact-panel-0.algorithm-panel{display:block}
+#contact-panel-0.algorithm-panel[hidden]{display:none}
+.contact-algorithm{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:7px 0 6px}
+.contact-algorithm h3{font-size:20px;margin:0 0 7px}
+.algorithm-io{display:grid;grid-template-columns:60px 1fr;gap:4px 12px;font-size:14px;line-height:1.3}
+.algorithm-io>b{color:var(--green)}
+.contact-algorithm .algorithm-key{font-size:13px;line-height:1.3;margin:7px 0;padding-bottom:6px;border-bottom:1px solid #bdcec7}
+.algorithm-steps{width:100%;border-collapse:collapse;margin:0;font-size:14px;line-height:1.3}
+.algorithm-steps td,.algorithm-steps th{padding:3px 7px;border:0;background:none;vertical-align:top;text-align:left;font-size:inherit;line-height:inherit;text-transform:none;letter-spacing:normal}
+.algorithm-steps td:first-child{width:26px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.algorithm-steps th[scope=row]{width:225px;font-weight:600;color:var(--ink)}
+.algorithm-steps .algorithm-loop-start th{color:var(--green)}
+.algorithm-steps .algorithm-loop th{padding-left:22px;border-left:2px solid var(--green)}
+.algorithm-steps .algorithm-loop-start,.algorithm-steps .algorithm-loop{background:#edf3ef}
+.contact-algorithm .algorithm-note{font-size:13px;line-height:1.3;margin:7px 0 0}
+.contact-algorithm sub,.contact-algorithm sup{font-size:75%;line-height:0}
+@media print{.contact-walkthrough .contact-print-summary{display:none}}

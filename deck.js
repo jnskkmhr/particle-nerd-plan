@@ -21,9 +21,9 @@
       panel.classList.toggle('is-visible', selected);
     });
     document.getElementById('contact-step-back').disabled = contactStep === 0;
-    document.getElementById('contact-step-next').textContent = contactStep === 4 ? 'Inputs ↺' : `Step ${contactStep + 1} →`;
+    document.getElementById('contact-step-next').textContent = contactStep === 4 ? 'Algorithm ↺' : `Step ${contactStep + 1} →`;
     document.getElementById('contact-step-status').textContent = contactStep === 0
-      ? 'Inputs and outputs · select a step to see its equations'
+      ? 'Full timestep · select a numbered tab for equations and definitions'
       : `Step ${contactStep} of 4 · ${contactTabs[contactStep].textContent.split(' · ')[1]}`;
     if (focus) contactTabs[contactStep].focus();
   }
