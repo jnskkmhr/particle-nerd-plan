@@ -1,0 +1,18 @@
+{
+  "Transolver: 4 steps, original loss": {
+    "complete": 12,
+    "evaluated": 12,
+    "final_rmse_m": 0.05070431033770243,
+    "moving_rmse_m": 0.07834120436261098,
+    "stationary_count": 72764,
+    "stationary_drift_count": 69433
+  },
+  "Transolver: 25 steps, balanced loss": {
+    "complete": 12,
+    "evaluated": 12,
+    "final_rmse_m": 0.020925943196440738,
+    "moving_rmse_m": 0.042946453439071774,
+    "stationary_count": 72764,
+    "stationary_drift_count": 21407
+  }
+}
