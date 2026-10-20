@@ -5,6 +5,7 @@
 <p class="tag">PARTICLE MOTION / RECURRENT TRAINING</p><h1>Transolver: 0.5-second training horizon</h1>
 <p class="lead">Reduce unwanted motion of settled material while retaining particle motion caused by the rigid box.</p>
 <div class="status"><strong>COMPLETED</strong><p>Latest saved validation: update 10,000 / 10,000. Final evaluation is available below.</p><p><a href="https://us-west-2-aws.osmo.nvidia.com/workflows/particle-transolver-long-1">OSMO workflow</a> · <a href="https://dashboards.telemetry.dgxc.ngc.nvidia.com/d/workflow_resources/workflow-resources-v2?orgId=46&amp;var-datasource=ae6qyv87oh0cgd&amp;var-cluster=osmogroot-dgxc-k8s-forge-az41-prd1&amp;var-namespace=osmo-prod&amp;var-uuid=04e190c7cffc40b2&amp;from=now-2h&amp;to=now">GPU resource usage</a> · <a href="https://ovx-l40s-03.osmo.nvidia.com/dashboard/#/search?namespace=osmo-prod&amp;q=04e190c7cffc40b2">Task dashboard</a></p><p class="small">Updated 2026-10-20 05:06 UTC. Refresh this page for new checkpoint measurements.</p></div>
+<div class="note"><strong>New: full closed-loop simulation.</strong> <a href="transolver_closed_loop.html">Wide-circle and figure-eight videos: Transolver + contact estimator + independently dynamic MJWarp box versus MPM–MJWarp.</a></div>
 <h2>01 / Experiment</h2><table><tr><th>Setting</th><th>Baseline</th><th>New experiment</th></tr>
 <tr><td>Recurrent training horizon</td><td>4 steps / 0.08 s</td><td>25 steps / 0.5 s</td></tr>
 <tr><td>Loss</td><td>Moving samples weighted 5×; other samples 1×</td><td>Separate group means, equal weight</td></tr>
