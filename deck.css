@@ -327,3 +327,6 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .ts-contact-table td:first-child{width:23%}.ts-contact-table td:nth-child(2){width:31%}
 .ts-contact-flow .ts-definition{font-size:14px;margin:5px 0 0}
 .transolver-method[data-route="transolver-contact"] .ts-contact-flow{margin-top:12px}
+
+/* Major methodology sections use title-only divider slides. */
+.section-divider h1 { position:absolute; top:42%; left:64px; right:64px; margin:0; font-size:72px; line-height:1.15; }

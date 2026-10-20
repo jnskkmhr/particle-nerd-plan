@@ -147,10 +147,7 @@
   function readHash() {
     const match = location.hash.match(/^#(?:\/)?(\d+)$/);
     const named = slides.findIndex(slide => slide.dataset.route === location.hash.slice(1));
-    // Preserve the shared link to the former contact-reconstruction slide.
-    const legacyContact = match && Number(match[1]) === 19;
-    current = legacyContact ? slides.findIndex(slide => slide.dataset.route === 'body-contact-method')
-      : named >= 0 ? named
+    current = named >= 0 ? named
       : match ? Math.max(0, Math.min(slides.length - 1, Number(match[1]) - 1)) : 0;
     render();
   }
