@@ -1,0 +1,45 @@
+{
+  "Previous GNN + MLP selector": {
+    "completed": 12,
+    "total": 12,
+    "position_rmse_m": 0.025263790041208267,
+    "moving_rmse_m": 0.055869961467882,
+    "active_fraction": 0.07055662027994793,
+    "stationary_count": 72764,
+    "stationary_drift_count": 162,
+    "stationary_drift_fraction": 0.002226375680281458,
+    "median_step_wall_ms": 24.061934944863122
+  },
+  "V2 GNN + CNN depth proposer": {
+    "completed": 12,
+    "total": 12,
+    "position_rmse_m": 0.0232147901551798,
+    "moving_rmse_m": 0.05532659590244293,
+    "active_fraction": 0.01642950439453125,
+    "stationary_count": 72764,
+    "stationary_drift_count": 1,
+    "stationary_drift_fraction": 1.3743059754823814e-05,
+    "median_step_wall_ms": 11.95131754502654
+  },
+  "V2 selection disabled (diagnostic)": {
+    "completed": 12,
+    "total": 12,
+    "position_rmse_m": 0.12569598853588104,
+    "moving_rmse_m": 0.1592661589384079,
+    "active_fraction": 1.0,
+    "stationary_count": 72764,
+    "stationary_drift_count": 72764,
+    "stationary_drift_fraction": 1.0,
+    "median_step_wall_ms": 13.27343168668449
+  },
+  "Frozen particles (no prediction)": {
+    "completed": 12,
+    "total": 12,
+    "position_rmse_m": 0.022836783551611006,
+    "moving_rmse_m": 0.05394163867458701,
+    "active_fraction": 0.0,
+    "stationary_count": 72764,
+    "stationary_drift_count": 0,
+    "stationary_drift_fraction": 0.0
+  }
+}

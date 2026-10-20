@@ -1,0 +1,20 @@
+{
+  "elapsed_s": 475.117901802063,
+  "dt": 0.02,
+  "geometry": {
+    "history": 3,
+    "k": 16,
+    "radius": 0.07,
+    "extent": 1.5,
+    "map_size": 32
+  },
+  "motion": {
+    "hidden": 150,
+    "passes": 3,
+    "history": 3
+  },
+  "roi": {
+    "box_points": 96,
+    "history": 3
+  }
+}
