@@ -330,3 +330,11 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 
 /* Major methodology sections use title-only divider slides. */
 .section-divider h1 { position:absolute; top:42%; left:64px; right:64px; margin:0; font-size:72px; line-height:1.15; }
+
+/* Compact equations and definitions for the six-velocity contact method. */
+[data-route="body-velocity-method"] h2{font-size:34px;margin-bottom:12px}
+[data-route="body-velocity-method"] h3{font-size:21px;margin:10px 0}
+[data-route="body-velocity-method"] p{font-size:18px;line-height:1.35;margin:0 0 15px}
+[data-route="body-velocity-method"] .ts-equation{font-size:18px!important;line-height:1.6!important;padding:12px;margin:10px 0}
+[data-route="body-velocity-method"] table{font-size:14px!important;line-height:1.25}
+[data-route="body-velocity-method"] td{padding:6px 8px}
