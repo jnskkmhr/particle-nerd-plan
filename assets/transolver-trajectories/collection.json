@@ -1,0 +1,92 @@
+[
+  {
+    "index": 10000,
+    "file": "episode-10000.hdf5",
+    "split": "test",
+    "case": "wide-circle",
+    "direction": 1,
+    "seed": 620000,
+    "mass_kg": 7.5,
+    "quality": {
+      "post_settle_frames": 251,
+      "total_frames": 319,
+      "max_unaccounted_body_force_N": 0.0001305720506934449,
+      "bytes": 125571955
+    }
+  },
+  {
+    "index": 10001,
+    "file": "episode-10001.hdf5",
+    "split": "test",
+    "case": "wide-circle",
+    "direction": -1,
+    "seed": 620000,
+    "mass_kg": 7.5,
+    "quality": {
+      "post_settle_frames": 251,
+      "total_frames": 319,
+      "max_unaccounted_body_force_N": 0.00014632512466050684,
+      "bytes": 125571955
+    }
+  },
+  {
+    "index": 10002,
+    "file": "episode-10002.hdf5",
+    "split": "test",
+    "case": "s-curve",
+    "direction": 1,
+    "seed": 620000,
+    "mass_kg": 7.5,
+    "quality": {
+      "post_settle_frames": 251,
+      "total_frames": 319,
+      "max_unaccounted_body_force_N": 0.0001575852365931496,
+      "bytes": 125571955
+    }
+  },
+  {
+    "index": 10003,
+    "file": "episode-10003.hdf5",
+    "split": "test",
+    "case": "s-curve",
+    "direction": -1,
+    "seed": 620000,
+    "mass_kg": 7.5,
+    "quality": {
+      "post_settle_frames": 251,
+      "total_frames": 319,
+      "max_unaccounted_body_force_N": 0.00011259080201853067,
+      "bytes": 125571955
+    }
+  },
+  {
+    "index": 10004,
+    "file": "episode-10004.hdf5",
+    "split": "test",
+    "case": "figure-eight",
+    "direction": 1,
+    "seed": 620000,
+    "mass_kg": 7.5,
+    "quality": {
+      "post_settle_frames": 251,
+      "total_frames": 319,
+      "max_unaccounted_body_force_N": 9.954477718565613e-05,
+      "bytes": 125571955
+    }
+  },
+  {
+    "index": 10005,
+    "file": "episode-10005.hdf5",
+    "split": "test",
+    "case": "figure-eight",
+    "direction": -1,
+    "seed": 620000,
+    "mass_kg": 7.5,
+    "quality": {
+      "post_settle_frames": 251,
+      "total_frames": 319,
+      "max_unaccounted_body_force_N": 0.00013250528718344867,
+      "bytes": 125571955
+    }
+  }
+]
