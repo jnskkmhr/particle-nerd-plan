@@ -61,11 +61,48 @@
     });
   });
 
+  // Explore the current coupled method without implying an active-subgraph implementation.
+  const methodFigure = document.querySelector('.method-pipeline-svg');
+  const methodButtons = [...document.querySelectorAll('[data-method-step]')];
+  const methodPlay = document.getElementById('method-play');
+  const methodDescriptions = [
+    'The selector masks updates; the motion GNN still evaluates all particles. No MPM solver runs in this coupled step.',
+    'Input: current particle positions, velocity history and material features; current box pose, velocity and geometry.',
+    'The activity MLP predicts one probability per particle. A validation threshold converts it to an active/inactive mask.',
+    'The full-graph GNN predicts candidate motion. Active particles keep it; inactive particles keep their positions and receive zero next velocity.',
+    'Current particle positions and masked next velocities enter the contact solver. Its output is sand-on-box force and torque about the box COM.',
+    'MJWarp advances the box using estimated contact, gravity and external loads. Updated particle and box states become the next input.'
+  ];
+  let methodStep = 0;
+  let methodTimer = null;
+  function stopMethodPlayback() {
+    clearInterval(methodTimer); methodTimer = null;
+    if (methodPlay) { methodPlay.textContent = 'Play steps'; methodPlay.setAttribute('aria-pressed', 'false'); }
+  }
+  function showMethodStep(index) {
+    if (!methodFigure) return;
+    methodStep = index;
+    methodFigure.classList.toggle('has-focus', index !== 0);
+    methodFigure.querySelectorAll('[data-method-stage]').forEach(group => group.classList.toggle('is-focused', Number(group.dataset.methodStage) === index));
+    methodButtons.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.methodStep) === index)));
+    document.getElementById('method-step-description').textContent = methodDescriptions[index];
+  }
+  methodButtons.forEach(button => button.addEventListener('click', () => {
+    stopMethodPlayback(); showMethodStep(Number(button.dataset.methodStep));
+  }));
+  methodPlay?.addEventListener('click', () => {
+    if (methodTimer !== null) { stopMethodPlayback(); return; }
+    showMethodStep(1); methodPlay.textContent = 'Pause steps'; methodPlay.setAttribute('aria-pressed', 'true');
+    methodTimer = setInterval(() => showMethodStep(methodStep % 5 + 1), 2400);
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopMethodPlayback(); });
+
   function resize() {
     const scale = Math.max(0.05, Math.min((innerWidth - 24) / 1280, (innerHeight - 92) / 720));
     document.documentElement.style.setProperty('--scale', scale);
   }
   function render() {
+    if (slides[current].dataset.route !== 'overview' || overview) stopMethodPlayback();
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === current);
       slide.setAttribute('aria-hidden', String(!overview && i !== current));

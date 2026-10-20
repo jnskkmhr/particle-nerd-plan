@@ -219,3 +219,33 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .embedding-sum{font-size:16px;fill:#247967;text-anchor:middle;font-weight:700}
 .embedding-node{font-size:18px;text-anchor:middle;font-weight:600}
 .embedding-note{padding:10px 13px;margin-top:9px;background:#e8efea;border-left:3px solid var(--green);font-size:18px}
+
+/* Current coupled method, including learned particle activity selection. */
+.method-overview .eyebrow{margin-bottom:16px}.method-overview h2{font-size:34px;margin-bottom:12px}
+.method-intro{font-size:18px;line-height:1.4;margin-bottom:15px}
+.method-figure{margin:0}.method-pipeline-svg{display:block;width:100%;height:360px;overflow:visible}
+.method-card{fill:#fff;stroke:#d8e0df;stroke-width:1.5;transition:stroke .2s,fill .2s}
+.method-stage-title{font-size:16px;font-weight:700;fill:#20343b}.method-number{font-size:12px;fill:#247967;font-weight:700}
+.method-tiny{font-size:11px;fill:#596d73}.method-subtitle{font-size:12px;fill:#20343b}
+.method-vector{fill:none;stroke:#247967;stroke-width:2;marker-end:url(#method-arrow)}
+.method-link,.method-loop{fill:none;stroke:#596d73;stroke-width:1.8;marker-end:url(#method-flow-arrow)}
+.method-bypass{fill:none;stroke:#247967;stroke-width:1.5;stroke-dasharray:4 3;marker-end:url(#method-arrow)}
+.method-annotation{font-size:13px;fill:#596d73}
+.method-pipeline-svg [data-method-stage]{transition:opacity .2s}
+.method-pipeline-svg.has-focus [data-method-stage]:not(.is-focused){opacity:.55}
+.method-pipeline-svg .is-focused .method-card{stroke:#247967;stroke-width:2.5;fill:#f5faf6}
+.method-figure figcaption{display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0 12px;color:#596d73}
+.legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:12px}.legend-dot:first-child{margin-left:0}.legend-dot.sand{background:#9c7951}.legend-dot.active{background:#247967}.legend-dot.box{background:#386481;border-radius:1px}.method-schematic{margin-left:auto;font-size:12px}
+.method-controls{display:flex;gap:7px;align-items:center}.method-controls button{border:1px solid #cedbd4;background:#fff;border-radius:4px;padding:7px 11px;font-size:14px;color:#20343b}.method-controls button[aria-pressed="true"]{background:#247967;color:#fff;border-color:#247967}#method-play{margin-left:auto}
+.method-description{font-size:16px;line-height:1.45;min-height:47px;margin-top:12px;padding:9px 12px;background:#edf2ed;border-left:3px solid #247967}.method-overview footer{font-size:12px;padding-top:10px}
+.region-selection-method .eyebrow{margin-bottom:18px}.region-selection-method h2{font-size:36px;margin-bottom:20px}.region-method-grid{display:grid;grid-template-columns:430px 1fr;gap:34px;align-items:start}.region-method-grid figure{margin:0;background:#f2f5f0;border-radius:6px;padding:10px 0 14px}.region-method-grid svg{display:block;width:100%;height:320px}.region-method-grid figcaption{text-align:center;font-size:16px;line-height:1.45;color:#596d73}.region-method-text h3{font-size:21px;margin:0 0 8px}.region-method-text p{font-size:18px;line-height:1.45;margin:0 0 17px}.region-rule{font-size:18px;line-height:1.7;padding:10px 14px;margin:0 0 18px;background:#edf2ed;border-left:3px solid #247967}.region-method-text .region-limit{font-size:16px;color:#596d73;border-top:1px solid #d8e0df;padding-top:12px}.region-selection-method footer{font-size:12px}
+@media(prefers-reduced-motion:reduce){.method-card,.method-pipeline-svg [data-method-stage]{transition:none}}
+@media print{.method-controls{display:none}.method-pipeline-svg.has-focus [data-method-stage]:not(.is-focused){opacity:1}.method-description{display:none}}
+
+.region-selection-method .method-vector{marker-end:url(#region-arrow)}
+
+.method-overview{padding-top:37px;padding-bottom:32px}.method-pipeline-svg{height:335px}.method-pipeline-svg text[fill="#fff"],.region-method-grid svg text[fill="#fff"]{fill:#fff;font-size:12px}.region-network-title{font-size:18px;font-weight:650;fill:#20343b}.region-network-subtitle{font-size:14px;fill:#596d73}
+
+.region-input-label{font-size:16px;fill:#596d73}
+
+.region-mask-label{font-size:16px;fill:#247967}
