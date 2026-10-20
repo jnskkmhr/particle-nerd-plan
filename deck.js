@@ -38,7 +38,7 @@
   document.getElementById('contact-step-back').addEventListener('click', () => showContactStep(contactStep - 1));
   document.getElementById('contact-step-next').addEventListener('click', () => showContactStep((contactStep + 1) % 5));
 
-  for (const selector of ['[data-solve-tab]', '[data-material-tab]', '[data-impulse-tab]']) {
+  for (const selector of ['[data-solve-tab]', '[data-material-tab]', '[data-impulse-tab]', '[data-transolver-tab]']) {
     const solveTabs = [...document.querySelectorAll(selector)];
     function showSolveTab(index, focus = false) {
       solveTabs.forEach((tab, i) => {
