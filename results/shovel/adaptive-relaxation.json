@@ -1,0 +1,168 @@
+{
+  "status": "experimental; interactive default remains constant 0.075",
+  "method": {
+    "initial_relaxation": 0.075,
+    "growth_factor": 1.1,
+    "maximum_relaxation": 1.0,
+    "rejection_residual_ratio": 1.01,
+    "backtrack_factor": 0.5,
+    "minimum_relaxation": 0.0001,
+    "tolerance": 1e-09,
+    "iteration_cap": 2000,
+    "simulation_dt_s": 0.02,
+    "effective_mass_scale": 180,
+    "gpu": "RTX 5090"
+  },
+  "replay": {
+    "wide-circle": {
+      "constant": {
+        "samples": 250,
+        "converged": 250,
+        "median_ms": 7.753126003080979,
+        "median_iterations": 459.0,
+        "max_iterations": 697,
+        "force_rmse_N": 0.0,
+        "torque_rmse_Nm": 0.0,
+        "rejected_trials": 0,
+        "max_relaxation": 0.075
+      },
+      "adaptive_1.05": {
+        "samples": 250,
+        "converged": 250,
+        "median_ms": 2.2549300047103316,
+        "median_iterations": 116.5,
+        "max_iterations": 758,
+        "force_rmse_N": 9.651013815643888e-07,
+        "torque_rmse_Nm": 6.089190625519017e-08,
+        "rejected_trials": 2139,
+        "max_relaxation": 1.0
+      },
+      "adaptive_1.1": {
+        "samples": 250,
+        "converged": 250,
+        "median_ms": 2.1338799851946533,
+        "median_iterations": 113.5,
+        "max_iterations": 683,
+        "force_rmse_N": 1.5307022005800382e-06,
+        "torque_rmse_Nm": 1.1038355696940698e-08,
+        "rejected_trials": 3746,
+        "max_relaxation": 1.0
+      }
+    },
+    "figure-eight": {
+      "constant": {
+        "samples": 250,
+        "converged": 250,
+        "median_ms": 17.619980993913487,
+        "median_iterations": 613.0,
+        "max_iterations": 698,
+        "force_rmse_N": 0.0,
+        "torque_rmse_Nm": 0.0,
+        "rejected_trials": 0,
+        "max_relaxation": 0.075
+      },
+      "adaptive_1.05": {
+        "samples": 250,
+        "converged": 250,
+        "median_ms": 13.427112513454631,
+        "median_iterations": 500.5,
+        "max_iterations": 920,
+        "force_rmse_N": 3.0629045950017074e-09,
+        "torque_rmse_Nm": 3.871015613343834e-09,
+        "rejected_trials": 7381,
+        "max_relaxation": 0.9643655484315318
+      },
+      "adaptive_1.1": {
+        "samples": 250,
+        "converged": 250,
+        "median_ms": 11.631329514784738,
+        "median_iterations": 438.5,
+        "max_iterations": 732,
+        "force_rmse_N": 1.2107760847075315e-07,
+        "torque_rmse_Nm": 3.01879792968499e-08,
+        "rejected_trials": 11375,
+        "max_relaxation": 1.0
+      }
+    }
+  },
+  "closed_loop": [
+    {
+      "path": "wide-circle",
+      "variant": "adaptive",
+      "limit": 2000,
+      "relaxation": 0.075,
+      "position_rms_mm": 29.784513473510742,
+      "position_max_mm": 83.8605728149414,
+      "orientation_rms_deg": 52.12791227108149,
+      "orientation_max_deg": 104.81992345777869,
+      "force_rmse_N": 93.52335909386147,
+      "final_particle_difference_rmse_mm": 32.24083709716797,
+      "physics_median_ms": 5.280443496303633,
+      "strict_physics_median_ms": 12.026688491459936,
+      "speedup": 2.2775906038723353,
+      "iterations_median": 146.0,
+      "iterations_max": 659.0,
+      "converged_fraction": 1.0,
+      "failure": null
+    },
+    {
+      "path": "figure-eight",
+      "variant": "adaptive",
+      "limit": 2000,
+      "relaxation": 0.075,
+      "position_rms_mm": 2.163567304611206,
+      "position_max_mm": 4.382083892822266,
+      "orientation_rms_deg": 0.5901977335374466,
+      "orientation_max_deg": 1.301295222651203,
+      "force_rmse_N": 6.517758016468893,
+      "final_particle_difference_rmse_mm": 0.9310949444770813,
+      "physics_median_ms": 14.838912000413984,
+      "strict_physics_median_ms": 22.364808508427814,
+      "speedup": 1.5071730668531405,
+      "iterations_median": 448.5,
+      "iterations_max": 854.0,
+      "converged_fraction": 1.0,
+      "failure": null
+    }
+  ],
+  "mouse_drag": {
+    "case": "Five seconds: off-center mouse pick, horizontal oscillation and 25 cm upward target, release after 3 s",
+    "steps": 250,
+    "iteration_median": 343.5,
+    "iteration_max": 766,
+    "converged_fraction": 1.0,
+    "max_contacts": 181,
+    "max_body_z_m": 0.2206229716539383
+  },
+  "repeatability": [
+    {
+      "comparison": "constant repeat vs previous constant",
+      "position_rms_mm": 0.0,
+      "position_max_mm": 0.0,
+      "orientation_rms_deg": 1.1806644944061707e-06,
+      "orientation_max_deg": 2.9575586669421963e-06,
+      "first_pose_difference_step": null,
+      "first_force_difference_step": null,
+      "first_force_difference": null
+    },
+    {
+      "comparison": "adaptive vs repeated constant",
+      "position_rms_mm": 29.784513473510742,
+      "position_max_mm": 83.8605728149414,
+      "orientation_rms_deg": 52.12791227108149,
+      "orientation_max_deg": 104.81992345777869,
+      "first_pose_difference_step": 18,
+      "first_force_difference_step": 1,
+      "first_force_difference": [
+        1.4901161193847656e-08,
+        5.960464477539063e-08,
+        0.0,
+        2.7939677238464355e-09,
+        0.0,
+        -9.313225746154785e-10
+      ]
+    }
+  ],
+  "timing_scope": "Replay timing includes complete estimator, GPU synchronization, and rejected trials. Excludes NN, rigid integration, rendering, disk writes, and diagnostic readback.",
+  "limitations": "Closed-loop circle differs substantially despite nearly identical replay wrenches. Constant baseline reproduced exactly. Adaptive method is not enabled in the demo. These tests do not establish better force accuracy against MPM."
+}
