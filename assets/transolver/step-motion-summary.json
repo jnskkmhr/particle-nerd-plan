@@ -1,0 +1,68 @@
+{
+  "transolver": {
+    "reference_history": {
+      "rmse_mm": 0.08338154932981667,
+      "moving_rmse_mm": 0.39449509800102656,
+      "moving_samples": 1696704,
+      "all_samples": 49152000
+    },
+    "recurrent_history": {
+      "rmse_mm": 0.3533401735471947,
+      "moving_rmse_mm": 1.5201849869019923,
+      "moving_samples": 1696704,
+      "all_samples": 49152000
+    },
+    "frozen": {
+      "rmse_mm": 0.3230386356034093,
+      "moving_rmse_mm": 1.7346285765797236,
+      "moving_samples": 1696704,
+      "all_samples": 49152000
+    }
+  },
+  "gnn_v2": {
+    "reference_history": {
+      "rmse_mm": 0.16337063462924106,
+      "moving_rmse_mm": 0.8709867550952667,
+      "moving_samples": 1696704,
+      "all_samples": 49152000
+    },
+    "recurrent_history": {
+      "rmse_mm": 0.3233732194467081,
+      "moving_rmse_mm": 1.7276079004703337,
+      "moving_samples": 1696704,
+      "all_samples": 49152000
+    },
+    "frozen": {
+      "rmse_mm": 0.3230386356034093,
+      "moving_rmse_mm": 1.7346285765797236,
+      "moving_samples": 1696704,
+      "all_samples": 49152000
+    }
+  },
+  "definitions": {
+    "dt": 0.02,
+    "steps": 250,
+    "ids": [
+      117,
+      453,
+      456,
+      460,
+      519,
+      527,
+      575,
+      578,
+      689,
+      850,
+      883,
+      885
+    ],
+    "moving_threshold_m": 0.0001,
+    "moving_definition": "Reference particle displacement >0.1 mm within this 20 ms step",
+    "reference_history_definition": "Reset three particle position frames to MPM before each prediction; current recorded box state",
+    "recurrent_history_definition": "Differences of adjacent positions from the existing five-second predicted rollouts; no resets",
+    "selection": {
+      "transolver": "all particles",
+      "gnn_v2": "learned CNN selection"
+    }
+  }
+}
