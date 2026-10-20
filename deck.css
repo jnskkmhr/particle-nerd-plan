@@ -338,3 +338,27 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 [data-route="body-velocity-method"] .ts-equation{font-size:18px!important;line-height:1.6!important;padding:12px;margin:10px 0}
 [data-route="body-velocity-method"] table{font-size:14px!important;line-height:1.25}
 [data-route="body-velocity-method"] td{padding:6px 8px}
+
+/* Slide 18 follows slide 16's algorithm and numbered contact steps. */
+.bv-panels{height:405px;flex-shrink:0}
+.bv-panel[hidden],.bv-subpanel[hidden]{display:none}
+.bv-panel{height:100%}
+.bv-panel .notation-list{font-size:15px;gap:7px 12px;margin:9px 0;grid-template-columns:145px 1fr}
+.bv-panel .contact-equations{font-size:18px;line-height:1.5;padding:8px 12px;margin:9px 0}
+.bv-panel .contact-note{font-size:15px;line-height:1.35;padding:9px 12px;margin-top:10px}
+.bv-panel .contact-small{font-size:14px;line-height:1.35}
+.bv-panel h4{font-size:18px;margin:0 0 8px}
+.bv-subpanel .notation-list{font-size:14px;gap:5px 12px}
+.bv-subpanel .contact-equations{font-size:17px;line-height:1.45}
+.bv-panel .contact-explanation>h3{font-size:22px}
+.bv-walkthrough .contact-tabs button{font-size:14px;padding:9px 11px}
+.bv-walkthrough .solve-tabs button{font-size:12px;padding:7px 8px}
+.bv-panel .bv-results{margin:12px 0}
+.bv-panel .bv-results td{font-size:17px;line-height:1.3;padding:9px 12px}
+.bv-panel .bv-results th{padding:8px 12px}
+.bv-panel .algorithm-steps td,.bv-panel .algorithm-steps th{padding-top:5px;padding-bottom:5px}
+@media print{.bv-walkthrough .bv-panel{display:none!important}.bv-walkthrough #bv-panel-0{display:block!important}.bv-panels{height:auto}}
+.bv-panel.contact-panel{grid-template-columns:300px minmax(0,1fr)}
+.bv-panel .contact-explanation,.bv-panel .notation-list>*{min-width:0}
+#bv-solve-panel-1 .notation-list{font-size:13px;gap:4px 10px}
+#bv-solve-panel-1 .contact-equations{font-size:16px;line-height:1.4;margin:7px 0;padding:6px 12px}

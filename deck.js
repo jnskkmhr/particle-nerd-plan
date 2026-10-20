@@ -61,6 +61,43 @@
 
   }
 
+  // Independent tab groups for the optimized contact walkthrough (slide 18).
+  let bodyVelocityStep = 0;
+  let selectBodyVelocityStep;
+  document.querySelectorAll('[data-bv-group]').forEach(group => {
+    const tabs = [...group.querySelectorAll('[role="tab"]')];
+    const isMain = group.dataset.bvGroup === 'bv';
+    function select(index, focus = false) {
+      tabs.forEach((tab, i) => {
+        tab.setAttribute('aria-selected', String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = i !== index;
+      });
+      if (isMain) {
+        bodyVelocityStep = index;
+        document.getElementById('bv-back').disabled = index === 0;
+        document.getElementById('bv-next').textContent = index === 5 ? 'Algorithm ↺' : index === 4 ? 'Speedup →' : `Step ${index + 1} →`;
+        document.getElementById('bv-status').textContent = index === 0
+          ? 'Algorithm · compare the contact solve with p16'
+          : index === 5 ? 'Measured speedup · same contact approximation'
+          : `Step ${index} of 4 · ${index === 3 ? 'optimized solve + original verification' : 'same as p16'}`;
+      }
+      if (focus) tabs[index].focus();
+    }
+    if (isMain) selectBodyVelocityStep = select;
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(i));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault(); event.stopPropagation();
+        select(event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1
+          : (i + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length, true);
+      });
+    });
+  });
+  document.getElementById('bv-back')?.addEventListener('click', () => selectBodyVelocityStep(Math.max(0, bodyVelocityStep - 1)));
+  document.getElementById('bv-next')?.addEventListener('click', () => selectBodyVelocityStep((bodyVelocityStep + 1) % 6));
+
   const graphTabs = [...document.querySelectorAll('[data-graph-tab]')];
   const graphCaptions = ['Material particle i · 26 input values', 'Directed particle edge j → i · 7 input values', 'Particle i / collider b · 9 input values', 'Collider information → particle-node features'];
   function showGraphTab(index, focus = false) {
