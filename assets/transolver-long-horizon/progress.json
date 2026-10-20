@@ -1,14 +1,14 @@
 {
-  "step": 4500,
-  "elapsed_s": 1887.2323892116547,
+  "step": 5500,
+  "elapsed_s": 2307.171944141388,
   "peak_gpu_memory_gib": 2.2965826988220215,
-  "position_rmse_m": 0.012633777390901808,
-  "moving_position_rmse_m": 0.03179355504001562,
-  "stationary_position_rmse_m": 0.0011845198485355,
+  "position_rmse_m": 0.006494425539560735,
+  "moving_position_rmse_m": 0.01623685471191049,
+  "stationary_position_rmse_m": 0.0010084176492475545,
   "moving_count": 2054314,
   "stationary_count": 11052886,
-  "balanced_position_rmse_m": 0.02249703568644186,
+  "balanced_position_rmse_m": 0.011503311633851444,
   "frozen_position_rmse_m": 0.03568332764834259,
   "rollout_steps": 25,
-  "selection_score_m": 0.02249703568644186
+  "selection_score_m": 0.011503311633851444
 }
