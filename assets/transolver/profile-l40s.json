@@ -27,16 +27,16 @@
   "measured_steps": 100,
   "timings": {
     "features": {
-      "median_gpu_ms": 0.21167999505996704,
-      "median_wall_ms": 0.22434722632169724
+      "median_gpu_ms": 0.2101759985089302,
+      "median_wall_ms": 0.2227742224931717
     },
     "neural_network": {
-      "median_gpu_ms": 2.0982080698013306,
-      "median_wall_ms": 2.1127923391759396
+      "median_gpu_ms": 2.1459840536117554,
+      "median_wall_ms": 2.1606246009469032
     },
     "whole_particle_step": {
-      "median_gpu_ms": 2.6526559591293335,
-      "median_wall_ms": 2.66815721988678
+      "median_gpu_ms": 2.67411208152771,
+      "median_wall_ms": 2.6895874179899693
     }
   },
   "caveat": "Compute timing only; checkpoint quality is not established. No force estimator, rigid solver, or rendering included."

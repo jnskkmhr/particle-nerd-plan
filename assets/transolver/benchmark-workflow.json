@@ -1,0 +1,8 @@
+{
+  "name": "particle-matched-profile-1",
+  "pool": "isaac-lab-l40s-03",
+  "status": "COMPLETED",
+  "overview": "https://us-west-2-aws.osmo.nvidia.com/workflows/particle-matched-profile-1",
+  "grafana_url": "https://dashboards.telemetry.dgxc.ngc.nvidia.com/d/workflow_resources/workflow-resources-v2?orgId=46&var-datasource=ae6qyv87oh0cgd&var-cluster=osmogroot-dgxc-k8s-forge-az41-prd1&var-namespace=osmo-prod&var-uuid=23c692bf223843d4&from=now-1h&to=now",
+  "dashboard_url": "https://ovx-l40s-03.osmo.nvidia.com/dashboard/#/search?namespace=osmo-prod&q=23c692bf223843d4"
+}

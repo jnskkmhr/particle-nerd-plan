@@ -1,0 +1,47 @@
+{
+  "gpu": "NVIDIA L40S",
+  "particles": 16384,
+  "measured_steps": 100,
+  "captured": false,
+  "compiled": false,
+  "precision": "BF16 neural; FP32 Warp",
+  "config": {
+    "dt": 0.02,
+    "geometry": {
+      "history": 3,
+      "k": 16,
+      "radius": 0.07,
+      "extent": 1.5,
+      "map_size": 32
+    },
+    "motion": {
+      "hidden": 150,
+      "passes": 3,
+      "history": 3
+    },
+    "roi": {
+      "box_points": 96,
+      "history": 3
+    }
+  },
+  "checkpoint_step": 9000,
+  "timings": {
+    "learned": {
+      "median_gpu_ms": 11.059904098510742,
+      "median_wall_ms": 11.084302794188261,
+      "final_diagnostics": {
+        "finite": true,
+        "active_fraction": 0.0084228515625
+      }
+    },
+    "all": {
+      "median_gpu_ms": 12.33400011062622,
+      "median_wall_ms": 12.35782215371728,
+      "final_diagnostics": {
+        "finite": true,
+        "active_fraction": 1.0
+      }
+    }
+  },
+  "caveat": "Fixed current box input; recurrent particles; selector still computed in all mode. No force estimator, rigid solver, rendering. Selection-disabled is a compute diagnostic, not an independently trained full-graph model."
+}
