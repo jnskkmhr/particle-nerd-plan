@@ -1,0 +1,43 @@
+{
+  "Transolver": {
+    "complete": 12,
+    "final_cm": 5.070431033770243,
+    "moving_cm": 7.834120436261098
+  },
+  "GNN v2 + CNN selector": {
+    "complete": 12,
+    "final_cm": 2.32147901551798,
+    "moving_cm": 5.532659590244293
+  },
+  "Previous GNN + MLP selector": {
+    "complete": 12,
+    "final_cm": 2.5263790041208267,
+    "moving_cm": 5.5869961467882
+  },
+  "Frozen particles": {
+    "complete": 12,
+    "final_cm": 2.2836783551611006,
+    "moving_cm": 5.394163867458701
+  },
+  "measurement_notes": {
+    "checkpoint_step": 10000,
+    "stationary_particles": 72764,
+    "stationary_drift_over_1cm_any_frame": 69433,
+    "ids": [
+      117,
+      453,
+      456,
+      460,
+      519,
+      527,
+      575,
+      578,
+      689,
+      850,
+      883,
+      885
+    ],
+    "reference_box_motion": true,
+    "force_estimator": false
+  }
+}

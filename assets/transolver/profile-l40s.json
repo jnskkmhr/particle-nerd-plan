@@ -1,0 +1,43 @@
+{
+  "gpu": "NVIDIA L40S",
+  "particles": 16384,
+  "colliders": 2,
+  "configuration": {
+    "dt": 0.02,
+    "model": {
+      "hidden": 128,
+      "heads": 4,
+      "slices": 64,
+      "layers": 4,
+      "history": 3,
+      "displacement_scale": 0.02
+    },
+    "features": {
+      "support": 0.07
+    },
+    "body_size_m": [
+      0.12,
+      0.12,
+      0.08
+    ]
+  },
+  "captured": false,
+  "compiled": false,
+  "precision": "Torch BF16 autocast; Warp FP32",
+  "measured_steps": 100,
+  "timings": {
+    "features": {
+      "median_gpu_ms": 0.21167999505996704,
+      "median_wall_ms": 0.22434722632169724
+    },
+    "neural_network": {
+      "median_gpu_ms": 2.0982080698013306,
+      "median_wall_ms": 2.1127923391759396
+    },
+    "whole_particle_step": {
+      "median_gpu_ms": 2.6526559591293335,
+      "median_wall_ms": 2.66815721988678
+    }
+  },
+  "caveat": "Compute timing only; checkpoint quality is not established. No force estimator, rigid solver, or rendering included."
+}
