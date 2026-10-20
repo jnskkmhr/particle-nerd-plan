@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Particle NeRD · Transolver</title><style>
+:root{--ink:#22383d;--teal:#24796d;--blue:#356584;--sand:#b97b35;--muted:#637478;--line:#d7e2df;--paper:#f8faf8}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:40px 28px 80px}a{color:var(--blue)}nav{display:flex;gap:22px;flex-wrap:wrap;font-size:14px}h1{font-size:44px;line-height:1.15;margin:28px 0 12px}h2{margin-top:48px;font-size:27px}h3{font-size:20px}.lead{font-size:21px;color:var(--muted)}.tag{font-size:13px;letter-spacing:2px;color:var(--teal);font-weight:700}.status,.note{padding:20px 24px;border-left:5px solid var(--teal);background:#eaf2ee;margin:24px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{padding:22px;border:1px solid var(--line);border-top:4px solid var(--teal);background:white}.card h3{margin-top:0}table{width:100%;border-collapse:collapse;background:white;font-size:15px}th,td{padding:13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{background:#eaf2ee}code,pre{font-family:ui-monospace,monospace;font-size:15px}pre{padding:18px;background:#edf2ef;overflow:auto}.scroll{overflow:auto}.small{font-size:14px;color:var(--muted)}svg{width:100%;height:auto}svg text{font-family:system-ui,sans-serif;fill:var(--ink)}.diagram{border:1px solid var(--line);background:white;padding:15px;border-radius:6px}details{margin:20px 0}summary{cursor:pointer;color:var(--blue)}img{max-width:100%}@media(max-width:750px){.cards{grid-template-columns:1fr}h1{font-size:32px}main{padding:24px 16px}}
+</style></head><body><main>
+<nav><a href="index.html">Methodology</a><a href="gnn-v2.html">GNN v2</a><a href="particle_gnn_development.html#region-selection">Previous GNN</a><a href="box_force_estimation.html">Box force estimation</a></nav>
+<p class="tag">PARTICLE MOTION / TRANSOLVER</p><h1>Particle displacement with slice attention</h1>
+<p class="lead">Predict every material particle's displacement using particle history and nearby rigid-body geometry.</p>
+<!-- STATUS START --><div class="status"><strong>RUNNING: particle-transolver-1.</strong> Four L40S GPUs on isaac-lab-l40s-03. Source and dataset download is in progress; training has not started. The submitted workflow runs 10,000 updates, twelve five-second evaluations, and a warmed GPU/wall timing benchmark.<p><a href="https://us-west-2-aws.osmo.nvidia.com/workflows/particle-transolver-1">Workflow</a> · <a href="https://dashboards.telemetry.dgxc.ngc.nvidia.com/d/workflow_resources/workflow-resources-v2?orgId=46&var-datasource=ae6qyv87oh0cgd&var-cluster=osmogroot-dgxc-k8s-forge-az41-prd1&var-namespace=osmo-prod&var-uuid=5b9af8fede184aa7&from=now-1h&to=now">Resource usage</a> · <a href="https://ovx-l40s-03.osmo.nvidia.com/dashboard/#/search?namespace=osmo-prod&q=5b9af8fede184aa7">Dashboard</a></p></div><!-- STATUS END -->
+<h2>01 / Model input and output</h2>
+<div class="diagram"><svg viewBox="0 0 1100 360" role="img" aria-label="Particle features and weighted collider features form particle embeddings; slice attention predicts displacement for every particle.">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10" fill="#24796d"/></marker></defs>
+<g fill="none" stroke="#356584" stroke-width="2"><rect x="15" y="25" width="270" height="85" rx="5"/><rect x="15" y="155" width="270" height="105" rx="5"/><rect x="345" y="85" width="215" height="140" rx="5"/><rect x="615" y="85" width="210" height="140" rx="5"/><rect x="880" y="85" width="205" height="140" rx="5"/></g>
+<g font-size="18" text-anchor="middle"><text x="150" y="58">Particle encoder</text><text x="150" y="87" font-size="15">Position, history, material</text><text x="150" y="190">Collider encoder</text><text x="150" y="219" font-size="15">Gap, normal, relative velocity</text><text x="150" y="244" font-size="15">Sum with distance weights</text><text x="452" y="125">Particle embedding</text><text x="452" y="162" font-size="16">128 values per particle</text><text x="452" y="195" font-size="16">Particle + collider encodings</text><text x="720" y="125">4 Transolver blocks</text><text x="720" y="162" font-size="16">64 slices per head</text><text x="720" y="195" font-size="16">4 attention heads</text><text x="982" y="125">Displacement decoder</text><text x="982" y="162" font-size="16">Δx, Δy, Δz per particle</text><text x="982" y="195" font-size="16">All particles updated</text></g>
+<g fill="none" stroke="#24796d" stroke-width="2" marker-end="url(#a)"><path d="M285 67 H315 V130 H340"/><path d="M285 207 H315 V180 H340"/><path d="M560 155 H610"/><path d="M825 155 H875"/></g>
+<text x="550" y="305" text-anchor="middle" font-size="20">x_next = x_current + Δx     ·     v_next = Δx / Δt     ·     Δt = 0.02 s</text>
+<text x="550" y="338" text-anchor="middle" font-size="16">Collider information enters each particle embedding before attention. No collider tokens or particle edges.</text></svg></div>
+<div class="scroll"><table><tr><th>Input</th><th>Values</th><th>Definition</th></tr>
+<tr><td>Particle position</td><td>3</td><td>Current world position relative to the fixed configured origin; scale 1 m</td></tr>
+<tr><td>Particle motion history</td><td>6</td><td>Two finite-difference velocities from three position frames; scale 1 m/s</td></tr>
+<tr><td>Material and sampling</td><td>12</td><td>Ten normalized material parameters, particle mass, particle radius</td></tr>
+<tr><td>Timestep and gravity</td><td>4</td><td>Δt / 0.02 s; world gravity / 9.81 m/s²</td></tr>
+<tr><td>Each particle–collider pair</td><td>8</td><td>Signed particle-surface gap / 0.07 m; outward normal (3); collider surface velocity minus particle velocity (3); friction coefficient</td></tr>
+</table></div>
+<p class="small">Particle feature vector: 25 values. Collider surface velocity includes rigid-body rotation. Pair weight: max(0, 1 − max(gap, 0) / 0.07 m). Gap is the collider signed distance minus particle radius. Collider encodings are summed, so several nearby rigid bodies can contribute to one particle.</p>
+<h2>02 / Why slice attention can be fast</h2>
+<div class="cards"><article class="card"><h3>Particles → slices</h3><p>Each particle receives learned soft weights over 64 latent slices. Weighted particle features form slice features.</p></article><article class="card"><h3>Attention between slices</h3><p>Attention operates on 64 slices per head. It does not construct a 16,384 × 16,384 particle attention matrix.</p></article><article class="card"><h3>Slices → particles</h3><p>The slice outputs return to each particle using its slice weights. The decoder predicts three displacement components.</p></article></div>
+<p>A slice is a learned grouping of features. It does not select which particles move. Every particle passes through every block; particle-neighbor construction is absent. At fixed hidden width, particle–slice work scales with N × S and slice attention with S², where N is particle count and S is slice count.</p>
+<p class="small">Architecture source: <a href="https://github.com/mnabian/physicsnemo/blob/fa1d68a67cc77baa176db8b4c1c5ef2ecdce00f7/physicsnemo/nn/module/physics_attention.py">PhysicsNeMo physics attention, pinned revision</a>; <a href="https://arxiv.org/pdf/2510.15201">Automotive Crash Dynamics Modeling Accelerated with Machine Learning</a>. This model uses standard Transolver attention, not GeoTransolver or Transolver++. The crash paper predicts acceleration; displacement output and collider conditioning are adaptations for this particle problem.</p>
+<h2>03 / Training and evaluation</h2>
+<div class="scroll"><table><tr><th>Item</th><th>Configuration</th></tr>
+<tr><td>Dataset</td><td>Existing 1,000-episode MPM campaign; unchanged training, validation, and test assignments</td></tr>
+<tr><td>Scene</td><td>Initial material volume 1 × 1 × 0.5 m; 16,384 particles; MPM grid 0.04 m; rigid ground at z = 0; no enclosing walls</td></tr>
+<tr><td>Rigid box</td><td>0.12 × 0.12 × 0.08 m; campaign mass 5–10 kg; existing rest, push, and dragging trajectories</td></tr>
+<tr><td>Architecture</td><td>128 hidden channels; four blocks; four heads; 64 slices; three-value displacement decoder</td></tr>
+<tr><td>Training</td><td>Four L40S GPUs; 10,000 optimizer updates; one four-step sequence per GPU per update</td></tr>
+<tr><td>Training recurrence</td><td>Reference history initializes the sequence; each prediction becomes the next particle state; gradients pass through all four steps</td></tr>
+<tr><td>Loss</td><td>Position squared error / Δt² at every step; weight 5 when reference displacement from sequence start exceeds 0.5 mm, otherwise 1</td></tr>
+<tr><td>Validation</td><td>32 fixed validation sequences every 500 updates; checkpoint selected by global plus moving-particle RMSE</td></tr>
+<tr><td>Test</td><td>12 matched trajectories; five seconds each (250 recurrent steps); recorded current box motion; no future box state in a single prediction</td></tr>
+<tr><td>Baselines</td><td>Previous GNN with MLP selector; GNN v2 with CNN selector; frozen particles</td></tr>
+</table></div>
+<p>Training sequences span 0.08 s, while test rollouts span 5 s. Long-rollout stability must therefore be measured. These test trajectories were reported previously; this is a matched comparison, not a newly untouched test set. Test results do not select the checkpoint.</p>
+<h2>04 / Accuracy and motion</h2>
+<!-- RESULTS START --><p>Full training and evaluation results are pending. The earlier GNN v2 did not outperform frozen particles; this experiment must demonstrate useful particle motion, not merely low average error from stationary material.</p><!-- RESULTS END -->
+<h2>05 / Runtime</h2>
+<!-- TIMING START --><p>Initial RTX 5090 execution check: <strong>1.73 ms</strong> synchronized wall time per complete particle step for 16,384 particles and two colliders. This used a six-update checkpoint and is a compute measurement only. L40S timing and trained-checkpoint measurements are pending.</p><!-- TIMING END -->
+<p class="small">Complete particle step includes Warp feature construction, Torch network execution, and Warp position/velocity/history updates. Force estimation, rigid-body integration, and rendering are excluded. BF16 neural operations, FP32 geometry; no full-step CUDA graph capture or torch.compile. GPU-event and synchronized wall times are measured after warmup.</p>
+<h2>06 / Multiple rigid bodies and current limits</h2>
+<p>The input interface supports multiple planes, oriented boxes, and spheres. Every particle receives the sum of nearby collider encodings. No semantic label identifies ground, foot, or shovel. The fixed ground contributes zero surface velocity; moving rigid bodies contribute linear and angular surface velocity.</p>
+<p>This training dataset contains one box and the rigid ground. Interface support for multiple objects does not demonstrate generalization to two robot feet, a shovel, or simultaneous robot–object contact. Robot mesh distance queries, a G1 adapter, and learned-particle/force-estimator coupling remain unvalidated for this variant.</p>
+<p>Material stress and plastic deformation history are not explicit inputs. Transolver does not supply missing physical state or enforce material laws, nonpenetration, or conservation. Displacement-derived velocity is an interval average; its suitability for contact-force reconstruction requires a separate coupled evaluation.</p>
+<details><summary>Implementation</summary><pre>examples/particle_nerd/transolver/
+  features.py    Warp particle/collider features and history gradients
+  model.py       Particle/collider encoders, slice attention, displacement decoder
+  inference.py   GPU position, velocity, and history update
+  train.py       Differentiable four-step rollout training
+  profile.py     Feature, network, and complete-step timings
+examples/particle_nerd/gnn_v2/evaluate.py
+examples/particle_nerd/osmo/transolver_training.yaml</pre>
+<p>Local checks: 31 tests passed; four-step backpropagation, reload, recurrent inference, collider permutation invariance, and Warp history gradients checked. Those execution checks are separate from cloud accuracy evaluation.</p></details>
+</main></body></html>
