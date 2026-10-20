@@ -1,0 +1,34 @@
+{
+  "wide-circle": {
+    "mpm_endpoint": {
+      "force_vector_rmse_N": 29.80850509450611,
+      "torque_vector_rmse_Nm": 4.755694768703216,
+      "converged_fraction": 1.0,
+      "pre_drag_mean_support_N": 191.07237497965494,
+      "reference_pre_drag_mean_support_N": 201.079833984375
+    },
+    "mpm_displacement": {
+      "force_vector_rmse_N": 28.51883025889107,
+      "torque_vector_rmse_Nm": 4.387571359488926,
+      "converged_fraction": 1.0,
+      "pre_drag_mean_support_N": 191.10083516438803,
+      "reference_pre_drag_mean_support_N": 201.079833984375
+    }
+  },
+  "figure-eight": {
+    "mpm_endpoint": {
+      "force_vector_rmse_N": 32.06577813713974,
+      "torque_vector_rmse_Nm": 5.372436579541197,
+      "converged_fraction": 1.0,
+      "pre_drag_mean_support_N": 191.25937525431314,
+      "reference_pre_drag_mean_support_N": 201.41035906473795
+    },
+    "mpm_displacement": {
+      "force_vector_rmse_N": 32.07023716258128,
+      "torque_vector_rmse_Nm": 4.820237311063557,
+      "converged_fraction": 1.0,
+      "pre_drag_mean_support_N": 191.1726048787435,
+      "reference_pre_drag_mean_support_N": 201.41035906473795
+    }
+  }
+}
