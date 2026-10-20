@@ -104,5 +104,47 @@
       ],
       "validation": "Reconstructed from first free-flight velocity plus gravity dt; verified against requested launch velocity and first-step horizontal displacement. No contact or external force during first 10 steps."
     }
+  },
+  {
+    "index": 11003,
+    "label": "+y launch",
+    "velocity": [
+      0,
+      1,
+      0
+    ],
+    "impact_time_s": 0.32,
+    "box_bottom_clearance_above_highest_particle_center_m": 0.4588185250759125,
+    "final_rmse_m": 0.012339853681623936,
+    "moving_step_rmse_m": 0.0014962285058572888,
+    "moving_final_rmse_m": 0.026754459366202354,
+    "checkpoint_sha256": "9f85089a06cdb8b269348b6620161f203e68618a041c01712fddcb335d7a5eef",
+    "video": {
+      "codec_name": "h264",
+      "duration": "5.040000",
+      "nb_frames": "126"
+    },
+    "release_step": 400,
+    "source_sha256": "0d28bd64b7182d5c5afa12fb7e8b2da0872abf8d9971b895810c4f07033eec70",
+    "release_record_correction": {
+      "reason": "Asset launch velocity was authored before release, but raw global state was read before forward synchronization. Subsequent simulation states are unchanged.",
+      "original_velocity": [
+        0.0,
+        0.0,
+        -2.0344996300991625e-06,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "corrected_velocity": [
+        0.0,
+        1.0,
+        4.351139101799184e-10,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "validation": "Reconstructed from first free-flight velocity plus gravity dt; verified against requested launch velocity and first-step horizontal displacement. No contact or external force during first 10 steps."
+    }
   }
 ]
