@@ -258,3 +258,9 @@ body.overview-mode{overflow:auto}body.overview-mode #deck{position:relative;left
 .solve-panel h4{font-size:18px;margin:0 0 8px}
 .contact-solve-detail .contact-note{font-size:15px;padding:8px 11px;margin-top:9px}
 .contact-solve-detail .contact-equations{font-size:17px;line-height:1.45}
+
+/* Define all free-motion inputs before displaying their equations. */
+.free-motion-definitions{display:grid;grid-template-columns:100px 1fr;gap:5px 12px;margin:10px 0;font-size:15px;line-height:1.35}
+.free-motion-definitions>b{color:var(--green)}
+#contact-panel-1 .contact-small{margin-top:7px;font-size:14px}
+#contact-panel-1 .contact-note{font-size:15px;margin-top:8px;padding:8px 12px}
