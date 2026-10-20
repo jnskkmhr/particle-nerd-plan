@@ -1,0 +1,24 @@
+[
+  {
+    "index": 11000,
+    "label": "Vertical drop",
+    "velocity": [
+      0,
+      0,
+      0
+    ],
+    "impact_time_s": 0.305,
+    "box_bottom_clearance_above_highest_particle_center_m": 0.4588185250759125,
+    "final_rmse_m": 0.011214776895940304,
+    "moving_step_rmse_m": 0.001330276601947844,
+    "moving_final_rmse_m": 0.02311982959508896,
+    "checkpoint_sha256": "9f85089a06cdb8b269348b6620161f203e68618a041c01712fddcb335d7a5eef",
+    "video": {
+      "codec_name": "h264",
+      "duration": "5.040000",
+      "nb_frames": "126"
+    },
+    "release_step": 400,
+    "source_sha256": "0d28bd64b7182d5c5afa12fb7e8b2da0872abf8d9971b895810c4f07033eec70"
+  }
+]
