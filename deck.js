@@ -84,18 +84,18 @@
     });
   });
 
-  // Explore the current coupled method without implying an active-subgraph implementation.
+  // Explore the architecture-independent coupled simulation pipeline.
   const methodFigure = document.querySelector('.method-pipeline-svg');
   const methodButtons = [...document.querySelectorAll('[data-method-step]')];
   const methodPlay = document.getElementById('method-play');
   const methodDescriptions = [
-    'The selector masks updates; the motion GNN still evaluates all particles. No MPM solver runs in this coupled step.',
-    'Input: current particle positions, velocity history and material features; current box pose, velocity and geometry.',
-    'The activity MLP predicts one probability per particle. A validation threshold converts it to an active/inactive mask.',
-    'The full-graph GNN predicts candidate motion. Active particles keep it; inactive particles keep their positions and receive zero next velocity.',
-    'Current particle positions and masked next velocities enter the contact solver. Its output is sand-on-box force and torque about the box COM.',
-    'MJWarp advances the box using estimated contact, gravity and external loads. Updated particle and box states become the next input.'
-  ];
+    "Particle NeRD predicts material motion. The force estimator supplies material-on-body loads to Newton MJWarp. No MPM solve is used during inference.",
+    "Input: material-particle positions, motion history and material parameters; rigid-body geometry, poses and velocities.",
+    "The Particle NeRD layer predicts material-particle motion conditioned on the current material and rigid-body states. GNN and Transolver are alternative architectures.",
+    "Output: predicted next particle positions and velocities. The architecture-specific sections explain how each model computes these quantities.",
+    "The analytical estimator uses particle motion, contact geometry and rigid-body free motion to solve contact impulses and obtain material-on-body force and torque.",
+    "Newton MJWarp advances rigid bodies using estimated material loads, gravity, external loads and rigid contacts. Updated material and rigid-body states feed the next timestep."
+];
   let methodStep = 0;
   let methodTimer = null;
   function stopMethodPlayback() {
