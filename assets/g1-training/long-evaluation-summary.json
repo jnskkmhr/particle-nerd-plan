@@ -1,0 +1,408 @@
+{
+  "requested_duration_s": 10,
+  "checkpoint_step": 9750,
+  "effective_mass_scale": 100,
+  "iterations": 200,
+  "original_relaxation": 0.1,
+  "updated_relaxation": 0.02,
+  "scope": "Follow-up on previously evaluated scenarios; relaxation checked on validation #12 first",
+  "runs": [
+    {
+      "scope": "closed-loop trajectories diverge; force-profile differences are not force-reconstruction error",
+      "reference_outcome": "duration",
+      "prediction_outcome": "native_termination",
+      "reference_duration_s": 10.0,
+      "prediction_duration_s": 5.98,
+      "common_duration_s": 5.98,
+      "initial_positions_match": true,
+      "pelvis_position_rmse_m": 0.11603837460279465,
+      "final_pelvis_error_m": 0.42286622524261475,
+      "reference_final_height_m": 0.6124711036682129,
+      "prediction_final_height_m": 0.5177589654922485,
+      "learned_material_steps": 1196,
+      "estimator": {
+        "method": "independent_virtual_foot_proxy",
+        "iterations": 200,
+        "jacobi_relaxation": 0.02,
+        "effective_mass_scale": 100.0,
+        "gradient_radius_m": 0.065,
+        "gradient_contact_band_m": 0.08,
+        "stabilization": 0.01,
+        "additional_contact_offset_m": 0.0,
+        "surface_velocity_approximation": "instantaneous COM twist; MPM uses forward finite rotation",
+        "input_velocity": "MPM proxy input after lagged-wrench rewind; no additional gravity or actuation",
+        "particle_velocity": "particle NeRD predicted next velocity",
+        "feet": [
+          {
+            "body_id": 0,
+            "shape_id": 35,
+            "virtual_mass_kg": 1.9643073081970215,
+            "virtual_inertia_local": [
+              [
+                0.004762572236359119,
+                -7.344230198214063e-06,
+                -0.0019020315958186984
+              ],
+              [
+                -7.344230652961414e-06,
+                0.03449929505586624,
+                1.4062707123230211e-06
+              ],
+              [
+                -0.0019020315958186984,
+                1.4062748050491791e-06,
+                0.03557947278022766
+              ]
+            ],
+            "body_com_local_m": [
+              0.0265050008893013,
+              0.0,
+              -0.01642500050365925
+            ],
+            "shape_half_extents_m": [
+              0.08500000089406967,
+              0.029999999329447746,
+              0.004999999888241291
+            ],
+            "shape_local_transform": [
+              0.03500000014901161,
+              0.0,
+              -0.030400000512599945,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "shape_margin_m": 0.019999999552965164,
+            "contact_friction": 1.0
+          },
+          {
+            "body_id": 1,
+            "shape_id": 36,
+            "virtual_mass_kg": 1.9632220268249512,
+            "virtual_inertia_local": [
+              [
+                0.004747732076793909,
+                7.321345037780702e-06,
+                -0.0018961048917844892
+              ],
+              [
+                7.321345947275404e-06,
+                0.034391794353723526,
+                -1.4018886531630415e-06
+              ],
+              [
+                -0.0018961048917844892,
+                -1.4018927458891994e-06,
+                0.035468604415655136
+              ]
+            ],
+            "body_com_local_m": [
+              0.0265050008893013,
+              0.0,
+              -0.01642500050365925
+            ],
+            "shape_half_extents_m": [
+              0.08500000089406967,
+              0.029999999329447746,
+              0.004999999888241291
+            ],
+            "shape_local_transform": [
+              0.03500000014901161,
+              0.0,
+              -0.030400000512599945,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "shape_margin_m": 0.019999999552965164,
+            "contact_friction": 1.0
+          }
+        ]
+      },
+      "trial_id": 2,
+      "motion": "straight",
+      "original_duration_s": 1.1500000000000001,
+      "termination_terms": {
+        "reference": null,
+        "learned": null
+      },
+      "contact_count_max": [
+        174.0,
+        173.0
+      ],
+      "impulse_correction_max_Ns": [
+        0.12102708300051498,
+        0.1714266493880614
+      ],
+      "all_recorded_trace_values_finite": true
+    },
+    {
+      "scope": "closed-loop trajectories diverge; force-profile differences are not force-reconstruction error",
+      "reference_outcome": "duration",
+      "prediction_outcome": "duration",
+      "reference_duration_s": 10.0,
+      "prediction_duration_s": 10.0,
+      "common_duration_s": 10.0,
+      "initial_positions_match": true,
+      "pelvis_position_rmse_m": 0.45159441232681274,
+      "final_pelvis_error_m": 0.5984039902687073,
+      "reference_final_height_m": 0.6111410856246948,
+      "prediction_final_height_m": 0.5259621739387512,
+      "learned_material_steps": 2000,
+      "estimator": {
+        "method": "independent_virtual_foot_proxy",
+        "iterations": 200,
+        "jacobi_relaxation": 0.02,
+        "effective_mass_scale": 100.0,
+        "gradient_radius_m": 0.065,
+        "gradient_contact_band_m": 0.08,
+        "stabilization": 0.01,
+        "additional_contact_offset_m": 0.0,
+        "surface_velocity_approximation": "instantaneous COM twist; MPM uses forward finite rotation",
+        "input_velocity": "MPM proxy input after lagged-wrench rewind; no additional gravity or actuation",
+        "particle_velocity": "particle NeRD predicted next velocity",
+        "feet": [
+          {
+            "body_id": 0,
+            "shape_id": 35,
+            "virtual_mass_kg": 1.9643073081970215,
+            "virtual_inertia_local": [
+              [
+                0.004762572236359119,
+                -7.344230198214063e-06,
+                -0.0019020315958186984
+              ],
+              [
+                -7.344230652961414e-06,
+                0.03449929505586624,
+                1.4062707123230211e-06
+              ],
+              [
+                -0.0019020315958186984,
+                1.4062748050491791e-06,
+                0.03557947278022766
+              ]
+            ],
+            "body_com_local_m": [
+              0.0265050008893013,
+              0.0,
+              -0.01642500050365925
+            ],
+            "shape_half_extents_m": [
+              0.08500000089406967,
+              0.029999999329447746,
+              0.004999999888241291
+            ],
+            "shape_local_transform": [
+              0.03500000014901161,
+              0.0,
+              -0.030400000512599945,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "shape_margin_m": 0.019999999552965164,
+            "contact_friction": 1.0
+          },
+          {
+            "body_id": 1,
+            "shape_id": 36,
+            "virtual_mass_kg": 1.9632220268249512,
+            "virtual_inertia_local": [
+              [
+                0.004747732076793909,
+                7.321345037780702e-06,
+                -0.0018961048917844892
+              ],
+              [
+                7.321345947275404e-06,
+                0.034391794353723526,
+                -1.4018886531630415e-06
+              ],
+              [
+                -0.0018961048917844892,
+                -1.4018927458891994e-06,
+                0.035468604415655136
+              ]
+            ],
+            "body_com_local_m": [
+              0.0265050008893013,
+              0.0,
+              -0.01642500050365925
+            ],
+            "shape_half_extents_m": [
+              0.08500000089406967,
+              0.029999999329447746,
+              0.004999999888241291
+            ],
+            "shape_local_transform": [
+              0.03500000014901161,
+              0.0,
+              -0.030400000512599945,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "shape_margin_m": 0.019999999552965164,
+            "contact_friction": 1.0
+          }
+        ]
+      },
+      "trial_id": 106,
+      "motion": "curved",
+      "original_duration_s": 3.145,
+      "termination_terms": {
+        "reference": [],
+        "learned": []
+      },
+      "contact_count_max": [
+        132.0,
+        179.0
+      ],
+      "impulse_correction_max_Ns": [
+        0.15684412429834227,
+        0.12398249419432616
+      ],
+      "all_recorded_trace_values_finite": true
+    },
+    {
+      "scope": "closed-loop trajectories diverge; force-profile differences are not force-reconstruction error",
+      "reference_outcome": "native_termination",
+      "prediction_outcome": "native_termination",
+      "reference_duration_s": 7.88,
+      "prediction_duration_s": 8.94,
+      "common_duration_s": 7.88,
+      "initial_positions_match": true,
+      "pelvis_position_rmse_m": 0.14505045115947723,
+      "final_pelvis_error_m": 0.21591174602508545,
+      "reference_final_height_m": 0.6175234913825989,
+      "prediction_final_height_m": 0.534514307975769,
+      "learned_material_steps": 1788,
+      "estimator": {
+        "method": "independent_virtual_foot_proxy",
+        "iterations": 200,
+        "jacobi_relaxation": 0.02,
+        "effective_mass_scale": 100.0,
+        "gradient_radius_m": 0.065,
+        "gradient_contact_band_m": 0.08,
+        "stabilization": 0.01,
+        "additional_contact_offset_m": 0.0,
+        "surface_velocity_approximation": "instantaneous COM twist; MPM uses forward finite rotation",
+        "input_velocity": "MPM proxy input after lagged-wrench rewind; no additional gravity or actuation",
+        "particle_velocity": "particle NeRD predicted next velocity",
+        "feet": [
+          {
+            "body_id": 0,
+            "shape_id": 35,
+            "virtual_mass_kg": 1.9643073081970215,
+            "virtual_inertia_local": [
+              [
+                0.004762572236359119,
+                -7.344230198214063e-06,
+                -0.0019020315958186984
+              ],
+              [
+                -7.344230652961414e-06,
+                0.03449929505586624,
+                1.4062707123230211e-06
+              ],
+              [
+                -0.0019020315958186984,
+                1.4062748050491791e-06,
+                0.03557947278022766
+              ]
+            ],
+            "body_com_local_m": [
+              0.0265050008893013,
+              0.0,
+              -0.01642500050365925
+            ],
+            "shape_half_extents_m": [
+              0.08500000089406967,
+              0.029999999329447746,
+              0.004999999888241291
+            ],
+            "shape_local_transform": [
+              0.03500000014901161,
+              0.0,
+              -0.030400000512599945,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "shape_margin_m": 0.019999999552965164,
+            "contact_friction": 1.0
+          },
+          {
+            "body_id": 1,
+            "shape_id": 36,
+            "virtual_mass_kg": 1.9632220268249512,
+            "virtual_inertia_local": [
+              [
+                0.004747732076793909,
+                7.321345037780702e-06,
+                -0.0018961048917844892
+              ],
+              [
+                7.321345947275404e-06,
+                0.034391794353723526,
+                -1.4018886531630415e-06
+              ],
+              [
+                -0.0018961048917844892,
+                -1.4018927458891994e-06,
+                0.035468604415655136
+              ]
+            ],
+            "body_com_local_m": [
+              0.0265050008893013,
+              0.0,
+              -0.01642500050365925
+            ],
+            "shape_half_extents_m": [
+              0.08500000089406967,
+              0.029999999329447746,
+              0.004999999888241291
+            ],
+            "shape_local_transform": [
+              0.03500000014901161,
+              0.0,
+              -0.030400000512599945,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "shape_margin_m": 0.019999999552965164,
+            "contact_friction": 1.0
+          }
+        ]
+      },
+      "trial_id": 306,
+      "motion": "lateral",
+      "original_duration_s": 2.465,
+      "termination_terms": {
+        "reference": [
+          "outside_workspace"
+        ],
+        "learned": [
+          "outside_workspace"
+        ]
+      },
+      "contact_count_max": [
+        131.0,
+        152.0
+      ],
+      "impulse_correction_max_Ns": [
+        0.07493098005332348,
+        0.10776644314068706
+      ],
+      "all_recorded_trace_values_finite": true
+    }
+  ]
+}
