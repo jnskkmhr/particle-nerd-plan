@@ -1,0 +1,151 @@
+{
+  "scope": "closed-loop trajectories diverge; force-profile differences are not force-reconstruction error",
+  "reference_outcome": "duration",
+  "prediction_outcome": "simulation_error",
+  "reference_duration_s": 5.0,
+  "prediction_duration_s": 1.1500000000000001,
+  "common_duration_s": 1.1500000000000001,
+  "initial_positions_match": true,
+  "pelvis_position_rmse_m": 0.03408487141132355,
+  "final_pelvis_error_m": 0.014809712767601013,
+  "reference_final_height_m": 0.5825384855270386,
+  "prediction_final_height_m": 0.5812970995903015,
+  "learned_material_steps": 231,
+  "estimator": {
+    "method": "independent_virtual_foot_proxy",
+    "iterations": 200,
+    "effective_mass_scale": 100.0,
+    "gradient_radius_m": 0.065,
+    "gradient_contact_band_m": 0.08,
+    "stabilization": 0.01,
+    "additional_contact_offset_m": 0.0,
+    "surface_velocity_approximation": "instantaneous COM twist; MPM uses forward finite rotation",
+    "input_velocity": "MPM proxy input after lagged-wrench rewind; no additional gravity or actuation",
+    "particle_velocity": "particle NeRD predicted next velocity",
+    "feet": [
+      {
+        "body_id": 0,
+        "shape_id": 35,
+        "virtual_mass_kg": 1.9643073081970215,
+        "virtual_inertia_local": [
+          [
+            0.004762572236359119,
+            -7.344230198214063e-06,
+            -0.0019020315958186984
+          ],
+          [
+            -7.344230652961414e-06,
+            0.03449929505586624,
+            1.4062707123230211e-06
+          ],
+          [
+            -0.0019020315958186984,
+            1.4062748050491791e-06,
+            0.03557947278022766
+          ]
+        ],
+        "body_com_local_m": [
+          0.0265050008893013,
+          0.0,
+          -0.01642500050365925
+        ],
+        "shape_half_extents_m": [
+          0.08500000089406967,
+          0.029999999329447746,
+          0.004999999888241291
+        ],
+        "shape_local_transform": [
+          0.03500000014901161,
+          0.0,
+          -0.030400000512599945,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "shape_margin_m": 0.019999999552965164,
+        "contact_friction": 1.0
+      },
+      {
+        "body_id": 1,
+        "shape_id": 36,
+        "virtual_mass_kg": 1.9632220268249512,
+        "virtual_inertia_local": [
+          [
+            0.004747732076793909,
+            7.321345037780702e-06,
+            -0.0018961048917844892
+          ],
+          [
+            7.321345947275404e-06,
+            0.034391794353723526,
+            -1.4018886531630415e-06
+          ],
+          [
+            -0.0018961048917844892,
+            -1.4018927458891994e-06,
+            0.035468604415655136
+          ]
+        ],
+        "body_com_local_m": [
+          0.0265050008893013,
+          0.0,
+          -0.01642500050365925
+        ],
+        "shape_half_extents_m": [
+          0.08500000089406967,
+          0.029999999329447746,
+          0.004999999888241291
+        ],
+        "shape_local_transform": [
+          0.03500000014901161,
+          0.0,
+          -0.030400000512599945,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "shape_margin_m": 0.019999999552965164,
+        "contact_friction": 1.0
+      }
+    ]
+  },
+  "particle_rollout": {
+    "scope": "autoregressive particles; recorded reference robot geometry",
+    "trial": {
+      "trial_id": 2,
+      "group": "straight",
+      "mode": "policy",
+      "split": "test",
+      "simulation_seed": 120001,
+      "initial_x_m": 0.025666121547348777,
+      "initial_y_m": -0.008432347258158356,
+      "initial_yaw_rad": -2.641616726535483,
+      "switch_time_s": 3.42,
+      "command_start": [
+        0.09616759730536958,
+        0.0,
+        0.0
+      ],
+      "command_end": [
+        0.09616759730536958,
+        0.0,
+        0.0
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "split": "test",
+    "outcome": "duration",
+    "final_metrics": {
+      "time_s": 5.0,
+      "elapsed_prediction_s": 4.99,
+      "position_rmse_m": 0.12640249729156494,
+      "stationary_rmse_m": 0.060759853571653366,
+      "frozen_rmse_m": 0.06884095817804337,
+      "max_error_m": 0.7762534618377686
+    }
+  }
+}
