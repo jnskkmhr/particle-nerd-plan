@@ -1,0 +1,65 @@
+[
+  {
+    "time_s": 0.005,
+    "velocity_rmse_m_s": 2.2197217939779702e-05,
+    "recorded_speed_rms_m_s": 0.04520423932985007,
+    "moving_rmse_m_s": 2.220623472306796e-05,
+    "max_error_m_s": 4.902806794956089e-05
+  },
+  {
+    "time_s": 0.01,
+    "velocity_rmse_m_s": 2.2129705031763003e-05,
+    "recorded_speed_rms_m_s": 0.0889088134171266,
+    "moving_rmse_m_s": 2.214184432635744e-05,
+    "max_error_m_s": 4.903942042358808e-05
+  },
+  {
+    "time_s": 0.1,
+    "velocity_rmse_m_s": 2.2210651192056386e-05,
+    "recorded_speed_rms_m_s": 0.21975906614637392,
+    "moving_rmse_m_s": 2.2215301322042763e-05,
+    "max_error_m_s": 4.908642390951851e-05
+  },
+  {
+    "time_s": 0.5,
+    "velocity_rmse_m_s": 2.2214469610889537e-05,
+    "recorded_speed_rms_m_s": 0.02059961217675669,
+    "moving_rmse_m_s": 2.22054058867573e-05,
+    "max_error_m_s": 4.8965009993930986e-05
+  },
+  {
+    "time_s": 1.0,
+    "velocity_rmse_m_s": 2.2241451759463767e-05,
+    "recorded_speed_rms_m_s": 0.013679683705090201,
+    "moving_rmse_m_s": 2.2564814943269672e-05,
+    "max_error_m_s": 4.897531286299439e-05
+  },
+  {
+    "time_s": 2.0,
+    "velocity_rmse_m_s": 2.2279417383554064e-05,
+    "recorded_speed_rms_m_s": 0.016918278415790855,
+    "moving_rmse_m_s": 2.2683293440480488e-05,
+    "max_error_m_s": 4.900764420896396e-05
+  },
+  {
+    "time_s": 3.0,
+    "velocity_rmse_m_s": 2.225010023759991e-05,
+    "recorded_speed_rms_m_s": 0.021139067276295918,
+    "moving_rmse_m_s": 2.5225664415341233e-05,
+    "max_error_m_s": 4.902696241189681e-05
+  },
+  {
+    "time_s": 4.0,
+    "velocity_rmse_m_s": 2.223727357788187e-05,
+    "recorded_speed_rms_m_s": 0.01445466236388216,
+    "moving_rmse_m_s": 2.5704691917841798e-05,
+    "max_error_m_s": 4.9030621039061e-05
+  },
+  {
+    "time_s": 5.0,
+    "velocity_rmse_m_s": 2.2255731050582472e-05,
+    "recorded_speed_rms_m_s": 0.024342337577187106,
+    "moving_rmse_m_s": 2.7237484237294787e-05,
+    "max_error_m_s": 4.910811676262473e-05
+  }
+]
