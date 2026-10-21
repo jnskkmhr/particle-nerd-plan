@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Batched Transolver simulation — Particle NeRD</title><style>body{max-width:1120px;margin:35px auto;padding:0 22px;font:18px/1.6 system-ui;color:#24383d;background:#f7f9f7}h1{font-size:38px;line-height:1.2}h2{font-size:27px;margin-top:42px}h3{font-size:21px}a{color:#386481}nav{font-size:15px;border-bottom:1px solid #cad8d4;padding-bottom:16px}table{width:100%;border-collapse:collapse;font-size:16px}th,td{padding:10px;text-align:left;border-bottom:1px solid #cbd7d8}th{background:#eaf0ee}pre{padding:18px;background:#eaf0ee;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}img{width:100%;height:auto}figure{margin:25px 0}figcaption,.small{font-size:15px;color:#566970}.note{padding:18px;border-left:4px solid #24796d;background:#eaf0ee}.caution{border-color:#a56f32;background:#f3eee5}.scroll{overflow-x:auto}code{overflow-wrap:anywhere}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.flow span{padding:12px;border:1px solid #96b5ac;border-radius:5px;background:#eaf0ee}.flow small{display:block;color:#566970}.flow b{color:#24796d}
+</style></head><body>
+<nav><a href="index.html">Methodology</a> · <a href="transolver-optimization.html">Previous compiler experiment</a> · <a href="scalability-g1.html">MPM scaling and G1 dataset</a></nav>
+<h1>One batched Transolver simulation runner</h1>
+<p>20 October 2026 · RTX 5090 · same shovel checkpoint · 16,384 particles per environment</p>
+<p class="note"><strong>Implemented:</strong> <code>IsaacLab-particle-nerd/examples/particle_nerd_batch</code>. At 32 environments, complete-step median time decreases from <strong>103.88 to 53.41 ms</strong> with uncompiled inference, and from <strong>84.75 to 30.49 ms</strong> with optional compilation. The new runner captures the complete batched step in one CUDA graph.</p>
+<h2>1. What changed?</h2>
+<div class="flow" aria-label="Batched simulation sequence"><span>Particle history + rigid state<small>Persistent GPU buffers for all worlds</small></span><b>→</b><span>Particle/collider features<small>Warp</small></span><b>→</b><span>Transolver<small>One Torch call for the batch</small></span><b>→</b><span>Particle position / velocity update<small>Warp</small></span><b>→</b><span>Analytical contact forces<small>Warp, independent worlds</small></span><b>→</b><span>Rigid dynamics<small>One MJWarp model, four substeps</small></span></div>
+<table><thead><tr><th>Operation</th><th>Previous runner</th><th>New runner</th></tr></thead><tbody>
+<tr><td>Features and particle update</td><td>Dispatch and assemble tensors per environment</td><td>Shared batched buffers; GPU kernels process all worlds</td></tr>
+<tr><td>Neural inference</td><td>Batched Transolver</td><td>Same weights and architecture; attention remains inside each world</td></tr>
+<tr><td>Neighbor queries and contact solve</td><td>Separate estimator instances</td><td>Environment-indexed GPU neighbor grid; one cooperative contact block per world</td></tr>
+<tr><td>Rigid motion</td><td>Separate models and dispatch per environment</td><td>One Newton/MJWarp model containing independent worlds</td></tr>
+<tr><td>CUDA capture</td><td>Separate neural/contact/rigid graphs</td><td>Complete-step graph on a shared Torch/Warp stream</td></tr></tbody></table>
+<p>There is no Python loop over environments in the simulation step and no particle-state transfer to the CPU. Initialization loads the checkpoint and initial history from disk. Explicit diagnostics and timing synchronize the GPU. The package contains Transolver inference, force estimation and rigid simulation; it has no dependency on the older GNN implementations.</p>
+<h2>2. Complete simulation timing</h2>
+<figure><img src="assets/particle-batch/latency.svg" alt="Previous and batched complete-step latency, and neural-only scaling at three particle counts"><figcaption>Median synchronized whole-batch wall time. Each full step advances particles by 20 ms and rigid objects through four 5 ms substeps. The right plot has a logarithmic vertical axis.</figcaption></figure>
+<table><thead><tr><th>Environments</th><th>Uncompiled: previous → batched [ms]</th><th>Compiled: previous → batched [ms]</th></tr></thead><tbody><tr><td>1</td><td>2.92 → 2.98</td><td>2.42 → 2.27</td></tr><tr><td>8</td><td>23.81 → 12.16</td><td>20.35 → 7.48</td></tr><tr><td>32</td><td>103.88 → 53.41</td><td>84.75 → 30.49</td></tr></tbody></table>
+<p>60 timed steps after 20 warm-up steps. Initialization, compilation, graph capture, diagnostics and rendering are excluded. The batch uses copies of the same settled shovel scene, gravity and initial velocity, without external dragging. Measurements were taken sequentially; small timing differences and different batch arithmetic should not be interpreted as physical improvements.</p>
+<p class="note caution"><strong>Compilation remains optional and off by default.</strong> It changes floating-point rounding. Earlier five-second compiled and uncompiled shovel rollouts diverged, so this speedup is not yet established as accuracy preserving. The new batching code does not improve the trained model’s material-motion accuracy.</p>
+<h2>3. Why can neural time grow almost linearly?</h2>
+<p>Batching removes repeated dispatch and lets small workloads share GPU resources. It does not remove computation per particle. With 16,384 particles in each world, 32 environments contain <strong>524,288 particles</strong>. Their feature projections, particle MLPs and particle-to-slice aggregation all still execute.</p>
+<table><thead><tr><th>Particles per environment</th><th>1 environment [ms]</th><th>8 environments [ms]</th><th>32 environments [ms]</th></tr></thead><tbody><tr><td>512</td><td>0.32</td><td>0.53</td><td>1.00</td></tr><tr><td>2,048</td><td>0.52</td><td>1.05</td><td>4.26</td></tr><tr><td>16,384</td><td>1.40</td><td>12.15</td><td>56.12</td></tr></tbody></table>
+<p><strong>Small workloads do benefit:</strong> at 512 particles per environment, increasing the environment count from 1 to 32 increases time from 0.32 to 1.00 ms, about 3.2× rather than 32×.</p>
+<p><strong>Keeping total particle count fixed:</strong> 1 × 16,384 takes 1.40 ms; 8 × 2,048 takes 1.05 ms; 32 × 512 takes 1.00 ms. These measurements do not indicate a serial loop over the environment dimension. They instead point to the larger total particle workload as the main reason for the expensive 32 × 16,384 case.</p>
+<p>One FP32 slice-weight tensor at 32 × 16,384 occupies 512 MiB: 32 worlds × 4 heads × 16,384 particles × 64 slices × 4 bytes. The existing compiler experiment identifies particle projections, normalization, conversions and aggregation as substantial costs. FlashAttention already handles attention between the 64 slices. CUDA graph replay reduces launch overhead but does not eliminate this particle-dependent work. Peak GPU utilization and the exact memory-versus-compute limit have not been measured.</p>
+<p class="small">Neural-only timings use fixed recorded feature subsets, the same checkpoint, BF16 inference and CUDA graphs without compilation. Smaller subsets are a compute experiment, not a validated lower-resolution simulator. These are separate timing runs; do not subtract them from the complete-step timings to estimate component costs.</p>
+<h2>4. Correctness checks</h2>
+<ul><li>Two GPU integration tests pass: independent worlds versus a batch, captured versus uncaptured execution, selective reset, differing external loads and an odd number of rigid substeps.</li>
+<li>In the single-shovel comparison against the existing runner, all 20 steps have exactly matching particle positions, rigid poses and material wrenches, with a constant 15 N external force along world x.</li>
+<li>Eight worlds run for five seconds with different time-varying external forces and torques. All 250 steps have finite states, converged contact solves and no reported rigid-contact buffer overflow. After body-velocity initialization, each contact solve requires one polishing iteration in this test.</li>
+<li>The installed package completes a two-world headless smoke test. The OpenGL viewer opens, advances two worlds and closes after the requested step count.</li></ul>
+<p>These checks verify implementation behavior and convergence. They do not establish agreement with MPM, successful scooping or robot locomotion.</p>
+<details><summary>Two capture problems caught during testing</summary><p>The installed Warp native hash grid updates a shared host descriptor. Capturing several instances could allow a later grid to change metadata used by an earlier graph. The new neighbor grid uses its own GPU buffers and environment-specific keys. A second issue concerned Torch allocation lifetimes under Warp-owned capture: the final runner lets Torch own the complete CUDA graph and has Warp join that capture on the same stream. Independent-world and repeated-allocation checks pass with this implementation.</p><p>The earlier loop timing used identical worlds. It is a performance baseline, not an accuracy reference for heterogeneous captured grid instances.</p></details>
+<h2>5. Run locally</h2>
+<h3>Set the checkpoint and initial state</h3><pre>cd ~/isaac/IsaacLab-particle-nerd
+RUN=examples/particle_nerd_batch/run.sh
+CHECKPOINT="$HOME/isaac/particle_nerd/particle_nerd_plan/results/shovel/training/model/best.pt"
+EPISODE="$HOME/isaac/particle_nerd/experiments/particle_gnn/shovel/reference/wide-circle.hdf5"</pre>
+<h3>Interactive simulation with dragging</h3><pre>"$RUN" -m particle_nerd_batch.view \
+  --checkpoint "$CHECKPOINT" --episode "$EPISODE" --num-envs 4</pre><p>Right-click and drag an intruder. Space pauses or resumes. Worlds are offset for display only; their simulation coordinates remain independent. Use <code>--renderer rtx</code> for Newton RTX.</p>
+<h3>Complete simulation timing</h3><pre>"$RUN" -m particle_nerd_batch.play \
+  --checkpoint "$CHECKPOINT" --episode "$EPISODE" \
+  --num-envs 32 --warmup 20 --steps 60 --output /tmp/batch-32.json</pre>
+<h3>Optional compiled inference</h3><p>Add <code>--compile</code> to the preceding command. Full-step graph capture is enabled with either setting.</p>
+<h3>Neural scaling by environment and particle count</h3><pre>"$RUN" -m particle_nerd_batch.benchmark_nn \
+  --checkpoint "$CHECKPOINT" --episode "$EPISODE" \
+  --envs 1 8 32 --particles 512 2048 16384 --output /tmp/nn-scaling.json</pre>
+<h3>Runner interface</h3><pre>sim = Simulation.from_files(checkpoint, episode, environments=32)
+sim.step(external_wrench)  # CUDA [32,6]: world force [N], COM torque [N m]
+x = sim.positions        # CUDA [32,N,3], particle positions [m]
+v = sim.velocities       # CUDA [32,N,3], particle velocities [m/s]
+pose = sim.body_pose     # CUDA [32,7], position [m] and xyzw quaternion
+sim.reset(mask)          # CUDA bool [32], reset only selected worlds</pre>
+<p>The README includes complete Python imports and additional outputs. Current scope is equal particle counts and one free intruder plus fixed ground per world. Rigid geometry, mass/inertia and contact settings are shared across the batch; particle histories, material feature vectors, rigid initial states and applied loads can differ. Articulated G1 dynamics are not implemented in this runner.</p>
+<p>Numerical settings match the previous shovel runner: effective material mass multiplier 180, relaxation 0.075, stabilization 0.01, contact tolerance 1e-9 and iteration limit 2,000; velocity-gradient support radius 0.065 m. The auxiliary contact response does not apply an additional impulse to the learned particle states.</p>
+<p><a href="assets/particle-batch/measurements.json">Raw measurements, validation results and installed source hashes</a>. File-level formatting and lint checks pass; the repository-wide changelog check still reports pre-existing unrelated fragments.</p>
+</body></html>
