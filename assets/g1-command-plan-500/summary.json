@@ -1,0 +1,19 @@
+{
+  "trials": 500,
+  "groups": {
+    "straight": 100,
+    "curved": 100,
+    "change": 100,
+    "lateral": 50,
+    "perturbed": 75,
+    "standing": 50,
+    "diagnostic": 25
+  },
+  "splits": {
+    "train": 400,
+    "test": 50,
+    "validation": 50
+  },
+  "max_abs_xy_m": 1.1499103300169777,
+  "rejected_candidates": 47
+}
