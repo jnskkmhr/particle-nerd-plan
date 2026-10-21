@@ -1,8 +1,10 @@
 {
   "box": {
-    "status": "RUNNING"
+    "status": "RUNNING",
+    "note": "Workflow is active; waiting for the first saved training checkpoint."
   },
   "shovel": {
-    "status": "RUNNING"
+    "status": "RUNNING",
+    "note": "Workflow is active; waiting for the first saved training checkpoint."
   }
 }
