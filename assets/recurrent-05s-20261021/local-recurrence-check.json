@@ -1,0 +1,28 @@
+[
+  {
+    "scene": "box",
+    "particle_count": 16384,
+    "prediction_dt_s": 0.02,
+    "steps": 25,
+    "horizon_s": 0.5,
+    "loss": 0.054135460406541824,
+    "terminal_loss_gradient_to_first_prediction_max": 2.64631089521572e-05,
+    "gradient_norm": 17.97524642944336,
+    "elapsed_s": 1.2566844200482592,
+    "peak_torch_gpu_gib": 2.2925972938537598,
+    "scope": "Verification only; no checkpoint update or training on test data"
+  },
+  {
+    "scene": "shovel",
+    "particle_count": 16384,
+    "prediction_dt_s": 0.02,
+    "steps": 25,
+    "horizon_s": 0.5,
+    "loss": 0.1864711344242096,
+    "terminal_loss_gradient_to_first_prediction_max": 0.00019834251725114882,
+    "gradient_norm": 14.355086326599121,
+    "elapsed_s": 0.4599702060222626,
+    "peak_torch_gpu_gib": 2.307732105255127,
+    "scope": "Verification only; no checkpoint update or training on test data"
+  }
+]
