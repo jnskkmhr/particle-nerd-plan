@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "trajectory_count": 50,
+  "split_counts": {
+    "train": 17,
+    "validation": 17,
+    "test": 16
+  },
+  "outcome_counts": {
+    "duration": 44,
+    "native_termination": 6
+  },
+  "min_frames": 313,
+  "max_frames": 1001,
+  "total_frames": 46110,
+  "total_bytes": 85954293489
+}
