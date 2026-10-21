@@ -1,0 +1,76 @@
+{
+  "mode": "Autoregressive particle predictions with recorded G1 body poses and velocities",
+  "checkpoint_sha256": "374b4973e52c12b424cac33b1a5f480e373484544a8aa84d0d2a4920c3e4c877",
+  "trials": [
+    {
+      "trial_id": 2,
+      "evaluation": "/home/jkamohara/isaac/particle_nerd/experiments/g1-nerd-osmo-20261020/full-final-particle-test-2",
+      "render_command": "PYTHONPATH=/home/jkamohara/isaac/IsaacLab-particle-nerd/examples uv run --no-sync python -m particle_nerd.g1.render --particle-evaluation /home/jkamohara/isaac/particle_nerd/experiments/g1-nerd-osmo-20261020/full-final-particle-test-2 --output /home/jkamohara/isaac/particle_nerd/particle_nerd_plan/assets/g1-training/recorded-g1-test-2.mp4",
+      "video": "assets/g1-training/recorded-g1-test-2.mp4",
+      "video_sha256": "b5f850d6bcff2cf72edbc6f0c426663629559412ab81315f975d2f44a829bef7",
+      "video_info": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "nb_frames": "125"
+          }
+        ],
+        "format": {
+          "duration": "5.000000",
+          "size": "1045807"
+        }
+      }
+    },
+    {
+      "trial_id": 106,
+      "evaluation": "/home/jkamohara/isaac/particle_nerd/experiments/g1-nerd-osmo-20261020/full-final-particle-test-106",
+      "render_command": "PYTHONPATH=/home/jkamohara/isaac/IsaacLab-particle-nerd/examples uv run --no-sync python -m particle_nerd.g1.render --particle-evaluation /home/jkamohara/isaac/particle_nerd/experiments/g1-nerd-osmo-20261020/full-final-particle-test-106 --output /home/jkamohara/isaac/particle_nerd/particle_nerd_plan/assets/g1-training/recorded-g1-test-106.mp4",
+      "video": "assets/g1-training/recorded-g1-test-106.mp4",
+      "video_sha256": "e7da68d986b7dcb728128c1fb823e4b79f44489fa6c4d702e63b96e88ce530db",
+      "video_info": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "nb_frames": "125"
+          }
+        ],
+        "format": {
+          "duration": "5.000000",
+          "size": "1056955"
+        }
+      }
+    },
+    {
+      "trial_id": 306,
+      "evaluation": "/home/jkamohara/isaac/particle_nerd/experiments/g1-nerd-osmo-20261020/full-final-particle-test-306",
+      "render_command": "PYTHONPATH=/home/jkamohara/isaac/IsaacLab-particle-nerd/examples uv run --no-sync python -m particle_nerd.g1.render --particle-evaluation /home/jkamohara/isaac/particle_nerd/experiments/g1-nerd-osmo-20261020/full-final-particle-test-306 --output /home/jkamohara/isaac/particle_nerd/particle_nerd_plan/assets/g1-training/recorded-g1-test-306.mp4",
+      "video": "assets/g1-training/recorded-g1-test-306.mp4",
+      "video_sha256": "d29b725a669ad788e8db8963ef49d33b1c97dc5a84b68d109f47f04b8f681ca7",
+      "video_info": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "nb_frames": "125"
+          }
+        ],
+        "format": {
+          "duration": "5.000000",
+          "size": "1086708"
+        }
+      }
+    }
+  ],
+  "unified_code_commit": "202a53ecd",
+  "development_code_commit": "b7ffc0235",
+  "validation": {
+    "source_alignment": "All saved robot poses and MPM particle snapshots checked against source HDF5 at matching timestamps.",
+    "native_geometry": "Verified body count, centers of mass, foot body indices, collider body indices, local transforms and box half sizes.",
+    "formatting": "File-specific Ruff, formatting, spelling and license hooks passed. Repository-wide changelog gate fails on existing unrelated source-package fragments."
+  }
+}
