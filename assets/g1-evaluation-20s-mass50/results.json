@@ -1,0 +1,93 @@
+{
+  "checkpoint_sha256": "7eee570d75d00b4a09006e4ffd15a241510c3fd3ba74295d0396254187d00633",
+  "checkpoint_update": 900,
+  "requested_duration_s": 20,
+  "effective_mass_multiplier": 50,
+  "solver_iterations": 200,
+  "relaxation": 0.02,
+  "native_view_resolution": [
+    1920,
+    1080
+  ],
+  "results": [
+    {
+      "trial": 2,
+      "reference_duration_s": 20.0,
+      "reference_outcome": "duration",
+      "particle_final": {
+        "time_s": 20.0,
+        "elapsed_prediction_s": 19.990000000000002,
+        "position_rmse_m": 0.11222885549068451,
+        "stationary_rmse_m": 0.13691556453704834,
+        "frozen_rmse_m": 0.06318970769643784,
+        "max_error_m": 1.6376674175262451
+      },
+      "dynamic_duration_s": 20.0,
+      "dynamic_outcome": "duration",
+      "termination_terms": [],
+      "grf_ylim_n": [
+        -424.91085357666014,
+        817.1141921997071
+      ],
+      "predicted_foot_time_samples_outside_plot_limits": 0,
+      "predicted_force_minmax_n": [
+        -35.6819953918457,
+        366.4847412109375
+      ]
+    },
+    {
+      "trial": 106,
+      "reference_duration_s": 10.86,
+      "reference_outcome": "native_termination",
+      "particle_final": {
+        "time_s": 10.86,
+        "elapsed_prediction_s": 10.85,
+        "position_rmse_m": 0.03523588925600052,
+        "stationary_rmse_m": 0.02068854495882988,
+        "frozen_rmse_m": 0.059407789260149,
+        "max_error_m": 0.870644748210907
+      },
+      "dynamic_duration_s": 13.4,
+      "dynamic_outcome": "native_termination",
+      "termination_terms": [
+        "outside_workspace"
+      ],
+      "grf_ylim_n": [
+        -368.97084655761716,
+        674.6425384521484
+      ],
+      "predicted_foot_time_samples_outside_plot_limits": 13,
+      "predicted_force_minmax_n": [
+        -998.9078979492188,
+        740.6498413085938
+      ]
+    },
+    {
+      "trial": 306,
+      "reference_duration_s": 7.86,
+      "reference_outcome": "native_termination",
+      "particle_final": {
+        "time_s": 7.86,
+        "elapsed_prediction_s": 7.8500000000000005,
+        "position_rmse_m": 0.029580475762486458,
+        "stationary_rmse_m": 0.01260075718164444,
+        "frozen_rmse_m": 0.0570664182305336,
+        "max_error_m": 0.7372274994850159
+      },
+      "dynamic_duration_s": 9.700000000000001,
+      "dynamic_outcome": "native_termination",
+      "termination_terms": [
+        "outside_workspace"
+      ],
+      "grf_ylim_n": [
+        -343.82850341796876,
+        597.8158081054687
+      ],
+      "predicted_foot_time_samples_outside_plot_limits": 44,
+      "predicted_force_minmax_n": [
+        -3016.536376953125,
+        739.8728637695312
+      ]
+    }
+  ]
+}
