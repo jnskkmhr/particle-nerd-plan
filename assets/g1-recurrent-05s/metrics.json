@@ -227,6 +227,24 @@
       "loss": 0.07523822039365768,
       "elapsed_s": 9500.799111127853,
       "peak_memory_gib": 2.1574010848999023
+    },
+    {
+      "step": 950,
+      "loss": 0.2234613597393036,
+      "elapsed_s": 9724.589123010635,
+      "peak_memory_gib": 2.1574010848999023
+    },
+    {
+      "step": 975,
+      "loss": 0.38139063119888306,
+      "elapsed_s": 9949.586173295975,
+      "peak_memory_gib": 2.1574010848999023
+    },
+    {
+      "step": 1000,
+      "loss": 0.5562617778778076,
+      "elapsed_s": 10184.888039827347,
+      "peak_memory_gib": 2.1574010848999023
     }
   ],
   "validation": [
@@ -391,6 +409,24 @@
       "prediction_steps": 100,
       "horizon_s": 0.5,
       "validation_loss": 0.21037673367635118
+    },
+    {
+      "step": 1000,
+      "elapsed_s": 10318.471390485764,
+      "position_rmse_m": 0.003040354059083868,
+      "moving_rmse_m": 0.0032272946217617405,
+      "stationary_rmse_m": 0.0005719426205579057,
+      "balanced_rmse_m": 0.0023176010157987615,
+      "frozen_rmse_m": 0.00667776366326003,
+      "particle_time_counts": [
+        390488420.0,
+        51311580.0
+      ],
+      "eligible_trajectory_count": 50,
+      "evaluated_trajectory_count": 50,
+      "prediction_steps": 100,
+      "horizon_s": 0.5,
+      "validation_loss": 0.21485097873725803
     }
   ]
 }

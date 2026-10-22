@@ -1,0 +1,55 @@
+{
+  "checkpoint_sha256": "7eee570d75d00b4a09006e4ffd15a241510c3fd3ba74295d0396254187d00633",
+  "renderer": "newton_gl",
+  "training_horizon_s": 0.5,
+  "results": [
+    {
+      "trial": 2,
+      "recorded_motion_final": {
+        "time_s": 5.0,
+        "elapsed_prediction_s": 4.99,
+        "position_rmse_m": 0.019927196204662323,
+        "stationary_rmse_m": 0.0072227963246405125,
+        "frozen_rmse_m": 0.06884095817804337,
+        "max_error_m": 0.5030577182769775
+      },
+      "dynamic_metadata": {
+        "outcome": "duration",
+        "duration_s": 10.0
+      }
+    },
+    {
+      "trial": 106,
+      "recorded_motion_final": {
+        "time_s": 5.0,
+        "elapsed_prediction_s": 4.99,
+        "position_rmse_m": 0.02190394699573517,
+        "stationary_rmse_m": 0.007740669418126345,
+        "frozen_rmse_m": 0.06951943039894104,
+        "max_error_m": 0.8815026879310608
+      },
+      "dynamic_metadata": {
+        "outcome": "duration",
+        "duration_s": 10.0
+      }
+    },
+    {
+      "trial": 306,
+      "recorded_motion_final": {
+        "time_s": 5.0,
+        "elapsed_prediction_s": 4.99,
+        "position_rmse_m": 0.024062156677246094,
+        "stationary_rmse_m": 0.007859096862375736,
+        "frozen_rmse_m": 0.07009217888116837,
+        "max_error_m": 0.7378763556480408
+      },
+      "dynamic_metadata": {
+        "outcome": "native_termination",
+        "duration_s": 7.0600000000000005,
+        "termination_terms": [
+          "outside_workspace"
+        ]
+      }
+    }
+  ]
+}
