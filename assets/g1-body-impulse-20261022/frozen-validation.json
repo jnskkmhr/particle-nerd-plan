@@ -1,0 +1,18 @@
+{
+  "stage": "frozen particle predictor; learned total foot impulse head",
+  "selected_update": 1000,
+  "metrics": {
+    "step": 1000,
+    "elapsed_s": 4553.129537820816,
+    "selection_loss": 0.9244404134899378,
+    "particle_loss": 0.2083645372092724,
+    "normalized_impulse_mse": 0.9244404134899378,
+    "force_component_rmse_N": 79.4359473599402,
+    "torque_component_rmse_Nm": 3.8690360382594946,
+    "particle_position_rmse_m": 0.00301678581236698,
+    "windows": 50,
+    "horizon_s": 0.5
+  },
+  "scope": "50 validation windows; 0.5 second autoregressive particles with recorded robot motion",
+  "sampling_note": "This run uses seed+rank; previous trainer used seed+rank*100003. Training-window sampling differs."
+}
