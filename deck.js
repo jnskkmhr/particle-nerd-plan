@@ -61,12 +61,15 @@
 
   }
 
-  // Independent tab groups for the optimized contact walkthrough (slide 18).
+  // Independent tab groups for the optimized contact walkthrough (slide 18) and neural contact solver (slide 19).
   let bodyVelocityStep = 0;
   let selectBodyVelocityStep;
+  let neuralContactStep = 0;
+  let selectNeuralContactStep;
   document.querySelectorAll('[data-bv-group]').forEach(group => {
     const tabs = [...group.querySelectorAll('[role="tab"]')];
     const isMain = group.dataset.bvGroup === 'bv';
+    const isNc = group.dataset.bvGroup === 'nc';
     function select(index, focus = false) {
       tabs.forEach((tab, i) => {
         tab.setAttribute('aria-selected', String(i === index));
@@ -82,9 +85,21 @@
           : index === 5 ? 'Measured speedup · same contact approximation'
           : `Step ${index} of 4 · ${index === 3 ? 'optimized solve + original verification' : 'same as p16'}`;
       }
+      if (isNc) {
+        neuralContactStep = index;
+        const ncBack = document.getElementById('nc-back');
+        const ncNext = document.getElementById('nc-next');
+        const ncStatus = document.getElementById('nc-status');
+        if (ncBack) ncBack.disabled = index === 0;
+        if (ncNext) ncNext.textContent = index === 4 ? 'Algorithm ↺' : `Step ${index + 1} →`;
+        if (ncStatus) ncStatus.textContent = index === 0
+          ? 'Algorithm · physics-structured neural contact head'
+          : `Step ${index} of 4 · ${tabs[index].textContent.split(' · ')[1] || tabs[index].textContent}`;
+      }
       if (focus) tabs[index].focus();
     }
     if (isMain) selectBodyVelocityStep = select;
+    if (isNc) selectNeuralContactStep = select;
     tabs.forEach((tab, i) => {
       tab.addEventListener('click', () => select(i));
       tab.addEventListener('keydown', event => {
@@ -97,6 +112,8 @@
   });
   document.getElementById('bv-back')?.addEventListener('click', () => selectBodyVelocityStep(Math.max(0, bodyVelocityStep - 1)));
   document.getElementById('bv-next')?.addEventListener('click', () => selectBodyVelocityStep((bodyVelocityStep + 1) % 6));
+  document.getElementById('nc-back')?.addEventListener('click', () => selectNeuralContactStep(Math.max(0, neuralContactStep - 1)));
+  document.getElementById('nc-next')?.addEventListener('click', () => selectNeuralContactStep((neuralContactStep + 1) % 5));
 
   const graphTabs = [...document.querySelectorAll('[data-graph-tab]')];
   const graphCaptions = ['Material particle i · 26 input values', 'Directed particle edge j → i · 7 input values', 'Particle i / collider b · 9 input values', 'Collider information → particle-node features'];
