@@ -91,9 +91,10 @@
         const ncNext = document.getElementById('nc-next');
         const ncStatus = document.getElementById('nc-status');
         if (ncBack) ncBack.disabled = index === 0;
-        if (ncNext) ncNext.textContent = index === 4 ? 'Algorithm ↺' : `Step ${index + 1} →`;
+        if (ncNext) ncNext.textContent = index === 5 ? 'Algorithm ↺' : index === 4 ? 'Results →' : `Step ${index + 1} →`;
         if (ncStatus) ncStatus.textContent = index === 0
-          ? 'Algorithm · physics-structured neural contact head'
+          ? 'Algorithm · compare RFT-anisotropic solve with p18'
+          : index === 5 ? 'Measured improvement · 4.6× lower XY drag error than p18'
           : `Step ${index} of 4 · ${tabs[index].textContent.split(' · ')[1] || tabs[index].textContent}`;
       }
       if (focus) tabs[index].focus();
@@ -113,7 +114,7 @@
   document.getElementById('bv-back')?.addEventListener('click', () => selectBodyVelocityStep(Math.max(0, bodyVelocityStep - 1)));
   document.getElementById('bv-next')?.addEventListener('click', () => selectBodyVelocityStep((bodyVelocityStep + 1) % 6));
   document.getElementById('nc-back')?.addEventListener('click', () => selectNeuralContactStep(Math.max(0, neuralContactStep - 1)));
-  document.getElementById('nc-next')?.addEventListener('click', () => selectNeuralContactStep((neuralContactStep + 1) % 5));
+  document.getElementById('nc-next')?.addEventListener('click', () => selectNeuralContactStep((neuralContactStep + 1) % 6));
 
   const graphTabs = [...document.querySelectorAll('[data-graph-tab]')];
   const graphCaptions = ['Material particle i · 26 input values', 'Directed particle edge j → i · 7 input values', 'Particle i / collider b · 9 input values', 'Collider information → particle-node features'];
