@@ -1,0 +1,20 @@
+{
+  "checkpoint_sha256": "48e250d276aa2ace7ca4b724df63424f29fe2077ecb4b44d290fc3ce3160c1e8",
+  "checkpoint": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/local-direct-contact/step-100.pt",
+  "training_ids": [
+    1
+  ],
+  "optimizer_updates": 100,
+  "dt_s": 0.005,
+  "recurrent_steps": 100,
+  "loss_contact_band_m": 0.02,
+  "loss_contact_weight": 0.5,
+  "force_estimator": "analytical rft_body_velocity, unchanged",
+  "effective_mass_scale": 100,
+  "initial_settling_steps": 60,
+  "production_inference_changed": false,
+  "full_data_workflows": [
+    "particle-g1-contact-region-1",
+    "particle-g1-direct-contact-1"
+  ]
+}

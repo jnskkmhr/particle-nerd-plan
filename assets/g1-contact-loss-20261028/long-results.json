@@ -1,0 +1,26 @@
+{
+  "Straight": {
+    "duration_s": 19.44,
+    "termination": [
+      "outside_workspace"
+    ],
+    "final_base_world_z_m": 0.6011011600494385,
+    "final_second_sand_support_N": 339.3598327636719
+  },
+  "Curved": {
+    "duration_s": 8.18,
+    "termination": [
+      "outside_workspace"
+    ],
+    "final_base_world_z_m": 0.6119998693466187,
+    "final_second_sand_support_N": 330.1024475097656
+  },
+  "Lateral": {
+    "duration_s": 5.78,
+    "termination": [
+      "outside_workspace"
+    ],
+    "final_base_world_z_m": 0.5622860789299011,
+    "final_second_sand_support_N": 316.64080810546875
+  }
+}
