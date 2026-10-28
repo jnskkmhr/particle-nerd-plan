@@ -1,10 +1,10 @@
 {
   "box": {
-    "status": "RUNNING",
-    "note": "Latest downloaded validation checkpoint: update 3000 / 10,000."
+    "status": "FAILED_CANCELED",
+    "note": "Cancelled at user request. G1 half-second training is the current priority; no further box or shovel training/evaluation will run."
   },
   "shovel": {
-    "status": "RUNNING",
-    "note": "Latest downloaded validation checkpoint: update 3000 / 10,000."
+    "status": "FAILED_CANCELED",
+    "note": "Cancelled at user request. G1 half-second training is the current priority; no further box or shovel training/evaluation will run."
   }
 }
