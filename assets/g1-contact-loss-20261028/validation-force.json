@@ -1,0 +1,1373 @@
+{
+  "reference": {
+    "force_vector_rmse_N": 40.924249320796385,
+    "mean_total_sand_Fz_N": 319.990009765625,
+    "reference_mean_total_sand_Fz_N": 330.190740234375,
+    "per_episode": [
+      {
+        "trial_id": 45,
+        "frame": 416,
+        "group": "straight",
+        "force_squared_sum": 293310.1875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31795.52734375,
+        "reference_support_sum": 32785.1015625
+      },
+      {
+        "trial_id": 411,
+        "frame": 337,
+        "group": "perturbed",
+        "force_squared_sum": 363312.34375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32547.58984375,
+        "reference_support_sum": 34296.765625
+      },
+      {
+        "trial_id": 430,
+        "frame": 448,
+        "group": "standing",
+        "force_squared_sum": 58925.3828125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32785.19921875,
+        "reference_support_sum": 32966.7890625
+      },
+      {
+        "trial_id": 226,
+        "frame": 531,
+        "group": "change",
+        "force_squared_sum": 229376.6875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31140.697265625,
+        "reference_support_sum": 32551.7421875
+      },
+      {
+        "trial_id": 450,
+        "frame": 317,
+        "group": "standing",
+        "force_squared_sum": 662017.6875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34323.0078125,
+        "reference_support_sum": 34065.28515625
+      },
+      {
+        "trial_id": 124,
+        "frame": 413,
+        "group": "curved",
+        "force_squared_sum": 311015.9375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30526.046875,
+        "reference_support_sum": 31739.6328125
+      },
+      {
+        "trial_id": 249,
+        "frame": 367,
+        "group": "change",
+        "force_squared_sum": 290598.4375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30523.5,
+        "reference_support_sum": 32432.33984375
+      },
+      {
+        "trial_id": 305,
+        "frame": 882,
+        "group": "lateral",
+        "force_squared_sum": 75646.078125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30300.703125,
+        "reference_support_sum": 32094.95703125
+      },
+      {
+        "trial_id": 436,
+        "frame": 232,
+        "group": "standing",
+        "force_squared_sum": 239851.78125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32791.1953125,
+        "reference_support_sum": 32592.662109375
+      },
+      {
+        "trial_id": 243,
+        "frame": 889,
+        "group": "change",
+        "force_squared_sum": 165773.765625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31649.341796875,
+        "reference_support_sum": 33898.3046875
+      },
+      {
+        "trial_id": 342,
+        "frame": 436,
+        "group": "lateral",
+        "force_squared_sum": 22880.87890625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32163.404296875,
+        "reference_support_sum": 32610.140625
+      },
+      {
+        "trial_id": 34,
+        "frame": 61,
+        "group": "straight",
+        "force_squared_sum": 8086.8486328125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32565.162109375,
+        "reference_support_sum": 32985.7421875
+      },
+      {
+        "trial_id": 212,
+        "frame": 646,
+        "group": "change",
+        "force_squared_sum": 175182.375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31381.82421875,
+        "reference_support_sum": 33030.0234375
+      },
+      {
+        "trial_id": 398,
+        "frame": 197,
+        "group": "perturbed",
+        "force_squared_sum": 854073.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33304.7265625,
+        "reference_support_sum": 32722.001953125
+      },
+      {
+        "trial_id": 425,
+        "frame": 676,
+        "group": "perturbed",
+        "force_squared_sum": 586365.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34756.8828125,
+        "reference_support_sum": 34367.19140625
+      },
+      {
+        "trial_id": 365,
+        "frame": 529,
+        "group": "perturbed",
+        "force_squared_sum": 731780.375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34796.48046875,
+        "reference_support_sum": 33468.5
+      },
+      {
+        "trial_id": 440,
+        "frame": 469,
+        "group": "standing",
+        "force_squared_sum": 87589.4609375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31705.17578125,
+        "reference_support_sum": 32428.99609375
+      },
+      {
+        "trial_id": 71,
+        "frame": 102,
+        "group": "straight",
+        "force_squared_sum": 16012.041015625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32754.849609375,
+        "reference_support_sum": 33151.94140625
+      },
+      {
+        "trial_id": 135,
+        "frame": 807,
+        "group": "curved",
+        "force_squared_sum": 177648.53125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30321.3515625,
+        "reference_support_sum": 32206.890625
+      },
+      {
+        "trial_id": 307,
+        "frame": 276,
+        "group": "lateral",
+        "force_squared_sum": 140909.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33039.3046875,
+        "reference_support_sum": 32501.765625
+      },
+      {
+        "trial_id": 406,
+        "frame": 617,
+        "group": "perturbed",
+        "force_squared_sum": 297525.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32794.76171875,
+        "reference_support_sum": 34219.0234375
+      },
+      {
+        "trial_id": 419,
+        "frame": 177,
+        "group": "perturbed",
+        "force_squared_sum": 650080.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31443.29296875,
+        "reference_support_sum": 31961.302734375
+      },
+      {
+        "trial_id": 12,
+        "frame": 161,
+        "group": "straight",
+        "force_squared_sum": 930896.4375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33755.921875,
+        "reference_support_sum": 33546.5625
+      },
+      {
+        "trial_id": 70,
+        "frame": 811,
+        "group": "straight",
+        "force_squared_sum": 167390.375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30801.783203125,
+        "reference_support_sum": 32044.5859375
+      },
+      {
+        "trial_id": 187,
+        "frame": 692,
+        "group": "curved",
+        "force_squared_sum": 334751.90625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31323.4921875,
+        "reference_support_sum": 33319.9296875
+      },
+      {
+        "trial_id": 52,
+        "frame": 441,
+        "group": "straight",
+        "force_squared_sum": 557634.3125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32571.845703125,
+        "reference_support_sum": 32801.48828125
+      },
+      {
+        "trial_id": 136,
+        "frame": 125,
+        "group": "curved",
+        "force_squared_sum": 1133261.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34797.7421875,
+        "reference_support_sum": 35284.5703125
+      },
+      {
+        "trial_id": 381,
+        "frame": 627,
+        "group": "perturbed",
+        "force_squared_sum": 209302.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29737.01953125,
+        "reference_support_sum": 31921.58984375
+      },
+      {
+        "trial_id": 65,
+        "frame": 889,
+        "group": "straight",
+        "force_squared_sum": 200460.71875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31461.14453125,
+        "reference_support_sum": 33175.171875
+      },
+      {
+        "trial_id": 291,
+        "frame": 346,
+        "group": "change",
+        "force_squared_sum": 440762.0625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29829.265625,
+        "reference_support_sum": 31146.822265625
+      },
+      {
+        "trial_id": 324,
+        "frame": 431,
+        "group": "lateral",
+        "force_squared_sum": 319765.8125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29810.65625,
+        "reference_support_sum": 31642.58984375
+      },
+      {
+        "trial_id": 492,
+        "frame": 123,
+        "group": "diagnostic",
+        "force_squared_sum": 5348.49609375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31356.73828125,
+        "reference_support_sum": 32239.8046875
+      },
+      {
+        "trial_id": 63,
+        "frame": 293,
+        "group": "straight",
+        "force_squared_sum": 1032137.4375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 35628.8984375,
+        "reference_support_sum": 34407.0234375
+      },
+      {
+        "trial_id": 107,
+        "frame": 842,
+        "group": "curved",
+        "force_squared_sum": 176189.765625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30091.212890625,
+        "reference_support_sum": 31877.078125
+      },
+      {
+        "trial_id": 184,
+        "frame": 643,
+        "group": "curved",
+        "force_squared_sum": 328282.125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31004.73046875,
+        "reference_support_sum": 32444.44921875
+      },
+      {
+        "trial_id": 231,
+        "frame": 400,
+        "group": "change",
+        "force_squared_sum": 358595.71875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34970.84375,
+        "reference_support_sum": 36538.46875
+      },
+      {
+        "trial_id": 434,
+        "frame": 871,
+        "group": "standing",
+        "force_squared_sum": 182652.59375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30978.76171875,
+        "reference_support_sum": 32413.4609375
+      },
+      {
+        "trial_id": 61,
+        "frame": 394,
+        "group": "straight",
+        "force_squared_sum": 438246.34375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32172.658203125,
+        "reference_support_sum": 34621.1796875
+      },
+      {
+        "trial_id": 141,
+        "frame": 541,
+        "group": "curved",
+        "force_squared_sum": 407704.4375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33216.7265625,
+        "reference_support_sum": 34491.69921875
+      },
+      {
+        "trial_id": 14,
+        "frame": 553,
+        "group": "straight",
+        "force_squared_sum": 243274.15625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31782.015625,
+        "reference_support_sum": 32897.82421875
+      },
+      {
+        "trial_id": 182,
+        "frame": 399,
+        "group": "curved",
+        "force_squared_sum": 232924.515625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31382.65625,
+        "reference_support_sum": 33782.29296875
+      },
+      {
+        "trial_id": 203,
+        "frame": 449,
+        "group": "change",
+        "force_squared_sum": 220440.90625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30910.380859375,
+        "reference_support_sum": 33091.84375
+      },
+      {
+        "trial_id": 276,
+        "frame": 258,
+        "group": "change",
+        "force_squared_sum": 448245.1875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31288.20703125,
+        "reference_support_sum": 33238.9921875
+      },
+      {
+        "trial_id": 169,
+        "frame": 399,
+        "group": "curved",
+        "force_squared_sum": 427610.9375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32886.03515625,
+        "reference_support_sum": 33795.70703125
+      },
+      {
+        "trial_id": 233,
+        "frame": 81,
+        "group": "change",
+        "force_squared_sum": 603826.375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32190.41015625,
+        "reference_support_sum": 32780.41796875
+      },
+      {
+        "trial_id": 325,
+        "frame": 317,
+        "group": "lateral",
+        "force_squared_sum": 102051.109375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31731.18359375,
+        "reference_support_sum": 32923.47265625
+      },
+      {
+        "trial_id": 383,
+        "frame": 605,
+        "group": "perturbed",
+        "force_squared_sum": 20196.91796875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32100.044921875,
+        "reference_support_sum": 32870.4765625
+      },
+      {
+        "trial_id": 156,
+        "frame": 610,
+        "group": "curved",
+        "force_squared_sum": 148265.921875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29830.119140625,
+        "reference_support_sum": 31952.8515625
+      },
+      {
+        "trial_id": 259,
+        "frame": 139,
+        "group": "change",
+        "force_squared_sum": 635603.625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31199.703125,
+        "reference_support_sum": 32377.275390625
+      },
+      {
+        "trial_id": 495,
+        "frame": 99,
+        "group": "diagnostic",
+        "force_squared_sum": 4157.20458984375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31729.826171875,
+        "reference_support_sum": 32248.97265625
+      }
+    ]
+  },
+  "initial": {
+    "force_vector_rmse_N": 81.45398591766397,
+    "mean_total_sand_Fz_N": 255.074594921875,
+    "reference_mean_total_sand_Fz_N": 330.190740234375,
+    "per_episode": [
+      {
+        "trial_id": 45,
+        "frame": 416,
+        "group": "straight",
+        "force_squared_sum": 376363.96875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 28375.208984375,
+        "reference_support_sum": 32785.1015625
+      },
+      {
+        "trial_id": 411,
+        "frame": 337,
+        "group": "perturbed",
+        "force_squared_sum": 411498.6875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30826.4921875,
+        "reference_support_sum": 34296.765625
+      },
+      {
+        "trial_id": 430,
+        "frame": 448,
+        "group": "standing",
+        "force_squared_sum": 3643239.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 12709.4833984375,
+        "reference_support_sum": 32966.7890625
+      },
+      {
+        "trial_id": 226,
+        "frame": 531,
+        "group": "change",
+        "force_squared_sum": 589910.5625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 28336.494140625,
+        "reference_support_sum": 32551.7421875
+      },
+      {
+        "trial_id": 450,
+        "frame": 317,
+        "group": "standing",
+        "force_squared_sum": 715497.0625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34749.02734375,
+        "reference_support_sum": 34065.28515625
+      },
+      {
+        "trial_id": 124,
+        "frame": 413,
+        "group": "curved",
+        "force_squared_sum": 556712.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 28040.513671875,
+        "reference_support_sum": 31739.6328125
+      },
+      {
+        "trial_id": 249,
+        "frame": 367,
+        "group": "change",
+        "force_squared_sum": 671173.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 26488.1328125,
+        "reference_support_sum": 32432.33984375
+      },
+      {
+        "trial_id": 305,
+        "frame": 882,
+        "group": "lateral",
+        "force_squared_sum": 2775681.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 19354.060546875,
+        "reference_support_sum": 32094.95703125
+      },
+      {
+        "trial_id": 436,
+        "frame": 232,
+        "group": "standing",
+        "force_squared_sum": 3625652.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 14988.5546875,
+        "reference_support_sum": 32592.662109375
+      },
+      {
+        "trial_id": 243,
+        "frame": 889,
+        "group": "change",
+        "force_squared_sum": 2269575.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 19129.07421875,
+        "reference_support_sum": 33898.3046875
+      },
+      {
+        "trial_id": 342,
+        "frame": 436,
+        "group": "lateral",
+        "force_squared_sum": 2365106.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 16592.640625,
+        "reference_support_sum": 32610.140625
+      },
+      {
+        "trial_id": 34,
+        "frame": 61,
+        "group": "straight",
+        "force_squared_sum": 1070940.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 20327.12890625,
+        "reference_support_sum": 32985.7421875
+      },
+      {
+        "trial_id": 212,
+        "frame": 646,
+        "group": "change",
+        "force_squared_sum": 269610.28125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31087.046875,
+        "reference_support_sum": 33030.0234375
+      },
+      {
+        "trial_id": 398,
+        "frame": 197,
+        "group": "perturbed",
+        "force_squared_sum": 1012163.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31984.9296875,
+        "reference_support_sum": 32722.001953125
+      },
+      {
+        "trial_id": 425,
+        "frame": 676,
+        "group": "perturbed",
+        "force_squared_sum": 1093902.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29980.9296875,
+        "reference_support_sum": 34367.19140625
+      },
+      {
+        "trial_id": 365,
+        "frame": 529,
+        "group": "perturbed",
+        "force_squared_sum": 847439.125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32993.60546875,
+        "reference_support_sum": 33468.5
+      },
+      {
+        "trial_id": 440,
+        "frame": 469,
+        "group": "standing",
+        "force_squared_sum": 3226799.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 13224.708984375,
+        "reference_support_sum": 32428.99609375
+      },
+      {
+        "trial_id": 71,
+        "frame": 102,
+        "group": "straight",
+        "force_squared_sum": 1411649.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 19725.484375,
+        "reference_support_sum": 33151.94140625
+      },
+      {
+        "trial_id": 135,
+        "frame": 807,
+        "group": "curved",
+        "force_squared_sum": 428386.8125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 26775.80859375,
+        "reference_support_sum": 32206.890625
+      },
+      {
+        "trial_id": 307,
+        "frame": 276,
+        "group": "lateral",
+        "force_squared_sum": 3669009.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 15574.982421875,
+        "reference_support_sum": 32501.765625
+      },
+      {
+        "trial_id": 406,
+        "frame": 617,
+        "group": "perturbed",
+        "force_squared_sum": 404609.59375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29574.259765625,
+        "reference_support_sum": 34219.0234375
+      },
+      {
+        "trial_id": 419,
+        "frame": 177,
+        "group": "perturbed",
+        "force_squared_sum": 895355.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32133.2421875,
+        "reference_support_sum": 31961.302734375
+      },
+      {
+        "trial_id": 12,
+        "frame": 161,
+        "group": "straight",
+        "force_squared_sum": 1126512.125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34393.1796875,
+        "reference_support_sum": 33546.5625
+      },
+      {
+        "trial_id": 70,
+        "frame": 811,
+        "group": "straight",
+        "force_squared_sum": 718912.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 28703.0390625,
+        "reference_support_sum": 32044.5859375
+      },
+      {
+        "trial_id": 187,
+        "frame": 692,
+        "group": "curved",
+        "force_squared_sum": 1037007.125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 25655.048828125,
+        "reference_support_sum": 33319.9296875
+      },
+      {
+        "trial_id": 52,
+        "frame": 441,
+        "group": "straight",
+        "force_squared_sum": 645316.3125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31925.33984375,
+        "reference_support_sum": 32801.48828125
+      },
+      {
+        "trial_id": 136,
+        "frame": 125,
+        "group": "curved",
+        "force_squared_sum": 1980324.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34914.8359375,
+        "reference_support_sum": 35284.5703125
+      },
+      {
+        "trial_id": 381,
+        "frame": 627,
+        "group": "perturbed",
+        "force_squared_sum": 324500.21875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 27817.36328125,
+        "reference_support_sum": 31921.58984375
+      },
+      {
+        "trial_id": 65,
+        "frame": 889,
+        "group": "straight",
+        "force_squared_sum": 503761.90625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29009.3515625,
+        "reference_support_sum": 33175.171875
+      },
+      {
+        "trial_id": 291,
+        "frame": 346,
+        "group": "change",
+        "force_squared_sum": 415266.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30528.9140625,
+        "reference_support_sum": 31146.822265625
+      },
+      {
+        "trial_id": 324,
+        "frame": 431,
+        "group": "lateral",
+        "force_squared_sum": 829907.3125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 25244.345703125,
+        "reference_support_sum": 31642.58984375
+      },
+      {
+        "trial_id": 492,
+        "frame": 123,
+        "group": "diagnostic",
+        "force_squared_sum": 1739836.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 16246.5595703125,
+        "reference_support_sum": 32239.8046875
+      },
+      {
+        "trial_id": 63,
+        "frame": 293,
+        "group": "straight",
+        "force_squared_sum": 984783.4375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34016.859375,
+        "reference_support_sum": 34407.0234375
+      },
+      {
+        "trial_id": 107,
+        "frame": 842,
+        "group": "curved",
+        "force_squared_sum": 659771.625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 25119.37109375,
+        "reference_support_sum": 31877.078125
+      },
+      {
+        "trial_id": 184,
+        "frame": 643,
+        "group": "curved",
+        "force_squared_sum": 565940.625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 27157.80078125,
+        "reference_support_sum": 32444.44921875
+      },
+      {
+        "trial_id": 231,
+        "frame": 400,
+        "group": "change",
+        "force_squared_sum": 561573.125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32885.5703125,
+        "reference_support_sum": 36538.46875
+      },
+      {
+        "trial_id": 434,
+        "frame": 871,
+        "group": "standing",
+        "force_squared_sum": 4989276.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 12001.021484375,
+        "reference_support_sum": 32413.4609375
+      },
+      {
+        "trial_id": 61,
+        "frame": 394,
+        "group": "straight",
+        "force_squared_sum": 728348.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 28567.146484375,
+        "reference_support_sum": 34621.1796875
+      },
+      {
+        "trial_id": 141,
+        "frame": 541,
+        "group": "curved",
+        "force_squared_sum": 719669.375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29220.24609375,
+        "reference_support_sum": 34491.69921875
+      },
+      {
+        "trial_id": 14,
+        "frame": 553,
+        "group": "straight",
+        "force_squared_sum": 241468.0625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29988.65625,
+        "reference_support_sum": 32897.82421875
+      },
+      {
+        "trial_id": 182,
+        "frame": 399,
+        "group": "curved",
+        "force_squared_sum": 1109301.625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 24087.81640625,
+        "reference_support_sum": 33782.29296875
+      },
+      {
+        "trial_id": 203,
+        "frame": 449,
+        "group": "change",
+        "force_squared_sum": 588243.125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 28414.78125,
+        "reference_support_sum": 33091.84375
+      },
+      {
+        "trial_id": 276,
+        "frame": 258,
+        "group": "change",
+        "force_squared_sum": 1124172.625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29762.0859375,
+        "reference_support_sum": 33238.9921875
+      },
+      {
+        "trial_id": 169,
+        "frame": 399,
+        "group": "curved",
+        "force_squared_sum": 1167990.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 25901.83984375,
+        "reference_support_sum": 33795.70703125
+      },
+      {
+        "trial_id": 233,
+        "frame": 81,
+        "group": "change",
+        "force_squared_sum": 982866.25,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29241.42578125,
+        "reference_support_sum": 32780.41796875
+      },
+      {
+        "trial_id": 325,
+        "frame": 317,
+        "group": "lateral",
+        "force_squared_sum": 3305436.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 13963.3837890625,
+        "reference_support_sum": 32923.47265625
+      },
+      {
+        "trial_id": 383,
+        "frame": 605,
+        "group": "perturbed",
+        "force_squared_sum": 2812928.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 11323.9794921875,
+        "reference_support_sum": 32870.4765625
+      },
+      {
+        "trial_id": 156,
+        "frame": 610,
+        "group": "curved",
+        "force_squared_sum": 735609.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 24280.912109375,
+        "reference_support_sum": 31952.8515625
+      },
+      {
+        "trial_id": 259,
+        "frame": 139,
+        "group": "change",
+        "force_squared_sum": 518564.625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30832.44140625,
+        "reference_support_sum": 32377.275390625
+      },
+      {
+        "trial_id": 495,
+        "frame": 99,
+        "group": "diagnostic",
+        "force_squared_sum": 2899954.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 11197.849609375,
+        "reference_support_sum": 32248.97265625
+      }
+    ]
+  },
+  "pilot": {
+    "force_vector_rmse_N": 46.31218627381931,
+    "mean_total_sand_Fz_N": 329.50404921875,
+    "reference_mean_total_sand_Fz_N": 330.190740234375,
+    "per_episode": [
+      {
+        "trial_id": 45,
+        "frame": 416,
+        "group": "straight",
+        "force_squared_sum": 112447.4296875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32019.970703125,
+        "reference_support_sum": 32785.1015625
+      },
+      {
+        "trial_id": 411,
+        "frame": 337,
+        "group": "perturbed",
+        "force_squared_sum": 287050.5625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33819.22265625,
+        "reference_support_sum": 34296.765625
+      },
+      {
+        "trial_id": 430,
+        "frame": 448,
+        "group": "standing",
+        "force_squared_sum": 48777.046875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32317.29296875,
+        "reference_support_sum": 32966.7890625
+      },
+      {
+        "trial_id": 226,
+        "frame": 531,
+        "group": "change",
+        "force_squared_sum": 909356.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 35912.53515625,
+        "reference_support_sum": 32551.7421875
+      },
+      {
+        "trial_id": 450,
+        "frame": 317,
+        "group": "standing",
+        "force_squared_sum": 662738.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34894.3828125,
+        "reference_support_sum": 34065.28515625
+      },
+      {
+        "trial_id": 124,
+        "frame": 413,
+        "group": "curved",
+        "force_squared_sum": 406044.78125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30906.078125,
+        "reference_support_sum": 31739.6328125
+      },
+      {
+        "trial_id": 249,
+        "frame": 367,
+        "group": "change",
+        "force_squared_sum": 269244.5625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31326.548828125,
+        "reference_support_sum": 32432.33984375
+      },
+      {
+        "trial_id": 305,
+        "frame": 882,
+        "group": "lateral",
+        "force_squared_sum": 59089.078125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30729.46875,
+        "reference_support_sum": 32094.95703125
+      },
+      {
+        "trial_id": 436,
+        "frame": 232,
+        "group": "standing",
+        "force_squared_sum": 127579.921875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32922.62109375,
+        "reference_support_sum": 32592.662109375
+      },
+      {
+        "trial_id": 243,
+        "frame": 889,
+        "group": "change",
+        "force_squared_sum": 252709.0625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32392.046875,
+        "reference_support_sum": 33898.3046875
+      },
+      {
+        "trial_id": 342,
+        "frame": 436,
+        "group": "lateral",
+        "force_squared_sum": 85250.8828125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30106.14453125,
+        "reference_support_sum": 32610.140625
+      },
+      {
+        "trial_id": 34,
+        "frame": 61,
+        "group": "straight",
+        "force_squared_sum": 23369.794921875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31279.29296875,
+        "reference_support_sum": 32985.7421875
+      },
+      {
+        "trial_id": 212,
+        "frame": 646,
+        "group": "change",
+        "force_squared_sum": 216681.359375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 35139.5859375,
+        "reference_support_sum": 33030.0234375
+      },
+      {
+        "trial_id": 398,
+        "frame": 197,
+        "group": "perturbed",
+        "force_squared_sum": 668553.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 35044.25,
+        "reference_support_sum": 32722.001953125
+      },
+      {
+        "trial_id": 425,
+        "frame": 676,
+        "group": "perturbed",
+        "force_squared_sum": 929439.75,
+        "foot_time_count": 200,
+        "estimated_support_sum": 37106.6015625,
+        "reference_support_sum": 34367.19140625
+      },
+      {
+        "trial_id": 365,
+        "frame": 529,
+        "group": "perturbed",
+        "force_squared_sum": 712810.5625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34311.1796875,
+        "reference_support_sum": 33468.5
+      },
+      {
+        "trial_id": 440,
+        "frame": 469,
+        "group": "standing",
+        "force_squared_sum": 67727.0078125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30654.236328125,
+        "reference_support_sum": 32428.99609375
+      },
+      {
+        "trial_id": 71,
+        "frame": 102,
+        "group": "straight",
+        "force_squared_sum": 32018.9375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31545.03515625,
+        "reference_support_sum": 33151.94140625
+      },
+      {
+        "trial_id": 135,
+        "frame": 807,
+        "group": "curved",
+        "force_squared_sum": 93906.15625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32052.66796875,
+        "reference_support_sum": 32206.890625
+      },
+      {
+        "trial_id": 307,
+        "frame": 276,
+        "group": "lateral",
+        "force_squared_sum": 51577.51171875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32047.3828125,
+        "reference_support_sum": 32501.765625
+      },
+      {
+        "trial_id": 406,
+        "frame": 617,
+        "group": "perturbed",
+        "force_squared_sum": 449135.3125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33057.734375,
+        "reference_support_sum": 34219.0234375
+      },
+      {
+        "trial_id": 419,
+        "frame": 177,
+        "group": "perturbed",
+        "force_squared_sum": 1296735.625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 37154.7265625,
+        "reference_support_sum": 31961.302734375
+      },
+      {
+        "trial_id": 12,
+        "frame": 161,
+        "group": "straight",
+        "force_squared_sum": 1897561.75,
+        "foot_time_count": 200,
+        "estimated_support_sum": 37902.5,
+        "reference_support_sum": 33546.5625
+      },
+      {
+        "trial_id": 70,
+        "frame": 811,
+        "group": "straight",
+        "force_squared_sum": 244707.5,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33183.53125,
+        "reference_support_sum": 32044.5859375
+      },
+      {
+        "trial_id": 187,
+        "frame": 692,
+        "group": "curved",
+        "force_squared_sum": 445228.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30599.62109375,
+        "reference_support_sum": 33319.9296875
+      },
+      {
+        "trial_id": 52,
+        "frame": 441,
+        "group": "straight",
+        "force_squared_sum": 705678.9375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34630.86328125,
+        "reference_support_sum": 32801.48828125
+      },
+      {
+        "trial_id": 136,
+        "frame": 125,
+        "group": "curved",
+        "force_squared_sum": 2049378.0,
+        "foot_time_count": 200,
+        "estimated_support_sum": 38130.65625,
+        "reference_support_sum": 35284.5703125
+      },
+      {
+        "trial_id": 381,
+        "frame": 627,
+        "group": "perturbed",
+        "force_squared_sum": 184353.6875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32021.17578125,
+        "reference_support_sum": 31921.58984375
+      },
+      {
+        "trial_id": 65,
+        "frame": 889,
+        "group": "straight",
+        "force_squared_sum": 462626.8125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30878.2890625,
+        "reference_support_sum": 33175.171875
+      },
+      {
+        "trial_id": 291,
+        "frame": 346,
+        "group": "change",
+        "force_squared_sum": 419962.8125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 32124.853515625,
+        "reference_support_sum": 31146.822265625
+      },
+      {
+        "trial_id": 324,
+        "frame": 431,
+        "group": "lateral",
+        "force_squared_sum": 239902.40625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29896.978515625,
+        "reference_support_sum": 31642.58984375
+      },
+      {
+        "trial_id": 492,
+        "frame": 123,
+        "group": "diagnostic",
+        "force_squared_sum": 60986.61328125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29040.48828125,
+        "reference_support_sum": 32239.8046875
+      },
+      {
+        "trial_id": 63,
+        "frame": 293,
+        "group": "straight",
+        "force_squared_sum": 1300203.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 35109.109375,
+        "reference_support_sum": 34407.0234375
+      },
+      {
+        "trial_id": 107,
+        "frame": 842,
+        "group": "curved",
+        "force_squared_sum": 87932.734375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31357.626953125,
+        "reference_support_sum": 31877.078125
+      },
+      {
+        "trial_id": 184,
+        "frame": 643,
+        "group": "curved",
+        "force_squared_sum": 267654.28125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 31435.28125,
+        "reference_support_sum": 32444.44921875
+      },
+      {
+        "trial_id": 231,
+        "frame": 400,
+        "group": "change",
+        "force_squared_sum": 355175.9375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 35781.87109375,
+        "reference_support_sum": 36538.46875
+      },
+      {
+        "trial_id": 434,
+        "frame": 871,
+        "group": "standing",
+        "force_squared_sum": 260542.171875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 28597.5078125,
+        "reference_support_sum": 32413.4609375
+      },
+      {
+        "trial_id": 61,
+        "frame": 394,
+        "group": "straight",
+        "force_squared_sum": 299846.375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34123.73828125,
+        "reference_support_sum": 34621.1796875
+      },
+      {
+        "trial_id": 141,
+        "frame": 541,
+        "group": "curved",
+        "force_squared_sum": 230884.40625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 34633.7890625,
+        "reference_support_sum": 34491.69921875
+      },
+      {
+        "trial_id": 14,
+        "frame": 553,
+        "group": "straight",
+        "force_squared_sum": 122353.2578125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33298.5625,
+        "reference_support_sum": 32897.82421875
+      },
+      {
+        "trial_id": 182,
+        "frame": 399,
+        "group": "curved",
+        "force_squared_sum": 145385.984375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33305.95703125,
+        "reference_support_sum": 33782.29296875
+      },
+      {
+        "trial_id": 203,
+        "frame": 449,
+        "group": "change",
+        "force_squared_sum": 648282.375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 35577.3203125,
+        "reference_support_sum": 33091.84375
+      },
+      {
+        "trial_id": 276,
+        "frame": 258,
+        "group": "change",
+        "force_squared_sum": 861359.375,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33584.3515625,
+        "reference_support_sum": 33238.9921875
+      },
+      {
+        "trial_id": 169,
+        "frame": 399,
+        "group": "curved",
+        "force_squared_sum": 273212.8125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 33986.8515625,
+        "reference_support_sum": 33795.70703125
+      },
+      {
+        "trial_id": 233,
+        "frame": 81,
+        "group": "change",
+        "force_squared_sum": 1018354.5625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 35694.8984375,
+        "reference_support_sum": 32780.41796875
+      },
+      {
+        "trial_id": 325,
+        "frame": 317,
+        "group": "lateral",
+        "force_squared_sum": 197838.828125,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29579.46484375,
+        "reference_support_sum": 32923.47265625
+      },
+      {
+        "trial_id": 383,
+        "frame": 605,
+        "group": "perturbed",
+        "force_squared_sum": 45865.390625,
+        "foot_time_count": 200,
+        "estimated_support_sum": 30376.98828125,
+        "reference_support_sum": 32870.4765625
+      },
+      {
+        "trial_id": 156,
+        "frame": 610,
+        "group": "curved",
+        "force_squared_sum": 197762.6875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29742.982421875,
+        "reference_support_sum": 31952.8515625
+      },
+      {
+        "trial_id": 259,
+        "frame": 139,
+        "group": "change",
+        "force_squared_sum": 619011.875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 36704.328125,
+        "reference_support_sum": 32377.275390625
+      },
+      {
+        "trial_id": 495,
+        "frame": 99,
+        "group": "diagnostic",
+        "force_squared_sum": 43887.0546875,
+        "foot_time_count": 200,
+        "estimated_support_sum": 29481.654296875,
+        "reference_support_sum": 32248.97265625
+      }
+    ]
+  }
+}

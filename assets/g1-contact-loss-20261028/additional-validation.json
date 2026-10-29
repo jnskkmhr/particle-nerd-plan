@@ -1,0 +1,219 @@
+{
+  "validation-107-direct": {
+    "duration_s": 10.0,
+    "final_base_world_z_m": 0.6087936162948608,
+    "last_second_sand_force_N": 338.461181640625,
+    "termination": [],
+    "trial": {
+      "trial_id": 107,
+      "group": "curved",
+      "mode": "policy",
+      "split": "validation",
+      "simulation_seed": 120106,
+      "initial_x_m": 0.0026570927902621957,
+      "initial_y_m": 0.020128624934289338,
+      "initial_yaw_rad": -0.6966464895963402,
+      "switch_time_s": 2.52,
+      "command_start": [
+        0.17483441369845548,
+        -0.007397839935945352,
+        -0.49698643233701045
+      ],
+      "command_end": [
+        0.17483441369845548,
+        -0.007397839935945352,
+        -0.49698643233701045
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "seed": 120106
+  },
+  "validation-107-mpm": {
+    "duration_s": 10.0,
+    "final_base_world_z_m": 0.6199135184288025,
+    "last_second_sand_force_N": 321.50701904296875,
+    "termination": [],
+    "trial": {
+      "trial_id": 107,
+      "group": "curved",
+      "mode": "policy",
+      "split": "validation",
+      "simulation_seed": 120106,
+      "initial_x_m": 0.0026570927902621957,
+      "initial_y_m": 0.020128624934289338,
+      "initial_yaw_rad": -0.6966464895963402,
+      "switch_time_s": 2.52,
+      "command_start": [
+        0.17483441369845548,
+        -0.007397839935945352,
+        -0.49698643233701045
+      ],
+      "command_end": [
+        0.17483441369845548,
+        -0.007397839935945352,
+        -0.49698643233701045
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "seed": 120106
+  },
+  "validation-365-direct": {
+    "duration_s": 10.0,
+    "final_base_world_z_m": 0.5576524138450623,
+    "last_second_sand_force_N": 331.2978820800781,
+    "termination": [],
+    "trial": {
+      "trial_id": 365,
+      "group": "perturbed",
+      "mode": "policy-noise",
+      "split": "validation",
+      "simulation_seed": 120364,
+      "initial_x_m": -0.013171964311009858,
+      "initial_y_m": -0.004568824126842064,
+      "initial_yaw_rad": 1.857659706179711,
+      "switch_time_s": 2.04,
+      "command_start": [
+        0.0741842372835639,
+        0.060662739166786175,
+        0.2407832803946927
+      ],
+      "command_end": [
+        0.07858935290447437,
+        -0.08001822948495355,
+        0.2031612040039576
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.1,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "seed": 120364
+  },
+  "validation-365-mpm": {
+    "duration_s": 10.0,
+    "final_base_world_z_m": 0.5910104513168335,
+    "last_second_sand_force_N": 328.9313659667969,
+    "termination": [],
+    "trial": {
+      "trial_id": 365,
+      "group": "perturbed",
+      "mode": "policy-noise",
+      "split": "validation",
+      "simulation_seed": 120364,
+      "initial_x_m": -0.013171964311009858,
+      "initial_y_m": -0.004568824126842064,
+      "initial_yaw_rad": 1.857659706179711,
+      "switch_time_s": 2.04,
+      "command_start": [
+        0.0741842372835639,
+        0.060662739166786175,
+        0.2407832803946927
+      ],
+      "command_end": [
+        0.07858935290447437,
+        -0.08001822948495355,
+        0.2031612040039576
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.1,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "seed": 120364
+  },
+  "validation-430-current": {
+    "duration_s": 20.0,
+    "final_base_world_z_m": 0.4750153124332428,
+    "last_second_sand_force_N": 0.0,
+    "termination": [],
+    "trial": {
+      "trial_id": 430,
+      "group": "standing",
+      "mode": "policy",
+      "split": "validation",
+      "simulation_seed": 120429,
+      "initial_x_m": -0.02487873923193411,
+      "initial_y_m": -0.033168249374000675,
+      "initial_yaw_rad": -0.9506529540733251,
+      "switch_time_s": 3.04,
+      "command_start": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_end": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "seed": 120429
+  },
+  "validation-430-direct": {
+    "duration_s": 20.0,
+    "final_base_world_z_m": 0.5499585866928101,
+    "last_second_sand_force_N": 330.08294677734375,
+    "termination": [],
+    "trial": {
+      "trial_id": 430,
+      "group": "standing",
+      "mode": "policy",
+      "split": "validation",
+      "simulation_seed": 120429,
+      "initial_x_m": -0.02487873923193411,
+      "initial_y_m": -0.033168249374000675,
+      "initial_yaw_rad": -0.9506529540733251,
+      "switch_time_s": 3.04,
+      "command_start": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_end": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "seed": 120429
+  },
+  "validation-430-mpm": {
+    "duration_s": 20.0,
+    "final_base_world_z_m": 0.5296637415885925,
+    "last_second_sand_force_N": 327.8016052246094,
+    "termination": [],
+    "trial": {
+      "trial_id": 430,
+      "group": "standing",
+      "mode": "policy",
+      "split": "validation",
+      "simulation_seed": 120429,
+      "initial_x_m": -0.02487873923193411,
+      "initial_y_m": -0.033168249374000675,
+      "initial_yaw_rad": -0.9506529540733251,
+      "switch_time_s": 3.04,
+      "command_start": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_end": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "duration_s": 5.0,
+      "action_noise_amplitude": 0.0,
+      "integrated_path_interpretation": "ideal tracking of body-frame velocity command"
+    },
+    "seed": 120429
+  }
+}
