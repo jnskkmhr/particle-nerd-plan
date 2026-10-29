@@ -1,0 +1,24 @@
+{
+  "checkpoint": "particle-g1-direct-contact-1, optimizer update 300",
+  "configuration_sha256": "74761e5df33c2438947fc5e31398d012ab99a58e77a725ba90570d11ea049b31",
+  "terrain_m": [
+    3,
+    3,
+    0.3
+  ],
+  "initial_sand_z_m": [
+    -0.3,
+    0
+  ],
+  "wall_top_z_m": 0.1,
+  "approach_platform": null,
+  "approach_platform_visual": null,
+  "physics_hz": 200,
+  "policy_hz": 50,
+  "settling_steps": 60,
+  "requested_duration_s": 20,
+  "effective_mass_scale": 100,
+  "contact_solver": "rft_body_velocity",
+  "iterations": 200,
+  "contact_relaxation": 0.02
+}
