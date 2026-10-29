@@ -1,0 +1,16 @@
+{
+  "checkpoint": "/home/jkamohara/isaac/particle_nerd/experiments/g1-contact-training-20261028/cloud-checkpoints/particle-g1-direct-contact-1/step-0300/last.pt",
+  "checkpoint_sha256": "254af062d8ee63628dc711d9a7918cfd209fe5a387820ac2cb7c0d4b27ab384f",
+  "source_sha256": {
+    "/home/jkamohara/isaac/particle_nerd/experiments/g1-motion-isolation-20261028/shadow.py": "7e307ae9978f5a1b7ef15fb980fa46b1235192f00796e6c2df47f37a0a302ca7",
+    "/home/jkamohara/isaac/particle_nerd/experiments/g1-motion-isolation-20261028/reference_with_shadow.py": "b283486344cd7db695a86e47770a6283df1c7d57e02e809264a2d4580448d4ee",
+    "/home/jkamohara/isaac/IsaacLab-particle-nerd/examples/particle_nerd/g1/data.py": "731b1d037419e9339ad0b46fbf8c8ee994afd68afb4a944fc34b29c5d9019ea3",
+    "/home/jkamohara/isaac/IsaacLab-particle-nerd/examples/particle_nerd/g1/collect.py": "74761e5df33c2438947fc5e31398d012ab99a58e77a725ba90570d11ea049b31"
+  },
+  "reference_mode": "native MPM robot and material; learned particle state is separate and has no feedback",
+  "dt": 0.005,
+  "duration_s": 20,
+  "active_k": "auto",
+  "anchor_m": 512,
+  "initial_history": "constant velocity, same as dynamic runner"
+}

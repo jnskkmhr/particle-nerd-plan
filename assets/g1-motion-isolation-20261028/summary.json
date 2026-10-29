@@ -1,0 +1,29 @@
+{
+  "430": {
+    "duration_s": 20.0,
+    "final_position_rmse_m": 0.02911512553691864,
+    "last_second_near_foot_vertical_error_m": -0.04243055125698447,
+    "last_second_initial_upper_near_foot_vertical_error_m": -0.07249255292117596,
+    "one_step_mean_position_rmse_m": 1.569557986294967e-05,
+    "max_reference_base_difference_from_previous_m": 0.017373427748680115,
+    "prediction_feedback_to_robot": false
+  },
+  "107": {
+    "duration_s": 20.0,
+    "final_position_rmse_m": 0.03780175372958183,
+    "last_second_near_foot_vertical_error_m": -0.033437129259109494,
+    "last_second_initial_upper_near_foot_vertical_error_m": -0.05923476655036211,
+    "one_step_mean_position_rmse_m": 4.0326026399270634e-05,
+    "max_reference_base_difference_from_previous_m": 0.1674664169549942,
+    "prediction_feedback_to_robot": false
+  },
+  "365": {
+    "duration_s": 20.0,
+    "final_position_rmse_m": 0.040707770735025406,
+    "last_second_near_foot_vertical_error_m": -0.021441841050982475,
+    "last_second_initial_upper_near_foot_vertical_error_m": -0.04356714518740773,
+    "one_step_mean_position_rmse_m": 3.035273960631457e-05,
+    "max_reference_base_difference_from_previous_m": 0.2282232940196991,
+    "prediction_feedback_to_robot": false
+  }
+}
