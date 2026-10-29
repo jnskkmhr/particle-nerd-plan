@@ -1,0 +1,289 @@
+{
+  "checked_at_utc": "2026-10-29T00:52:03.199460+00:00",
+  "live_status": {
+    "particle-g1-direct-contact-1": {
+      "status": "RUNNING",
+      "observed_training_step": 400
+    },
+    "particle-g1-contact-region-1": {
+      "status": "RUNNING",
+      "observed_training_step": 800
+    }
+  },
+  "results": {
+    "particle-g1-direct-contact-1": {
+      "evaluation": [
+        {
+          "step": 100,
+          "duration_s": 5.0,
+          "outcome": "duration",
+          "termination": [],
+          "final_base_world_z_m": 0.5552205443382263,
+          "mean_upward_sand_force_N": 327.142578125,
+          "last_second_upward_sand_force_N": 327.2548828125
+        },
+        {
+          "step": 200,
+          "duration_s": 5.0,
+          "outcome": "duration",
+          "termination": [],
+          "final_base_world_z_m": 0.5436069369316101,
+          "mean_upward_sand_force_N": 327.12255859375,
+          "last_second_upward_sand_force_N": 327.4222717285156
+        },
+        {
+          "step": 300,
+          "duration_s": 5.0,
+          "outcome": "duration",
+          "termination": [],
+          "final_base_world_z_m": 0.53687983751297,
+          "mean_upward_sand_force_N": 324.5490417480469,
+          "last_second_upward_sand_force_N": 312.0865478515625
+        }
+      ],
+      "validation": [
+        {
+          "step": 100,
+          "elapsed_s": 351.73251271247864,
+          "contact_region_rmse_m": 0.01793412700421552,
+          "selection_score_rmse_m": 0.012868143519116063,
+          "position_rmse_m": 0.004090977216703803,
+          "moving_rmse_m": 0.004368134150090879,
+          "stationary_rmse_m": 0.00010025843814952185,
+          "balanced_rmse_m": 0.0030895507527479095,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        },
+        {
+          "step": 200,
+          "elapsed_s": 698.4985017776489,
+          "contact_region_rmse_m": 0.0165092839613356,
+          "selection_score_rmse_m": 0.01187157517950068,
+          "position_rmse_m": 0.00403948837909444,
+          "moving_rmse_m": 0.004312946285470374,
+          "stationary_rmse_m": 0.00015089558233420707,
+          "balanced_rmse_m": 0.0030515795203566853,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        },
+        {
+          "step": 300,
+          "elapsed_s": 1043.4322772026062,
+          "contact_region_rmse_m": 0.016529484768139643,
+          "selection_score_rmse_m": 0.011903562988469722,
+          "position_rmse_m": 0.004220890618070037,
+          "moving_rmse_m": 0.004506683914547905,
+          "stationary_rmse_m": 0.00014599306798292248,
+          "balanced_rmse_m": 0.0031883784186905965,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        }
+      ]
+    },
+    "particle-g1-contact-region-1": {
+      "evaluation": [
+        {
+          "step": 300,
+          "duration_s": 5.0,
+          "outcome": "duration",
+          "termination": [],
+          "final_base_world_z_m": 0.47525137662887573,
+          "mean_upward_sand_force_N": 114.65455627441406,
+          "last_second_upward_sand_force_N": 0.002063448540866375
+        },
+        {
+          "step": 400,
+          "duration_s": 5.0,
+          "outcome": "duration",
+          "termination": [],
+          "final_base_world_z_m": 0.4751391112804413,
+          "mean_upward_sand_force_N": 137.5642852783203,
+          "last_second_upward_sand_force_N": 0.04107692092657089
+        },
+        {
+          "step": 500,
+          "duration_s": 5.0,
+          "outcome": "duration",
+          "termination": [],
+          "final_base_world_z_m": 0.4751845598220825,
+          "mean_upward_sand_force_N": 121.07516479492188,
+          "last_second_upward_sand_force_N": 2.254544496536255
+        },
+        {
+          "step": 600,
+          "duration_s": 5.0,
+          "outcome": "duration",
+          "termination": [],
+          "final_base_world_z_m": 0.47519364953041077,
+          "mean_upward_sand_force_N": 120.09683227539062,
+          "last_second_upward_sand_force_N": 0.7409697771072388
+        },
+        {
+          "step": 700,
+          "duration_s": 5.0,
+          "outcome": "duration",
+          "termination": [],
+          "final_base_world_z_m": 0.47511038184165955,
+          "mean_upward_sand_force_N": 145.4020538330078,
+          "last_second_upward_sand_force_N": 3.1909945011138916
+        }
+      ],
+      "validation": [
+        {
+          "step": 100,
+          "elapsed_s": 343.36451745033264,
+          "contact_region_rmse_m": 0.017880506740736667,
+          "selection_score_rmse_m": 0.012806548914527397,
+          "position_rmse_m": 0.0038153800407504774,
+          "moving_rmse_m": 0.004073853460435371,
+          "stationary_rmse_m": 9.72407968461114e-05,
+          "balanced_rmse_m": 0.0028814699191274332,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        },
+        {
+          "step": 200,
+          "elapsed_s": 682.3971874713898,
+          "contact_region_rmse_m": 0.016944622980700565,
+          "selection_score_rmse_m": 0.012144404774091096,
+          "position_rmse_m": 0.0037101641151066414,
+          "moving_rmse_m": 0.003961442322185241,
+          "stationary_rmse_m": 0.00011290739433106567,
+          "balanced_rmse_m": 0.002802300247269645,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        },
+        {
+          "step": 300,
+          "elapsed_s": 1027.1521480083466,
+          "contact_region_rmse_m": 0.01671674685156902,
+          "selection_score_rmse_m": 0.01198831291653479,
+          "position_rmse_m": 0.0037425453723310188,
+          "moving_rmse_m": 0.003996053074700225,
+          "stationary_rmse_m": 0.00010438181983871633,
+          "balanced_rmse_m": 0.0028266000548480465,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        },
+        {
+          "step": 400,
+          "elapsed_s": 1363.5863769054413,
+          "contact_region_rmse_m": 0.016600783010243,
+          "selection_score_rmse_m": 0.011912306816144117,
+          "position_rmse_m": 0.003795930588543009,
+          "moving_rmse_m": 0.004053018978117281,
+          "stationary_rmse_m": 0.00011514679539696983,
+          "balanced_rmse_m": 0.002867073562142158,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        },
+        {
+          "step": 500,
+          "elapsed_s": 1699.2343578338623,
+          "contact_region_rmse_m": 0.015459430014985223,
+          "selection_score_rmse_m": 0.01111337982099947,
+          "position_rmse_m": 0.0037499631199111975,
+          "moving_rmse_m": 0.004004010924732962,
+          "stationary_rmse_m": 9.374391372171294e-05,
+          "balanced_rmse_m": 0.002832039142273706,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        },
+        {
+          "step": 600,
+          "elapsed_s": 2031.575425863266,
+          "contact_region_rmse_m": 0.01524034265622574,
+          "selection_score_rmse_m": 0.010958241376587163,
+          "position_rmse_m": 0.003721388579928761,
+          "moving_rmse_m": 0.0039735258546938525,
+          "stationary_rmse_m": 8.497054736541235e-05,
+          "balanced_rmse_m": 0.0028103494188303426,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        },
+        {
+          "step": 700,
+          "elapsed_s": 2365.7650632858276,
+          "contact_region_rmse_m": 0.015166089600236791,
+          "selection_score_rmse_m": 0.01090277338386763,
+          "position_rmse_m": 0.0036816675351947848,
+          "moving_rmse_m": 0.003931101091334544,
+          "stationary_rmse_m": 8.812788875748214e-05,
+          "balanced_rmse_m": 0.002780406653267512,
+          "frozen_rmse_m": 0.004342474622897606,
+          "particle_time_counts": [
+            387485834.0,
+            54314166.0
+          ],
+          "eligible_trajectory_count": 50,
+          "evaluated_trajectory_count": 50,
+          "prediction_steps": 100,
+          "horizon_s": 0.5
+        }
+      ]
+    }
+  }
+}
