@@ -20,9 +20,12 @@
       panel.hidden = !selected;
       panel.classList.toggle('is-visible', selected);
     });
-    document.getElementById('contact-step-back').disabled = contactStep === 0;
-    document.getElementById('contact-step-next').textContent = contactStep === 4 ? 'Algorithm ↺' : `Step ${contactStep + 1} →`;
-    document.getElementById('contact-step-status').textContent = contactStep === 0
+    const backBtn = document.getElementById('contact-step-back');
+    const nextBtn = document.getElementById('contact-step-next');
+    const statusEl = document.getElementById('contact-step-status');
+    if (backBtn) backBtn.disabled = contactStep === 0;
+    if (nextBtn) nextBtn.textContent = contactStep === 4 ? 'Algorithm ↺' : `Step ${contactStep + 1} →`;
+    if (statusEl) statusEl.textContent = contactStep === 0
       ? 'Full timestep · select a numbered tab for equations and definitions'
       : `Step ${contactStep} of 4 · ${contactTabs[contactStep].textContent.split(' · ')[1]}`;
     if (focus) contactTabs[contactStep].focus();
@@ -35,8 +38,8 @@
       showContactStep(event.key === 'Home' ? 0 : event.key === 'End' ? 4 : (contactStep + (event.key === 'ArrowRight' ? 1 : 4)) % 5, true);
     });
   });
-  document.getElementById('contact-step-back').addEventListener('click', () => showContactStep(contactStep - 1));
-  document.getElementById('contact-step-next').addEventListener('click', () => showContactStep((contactStep + 1) % 5));
+  document.getElementById('contact-step-back')?.addEventListener('click', () => showContactStep(contactStep - 1));
+  document.getElementById('contact-step-next')?.addEventListener('click', () => showContactStep((contactStep + 1) % 5));
 
   for (const selector of ['[data-solve-tab]', '[data-material-tab]', '[data-impulse-tab]', '[data-transolver-tab]']) {
     const solveTabs = [...document.querySelectorAll(selector)];
@@ -91,11 +94,10 @@
         const ncNext = document.getElementById('nc-next');
         const ncStatus = document.getElementById('nc-status');
         if (ncBack) ncBack.disabled = index === 0;
-        if (ncNext) ncNext.textContent = index === 5 ? 'Algorithm ↺' : index === 4 ? 'Results →' : `Step ${index + 1} →`;
+        if (ncNext) ncNext.textContent = index === tabs.length - 1 ? 'Algorithm ↺' : `Step ${index + 1} →`;
         if (ncStatus) ncStatus.textContent = index === 0
-          ? 'Algorithm · compare RFT-anisotropic solve with p18'
-          : index === 5 ? 'Measured improvement · 4.6× lower XY drag error than p18'
-          : `Step ${index} of 4 · ${tabs[index].textContent.split(' · ')[1] || tabs[index].textContent}`;
+          ? 'Algorithm · select a tab for step-by-step equations'
+          : `Step ${index} of ${tabs.length - 1} · ${tabs[index].textContent.split(' · ')[1] || tabs[index].textContent}`;
       }
       if (focus) tabs[index].focus();
     }
@@ -114,7 +116,7 @@
   document.getElementById('bv-back')?.addEventListener('click', () => selectBodyVelocityStep(Math.max(0, bodyVelocityStep - 1)));
   document.getElementById('bv-next')?.addEventListener('click', () => selectBodyVelocityStep((bodyVelocityStep + 1) % 6));
   document.getElementById('nc-back')?.addEventListener('click', () => selectNeuralContactStep(Math.max(0, neuralContactStep - 1)));
-  document.getElementById('nc-next')?.addEventListener('click', () => selectNeuralContactStep((neuralContactStep + 1) % 6));
+  document.getElementById('nc-next')?.addEventListener('click', () => selectNeuralContactStep((neuralContactStep + 1) % 5));
 
   const graphTabs = [...document.querySelectorAll('[data-graph-tab]')];
   const graphCaptions = ['Material particle i · 26 input values', 'Directed particle edge j → i · 7 input values', 'Particle i / collider b · 9 input values', 'Collider information → particle-node features'];
