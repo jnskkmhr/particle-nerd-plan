@@ -379,15 +379,19 @@
 <h2 id="g1-results-title" style="font-size:32px;margin-bottom:14px">G1 on enclosed sand tray: 20 s (4,000-step) coupled dynamics and particle accuracy</h2>
 <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:22px;height:495px;align-items:start">
   <div style="background:#f0f4ef;padding:14px;border-top:3px solid #247967;border-radius:4px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <b id="g1-vid-label" style="font-size:16px;color:#20343b">Side-by-Side: MPM vs. Particle NeRD (50 fps)</b>
-      <div style="display:flex;gap:6px">
-        <button type="button" onclick="const v=document.getElementById('g1-main-vid');v.src='assets/g1-updated-tray-20261028/g1_sim.mp4';document.getElementById('g1-vid-label').textContent='Side-by-Side: MPM vs. Particle NeRD (50 fps)'" style="font-size:12px;padding:4px 8px;border:1px solid #247967;border-radius:3px;background:#e3ede7;color:#20343b">MPM vs. NeRD</button>
-        <button type="button" onclick="const v=document.getElementById('g1-main-vid');v.src='assets/g1-updated-tray-20261028/g1_diverse_commands.mp4';document.getElementById('g1-vid-label').textContent='Diverse Commands: ±1.0 m/s Fwd/Back, Diagonal, Lateral'" style="font-size:12px;padding:4px 8px;border:1px solid #386481;border-radius:3px;background:#e0eaf0;color:#20343b">Diverse Commands (2×2)</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:4px">
+      <b id="g1-vid-label" style="font-size:15px;color:#20343b">Diverse Commands (2×2): ±1.0 m/s Fwd/Back, Diagonal, Lateral</b>
+      <div style="display:flex;gap:4px;flex-wrap:wrap">
+        <button type="button" onclick="const v=document.getElementById('g1-main-vid');v.src='assets/g1-updated-tray-20261028/g1_diverse_commands.mp4';document.getElementById('g1-vid-label').textContent='Diverse Commands (2×2): ±1.0 m/s Fwd/Back, Diagonal, Lateral'" style="font-size:11.5px;padding:3px 7px;border:1px solid #247967;border-radius:3px;background:#e3ede7;color:#20343b">2×2 Grid</button>
+        <button type="button" onclick="const v=document.getElementById('g1-main-vid');v.src='assets/g1-updated-tray-20261028/g1_straight_forward.mp4';document.getElementById('g1-vid-label').textContent='Straight Forward → Backward (vx = +1.0 → −1.0 m/s)'" style="font-size:11.5px;padding:3px 7px;border:1px solid #386481;border-radius:3px;background:#e0eaf0;color:#20343b">Fwd (+1.0)</button>
+        <button type="button" onclick="const v=document.getElementById('g1-main-vid');v.src='assets/g1-updated-tray-20261028/g1_backward.mp4';document.getElementById('g1-vid-label').textContent='Backward → Forward Walk (vx = −1.0 → +1.0 m/s)'" style="font-size:11.5px;padding:3px 7px;border:1px solid #386481;border-radius:3px;background:#e0eaf0;color:#20343b">Back (−1.0)</button>
+        <button type="button" onclick="const v=document.getElementById('g1-main-vid');v.src='assets/g1-updated-tray-20261028/g1_diagonal.mp4';document.getElementById('g1-vid-label').textContent='Diagonal Walk (vx = +0.7, vy = +0.6 m/s)'" style="font-size:11.5px;padding:3px 7px;border:1px solid #386481;border-radius:3px;background:#e0eaf0;color:#20343b">Diagonal</button>
+        <button type="button" onclick="const v=document.getElementById('g1-main-vid');v.src='assets/g1-updated-tray-20261028/g1_lateral.mp4';document.getElementById('g1-vid-label').textContent='Lateral Side-Step (vy = ±0.8 m/s)'" style="font-size:11.5px;padding:3px 7px;border:1px solid #386481;border-radius:3px;background:#e0eaf0;color:#20343b">Lateral</button>
+        <button type="button" onclick="const v=document.getElementById('g1-main-vid');v.src='assets/g1-updated-tray-20261028/g1_sim.mp4';document.getElementById('g1-vid-label').textContent='Side-by-Side: MPM vs. Particle NeRD (50 fps)'" style="font-size:11.5px;padding:3px 7px;border:1px solid #247967;border-radius:3px;background:#e3ede7;color:#20343b">MPM vs. NeRD</button>
       </div>
     </div>
-    <video id="g1-main-vid" controls loop muted playsinline preload="metadata" style="width:100%;height:330px;object-fit:contain;background:#111;border-radius:4px;display:block" src="assets/g1-updated-tray-20261028/g1_sim.mp4"></video>
-    <p style="font-size:14px;color:#596d73;margin-top:8px;line-height:1.35">Autonomous closed-loop G1 policy in the 3 × 3 × 0.3 m enclosed sand tray (no approach platform). Toggle above to view the 2×2 diverse-command showcase (±1.0 m/s forward/backward, diagonal, and lateral).</p>
+    <video id="g1-main-vid" controls loop muted playsinline preload="metadata" style="width:100%;height:330px;object-fit:contain;background:#111;border-radius:4px;display:block" src="assets/g1-updated-tray-20261028/g1_diverse_commands.mp4"></video>
+    <p style="font-size:14px;color:#596d73;margin-top:8px;line-height:1.35">Autonomous closed-loop G1 policy in the 3 × 3 × 0.3 m enclosed sand tray (no approach platform). Use the buttons above to switch between the 2×2 showcase, individual trajectories, and MPM vs. NeRD.</p>
   </div>
   <div style="display:flex;flex-direction:column;gap:14px">
     <div style="background:#f0f4ef;padding:14px;border-top:3px solid #247967;border-radius:4px">
